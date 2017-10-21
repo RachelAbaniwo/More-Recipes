@@ -14,9 +14,16 @@
 	  background-position: center;
 }
 
-nav ul li {display: inline;
+nav ul li {
+	       display: inline;
 	       margin: 4px;
 }
-
-
-
+h1, h2, h3, p, a, figcaption.fig-caption, input, label, li {
+	          font-family: Candara;
+}
+a.dropdown-item:hover {
+	           background-color: lightgrey
+}
+a:hover {
+	      font-weight: bold;
+}
