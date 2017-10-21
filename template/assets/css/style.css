@@ -1,0 +1,22 @@
+.home-header {
+	  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)),url(../image/headimg.jpeg);
+	  padding-top:15px;
+	  padding-bottom:45px;
+	  background-size: cover;
+	  background-position: center;
+}
+
+.home-footer {
+	  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)),url(../image/headimg.jpeg);
+	  padding-top:10px;
+	  padding-bottom:10px;
+	  background-size: cover;
+	  background-position: center;
+}
+
+nav ul li {display: inline;
+	       margin: 4px;
+}
+
+
+
