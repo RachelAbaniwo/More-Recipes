@@ -1,0 +1,44 @@
+body, html {
+	         
+	        height:100%;
+
+}
+.bg {
+	  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)),url(../image/headimg.jpeg);
+	  
+	  background-size: cover;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  min-height: 100%;
+	  min-width: 1024px;
+		
+	  /* Set up proportionate scaling */
+	  width: 100%;
+	  height: auto;
+		
+	  /* Set up positioning */
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  }
+	  
+
+
+
+
+nav ul li {
+	       display: inline;
+	       margin: 4px;
+}
+h1, h2, h3, h4, h5,button, p, a, figcaption.fig-caption, input, label, li {
+	          font-family: Candara;
+}
+a.dropdown-item:hover {
+			   background-color: lightgrey
+}
+a.nav-link:hover{
+	color:black
+}
+a:hover {
+		  font-weight: bold;
+}
