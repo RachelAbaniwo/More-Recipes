@@ -1,0 +1,37 @@
+{
+  "name": "More-Recipes",
+  "version": "1.0.0",
+  "description": "More-Recipes is a Recipe Web Application, it could be thought of as an online meet-up for everyone that enjoys cooking and sharing recipes, or for those who are probably just interested in finding out how amazing cuisines are put together. Users can either Sign Up to enjoy some awesome features or view recipes as a visitor.\r # Authors\r Rachel Abaniwo\r # Contributors\r # Ackwoledgements",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RachelAbaniwo/More-Recipes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RachelAbaniwo/More-Recipes/issues"
+  },
+  "homepage": "https://github.com/RachelAbaniwo/More-Recipes#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
