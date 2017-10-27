@@ -43,19 +43,26 @@ export default class RecipesController {
    */
   updateRecipe(req, res) {
     const recipe = recipes.find((currentRecipe) => {
-      return currentRecipe.id === req.params.id;
+      return currentRecipe.id === parseInt(req.params.id, 10);
     });
+
+    if (recipe === undefined ) {
+      res.status(404).send('the recipe was not found in the database');
+    }
+
     recipe.recipeName = req.body.recipeName;
     recipe.recipeType = req.body.recipeType;
     recipe.ingredients = req.body.ingredients;
     recipe.description = req.body.description;
     recipe.direction = req.body.direction;
     const indexOfRecipe = recipes.findIndex((currentRecipe) => {
-      return currentRecipe.id === req.params.id;
+      return currentRecipe.id === parseInt(req.params.id, 10);
     });
 
     recipes.splice(indexOfRecipe, 1, recipe);
     res.send(recipe);
+
+    
   }
   /**
    * deletes recipes from database
@@ -65,8 +72,12 @@ export default class RecipesController {
    */
   deleteRecipe(req, res) {
     const indexOfRecipe = recipes.findIndex((currentRecipe) => {
-      return currentRecipe.id === req.params.id;
+      return currentRecipe.id === parseInt(req.params.id, 10);
     });
+    if (indexOfRecipe == -1 ) {
+      res.status(404).send('the recipe to be deleted was not found in the database');
+    }  
+
     recipes.splice(indexOfRecipe, 1);
     res.send('Successfully deleted');
   }
@@ -80,6 +91,10 @@ export default class RecipesController {
     const recipe = recipes.find((currentRecipe) => {
       return currentRecipe.id === req.params.id;
     });
+
+    if (recipe == undefined) {
+      res.status(404).send('the recipe you want to review was not found in the database');
+    }  
 
     recipe.reviews.push(req.body.reviews);
 
