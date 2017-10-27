@@ -10,6 +10,7 @@ const recipes = [
         upvotes: 3,
         downvotes: 4,
         favorites: 5,
+        reviews: []
    },
    
    {
@@ -23,6 +24,7 @@ const recipes = [
     upvotes: 5,
     downvotes: 7,
     favorites: 9,
+    reviews: []
    },
 
    {
@@ -36,6 +38,7 @@ const recipes = [
     upvotes: 8,
     downvotes: 2,
     favorites: 9,
+    reviews: ['whatever']
    },
 
    {
@@ -49,6 +52,7 @@ const recipes = [
     upvotes: 17,
     downvotes: 92,
     favorites: 56,
+    reviews: ['this is awesome', 'oh wow']
    },
 
    {

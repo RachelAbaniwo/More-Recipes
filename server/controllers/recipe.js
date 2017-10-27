@@ -1,109 +1,88 @@
 import recipes from '../models/recipe';
+
 /**
- * @class Recipe
+ * Controlls the recipes endpoints
  */
-class Recipe {
-/**
-   * @returns {Object} addRecipe
-   * @param {*} req
-   * @param {*} res
+export default class RecipesController {
+  /**
+   * gets all recipes from database
+   * @param {object} req express request object
+   * @param {object} res express response object
+   * @returns {json} json returned to client
    */
-    static addRecipe(req,res) {
-       let newId = recipes.lenght + 1 
-       const object = {
-                        id: newId,
-                        userName: req.body.userName,
-                        recipeName: req.body.recipeName,
-                        recipeType: req.body.recipeType,
-                        ingredients: req.body.ingredients,
-                        description: req.body.description,
-                        direction: req.body.direction,
-                        upvotes: req.body.upvotes,
-                        downvotes: req.body.downvotes,
-                        favorites: req.body.favorites,
-
-                      }
-
-                      recipes.push(object);
-                        return res.json ({
-                        message:'success',
-                        error:'false'
-                      });
-                   }
-    /**
-   * @returns {Object} modifyRecipe
-   * @param {*} req
-   * @param {*} res
-   */
-
-    static modifyRecipe(req,res) {
-      
-      for (let i = 0; i < recipes.length; i++) {
-        
-        if (recipes[i].id === parseInt(req.params.recipeId, 10)) {
-          recipes[i].userName = req.body.userName;
-          recipes[i].recipeName = req.body.recipeName;
-          recipes[i].recipeType = req.body.recipeType;
-          recipes[i].ingredients = req.body.ingredients;
-          recipes[i].description = req.body.description;
-          recipes[i].direction = req.body.direction;
-          recipes[i].upvotes = req.body.upvotes;
-          recipes[i].downvotes = req.body.downvotes;
-          recipes[i].favorites = req.body.favorites;
-          
-          return res.json({
-            
-            recipes,
-            message: 'success',
-            error: false
-          });
-        }
+  getRecipes(req, res) {
+    if (req.query.sort === 'upvotes') {
+      if (req.query.order === 'des') {
+        recipes.sort((recipe1, recipe2) => recipe1.upvotes < recipe2.upvotes);
+      } else {
+        recipes.sort((recipe1, recipe2) => recipe1.upvotes > recipe2.upvotes);
       }
-      return res.status(404).json({
-        message: 'recipe not found',
-        error: true
-      });
     }
-    /**
-   * @returns {Object} deleteRecipe
-   * @param {*} req
-   * @param {*} res
-   */
-    static deleteRecipe(req,res) {
-      
-      for (let i = 0; i < recipes.length; i++) {
-        
-        if (recipes[i].id === parseInt(req.params.recipeId, 10)) {
-          
-          recipes.splice(i, 1);
-          return res.json({
-            message: 'success',
-            error: false
-          });
-        }
-      }
-      
-      return res.status(404).json({
-        message: 'recipe not found',
-        error: true
-      });
-    }
-    
-    /**
-   * @returns {Object} getRecipe
-   * @param {*} req
-   * @param {*} res
-   */
-    static getRecipe(req, res) {
-      
-      return res.json({
-        recipes
-      });
-    }
-    
+    res.send(recipes);
   }
-    
-  export default Recipe;
+  /**
+   * adds recipes to database
+   * @param {object} req express request object
+   * @param {object} res express response object
+   * @returns {json} json returned to client
+   */
+  addRecipes(req, res) {
+    const recipe = req.body;
+    recipe.id = recipes.length + 1;
+    recipe.upvotes = 0;
+    recipe.downvotes = 0;
+    recipe.favorites = 0;
+    recipes.push(recipe);
+    res.send(recipe);
+  }
+  /**
+   * updates recipes on database
+   * @param {object} req express request object
+   * @param {object} res express response object
+   * @returns {json} json returned to client
+   */
+  updateRecipe(req, res) {
+    const recipe = recipes.find((currentRecipe) => {
+      return currentRecipe.id === req.params.id;
+    });
+    recipe.recipeName = req.body.recipeName;
+    recipe.recipeType = req.body.recipeType;
+    recipe.ingredients = req.body.ingredients;
+    recipe.description = req.body.description;
+    recipe.direction = req.body.direction;
+    const indexOfRecipe = recipes.findIndex((currentRecipe) => {
+      return currentRecipe.id === req.params.id;
+    });
 
+    recipes.splice(indexOfRecipe, 1, recipe);
+    res.send(recipe);
+  }
+  /**
+   * deletes recipes from database
+   * @param {object} req express request object
+   * @param {object} res express response object
+   * @returns {json} json returns message to client
+   */
+  deleteRecipe(req, res) {
+    const indexOfRecipe = recipes.findIndex((currentRecipe) => {
+      return currentRecipe.id === req.params.id;
+    });
+    recipes.splice(indexOfRecipe, 1);
+    res.send('Successfully deleted');
+  }
+  /**
+   * adds reviews to recipes database
+   * @param {object} req express request object
+   * @param {object} res express response object
+   * @returns {json} json with updated reviews returned to client
+   */
+  addReviews(req, res) {
+    const recipe = recipes.find((currentRecipe) => {
+      return currentRecipe.id === req.params.id;
+    });
 
-  
+    recipe.reviews.push(req.body.reviews);
+
+    res.send(recipe);
+  }
+}
