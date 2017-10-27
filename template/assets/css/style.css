@@ -1,0 +1,29 @@
+.home-header {
+	  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)),url(../image/headimg.jpeg);
+	  padding-top:15px;
+	  padding-bottom:45px;
+	  background-size: cover;
+	  background-position: center;
+}
+
+.home-footer {
+	  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)),url(../image/headimg.jpeg);
+	  padding-top:10px;
+	  padding-bottom:10px;
+	  background-size: cover;
+	  background-position: center;
+}
+
+nav ul li {
+	       display: inline;
+	       margin: 4px;
+}
+h1, h2, h3, h4, h5,button, p, a, figcaption.fig-caption, input, label, li {
+	          font-family: Candara;
+}
+a.dropdown-item:hover {
+	           background-color: lightgrey
+}
+a:hover {
+	      font-weight: bold;
+}
