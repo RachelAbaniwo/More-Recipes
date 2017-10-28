@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const recipesCon = new RecipesController();
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('/api/recipes', recipesCon.getRecipes);
+app.get('/api/v1/recipes', recipesCon.getRecipes);
 app.post('/api/recipes', recipesCon.addRecipes);
 app.put('/api/recipes/:id', recipesCon.updateRecipe);
 app.delete('/api/recipes/:id', recipesCon.deleteRecipe);

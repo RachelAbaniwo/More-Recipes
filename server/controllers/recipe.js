@@ -28,12 +28,27 @@ export default class RecipesController {
    */
   addRecipes(req, res) {
     const recipe = req.body;
+    if (!req.body.recipeName) {
+      res.status(422).send('recipe name field is empty, fill in name of recipe and check that other fields are filled.');
+    }
+    if (!req.body.recipeType) {
+      res.status(422).send('recipe type field is empty, fill in type of recipe and check that other fields are filled.');
+    }
+    if (!req.body.ingredients) {
+      res.status(422).send('lists of ingredients field is empty, fill in ingredients of recipe and check that other fields are filled.');
+    }
+    if (!req.body.description) {
+      res.status(422).send('description of recipe field is empty, fill a description of recipe and check that other fields are filled.');
+    }
+    if (!req.body.direction) {
+      res.status(422).send('direction for preparation of recipe was not found, fill in direction to prepare recipe and check that other fields are filled.');
+    }
     recipe.id = recipes.length + 1;
     recipe.upvotes = 0;
     recipe.downvotes = 0;
     recipe.favorites = 0;
     recipes.push(recipe);
-    res.send(recipe);
+    res.json({ message: 'Recipe successfully added!', recipe });
   }
   /**
    * updates recipes on database
@@ -46,7 +61,7 @@ export default class RecipesController {
       return currentRecipe.id === parseInt(req.params.id, 10);
     });
 
-    if (recipe === undefined ) {
+    if (recipe === undefined) {
       res.status(404).send('the recipe was not found in the database');
     }
 
@@ -60,9 +75,7 @@ export default class RecipesController {
     });
 
     recipes.splice(indexOfRecipe, 1, recipe);
-    res.send(recipe);
-
-    
+    res.json({ message: 'Recipe successfully updated!', recipe });
   }
   /**
    * deletes recipes from database
@@ -74,12 +87,11 @@ export default class RecipesController {
     const indexOfRecipe = recipes.findIndex((currentRecipe) => {
       return currentRecipe.id === parseInt(req.params.id, 10);
     });
-    if (indexOfRecipe == -1 ) {
+    if (indexOfRecipe === -1) {
       res.status(404).send('the recipe to be deleted was not found in the database');
-    }  
-
+    }
     recipes.splice(indexOfRecipe, 1);
-    res.send('Successfully deleted');
+    res.json({ message: 'Recipe successfully deleted!', recipes });
   }
   /**
    * adds reviews to recipes database
@@ -89,15 +101,14 @@ export default class RecipesController {
    */
   addReviews(req, res) {
     const recipe = recipes.find((currentRecipe) => {
-      return currentRecipe.id === req.params.id;
+      return currentRecipe.id === parseInt(req.params.id, 10);
     });
 
-    if (recipe == undefined) {
+    if (recipe === undefined) {
       res.status(404).send('the recipe you want to review was not found in the database');
-    }  
-
+    }
     recipe.reviews.push(req.body.reviews);
 
-    res.send(recipe);
+    res.json({ message: 'Review successfully added!', recipe });
   }
 }
