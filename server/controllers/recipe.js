@@ -17,7 +17,6 @@ export default class RecipesController {
         recipes.sort((recipe1, recipe2) => recipe1.upvotes < recipe2.upvotes);
       }
     }
-
     return apiResponse('success', 200, { recipes }, res);
   }
   /**
