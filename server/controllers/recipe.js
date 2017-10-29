@@ -96,10 +96,10 @@ export default class RecipesController {
       return currentRecipe.id === parseInt(req.params.id, 10);
     });
     if (indexOfRecipe === -1) {
-      res.status(404).send('the recipe to be deleted was not found in the database');
+      return apiResponse('fail', 404, { message: 'the recipe to be deleted was not found in the database' }, res);
     }
     recipes.splice(indexOfRecipe, 1);
-    res.json({ message: 'Recipe successfully deleted!', recipes });
+    return apiResponse('success', 200, { message: 'Recipe successfully deleted.' }, res);
   }
   /**
    * adds reviews to recipes database
@@ -113,10 +113,9 @@ export default class RecipesController {
     });
 
     if (recipe === undefined) {
-      res.status(404).send('the recipe you want to review was not found in the database');
+      return apiResponse('fail', 404, { message: 'the recipe you want to review was not found in the database!' }, res);
     }
     recipe.reviews.push(req.body.reviews);
-
-    res.json({ message: 'Review successfully added!', recipe });
+    return apiResponse('success', 201, { recipe, message: 'Review successfully added!' }, res);
   }
 }

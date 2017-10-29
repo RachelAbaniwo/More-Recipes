@@ -16,10 +16,10 @@ const recipesCon = new RecipesController();
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get('/api/v1/recipes', recipesCon.getRecipes);
-app.post('/api/recipes', recipesCon.addRecipes);
-app.put('/api/recipes/:id', recipesCon.updateRecipe);
-app.delete('/api/recipes/:id', recipesCon.deleteRecipe);
-app.post('/api/recipes/:id/review', recipesCon.addReviews);
+app.post('/api/v1/recipes', recipesCon.addRecipes);
+app.put('/api/v1/recipes/:id', recipesCon.updateRecipe);
+app.delete('/api/v1/recipes/:id', recipesCon.deleteRecipe);
+app.post('/api/v1/recipes/:id/review', recipesCon.addReviews);
 
 
 app.listen(6000, () => {
