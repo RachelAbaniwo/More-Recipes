@@ -1,4 +1,5 @@
 import recipes from '../models/recipe';
+import apiResponse from '../helpers';
 
 /**
  * Controlls the recipes endpoints
@@ -14,11 +15,10 @@ export default class RecipesController {
     if (req.query.sort === 'upvotes') {
       if (req.query.order === 'des') {
         recipes.sort((recipe1, recipe2) => recipe1.upvotes < recipe2.upvotes);
-      } else {
-        recipes.sort((recipe1, recipe2) => recipe1.upvotes > recipe2.upvotes);
       }
     }
-    res.send(recipes);
+
+    return apiResponse('success', 200, { recipes }, res);
   }
   /**
    * adds recipes to database
@@ -28,27 +28,39 @@ export default class RecipesController {
    */
   addRecipes(req, res) {
     const recipe = req.body;
+    const errors = [];
     if (!req.body.recipeName) {
-      res.status(422).send('recipe name field is empty, fill in name of recipe and check that other fields are filled.');
+      errors.push('Recipe Name is required.');
     }
     if (!req.body.recipeType) {
-      res.status(422).send('recipe type field is empty, fill in type of recipe and check that other fields are filled.');
+      errors.push('Recipe Type is required.');
     }
     if (!req.body.ingredients) {
-      res.status(422).send('lists of ingredients field is empty, fill in ingredients of recipe and check that other fields are filled.');
+      errors.push('Recipe Ingredients are required.');
     }
     if (!req.body.description) {
-      res.status(422).send('description of recipe field is empty, fill a description of recipe and check that other fields are filled.');
+      errors.push('Recipe Description is required.');
     }
     if (!req.body.direction) {
-      res.status(422).send('direction for preparation of recipe was not found, fill in direction to prepare recipe and check that other fields are filled.');
+      errors.push('Recipe Directions are required.');
     }
+
+    if (errors.length > 0) {
+      return apiResponse('fail', 422, { errors }, res, 'Please fix the validation errors');
+    }
+
     recipe.id = recipes.length + 1;
     recipe.upvotes = 0;
     recipe.downvotes = 0;
     recipe.favorites = 0;
     recipes.push(recipe);
-    res.json({ message: 'Recipe successfully added!', recipe });
+    res.status(201).json({
+      status: 'success',
+      data: {
+        recipe,
+        message: 'recipe successfully added'
+      }
+    });
   }
   /**
    * updates recipes on database
@@ -75,7 +87,13 @@ export default class RecipesController {
     });
 
     recipes.splice(indexOfRecipe, 1, recipe);
-    res.json({ message: 'Recipe successfully updated!', recipe });
+    res.status(201).json({
+      status: 'success',
+      data: {
+        recipe,
+        message: 'Recipe successfully updated'
+      }
+    });
   }
   /**
    * deletes recipes from database

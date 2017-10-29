@@ -22,7 +22,8 @@ app.delete('/api/recipes/:id', recipesCon.deleteRecipe);
 app.post('/api/recipes/:id/review', recipesCon.addReviews);
 
 
-app.listen(8000, () => {
+app.listen(4044, () => {
   console.log('server is running');
 });
 
+export default app;
