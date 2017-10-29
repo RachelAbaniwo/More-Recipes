@@ -29,6 +29,7 @@ export default class RecipesController {
   addRecipes(req, res) {
     const recipe = req.body;
     const errors = [];
+
     if (!req.body.recipeName) {
       errors.push('Recipe Name is required.');
     }
@@ -46,7 +47,7 @@ export default class RecipesController {
     }
 
     if (errors.length > 0) {
-      return apiResponse('fail', 422, { errors }, res, 'Please fix the validation errors');
+      return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
     }
 
     recipe.id = recipes.length + 1;
@@ -54,13 +55,8 @@ export default class RecipesController {
     recipe.downvotes = 0;
     recipe.favorites = 0;
     recipes.push(recipe);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        recipe,
-        message: 'recipe successfully added'
-      }
-    });
+
+    return apiResponse('success', 201, { recipe, message: 'Recipe created successfully.' }, res);
   }
   /**
    * updates recipes on database
@@ -74,7 +70,7 @@ export default class RecipesController {
     });
 
     if (recipe === undefined) {
-      res.status(404).send('the recipe was not found in the database');
+      return apiResponse('fail', 404, { message: 'the recipe was not found in the database' }, res);
     }
 
     recipe.recipeName = req.body.recipeName;
@@ -87,13 +83,7 @@ export default class RecipesController {
     });
 
     recipes.splice(indexOfRecipe, 1, recipe);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        recipe,
-        message: 'Recipe successfully updated'
-      }
-    });
+    return apiResponse('success', 201, { recipe, message: 'Recipe successfully updated.' }, res);
   }
   /**
    * deletes recipes from database

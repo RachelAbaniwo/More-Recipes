@@ -14,7 +14,7 @@ describe('/recipes endpoint', () => {
             .end((error, response) => {
 
                 expect(response).to.have.status(200);
-                expect(response.body).to.be.an('array');
+                expect(response.body).to.be.an('object');
     
                 done();
             });
@@ -25,7 +25,7 @@ describe('/recipes endpoint', () => {
            .end((error, response) => {
 
                expect(response).to.have.status(200);
-               expect(response.body).to.be.an('array');
+               expect(response.body).to.be.an('object');
                done();
 
                
@@ -46,7 +46,7 @@ describe('/recipes endpoint', () => {
                 })
                 .end((error, response) => {
                     expect(response).to.have.status(201);
-
+                    console.log(response.body);
                     const recipe = response.body.data.recipe;
                     expect(recipe.id).to.not.be.undefined;
                     expect(recipe.recipeName).to.equal('Ofaku');
@@ -61,7 +61,7 @@ describe('/recipes endpoint', () => {
                     done();
                 });
         });
-        it.only('it should return correct validation errors if wrong data is provided', (done) => {
+        it('it should return correct validation errors if wrong data is provided', (done) => {
             chai.request(app)
                 .post('/api/recipes')
                 .send({})
@@ -76,17 +76,12 @@ describe('/recipes endpoint', () => {
                     expect(errors).to.include('Recipe Ingredients are required.');
                     expect(errors).to.include('Recipe Description is required.');
                     expect(errors).to.include('Recipe Directions are required.');
-                    /**
-                     * data: {
-                     *  "errors" : ['name is required', 'des']
-                     * }
-                     */
 
                     done();
                 });
         });
     });
-/*
+
     describe('/recipes PUT endpoint', () => {
         it('it should update the recipe with specified recipe Id', (done) => {
              chai.request(app)
@@ -108,26 +103,26 @@ describe('/recipes endpoint', () => {
                 expect(recipe.ingredients).to.equal('Chicken, Chilli Pepper, Veggies');
                 expect(recipe.description).to.equal('Sauce to be served along side pasta');
                 expect(recipe.direction).to.equal('add Chicken, then add Chilli Pepper');
-                expect(recipe.upvotes).to.equal(recipe.upvotes);
-                expect(recipe.downvotes).to.equal(recipe.downvotes);
-                expect(recipe.favorites).to.equal(recipe.favorites);
 
                 done();
             })
-        })
-        it('it should return an errror is the recipe Id requested is not available', (done) => {
+        });
+        it('it should return an error if the recipe id of the recipe to be updated is not specified', (done) => {
             chai.request(app)
-            .put('/api/recipes/7')
+            .put('/api/recipes/Rachel')
             .send({
                 recipeName: "Chicken Chilli Sauce",
                 recipeType: "Stews and Sauce",
                 ingredients: "Chicken, Chilli Pepper, Veggies",
                 description: "Sauce to be served along side pasta",
                 direction: "add Chicken, then add Chilli Pepper"
-           })
-           .end((error, response) => {
-               expect(response).to.have.status(404);
-               
-        });
-    });*/
+            })
+            .end((error, response) => {
+                expect(response).to.have.status(404); 
+                expect(response.body.data.message).to.equal('the recipe was not found in the database');
+                
+                done();   
+            })
+        })
+    });
 });
