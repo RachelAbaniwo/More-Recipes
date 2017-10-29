@@ -4,8 +4,10 @@
   "description": "More-Recipes is a Recipe Web Application, it could be thought of as an online meet-up for everyone that enjoys cooking and sharing recipes, or for those who are probably just interested in finding out how amazing cuisines are put together. Users can either Sign Up to enjoy some awesome features or view recipes as a visitor.\r # Authors\r Rachel Abaniwo\r # Contributors\r # Ackwoledgements",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "nodemon app.js --exec babel-node",
+    "babel-node": "babel-node --",
+    "test": "mocha server/tests/**.js --compilers js:babel-core/register --exit",
+    "test-watch": "nodemon --exec \"npm test\""
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,14 @@
     "morgan": "^1.9.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "mocha": "^4.0.1",
     "nodemon": "^1.12.1"
   }
 }

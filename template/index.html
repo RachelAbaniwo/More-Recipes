@@ -11,9 +11,9 @@
 
   <body>
 
-		<section class ="container-fluid">
-		<section class="home-header">
-      <div class="row">
+    <section class="home-header">
+      <div class="container-fluid">
+    	  <div class="row">
     	    <div class="col-lg-12">
     		    <a class="btn btn-outline-light float-right" href="signin.html" role="button">Sign In</a>
             <a class="btn btn-outline-light float-right" style="margin-right:10px" href="signup.html" role="button">Sign Up</a>
@@ -22,7 +22,8 @@
     		    <h1 class="text-light text-center display-3">MORE RECIPES</h1>
     		  </div>
     	  </div>
-    	</section>
+    	</div>
+    </section>
 
     <section>
       <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="height: 50px; font-size:15px; border-bottom: 1px solid lightgrey; margin-bottom: 30px">
@@ -39,8 +40,8 @@
     		          RECIPES
     		      </a>
     		      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-    		        <a class="dropdown-item" href="top-favorites.html" style="font-size: 15px">Top Favourites</a>
-    		        <a class="dropdown-item" href="top-voted.html" style="font-size: 15px">Top Voted</a>
+    		        <a class="dropdown-item" href="topfavorites.html" style="font-size: 15px">Top Favourites</a>
+    		        <a class="dropdown-item" href="topvoted.html" style="font-size: 15px">Top Voted</a>
     		      </div>
     		    </li>
     		  </ul>
@@ -52,8 +53,39 @@
   	  </nav>
     </section>
 
-       <div class = "row">
-  	    <section class="col-sm-12 col-md-12 col-lg-12">
+    <section class="container-fluid text-center" >
+      <div class="row">
+  	    <section class="col-sm-12 col-md-12 col-lg-6">
+  	  	  <div class="row">
+  	  	    <section class="col-sm-6">
+  	  	  	  <figure class="figure">
+                <a href="view-recipe.html"><img src="assets/image/nigerian2.jfif" alt="image 1" class="figure-img img-thumbnail mx-auto"></a>
+  	  	  	    <figcaption class="figure-caption"><p>Commodo Ligula &nbsp; &nbsp; &nbsp; | <i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
+  	  	  	  </figure>
+  	  	    </section>
+  	  	    <section class="col-sm-6">
+  	  	  	  <figure class="figure">
+  	  	  	    <a href="view-recipe.html"><img src="assets/image/nigerian10.jfif" alt="image 2" class="figure-img img-thumbnail mx-auto"></a>
+  	  	  	    <figcaption class="figure-caption"><p>Commodo Ligula &nbsp; &nbsp; &nbsp; | <i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
+  	  	  	  </figure>
+  	  	    </section>
+  	      </div>
+  	      <div class="row">
+  	  	    <section class="col-sm-6">
+  	  	  	  <figure class="figure">
+  	  	  	    <a href="view-recipe.html"><img src="assets/image/nigerian4.jfif" alt="image 3" class="figure-img img-thumbnail mx-auto"></a>
+  	  	  	    <figcaption class="figure-caption"><p>Commodo Ligula &nbsp; &nbsp; &nbsp; | <i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
+  	  	  	  </figure>
+  	  	    </section>
+  	  	    <section class="col-sm-6">
+  	  	  	  <figure class="figure">
+  	  	  	    <a href="view-recipe.html"><img src="assets/image/nigerian11.jfif" alt="image 4"  class="figure-img img-thumbnail mx-auto"></a>
+  	  	  	    <figcaption class="figure-caption"><p>Commodo Ligula &nbsp; &nbsp; &nbsp; | <i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
+  	  	  	  </figure>
+  	  	    </section>
+  	      </div>
+  	    </section>
+  	    <section class="col-sm-12 col-md-12 col-lg-6">
   		    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  style="border: 1px solid lightgrey; padding: 5px">
   		  <ol class="carousel-indicators">
   		    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -94,7 +126,7 @@
   		</div>
   	    </section>
   	  </div>
-    
+    </section>
 
     <section class="home-footer">
       <div class="container-fluid">
@@ -114,8 +146,7 @@
   		    <p>&copy 2017 More-Recipes</p>
   		  </section>
   		</div>
-		</section>
-		</section>
+    </section>
 
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
