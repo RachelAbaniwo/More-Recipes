@@ -3,14 +3,13 @@ body, html {
    height:100%;
 
 }
-.bg {
+.container-fluid {
 background: linear-gradient(rgba(209, 196, 196, 0.45), rgba(209, 196, 196, 0.45)),url(../image/headimg.jpeg);
 
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
-min-height: 100%;
-min-width: 1024px;
+
 
 /* Set up proportionate scaling */
 width: 100%;
