@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "mdfqenil",
+    "password": "O7wo3gsnSaVKgLeOZ2U7M9vgWgCmR7PC",
+    "database": "mdfqenil",
+    "host": "elmer.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

@@ -1,4 +1,4 @@
-import recipes from '../models/recipe';
+import recipes from '../dummyModels/recipe';
 import apiResponse from '../helpers';
 
 /**

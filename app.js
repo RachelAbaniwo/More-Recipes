@@ -22,7 +22,7 @@ app.delete('/api/v1/recipes/:id', recipesCon.deleteRecipe);
 app.post('/api/v1/recipes/:id/review', recipesCon.addReviews);
 
 
-app.listen(6000, () => {
+app.listen(4044, () => {
   console.log('server is running');
 });
 
