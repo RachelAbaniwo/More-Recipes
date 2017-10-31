@@ -12,23 +12,27 @@
 </head>
 <body class="bg">
     <section id="nav">
-        <nav class="navbar navbar-expand-md fixed-top"style="background-color: rgba(73, 67, 67, 0.336); width: 100%; height: 50px; font-size:15px">
-            <a class="navbar-brand" href="#">More recipes</a>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top"style="background-color: rgba(73, 67, 67, 0.9); width: 100%; height: 50px; font-size:15px">
+            <a class="navbar-brand" style="color:rgba(27, 255, 164, 0.473)" href="#">MORE RECIPES</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
               <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> 
+                  <a class="nav-link" style="color:#fff" href="#">HOME <span class="sr-only">(current)</span></a> 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Sign in </a>
+                  <a class="nav-link" style="color:#fff" href="#">SIGN IN </a>
                 </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Find recipes" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <form class="navbar-form" style="margin-left:30px " role="search">
+                <div class="input-group add-on">
+                  <input class="form-control" placeholder="Find a Recipe" name="srch-term" id="srch-term" type="text">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                  </div>
+                </div>
               </form>
             </div>
           </nav>
@@ -36,20 +40,28 @@
 
     <section id="slider">
         <div  id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
+            
             <div class="carousel-inner fullHeight">
               <div class="carousel-item active">
                 <img class="d-block w-100" src="assets/image/food-9.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>Check Out Our All Time Favorites</h3>
+                  <p>from around the world</p>
+                </div>
               </div>
               <div class="carousel-item">
                 <img class="d-block w-100" src="assets/image/food-20.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>Amazing Desserts</h3>
+                  
+                </div>
               </div>
             <div class="carousel-item">
               <img class="d-block w-100" src="assets/image/food-23.jpg" alt="Third slide">
+              <div class="carousel-caption d-none d-md-block">
+                <h3>Breakfast Recipes</h3>
+                <p>to help you start your day</p>
+              </div>
               </div>  
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -62,6 +74,14 @@
             </a>
           </div>
     </section>
+    <footer style="background-color: rgba(73, 67, 67, 0.9); max-width: 100%; height: 30px">
+  
+    
+  
+    <p class="text-center" style="margin-bottom: 5px; padding-top:5px; color: #fff; font-size:12px">&copy 2017 More-Recipes</p>
+      </section>
+      
+      </footer>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js" ></script>
