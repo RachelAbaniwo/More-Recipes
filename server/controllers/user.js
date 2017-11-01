@@ -1,6 +1,8 @@
+
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import db from './../database/models';
 import apiResponse from '../helpers';
-import bcrypt from 'bcrypt';
 
 export default class UserController {
     userSignUp(req,res) {
@@ -49,6 +51,7 @@ export default class UserController {
     }
     if (!req.body.Password) {
         errors.push ('the Password is required');
+        
     }
     if (errors.length > 0) {
         return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);  
@@ -59,11 +62,12 @@ export default class UserController {
             return apiResponse('fail', 422, { message: 'User not found' }, res);
         }
         if (bcrypt.compareSync(req.body.Password, user.Password)) {
-            return apiResponse('success', 200, { message: 'sign welcom login'}, res);
+            const token = jwt.sign(user.get(), 'secret');
+            return apiResponse('success', 200, { token, message: 'Successfully signed in.'}, res);
         } else {
             return apiResponse('fail', 422, { message: 'Wrong credentials' }, res);            
         }
     }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
-    
+
     }
 }
