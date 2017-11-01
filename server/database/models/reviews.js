@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Recipes = sequelize.define('Reviews', {
+  const Reviews = sequelize.define('Reviews', {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
