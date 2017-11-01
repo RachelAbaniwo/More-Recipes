@@ -33,8 +33,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     classMethods: {
-      associate: (models) => {
-        // associations can be defined here
+      associate(models) {
+         User.hasMany(models.Recipe, {
+           foreignKey: 'userId'
+         });
       },
     },
   });

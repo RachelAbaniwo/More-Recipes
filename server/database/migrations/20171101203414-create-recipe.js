@@ -8,22 +8,33 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
-      recipeName: {
+      name: {
         type: Sequelize.STRING
       },
-      recipeType: {
+      category: {
         type: Sequelize.STRING
       },
       ingredients: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
-      directions: {
-        type: Sequelize.STRING
+      method: {
+        type: Sequelize.TEXT
+      },
+      upvotes: {
+        type: Sequelize.INTEGER
+      },
+      downvotes: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

@@ -1,4 +1,4 @@
-import recipes from '../dummyModels/recipe';
+import db from '../database/models';
 import apiResponse from '../helpers';
 
 /**
@@ -29,10 +29,10 @@ export default class RecipesController {
     const recipe = req.body;
     const errors = [];
 
-    if (!req.body.recipeName) {
+    if (!req.body.name) {
       errors.push('Recipe Name is required.');
     }
-    if (!req.body.recipeType) {
+    if (!req.body.category) {
       errors.push('Recipe Type is required.');
     }
     if (!req.body.ingredients) {
@@ -41,21 +41,24 @@ export default class RecipesController {
     if (!req.body.description) {
       errors.push('Recipe Description is required.');
     }
-    if (!req.body.direction) {
+    if (!req.body.method) {
       errors.push('Recipe Directions are required.');
     }
 
     if (errors.length > 0) {
       return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
     }
-
-    recipe.id = recipes.length + 1;
-    recipe.upvotes = 0;
-    recipe.downvotes = 0;
-    recipe.favorites = 0;
-    recipes.push(recipe);
-
-    return apiResponse('success', 201, { recipe, message: 'Recipe created successfully.' }, res);
+      console.log(req.AuthUser);
+    return db.Recipe.create({
+      name: req.body.name,
+      category: req.body.category,
+      description: req.body.description,
+      method: req.body.method,
+      ingredients: req.body.ingredients,
+      userId: req.AuthUser.id
+    }).then(recipe => {
+      return apiResponse('success', 200, { recipe, message: 'Successfully created recipe' }, res);
+    }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
   /**
    * updates recipes on database
