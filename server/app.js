@@ -29,6 +29,9 @@ app.post('/api/v1/users/:userId/recipes/:recipeId', authMiddleware, recipesContr
 app.get('/api/v1/users/:id/recipes', authMiddleware, recipesController.getFavorites);
 // app.put('/api/v1/recipes/:recipeId/upvotes', authMiddleware, recipesCon.addUpvotes);
 
+app.use((req, res) => {
+  res.json('ROUTE NOT REGISTERED.');
+});
 
 db.sequelize.sync().then(() => {
   app.listen(4044, () => {
