@@ -12,12 +12,9 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   getRecipes(req, res) {
-    if (req.query.sort === 'upvotes') {
-      if (req.query.order === 'des') {
-        recipes.sort((recipe1, recipe2) => recipe1.upvotes < recipe2.upvotes);
-      }
-    }
-    return apiResponse('success', 200, { recipes }, res);
+   db.Recipe.findAll().then(recipes =>{ return apiResponse('success', 200, { recipes }, res);
+  }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
+    
   }
   /**
    * adds recipes to database
@@ -67,8 +64,6 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   updateRecipe(req, res) {
-    
-    
     return db.Recipe.update({
       name: req.body.name,
       category: req.body.category,
@@ -82,7 +77,7 @@ export default class RecipesController {
     })
   
   .then(Recipe => {
-      return apiResponse('success', 200, { recipe, message: 'Successfully updated recipe' }, res);
+      return apiResponse('success', 200, { Recipe, message: 'Successfully updated recipe' }, res);
     }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
 
@@ -94,14 +89,17 @@ export default class RecipesController {
    * @returns {json} json returns message to client
    */
   deleteRecipe(req, res) {
-    const indexOfRecipe = recipes.findIndex((currentRecipe) => {
-      return currentRecipe.id === parseInt(req.params.id, 10);
+    db.Recipe.findById(req.params.id).then(recipe => {
+      if (recipe) {
+        recipe.destroy().then(() => {
+          return apiResponse('success', 200, { message: 'Successfully deleted recipe' }, res);    
+        });
+      } else {
+        return apiResponse('fail', 500, {message: 'Recipe to be deleted not found'}, res);
+      }
     });
-    if (indexOfRecipe === -1) {
-      return apiResponse('fail', 404, { message: 'the recipe to be deleted was not found in the database' }, res);
-    }
-    recipes.splice(indexOfRecipe, 1);
-    return apiResponse('success', 200, { message: 'Recipe successfully deleted.' }, res);
+
+    
   }
   /**
    * adds reviews to recipes database
@@ -110,14 +108,20 @@ export default class RecipesController {
    * @returns {json} json with updated reviews returned to client
    */
   addReviews(req, res) {
-    const recipe = recipes.find((currentRecipe) => {
-      return currentRecipe.id === parseInt(req.params.id, 10);
-    });
-
-    if (recipe === undefined) {
-      return apiResponse('fail', 404, { message: 'the recipe you want to review was not found in the database!' }, res);
+    if(!req.body.review) {
+      return apiResponse('fail', 422, {message: 'Review field empty'}, res);
     }
-    recipe.reviews.push(req.body.reviews);
-    return apiResponse('success', 201, { recipe, message: 'Review successfully added!' }, res);
+    db.Recipe.findById(req.params.id).then(recipe => {
+      if (recipe) {
+        db.Review.create({
+          review: req.body.review,
+          recipeId: recipe.id,
+          userId: req.AuthUser.id
+        }).then(review => {
+          return apiResponse('success', 201, { recipe, review, message: 'Review successfully added!' }, res); })
+      } else {
+        return apiResponse('fail', 500, {message: 'Recipe to be reviewed not found'}, res);
+      }
+    });
   }
 }
