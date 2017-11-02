@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  var Review = sequelize.define('Review', {
+  const Review = sequelize.define('Review', {
     review: DataTypes.TEXT,
     recipeId: {
       type: DataTypes.INTEGER,
@@ -15,13 +15,18 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     classMethods: {
-      associate (models) {
+      /**
+   * declares associations
+   * @param {object} models
+   * @returns {integer} foreign key declared
+   */
+      associate(models) {
         Review.belongsTo(models.Recipe, {
           foreignKey: 'recipeId'
-        })
+        });
         Review.belongsTo(models.User, {
           foreignKey: 'userId'
-        })
+        });
       }
     }
   });

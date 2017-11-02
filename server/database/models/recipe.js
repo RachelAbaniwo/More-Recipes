@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     classMethods: {
+      /**
+   * declares associations
+   * @param {object} models
+   * @returns {integer} foriegn key declared
+   */
       associate(models) {
         Recipe.belongsTo(models.User, {
           foreignKey: 'userId'

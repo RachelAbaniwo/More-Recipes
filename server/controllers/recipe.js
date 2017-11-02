@@ -12,9 +12,9 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   getRecipes(req, res) {
-   db.Recipe.findAll().then(recipes =>{ return apiResponse('success', 200, { recipes }, res);
-  }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
-    
+    db.Recipe.findAll().then((recipes) => {
+      return apiResponse('success', 200, { recipes }, res);
+    }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
   /**
    * adds recipes to database
@@ -23,7 +23,6 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   addRecipes(req, res) {
-    const recipe = req.body;
     const errors = [];
 
     if (!req.body.name) {
@@ -53,7 +52,7 @@ export default class RecipesController {
       method: req.body.method,
       ingredients: req.body.ingredients,
       userId: req.AuthUser.id
-    }).then(recipe => {
+    }).then((recipe) => {
       return apiResponse('success', 200, { recipe, message: 'Successfully created recipe' }, res);
     }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
@@ -75,10 +74,9 @@ export default class RecipesController {
       returning: true,
       plain: true
     })
-  
-  .then(Recipe => {
-      return apiResponse('success', 200, { Recipe, message: 'Successfully updated recipe' }, res);
-    }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
+      .then((Recipe) => {
+        return apiResponse('success', 200, { Recipe, message: 'Successfully updated recipe' }, res);
+      }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
 
 
@@ -89,13 +87,13 @@ export default class RecipesController {
    * @returns {json} json returns message to client
    */
   deleteRecipe(req, res) {
-    db.Recipe.findById(req.params.id).then(recipe => {
+    db.Recipe.findById(req.params.id).then((recipe) => {
       if (recipe) {
         recipe.destroy().then(() => {
           return apiResponse('success', 200, { message: 'Successfully deleted recipe' }, res);    
         });
       } else {
-        return apiResponse('fail', 500, {message: 'Recipe to be deleted not found'}, res);
+        return apiResponse('fail', 500, { message: 'Recipe to be deleted not found' }, res);
       }
     });
   }
@@ -106,41 +104,71 @@ export default class RecipesController {
    * @returns {json} json with updated reviews returned to client
    */
   addReviews(req, res) {
-    if(!req.body.review) {
+    if (!req.body.review) {
       return apiResponse('fail', 422, {message: 'Review field empty'}, res);
     }
-    db.Recipe.findById(req.params.id).then(recipe => {
+    db.Recipe.findById(req.params.id).then((recipe) => {
       if (recipe) {
         db.Review.create({
           review: req.body.review,
           recipeId: recipe.id,
           userId: req.AuthUser.id
-        }).then(review => {
+        }).then((review) => {
           return apiResponse('success', 201, { recipe, review, message: 'Review successfully added!' }, res); })
       } else {
-        return apiResponse('fail', 500, {message: 'Recipe to be reviewed not found'}, res);
+        return apiResponse('fail', 404, {message: 'Recipe to be reviewed not found'}, res);
       }
     });
   }
-  addFavorite(req,res) {
-    if(!req.AuthUser) {
+  /**
+   * adds User's Favorite recipes to database
+   * @param {object} req express request object
+   * @param {object} res express response object
+   * @returns {json} json returned to client
+   */
+  addFavorite(req, res) {
+    if (!req.AuthUser) {
       return apiResponse('fail', 422, {message: 'Unauthenticated User'}, res);
-    } 
-   db.Recipe.findById(req.params.recipeId).then(recipe => {
+    }
+    db.Recipe.findById(req.params.recipeId).then((recipe) => {
       if (recipe) {
         db.Favorite.create({
-          
-        recipeId: recipe.id,
+          recipeId: recipe.id,
           userId: req.AuthUser.id
-        }).then(recipe => {
+        }).then(() => {
           return apiResponse('success', 201, { recipe, message: 'Favorite recipe successfully added!' }, res); })
       } else {
-        return apiResponse('fail', 500, {message: 'Recipe to be added not found'}, res);
+        return apiResponse('fail', 404, { message: 'Recipe to be added not found' }, res);
       }
     });
   }
- getFavorites(req,res) {
-   if(!req.AuthUser) {}
- }
-
+  /**
+   * gets User's Favorite recipes from database
+   * @param {object} req express request object
+   * @param {object} res express response object
+   * @returns {json} json returned to client
+   */
+  getFavorites(req, res) {
+    if (!req.AuthUser) {
+      return apiResponse('fail', 422, {message: 'Unauthenticated User'}, res); 
+    }
+    db.Favorite.findAll().then((recipes) =>{ return apiResponse('success', 200, { recipes }, res);
+    }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
+  }
+ /*  addUpvotes(req, res) {
+    if (!req.AuthUser) {
+      return apiResponse('fail', 422, {message: 'Unauthenticated User'}, res);
+    }
+    db.Recipe.findById(req.params.recipeId).then((recipe) => {
+      if (recipe) {
+        db.Upvote.create({
+          upvotes: recipe.upvotes+1,
+          downvotes: recipe.downvotes
+        }).then(() => {
+          return apiResponse('success', 201, { recipe, message:  'recipe upvoted successfully' }, res); })
+      } else {
+        return apiResponse('fail', 404, { message: 'Recipe to be upvoted not found' }, res);
+      }
+    });
+  } */
 }
