@@ -27,7 +27,7 @@ app.post('/api/v1/signup/', userController.userSignUp);
 app.post('/api/v1/signin', userController.userSignIn);
 app.post('/api/v1/users/:userId/recipes/:recipeId', authMiddleware, recipesController.addFavorite);
 app.get('/api/v1/users/:id/recipes', authMiddleware, recipesController.getFavorites);
-// app.put('/api/v1/recipes/:recipeId/upvotes', authMiddleware, recipesCon.addUpvotes);
+// app.put('/api/v1/recipes/:recipeId/upvotes', authMiddleware, recipesCon.addUpvotes)
 
 app.use((req, res) => {
   res.json('ROUTE NOT REGISTERED.');
