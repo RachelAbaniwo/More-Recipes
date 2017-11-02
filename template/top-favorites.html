@@ -2,61 +2,48 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
     <title>More-Recipes&nbsp|&nbspTop Favorites</title>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
-  <body>
+  
 
-    <section class="home-header">
-      <div class="container-fluid">
-    	  <div class="row">
-    	    <div class="col-lg-12">
-            <a class="btn btn-outline-light float-right" href="signin.html" role="button">Sign In</a>
-            <a class="btn btn-outline-light float-right" style="margin-right:10px" href="signup.html" role="button">Sign Up</a>
-    		  </div>
-      		<div class="col-lg-12">
-      		  <h1 class="text-light text-center display-3">MORE RECIPES</h1>
-      		</div>
-    	  </div>
-  	  </div>
-    </section>
+    <body class="bg">
+			<section id="nav">
+					<nav class="navbar navbar-expand-md navbar-dark fixed-top"style="background-color: rgba(73, 67, 67, 0.9); width: 100%; height: 50px; font-size:15px">
+							<a class="navbar-brand" style="color:rgba(27, 255, 164, 0.473)" href="#">MORE RECIPES<span class="sr-only">(current)</span></a>
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+								<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+									<li class="nav-item active">
+										<a class="nav-link" data-toggle="modal" style="color:#fff" href="#signup-modal">SIGN UP</a> 
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="modal" data-target="#login-modal" style="color:#fff" href="#">SIGN IN </a>
+									</li>
+								</ul>
+								<form class="navbar-form" style="margin-left:30px " role="search">
+									<div class="input-group add-on">
+										<input class="form-control" placeholder="Find a Recipe" name="srch-term" id="srch-term" type="text">
+										<div class="input-group-btn">
+											<button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</nav>
+						</section>
 
-    <section>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="height: 50px; font-size:15px; border-bottom: 1px solid lightgrey; margin-bottom: 30px">
-    	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    	    <span class="navbar-toggler-icon"></span>
-    	  </button>
-    	  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      		  <li class="nav-item active">
-      		    <a class="nav-link" href="index.html">HOME <span class="sr-only">(current)</span></a>
-      		  </li>
-      		  <li class="nav-item dropdown">
-      		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      		          RECIPES
-      		    </a>
-      		    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      		      <a class="dropdown-item" href="top-favorites.html" style="font-size: 15px">Top Favourites</a>
-      		      <a class="dropdown-item" href="top-voted.html" style="font-size: 15px">Top Voted</a>
-      		    </div>
-      		  </li>
-    		  </ul>
-      		<form class="form-inline my-2 my-lg-0">
-      		  <input class="form-control mr-sm-2 " style="font-size: 15px" type="search" placeholder="Find a Recipe" aria-label="Search">
-      		  <a class="btn btn-outline-success my-2 my-sm-0"style="font-size: 15px" type="submit" href="search.html" role="button">Search</a>
-      		</form>
-    	  </div>
-  	  </nav>
-    </section>
 
     <section class="container">
       <div class="row">
         <section class="col-sm-12">
-        	<h3 class="display-4" style="border-bottom: 1px solid lightgrey">TOP FAVORITES</h3>
+        	<h3 class="display-4" style="border-bottom: 1px solid lightgrey; margin: 50px">TOP FAVORITES</h3>
         </section>
         <div class="row">
           <section class="col-sm-4">
@@ -99,26 +86,11 @@
         </section>
       </div>
     </section>
-
-    <section class="home-footer">
-      <div class="container-fluid">
-  		  <div class="row">
-  		    <section class="col-sm-12">
-    			  <nav>
-    			    <a href="about-us-contact.html" style="color: #fff; text-decoration: none">
-      				  <ul style="list-style-type: none; padding-left: 0em">
-        					<li><strong><small>ABOUT US</small></strong></li>
-        					<li><strong><small>CONTACT US</small></strong></li>
-      				  </ul>
-    			    </a>
-    			  </nav>
-  			  </section>
-  		  </div>
-  	    <section class="col-sm-12 text-center" style="margin-bottom: 10px; color: #fff; font-size:12px">
-  		    <p>&copy 2017 More-Recipes</p>
-  		  </section>
-  		</div>
-    </section>
+		<footer style="background-color: rgba(73, 67, 67, 0.9); max-width: 100%; height: 30px; margin-bottom:0em">
+			<p class="text-center" style="margin-bottom: 5px; padding-top:5px; color: #fff; font-size:12px">&copy 2017 More-Recipes</p>
+	</section>
+		</footer>
+   
 
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
