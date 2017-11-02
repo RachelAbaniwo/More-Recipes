@@ -1,10 +1,10 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import RecipesController from './server/controllers/recipe';
-import UserController from './server/controllers/user';
-import db from './server/database/models';
-import authMiddleware from './server/middleware/auth';
+import RecipesController from './controllers/recipe';
+import UserController from './controllers/user';
+import db from './database/models';
+import authMiddleware from './middleware/auth';
 // Set up the express app
 const app = express();
 //  app.use('/api/recipes', router);
