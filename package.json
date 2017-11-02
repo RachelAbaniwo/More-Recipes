@@ -4,7 +4,7 @@
   "description": "More-Recipes is a Recipe Web Application, it could be thought of as an online meet-up for everyone that enjoys cooking and sharing recipes, or for those who are probably just interested in finding out how amazing cuisines are put together. Users can either Sign Up to enjoy some awesome features or view recipes as a visitor.\r # Authors\r Rachel Abaniwo\r # Contributors\r # Ackwoledgements",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon app.js --exec babel-node",
+    "start:dev": "nodemon server/app.js --exec babel-node",
     "babel-node": "babel-node --",
     "start": "cross-env NODE_ENV=production node dist/app.js",
     "build": "./node_modules/.bin/babel server -d dist",
