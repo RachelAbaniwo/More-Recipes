@@ -25,6 +25,8 @@ app.delete('/api/v1/recipes/:id', authMiddleware, recipesCon.deleteRecipe);
 app.post('/api/v1/recipes/:id/reviews', authMiddleware, recipesCon.addReviews);
 app.post('/api/v1/signup/', userCon.userSignUp);
 app.post('/api/v1/signin', userCon.userSignIn);
+app.post('/api/v1/users/:userId/recipes/:recipeId', authMiddleware, recipesCon.addFavorite);
+
 
 db.sequelize.sync().then(() => {
   app.listen(4044, () => {

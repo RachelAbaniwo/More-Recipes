@@ -98,8 +98,6 @@ export default class RecipesController {
         return apiResponse('fail', 500, {message: 'Recipe to be deleted not found'}, res);
       }
     });
-
-    
   }
   /**
    * adds reviews to recipes database
@@ -124,4 +122,25 @@ export default class RecipesController {
       }
     });
   }
+  addFavorite(req,res) {
+    if(!req.AuthUser) {
+      return apiResponse('fail', 422, {message: 'Unauthenticated User'}, res);
+    } 
+   db.Recipe.findById(req.params.recipeId).then(recipe => {
+      if (recipe) {
+        db.Favorite.create({
+          
+        recipeId: recipe.id,
+          userId: req.AuthUser.id
+        }).then(recipe => {
+          return apiResponse('success', 201, { recipe, message: 'Favorite recipe successfully added!' }, res); })
+      } else {
+        return apiResponse('fail', 500, {message: 'Recipe to be added not found'}, res);
+      }
+    });
+  }
+ getFavorites(req,res) {
+   if(!req.AuthUser) {}
+ }
+
 }
