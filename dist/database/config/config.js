@@ -1,3 +1,5 @@
+'use strict';
+
 require('dotenv').config();
 
 module.exports = {
@@ -16,7 +18,7 @@ module.exports = {
     dialect: 'mysql'
   },
   production: {
-    use_env_variable: 'postgres://xggivfpa:wY0xbU25wa4UXefGggrAJZk-AFKOs35K@stampy.db.elephantsql.com:5432/xggivfpa',
+    use_env_variable: process.env.DATABASE_URL,
     dialect: 'postgres'
   }
 };
