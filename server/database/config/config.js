@@ -16,7 +16,10 @@ module.exports = {
     dialect: 'mysql'
   },
   production: {
-    use_env_variable: 'postgres://xggivfpa:wY0xbU25wa4UXefGggrAJZk-AFKOs35K@stampy.db.elephantsql.com:5432/xggivfpa',
+    username: 'xggivfpa',
+    password: 'wY0xbU25wa4UXefGggrAJZk-AFKOs35K',
+    database: 'xggivfpa',
+    host: 'stampy.db.elephantsql.com',
     dialect: 'postgres'
-  }
+  },
 };
