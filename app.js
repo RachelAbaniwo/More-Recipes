@@ -20,7 +20,7 @@ const userCon = new UserController();
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get('/api/v1/recipes', recipesCon.getRecipes);
 app.post('/api/v1/recipes', authMiddleware, recipesCon.addRecipes);
-app.put('/api/v1/recipes/:id', recipesCon.updateRecipe);
+app.put('/api/v1/recipes/:id', authMiddleware, recipesCon.updateRecipe);
 app.delete('/api/v1/recipes/:id', recipesCon.deleteRecipe);
 app.post('/api/v1/recipes/:id/review', recipesCon.addReviews);
 app.post('/api/v1/signup/', userCon.userSignUp);

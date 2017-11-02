@@ -2,7 +2,7 @@ import db from '../database/models';
 import apiResponse from '../helpers';
 
 /**
- * Controlls the recipes endpoints
+ * Controls the recipes endpoints
  */
 export default class RecipesController {
   /**
@@ -48,7 +48,7 @@ export default class RecipesController {
     if (errors.length > 0) {
       return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
     }
-      console.log(req.AuthUser);
+    console.log(req.AuthUser);
     return db.Recipe.create({
       name: req.body.name,
       category: req.body.category,
@@ -67,26 +67,26 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   updateRecipe(req, res) {
-    const recipe = recipes.find((currentRecipe) => {
-      return currentRecipe.id === parseInt(req.params.id, 10);
-    });
-
-    if (recipe === undefined) {
-      return apiResponse('fail', 404, { message: 'the recipe was not found in the database' }, res);
-    }
-
-    recipe.recipeName = req.body.recipeName;
-    recipe.recipeType = req.body.recipeType;
-    recipe.ingredients = req.body.ingredients;
-    recipe.description = req.body.description;
-    recipe.direction = req.body.direction;
-    const indexOfRecipe = recipes.findIndex((currentRecipe) => {
-      return currentRecipe.id === parseInt(req.params.id, 10);
-    });
-
-    recipes.splice(indexOfRecipe, 1, recipe);
-    return apiResponse('success', 201, { recipe, message: 'Recipe successfully updated.' }, res);
+    
+    
+    return db.Recipe.update({
+      name: req.body.name,
+      category: req.body.category,
+      description: req.body.description,
+      method: req.body.method,
+      ingredients: req.body.ingredients,
+    }, {
+      where: { id: req.params.id },
+      returning: true,
+      plain: true
+    })
+  
+  .then(Recipe => {
+      return apiResponse('success', 200, { recipe, message: 'Successfully updated recipe' }, res);
+    }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
+
+
   /**
    * deletes recipes from database
    * @param {object} req express request object
