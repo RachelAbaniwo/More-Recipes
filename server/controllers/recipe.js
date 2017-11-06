@@ -29,7 +29,7 @@ export default class RecipesController {
       errors.push('Recipe Name is required.');
     }
     if (!req.body.category) {
-      errors.push('Recipe Type is required.');
+      errors.push('Recipe Category is required.');
     }
     if (!req.body.ingredients) {
       errors.push('Recipe Ingredients are required.');
@@ -38,13 +38,12 @@ export default class RecipesController {
       errors.push('Recipe Description is required.');
     }
     if (!req.body.method) {
-      errors.push('Recipe Directions are required.');
+      errors.push('Method required.');
     }
 
     if (errors.length > 0) {
-      return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
+      return apiResponse('fail', 422, { errors, message: 'Please fill all Fields' }, res);
     }
-    console.log(req.AuthUser);
     return db.Recipe.create({
       name: req.body.name,
       category: req.body.category,
@@ -87,7 +86,7 @@ export default class RecipesController {
    * @returns {json} json returns message to client
    */
   deleteRecipe(req, res) {
-    db.Recipe.findById(req.params.id).then((recipe) => {
+    return db.Recipe.findById(req.params.id).then((recipe) => {
       if (recipe) {
         recipe.destroy().then(() => {
           return apiResponse('success', 200, { message: 'Successfully deleted recipe' }, res);    
@@ -105,7 +104,7 @@ export default class RecipesController {
    */
   addReviews(req, res) {
     if (!req.body.review) {
-      return apiResponse('fail', 422, {message: 'Review field empty'}, res);
+      return apiResponse('fail', 422, { message: 'Review field empty' }, res);
     }
     db.Recipe.findById(req.params.id).then((recipe) => {
       if (recipe) {
@@ -114,6 +113,7 @@ export default class RecipesController {
           recipeId: recipe.id,
           userId: req.AuthUser.id
         }).then((review) => {
+
           return apiResponse('success', 201, { recipe, review, message: 'Review successfully added!' }, res); })
       } else {
         return apiResponse('fail', 404, {message: 'Recipe to be reviewed not found'}, res);
