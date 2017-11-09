@@ -2,11 +2,11 @@ import jwt from 'jsonwebtoken';
 import apiResponse from '../helpers';
 
 export default (req, res, next) => {
-  const token = req.body.token || req.headers.token;
+  const { token } = req.headers;
 
   return jwt.verify(token, 'secret', (error, user) => {
     if (error) {
-      return apiResponse('fail', 401, { message: error.message }, res);
+      return apiResponse('fail', 401, { message: 'Unauthenticated USER.' }, res);
     }
 
     req.AuthUser = user;

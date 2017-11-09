@@ -1,5 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
-  const Favorite = sequelize.define('Favorite', {
+'use strict';
+
+module.exports = function (sequelize, DataTypes) {
+  var Favorite = sequelize.define('Favorite', {
     userId: {
       type: DataTypes.INTEGER,
       references: {
@@ -10,16 +12,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       references: {
         model: 'Recipes', key: 'id'
-      },
-    },
+      }
+    }
   }, {
     classMethods: {
       /**
-   * declares associations
-   * @param {object} models
-   * @returns {integer} foreign key declared
-   */
-      associate(models) {
+      * declares associations
+      * @param {object} models
+      * @returns {integer} foreign key declared
+      */
+      associate: function associate(models) {
         Favorite.belongsTo(models.User, {
           foreignKey: 'userId'
         });
