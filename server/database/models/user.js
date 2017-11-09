@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: {
-        msg: 'The username already in use.'
+        msg: 'The Username is already in use.'
       },
     },
     Email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: {
-        msg: 'The email already exists.'
+        msg: 'The Email already exists.'
       },
       validate: {
         isEmail: {
@@ -40,6 +40,18 @@ module.exports = (sequelize, DataTypes) => {
    */
       associate(models) {
         User.hasMany(models.Recipe, {
+          foreignKey: 'userId'
+        });
+        User.hasMany(models.Favorite, {
+          foreignKey: 'userId'
+        });
+        User.hasMany(models.Review, {
+          foreignKey: 'userId'
+        });
+        User.hasMany(models.Upvote, {
+          foreignKey: 'userId'
+        });
+        User.hasMany(models.Downvote, {
           foreignKey: 'userId'
         });
       },

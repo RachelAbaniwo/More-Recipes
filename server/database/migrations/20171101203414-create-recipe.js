@@ -30,12 +30,6 @@ module.exports = {
       method: {
         type: Sequelize.TEXT
       },
-      upvotes: {
-        type: Sequelize.INTEGER
-      },
-      downvotes: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

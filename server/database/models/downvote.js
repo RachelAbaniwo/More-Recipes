@@ -1,17 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-  const Review = sequelize.define('Review', {
-    review: DataTypes.TEXT,
-    recipeId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Recipes', key: 'id'
-      }
-    },
+  const Downvote = sequelize.define('Downvote', {
     userId: {
       type: DataTypes.INTEGER,
       references: {
         model: 'Users', key: 'id'
       }
+    },
+    recipeId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Recipes', key: 'id'
+      },
     },
   }, {
     classMethods: {
@@ -21,14 +20,14 @@ module.exports = (sequelize, DataTypes) => {
    * @returns {integer} foreign key declared
    */
       associate(models) {
-        Review.belongsTo(models.Recipe, {
-          foreignKey: 'recipeId'
-        });
-        Review.belongsTo(models.User, {
+        Downvote.belongsTo(models.User, {
           foreignKey: 'userId'
+        });
+        Downvote.belongsTo(models.Recipe, {
+          foreignKey: 'recipeId'
         });
       }
     }
   });
-  return Review;
+  return Downvote;
 };

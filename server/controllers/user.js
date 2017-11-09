@@ -35,14 +35,14 @@ export default class UserController {
       return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
     }
     console.log(req.body);
-    return db.User.create({
+    db.User.create({
       Firstname: req.body.Firstname,
       Lastname: req.body.Lastname,
       Username: req.body.Username,
       Email: req.body.Email,
       Password: bcrypt.hashSync(req.body.Password, 10) 
-    }).then((user) => {
-      return apiResponse('success', 200, { user, message: 'Successfully signed up!' }, res);
+    }).then(() => {
+      return apiResponse('success', 200, { message: 'Successfully signed up! Check Email for Activation link.' }, res);
     }).catch((error) => {
       return apiResponse('fail', 500, { message: error.message }, res);
     });

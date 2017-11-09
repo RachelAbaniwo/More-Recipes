@@ -12,5 +12,5 @@ export default (req, res, next) => {
     }
 
     next();
-  });
+  }).catch(() => apiResponse('fail', 422, { message: 'Invalid Request' }, res));
 };

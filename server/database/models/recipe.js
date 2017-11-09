@@ -5,10 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     ingredients: DataTypes.TEXT,
     description: DataTypes.TEXT,
     method: DataTypes.TEXT,
-    upvotes: DataTypes.INTEGER,
-    downvotes: DataTypes.INTEGER,
     userId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Users', key: 'id'
+      }
     }
   }, {
     classMethods: {
@@ -21,7 +22,18 @@ module.exports = (sequelize, DataTypes) => {
         Recipe.belongsTo(models.User, {
           foreignKey: 'userId'
         });
-        Recipe.hasMany(models.Review)
+        Recipe.hasMany(models.Review, {
+          foreignKey: 'recipeId'
+        });
+        Recipe.hasMany(models.Favorite, {
+          foreignKey: 'recipeId'
+        });
+        Recipe.hasMany(models.Upvote, {
+          foreignKey: 'recipeId'
+        });
+        Recipe.hasMany(models.Downvote, {
+          foreignKey: 'recipeId'
+        });
       }
     }
   });
