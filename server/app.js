@@ -32,6 +32,7 @@ app.post('/api/v1/signin', userController.userSignIn);
 app.post('/api/v1/users/favorites/:recipeId', authenticationMiddleWare, recipesController.addFavorite);
 app.get('/api/v1/users/favorites', authenticationMiddleWare, recipesController.getFavorites);
 app.post('/api/v1/recipes/:recipeId/upvotes', authenticationMiddleWare, recipesController.addUpvotes);
+app.post('/api/v1/recipes/:recipeId/downvotes', authenticationMiddleWare, recipesController.addDownvotes);
 
 
 app.use((req, res) => {

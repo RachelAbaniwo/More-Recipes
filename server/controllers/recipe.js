@@ -12,7 +12,9 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   getRecipes(req, res) {
-    db.Recipe.findAll().then(recipes => apiResponse('success', 200, { recipes }, res))
+    db.Recipe.findAll({
+      include: { model: db.User }
+    }).then(recipes => apiResponse('success', 200, { recipes }, res))
       .catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
   /**
@@ -159,10 +161,17 @@ export default class RecipesController {
   addFavorite(req, res) {
     db.Recipe.findById(req.params.recipeId).then((recipe) => {
       if (recipe) {
-        db.Favorite.create({
-          recipeId: recipe.id,
-          userId: req.AuthUser.id
-        }).then(() => apiResponse('success', 201, { recipe, message: 'Favorite recipe successfully added!' }, res));
+        db.Favorite.findOne({ where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } })
+          .then((favoritedAlready) => {
+            if (favoritedAlready) {
+              return favoritedAlready.destroy().then(() => apiResponse('success', 200, { message: 'Successfully removed Recipe from Favorites' }, res))
+                .catch(error => apiResponse('fail', 500, { message: error.message }, res));
+            }
+            db.Favorite.create({
+              recipeId: recipe.id,
+              userId: req.AuthUser.id
+            }).then(() => apiResponse('success', 201, { recipe, message: 'Favorite recipe successfully added!' }, res));
+          });
       } else {
         return apiResponse('fail', 404, { message: 'Recipe to be added not found' }, res);
       }
@@ -211,6 +220,31 @@ export default class RecipesController {
           });
       } else {
         return apiResponse('fail', 404, { message: 'Recipe to be upvoted not found' }, res);
+      }
+    });
+  }
+  /**
+   * add Downvotes of recipes to database
+   * @param {object} req express request object
+   * @param {object} res express response object
+   * @returns {json} json returned to client
+   */
+  addDownvotes(req, res) {
+    db.Recipe.findById(req.params.recipeId).then((recipe) => {
+      if (recipe) {
+        db.Downvote.findOne({ where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } })
+          .then((downvotedAlready) => {
+            if (downvotedAlready) {
+              return downvotedAlready.destroy().then(() => apiResponse('success', 200, { message: 'Successfully removed Downvote from this recipe' }, res))
+                .catch(error => apiResponse('fail', 500, { message: error.message }, res));
+            }
+            db.Downvote.create({
+              userId: req.AuthUser.id,
+              recipeId: req.params.recipeId
+            }).then(downvotes => apiResponse('success', 201, { recipe, downvotes, message: 'recipe downvoted successfully' }, res));
+          });
+      } else {
+        return apiResponse('fail', 404, { message: 'Recipe to be downvoted not found' }, res);
       }
     });
   }
