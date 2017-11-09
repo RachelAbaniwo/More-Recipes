@@ -1,5 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
-  const Review = sequelize.define('Review', {
+'use strict';
+
+module.exports = function (sequelize, DataTypes) {
+  var Review = sequelize.define('Review', {
     review: DataTypes.TEXT,
     recipeId: {
       type: DataTypes.INTEGER,
@@ -12,15 +14,15 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'Users', key: 'id'
       }
-    },
+    }
   }, {
     classMethods: {
       /**
-   * declares associations
-   * @param {object} models
-   * @returns {integer} foreign key declared
-   */
-      associate(models) {
+      * declares associations
+      * @param {object} models
+      * @returns {integer} foreign key declared
+      */
+      associate: function associate(models) {
         Review.belongsTo(models.Recipe, {
           foreignKey: 'recipeId'
         });

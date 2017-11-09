@@ -1,19 +1,21 @@
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+'use strict';
+
+module.exports = function (sequelize, DataTypes) {
+  var User = sequelize.define('User', {
     Firstname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     Lastname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     Username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: {
         msg: 'The Username is already in use.'
-      },
+      }
     },
     Email: {
       type: DataTypes.STRING,
@@ -29,16 +31,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     Password: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   }, {
     classMethods: {
-    /**
-   * declares associations
-   * @param {object} models
-   * @returns {integer} foreign key declared
-   */
-      associate(models) {
+      /**
+      * declares associations
+      * @param {object} models
+      * @returns {integer} foreign key declared
+      */
+      associate: function associate(models) {
         User.hasMany(models.Recipe, {
           foreignKey: 'userId'
         });
@@ -54,8 +56,8 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.Downvote, {
           foreignKey: 'userId'
         });
-      },
-    },
+      }
+    }
   });
   return User;
 };

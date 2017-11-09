@@ -1,5 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
-  const Recipe = sequelize.define('Recipe', {
+'use strict';
+
+module.exports = function (sequelize, DataTypes) {
+  var Recipe = sequelize.define('Recipe', {
     name: DataTypes.STRING,
     category: DataTypes.STRING,
     ingredients: DataTypes.TEXT,
@@ -14,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       /**
-   * declares associations
-   * @param {object} models
-   * @returns {integer} foriegn key declared
-   */
-      associate(models) {
+      * declares associations
+      * @param {object} models
+      * @returns {integer} foriegn key declared
+      */
+      associate: function associate(models) {
         Recipe.belongsTo(models.User, {
           foreignKey: 'userId'
         });
