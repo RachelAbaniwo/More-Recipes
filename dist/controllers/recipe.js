@@ -16,6 +16,8 @@ var _helpers2 = _interopRequireDefault(_helpers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
@@ -36,10 +38,67 @@ var RecipesController = function () {
      * @returns {json} json returned to client
      */
     value: function getRecipes(req, res) {
-      _models2.default.Recipe.findAll().then(function (recipes) {
+      _models2.default.Recipe.findAll({
+        include: { model: _models2.default.User }
+      }).then(function (recipes) {
         return (0, _helpers2.default)('success', 200, { recipes: recipes }, res);
       }).catch(function (error) {
         return (0, _helpers2.default)('fail', 500, { message: error.message }, res);
+      });
+    }
+    /**
+     * gets a recipe from database
+     * @param {object} req express request object
+     * @param {object} res express response object
+     * @returns {json} json returned to client
+     */
+
+  }, {
+    key: 'getOneRecipe',
+    value: function getOneRecipe(req, res) {
+      _models2.default.Recipe.findById(req.params.id).then(function (recipe) {
+        if (!recipe) {
+          return (0, _helpers2.default)('fail', 404, { message: 'Recipe not found' }, res);
+        }
+        return (0, _helpers2.default)('success', 200, { recipe: recipe }, res);
+      }).catch(function () {
+        return (0, _helpers2.default)('fail', 422, { message: 'Invalid Request' }, res);
+      });
+    }
+    /**
+     * gets a user's personal recipes from database
+     * @param {object} req express request object
+     * @param {object} res express response object
+     * @returns {json} json returned to client
+     */
+
+  }, {
+    key: 'getMyRecipes',
+    value: function getMyRecipes(req, res) {
+      _models2.default.Recipe.findAll({ where: { userId: req.AuthUser.id } }).then(function (recipes) {
+        if (recipes.length < 1) {
+          return (0, _helpers2.default)('fail', 404, { message: 'You have no Recipes' }, res);
+        }(0, _helpers2.default)('success', 200, { recipes: recipes }, res);
+      }).catch(function (error) {
+        return (0, _helpers2.default)('fail', 500, { message: error.message }, res);
+      });
+    }
+    /**
+     * gets any user's recipes from database
+     * @param {object} req express request object
+     * @param {object} res express response object
+     * @returns {json} json returned to client
+     */
+
+  }, {
+    key: 'getUserRecipes',
+    value: function getUserRecipes(req, res) {
+      _models2.default.Recipe.findAll({ where: { userId: req.params.id } }).then(function (recipes) {
+        if (recipes.length < 1) {
+          return (0, _helpers2.default)('fail', 404, { message: 'User has no Recipes' }, res);
+        }(0, _helpers2.default)('success', 200, { recipes: recipes }, res);
+      }).catch(function () {
+        return (0, _helpers2.default)('fail', 422, { message: 'Invalid Request' }, res);
       });
     }
     /**
@@ -58,7 +117,7 @@ var RecipesController = function () {
         errors.push('Recipe Name is required.');
       }
       if (!req.body.category) {
-        errors.push('Recipe Type is required.');
+        errors.push('Recipe Category is required.');
       }
       if (!req.body.ingredients) {
         errors.push('Recipe Ingredients are required.');
@@ -67,13 +126,12 @@ var RecipesController = function () {
         errors.push('Recipe Description is required.');
       }
       if (!req.body.method) {
-        errors.push('Recipe Directions are required.');
+        errors.push('Method required.');
       }
 
       if (errors.length > 0) {
-        return (0, _helpers2.default)('fail', 422, { errors: errors, message: 'Please fix the validation errors' }, res);
+        return (0, _helpers2.default)('fail', 422, { errors: errors, message: 'Please fill all Fields' }, res);
       }
-      console.log(req.AuthUser);
       return _models2.default.Recipe.create({
         name: req.body.name,
         category: req.body.category,
@@ -113,7 +171,6 @@ var RecipesController = function () {
         return (0, _helpers2.default)('fail', 500, { message: error.message }, res);
       });
     }
-
     /**
      * deletes recipes from database
      * @param {object} req express request object
@@ -124,14 +181,12 @@ var RecipesController = function () {
   }, {
     key: 'deleteRecipe',
     value: function deleteRecipe(req, res) {
-      _models2.default.Recipe.findById(req.params.id).then(function (recipe) {
-        if (recipe) {
-          recipe.destroy().then(function () {
-            return (0, _helpers2.default)('success', 200, { message: 'Successfully deleted recipe' }, res);
-          });
-        } else {
-          return (0, _helpers2.default)('fail', 500, { message: 'Recipe to be deleted not found' }, res);
-        }
+      return _models2.default.Recipe.findById(req.params.id).then(function (recipe) {
+        recipe.destroy().then(function () {
+          return (0, _helpers2.default)('success', 200, { message: 'Successfully deleted recipe' }, res);
+        }).catch(function (error) {
+          return (0, _helpers2.default)('fail', 500, { message: error.message }, res);
+        });
       });
     }
     /**
@@ -159,6 +214,8 @@ var RecipesController = function () {
         } else {
           return (0, _helpers2.default)('fail', 404, { message: 'Recipe to be reviewed not found' }, res);
         }
+      }).catch(function () {
+        return (0, _helpers2.default)('fail', 422, { message: 'Invalid Request' }, res);
       });
     }
     /**
@@ -171,20 +228,28 @@ var RecipesController = function () {
   }, {
     key: 'addFavorite',
     value: function addFavorite(req, res) {
-      if (!req.AuthUser) {
-        return (0, _helpers2.default)('fail', 422, { message: 'Unauthenticated User' }, res);
-      }
       _models2.default.Recipe.findById(req.params.recipeId).then(function (recipe) {
         if (recipe) {
-          _models2.default.Favorite.create({
-            recipeId: recipe.id,
-            userId: req.AuthUser.id
-          }).then(function () {
-            return (0, _helpers2.default)('success', 201, { recipe: recipe, message: 'Favorite recipe successfully added!' }, res);
+          _models2.default.Favorite.findOne({ where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } }).then(function (favoritedAlready) {
+            if (favoritedAlready) {
+              return favoritedAlready.destroy().then(function () {
+                return (0, _helpers2.default)('success', 200, { message: 'Successfully removed Recipe from Favorites' }, res);
+              }).catch(function (error) {
+                return (0, _helpers2.default)('fail', 500, { message: error.message }, res);
+              });
+            }
+            _models2.default.Favorite.create({
+              recipeId: recipe.id,
+              userId: req.AuthUser.id
+            }).then(function () {
+              return (0, _helpers2.default)('success', 201, { recipe: recipe, message: 'Favorite recipe successfully added!' }, res);
+            });
           });
         } else {
           return (0, _helpers2.default)('fail', 404, { message: 'Recipe to be added not found' }, res);
         }
+      }).catch(function () {
+        return (0, _helpers2.default)('fail', 422, { message: 'Invalid Request' }, res);
       });
     }
     /**
@@ -197,32 +262,81 @@ var RecipesController = function () {
   }, {
     key: 'getFavorites',
     value: function getFavorites(req, res) {
-      if (!req.AuthUser) {
-        return (0, _helpers2.default)('fail', 422, { message: 'Unauthenticated User' }, res);
-      }
-      _models2.default.Favorite.findAll().then(function (recipes) {
-        return (0, _helpers2.default)('success', 200, { recipes: recipes }, res);
+      return _models2.default.Favorite.findAll({ where: { userId: req.AuthUser.id } }).then(function (favorites) {
+        if (favorites.length < 1) {
+          return (0, _helpers2.default)('fail', 404, { message: 'You have no Favorite Recipes' }, res);
+        }
+        var recipeIds = favorites.map(function (favorite) {
+          return favorite.recipeId;
+        });
+        return _models2.default.Recipe.findAll({
+          where: {
+            id: _defineProperty({}, _models2.default.Sequelize.Op.in, recipeIds)
+          }
+        }).then(function (recipes) {
+          return (0, _helpers2.default)('success', 200, { recipes: recipes }, res);
+        });
       }).catch(function (error) {
         return (0, _helpers2.default)('fail', 500, { message: error.message }, res);
       });
     }
-    /*  addUpvotes(req, res) {
-       if (!req.AuthUser) {
-         return apiResponse('fail', 422, {message: 'Unauthenticated User'}, res);
-       }
-       db.Recipe.findById(req.params.recipeId).then((recipe) => {
-         if (recipe) {
-           db.Upvote.create({
-             upvotes: recipe.upvotes+1,
-             downvotes: recipe.downvotes
-           }).then(() => {
-             return apiResponse('success', 201, { recipe, message:  'recipe upvoted successfully' }, res); })
-         } else {
-           return apiResponse('fail', 404, { message: 'Recipe to be upvoted not found' }, res);
-         }
-       });
-     } */
+    /**
+     * adds Upvotes of recipes to database
+     * @param {object} req express request object
+     * @param {object} res express response object
+     * @returns {json} json returned to client
+     */
 
+  }, {
+    key: 'addUpvotes',
+    value: function addUpvotes(req, res) {
+      _models2.default.Recipe.findById(req.params.recipeId).then(function (recipe) {
+        if (recipe) {
+          _models2.default.Upvote.findOne({ where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } }).then(function (upvotedAlready) {
+            if (upvotedAlready) {
+              return upvotedAlready.destroy().then(function () {
+                return (0, _helpers2.default)('success', 200, { message: 'Successfully removed Upvote from this recipe' }, res);
+              }).catch(function (error) {
+                return (0, _helpers2.default)('fail', 500, { message: error.message }, res);
+              });
+            }
+            _models2.default.Upvote.create({
+              userId: req.AuthUser.id,
+              recipeId: req.params.recipeId
+            }).then(function (upvotes) {
+              return (0, _helpers2.default)('success', 201, { recipe: recipe, upvotes: upvotes, message: 'recipe upvoted successfully' }, res);
+            });
+          });
+        } else {
+          return (0, _helpers2.default)('fail', 404, { message: 'Recipe to be upvoted not found' }, res);
+        }
+      });
+    }
+    /**
+     * add Downvotes of recipes to database
+     * @param {object} req express request object
+     * @param {object} res express response object
+     * @returns {json} json returned to client
+     */
+
+  }, {
+    key: 'addDownvotes',
+    value: async function addDownvotes(req, res) {
+      var query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
+      var downvote = await _models2.default.Downvote.findOne(query);
+
+      if (downvote) {
+        await downvote.destroy();
+        return (0, _helpers2.default)('success', 200, { message: 'Successfully removed Downvote from this recipe' }, res);
+      }
+
+      await _models2.default.Downvote.create({
+        userId: req.AuthUser.id,
+        recipeId: req.params.recipeId
+      });
+
+      return (0, _helpers2.default)('success', 201, { message: 'recipe downvoted successfully' }, res);
+    }
   }]);
 
   return RecipesController;

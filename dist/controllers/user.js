@@ -65,14 +65,14 @@ var UserController = function () {
         return (0, _helpers2.default)('fail', 422, { errors: errors, message: 'Please fix the validation errors' }, res);
       }
       console.log(req.body);
-      return _models2.default.User.create({
+      _models2.default.User.create({
         Firstname: req.body.Firstname,
         Lastname: req.body.Lastname,
         Username: req.body.Username,
         Email: req.body.Email,
         Password: _bcrypt2.default.hashSync(req.body.Password, 10)
-      }).then(function (user) {
-        return (0, _helpers2.default)('success', 200, { user: user, message: 'Successfully signed up!' }, res);
+      }).then(function () {
+        return (0, _helpers2.default)('success', 200, { message: 'Successfully signed up! Check Email for Activation link.' }, res);
       }).catch(function (error) {
         return (0, _helpers2.default)('fail', 500, { message: error.message }, res);
       });

@@ -158,24 +158,24 @@ export default class RecipesController {
    * @param {object} res express response object
    * @returns {json} json returned to client
    */
-  addFavorite(req, res) {
-    db.Recipe.findById(req.params.recipeId).then((recipe) => {
-      if (recipe) {
-        db.Favorite.findOne({ where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } })
-          .then((favoritedAlready) => {
-            if (favoritedAlready) {
-              return favoritedAlready.destroy().then(() => apiResponse('success', 200, { message: 'Successfully removed Recipe from Favorites' }, res))
-                .catch(error => apiResponse('fail', 500, { message: error.message }, res));
-            }
-            db.Favorite.create({
-              recipeId: recipe.id,
-              userId: req.AuthUser.id
-            }).then(() => apiResponse('success', 201, { recipe, message: 'Favorite recipe successfully added!' }, res));
-          });
-      } else {
-        return apiResponse('fail', 404, { message: 'Recipe to be added not found' }, res);
-      }
-    }).catch(() => apiResponse('fail', 422, { message: 'Invalid Request' }, res));
+  async addFavorite(req, res) {
+    const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
+    const favorite = await db.Favorite.findOne(query);
+
+    if (favorite) {
+      await favorite.destroy();
+      return apiResponse('success', 200, { message: 'Successfully removed this recipe from Favorites' }, res);
+    }
+
+    await db.Favorite.create({
+      userId: req.AuthUser.id,
+      recipeId: req.params.recipeId
+    });
+    const recipe = req.FavoriteRecipe;
+
+    //  const numberOfUpvotes = await db.Downvote.count({ where: { recipeId: req.params.id } });
+
+    return apiResponse('success', 201, { recipe, message: 'Recipe successfully added to Favorites!' }, res);
   }
   /**
    * gets User's Favorite recipes from database
@@ -183,20 +183,21 @@ export default class RecipesController {
    * @param {object} res express response object
    * @returns {json} json returned to client
    */
-  getFavorites(req, res) {
-    return db.Favorite.findAll({ where: { userId: req.AuthUser.id } }).then((favorites) => {
-      if (favorites.length < 1) {
-        return apiResponse('fail', 404, { message: 'You have no Favorite Recipes' }, res);
-      }
-      const recipeIds = favorites.map(favorite => favorite.recipeId);
-      return db.Recipe.findAll({
-        where: {
-          id: {
-            [db.Sequelize.Op.in]: recipeIds
-          }
+  async getFavorites(req, res) {
+    try { 
+      const query = { where: { userId: req.AuthUser.id } };
+      const favorites = await db.Favorite.findAll(query);
+
+        if (favorites.length < 1) {
+          return apiResponse('fail', 404, { message: 'You have no Favorite Recipes' }, res);
         }
-      }).then(recipes => apiResponse('success', 200, { recipes }, res));
-    }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
+        const recipeIds = favorites.map(favorite => favorite.recipeId);
+        const nextQuery = {where: { id: { [db.Sequelize.Op.in]: recipeIds} } };
+        const recipes = await db.Recipe.findAll(nextQuery);       
+      return apiResponse('success', 200, { recipes }, res);
+      } catch (error) {
+      return apiResponse('fail', 500, { message: error.message }, res);
+      }
   }
   /**
    * adds Upvotes of recipes to database
@@ -204,24 +205,23 @@ export default class RecipesController {
    * @param {object} res express response object
    * @returns {json} json returned to client
    */
-  addUpvotes(req, res) {
-    db.Recipe.findById(req.params.recipeId).then((recipe) => {
-      if (recipe) {
-        db.Upvote.findOne({ where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } })
-          .then((upvotedAlready) => {
-            if (upvotedAlready) {
-              return upvotedAlready.destroy().then(() => apiResponse('success', 200, { message: 'Successfully removed Upvote from this recipe' }, res))
-                .catch(error => apiResponse('fail', 500, { message: error.message }, res));
-            }
-            db.Upvote.create({
-              userId: req.AuthUser.id,
-              recipeId: req.params.recipeId
-            }).then(upvotes => apiResponse('success', 201, { recipe, upvotes, message: 'recipe upvoted successfully' }, res));
-          });
-      } else {
-        return apiResponse('fail', 404, { message: 'Recipe to be upvoted not found' }, res);
-      }
+   async addUpvotes(req, res) {
+    const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
+    const upvote = await db.Upvote.findOne(query);
+
+    if (upvote) {
+      await upvote.destroy();
+      return apiResponse('success', 200, { message: 'Successfully removed Upvote from this recipe' }, res);
+    }
+
+    await db.Upvote.create({
+      userId: req.AuthUser.id,
+      recipeId: req.params.recipeId
     });
+
+    //  const numberOfUpvotes = await db.Downvote.count({ where: { recipeId: req.params.id } });
+
+    return apiResponse('success', 201, { message: 'recipe upvoted successfully' }, res);
   }
   /**
    * add Downvotes of recipes to database
@@ -229,23 +229,22 @@ export default class RecipesController {
    * @param {object} res express response object
    * @returns {json} json returned to client
    */
-  addDownvotes(req, res) {
-    db.Recipe.findById(req.params.recipeId).then((recipe) => {
-      if (recipe) {
-        db.Downvote.findOne({ where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } })
-          .then((downvotedAlready) => {
-            if (downvotedAlready) {
-              return downvotedAlready.destroy().then(() => apiResponse('success', 200, { message: 'Successfully removed Downvote from this recipe' }, res))
-                .catch(error => apiResponse('fail', 500, { message: error.message }, res));
-            }
-            db.Downvote.create({
-              userId: req.AuthUser.id,
-              recipeId: req.params.recipeId
-            }).then(downvotes => apiResponse('success', 201, { recipe, downvotes, message: 'recipe downvoted successfully' }, res));
-          });
-      } else {
-        return apiResponse('fail', 404, { message: 'Recipe to be downvoted not found' }, res);
-      }
+  async addDownvotes(req, res) {
+    const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
+    const downvote = await db.Downvote.findOne(query);
+
+    if (downvote) {
+      await downvote.destroy();
+      return apiResponse('success', 200, { message: 'Successfully removed Downvote from this recipe' }, res);
+    }
+
+    await db.Downvote.create({
+      userId: req.AuthUser.id,
+      recipeId: req.params.recipeId
     });
+
+    //  const numberOfUpvotes = await db.Downvote.count({ where: { recipeId: req.params.id } });
+
+    return apiResponse('success', 201, { message: 'recipe downvoted successfully' }, res);
   }
 }

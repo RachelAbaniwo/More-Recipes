@@ -1,3 +1,4 @@
+
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
@@ -6,6 +7,9 @@ import UserController from './controllers/user';
 import db from './database/models';
 import authenticationMiddleWare from './middleware/auth';
 import authorisationMiddleWare from './middleware/authorise';
+import canDownvoteMiddleWare from './middleware/canDownvote';
+import canUpvoteMiddleWare from './middleware/canUpvote';
+import canFavoriteMiddleWare from './middleware/canFavorite';
 // Set up the express app
 const app = express();
 //  app.use('/api/recipes', router);
@@ -29,10 +33,10 @@ app.delete('/api/v1/recipes/:id', authenticationMiddleWare, authorisationMiddleW
 app.post('/api/v1/recipes/:id/review', authenticationMiddleWare, recipesController.addReviews);
 app.post('/api/v1/signup/', userController.userSignUp);
 app.post('/api/v1/signin', userController.userSignIn);
-app.post('/api/v1/users/favorites/:recipeId', authenticationMiddleWare, recipesController.addFavorite);
+app.post('/api/v1/users/favorite/:recipeId', authenticationMiddleWare, canFavoriteMiddleWare, recipesController.addFavorite);
 app.get('/api/v1/users/favorites', authenticationMiddleWare, recipesController.getFavorites);
-app.post('/api/v1/recipes/:recipeId/upvotes', authenticationMiddleWare, recipesController.addUpvotes);
-app.post('/api/v1/recipes/:recipeId/downvotes', authenticationMiddleWare, recipesController.addDownvotes);
+app.post('/api/v1/recipes/:recipeId/upvotes', authenticationMiddleWare, canUpvoteMiddleWare, recipesController.addUpvotes);
+app.post('/api/v1/recipes/:recipeId/downvotes', authenticationMiddleWare, canDownvoteMiddleWare, recipesController.addDownvotes);
 
 
 app.use((req, res) => {
