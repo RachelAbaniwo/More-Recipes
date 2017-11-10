@@ -13,7 +13,7 @@ export default class RecipesController {
    */
   getRecipes(req, res) {
     db.Recipe.findAll({
-      include: { model: db.User }
+      // include: { model: db.User }
     }).then(recipes => apiResponse('success', 200, { recipes }, res))
       .catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }

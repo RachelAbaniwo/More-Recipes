@@ -31,7 +31,7 @@ app.post('/api/v1/recipes', authenticationMiddleWare, recipesController.addRecip
 app.put('/api/v1/recipes/:id', authenticationMiddleWare, authorisationMiddleWare, recipesController.updateRecipe);
 app.delete('/api/v1/recipes/:id', authenticationMiddleWare, authorisationMiddleWare, recipesController.deleteRecipe);
 app.post('/api/v1/recipes/:id/review', authenticationMiddleWare, recipesController.addReviews);
-app.post('/api/v1/signup/', userController.userSignUp);
+app.post('/api/v1/signup', userController.userSignUp);
 app.post('/api/v1/signin', userController.userSignIn);
 app.post('/api/v1/users/favorite/:recipeId', authenticationMiddleWare, canFavoriteMiddleWare, recipesController.addFavorite);
 app.get('/api/v1/users/favorites', authenticationMiddleWare, recipesController.getFavorites);
