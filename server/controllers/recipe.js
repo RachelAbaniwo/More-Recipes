@@ -94,7 +94,7 @@ export default class RecipesController {
       method: req.body.method,
       ingredients: req.body.ingredients,
       userId: req.AuthUser.id
-    }).then(recipe => apiResponse('success', 200, { recipe, message: 'Successfully created recipe' }, res))
+    }).then(recipe => apiResponse('success', 201, { recipe, message: 'Successfully created recipe' }, res))
       .catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
   /**
@@ -115,7 +115,7 @@ export default class RecipesController {
       returning: true,
       plain: true
     })
-      .then(Recipe => apiResponse('success', 200, { Recipe, message: 'Successfully updated recipe' }, res))
+      .then(recipe => apiResponse('success', 201, { recipe, message: 'Successfully updated recipe' }, res))
       .catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
   /**

@@ -10,6 +10,10 @@ let loginDetails = {
     Username: 'RaeAban',
     Password: 'rachel',
   };
+let signinDetails = {
+    Username: 'Rae_b',
+    Password: 'rachel',
+}
    
 let registerDetails = {
     Firstname: 'Rachel',
@@ -33,7 +37,7 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
                 done();
             });
         });
-       it('should return the recipe with recipe ID requested by the User', (done) =>{
+       it('should return the recipe with recipe ID requested by the User', (done) => {
            chai.request(app)
            .get('/api/v1/recipes/1')
            .end((error, response) => {
@@ -67,77 +71,7 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
            done();
          });
      });
-     it('should return all recipes created by a User when called by that User', (done) => {
-        chai.request(app)
-       .get('/api/v1/users/myrecipes')
-       
-       .end((error, response) => {
-           expect(response).to.have.status(200);
-           expect(response.body).to.be.an('object');
-           
-           done();
-         });
-     });
-     it('should return an error if User is not Signed In', (done) => {
-        chai.request(app)
-       .get('/api/v1/users/myrecipes')
-       .end((error, response) => {
-           expect(response).to.have.status(401);
-           expect(response.body).to.be.an('object');
-           expect(response.body.data.message).to.equal('Unauthenticated USER.');
-           done();
-         });
-     });
-     it('should return an error if Signed in User has no Recipes', (done) => {
-        chai.request(app)
-       .get('/api/v1/users/myrecipes')
-       .end((error, response) => {
-           expect(response).to.have.status(404);
-           expect(response.body).to.be.an('object');
-           expect(response.body.data.message).to.equal('You have no Recipes');
-           done();
-         });
-     });
-     it('should return all recipes created by a User when called by another Signed in User', (done) => {
-        chai.request(app)
-       .get('/api/v1/users/1/recipes')
-       .end((error, response) => {
-           expect(response).to.have.status(200);
-           expect(response.body).to.be.an('object');
-           
-           done();
-         });
-     });
-     it('should return an error if the user calling the route isn\'t signed in', (done) => {
-        chai.request(app)
-       .get('/api/v1/users/1/recipes')
-       .end((error, response) => {
-           expect(response).to.have.status(401);
-           expect(response.body).to.be.an('object');
-           expect(response.body.data.message).to.equal('Unauthenticated USER.');
-           done();
-         });
-     });
-     it('should return an error if the id of the User requested is not an Integer', (done) => {
-        chai.request(app)
-       .get('/api/v1/users/Rachel/recipes')
-       .end((error, response) => {
-           expect(response).to.have.status(422);
-           expect(response.body).to.be.an('object');
-           expect(response.body.data.message).to.equal('Invalid Request');
-           done();
-         });
-     });
-     it('should return an error if the User being requested has no Recipes', (done) => {
-        chai.request(app)
-       .get('/api/v1/users/1/recipes')
-       .end((error, response) => {
-           expect(response).to.have.status(404);
-           expect(response.body).to.be.an('object');
-           expect(response.body.data.message).to.equal('User has no Recipes');
-           done();
-         });
-      });
+     
    });
 });
 
@@ -148,9 +82,13 @@ describe('/Authenticated/Authorised Endpoints', () => {
     .post('/api/v1/signin')
     .send(loginDetails)
     .end((error,response) => {
-        
-        
-        let token = response.body.data.token;
+    let token = response.body.data.token;
+
+    chai.request(app)
+    .post('/api/v1/signin')
+    .send(signinDetails)
+    .end((error,response) => {
+    let signinToken = response.body.data.token;
     /*beforeEach((done) => {
         // Reset user mode before each test
         db.User.destroy({}, (error) => {
@@ -247,160 +185,405 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 done();
             });
         });
-    
-    });
- });
 
-    describe('/recipes POST endpoint', () => { 
-        it('it should add a new recipe to the recipes', (done) => {
-            chai.request(app)
-                .post('/api/v1/recipes')
-                .send({
-                    recipeName: "Ofaku",
-                    recipeType: "Nigerian-Soup",
-                    ingredients:"Palm fruits",
-                    description: "description 1",
-                    direction: "direction 1",
-                })
+        describe('/Authenticated Routes/', () => {
+            describe('/GET Recipes Authenticated Routes/', () => {
+                it('should return all recipes created by a User when called by that User', (done) => {
+                    chai.request(app)
+                .get('/api/v1/users/myrecipes')
+                .set('token', token)
+                
                 .end((error, response) => {
-                    expect(response).to.have.status(201);
-                    const recipe = response.body.data.recipe;
-                    expect(recipe.id).to.not.be.undefined;
-                    expect(recipe.recipeName).to.equal('Ofaku');
-                    expect(recipe.recipeType).to.equal('Nigerian-Soup');
-                    expect(recipe.ingredients).to.equal('Palm fruits');
-                    expect(recipe.description).to.equal('description 1');
-                    expect(recipe.direction).to.equal('direction 1');
-                    expect(recipe.upvotes).to.equal(0);
-                    expect(recipe.downvotes).to.equal(0);
-                    expect(recipe.favorites).to.equal(0);
-
-                    done();
-                });
-        });
-        it('it should return correct validation errors if wrong data is provided', (done) => {
-            chai.request(app)
-                .post('/api/v1/recipes')
-                .send({})
-                .end((error, response) => {
-
-                    expect(response).to.have.status(422);
+                    expect(response).to.have.status(200);
+                    expect(response.body).to.be.an('object');
                     
-                    const errors = response.body.data.errors;
-
-                    expect(errors).to.include('Recipe Name is required.');
-                    expect(errors).to.include('Recipe Type is required.');
-                    expect(errors).to.include('Recipe Ingredients are required.');
-                    expect(errors).to.include('Recipe Description is required.');
-                    expect(errors).to.include('Recipe Directions are required.');
-                    expect(response.body.data.message).to.equal('Please fix the validation errors');
-
                     done();
+                    });
                 });
-        });
+                it('should return an error if User is not Signed In', (done) => {
+                    chai.request(app)
+                .get('/api/v1/users/myrecipes')
+                .end((error, response) => {
+                    expect(response).to.have.status(401);
+                    expect(response.body).to.be.an('object');
+                    expect(response.body.data.message).to.equal('Unauthenticated USER.');
+                    done();
+                    });
+                });
+                it('should return an error if Signed in User has no Recipes', (done) => {
+                    chai.request(app)
+                .get('/api/v1/users/myrecipes')
+                .set('token', signinToken)
+                .end((error, response) => {
+                    expect(response).to.have.status(404);
+                    expect(response.body).to.be.an('object');
+                    expect(response.body.data.message).to.equal('You have no Recipes');
+                    done();
+                    });
+                });
+                it('should return all recipes created by a User when called by another Signed in User', (done) => {
+                    chai.request(app)
+                .get('/api/v1/users/1/recipes')
+                .set('token', token)
+                .end((error, response) => {
+                    expect(response).to.have.status(200);
+                    expect(response.body).to.be.an('object');
+                    
+                    done();
+                    });
+                });
+                it('should return an error if the user calling the route isn\'t signed in', (done) => {
+                    chai.request(app)
+                .get('/api/v1/users/1/recipes')
+                .end((error, response) => {
+                    expect(response).to.have.status(401);
+                    expect(response.body).to.be.an('object');
+                    expect(response.body.data.message).to.equal('Unauthenticated USER.');
+                    done();
+                    });
+                });
+                it('should return an error if the id of the User requested does not exist', (done) => {
+                    chai.request(app)
+                .get('/api/v1/users/90/recipes')
+                .end((error, response) => {
+                    expect(response).to.have.status(404);
+                    expect(response.body).to.be.an('object');
+                    expect(response.body.data.message).to.equal('User not Found');
+                    done();
+                    });
+                });
+                it('should return an error if the User being requested has no Recipes', (done) => {
+                    chai.request(app)
+                .get('/api/v1/users/4/recipes')
+                .set('token', token)
+                .end((error, response) => {
+                    expect(response).to.have.status(404);
+                    expect(response.body).to.be.an('object');
+                    expect(response.body.data.message).to.equal('User has no Recipes');
+                    done();
+                    });
+                });
+                it('should return an error if the id of the User requested is not an Integer', (done) => {
+                    chai.request(app)
+                .get('/api/v1/users/Rachel/recipes')
+                .set('token', token)
+                .end((error, response) => {
+                    expect(response).to.have.status(422);
+                    expect(response.body).to.be.an('object');
+                    expect(response.body.data.message).to.equal('Invalid Request');
+                    done();
+                    });
+                });
+            });
+            
+            describe('/POST Recipes endpoints/', () => { 
+                it('should add a new recipe when called by Signed in User', (done) => {
+                    chai.request(app)
+                        .post('/api/v1/recipes')
+                        .set('token', token)
+
+                        .send({
+                            name: "Ofaku",
+                            category: "Nigerian-Soup",
+                            ingredients:"Palm fruits",
+                            description: "description 1",
+                            method: "direction 1",
+                        })
+                        .end((error, response) => {
+                            expect(response).to.have.status(201);
+                            const recipe = response.body.data.recipe;
+                            expect(recipe.id).to.not.be.undefined;
+                            expect(recipe.name).to.equal('Ofaku');
+                            expect(recipe.category).to.equal('Nigerian-Soup');
+                            expect(recipe.ingredients).to.equal('Palm fruits');
+                            expect(recipe.description).to.equal('description 1');
+                            expect(recipe.method).to.equal('direction 1');
+                            expect(response.body).to.be.an('object');
+                            expect(response.body.data.message).to.equal('Successfully created recipe');
+                            console.log(recipe.id);
+                            done();
+                        });
+                });
+                it('it should return an error if User creating Recipe is not Signed In', (done) => {
+                    chai.request(app)
+                        .post('/api/v1/recipes')
+                        .send({
+                            name: "Ofaku",
+                            recipeType: "Nigerian-Soup",
+                            ingredients:"Palm fruits",
+                            description: "description 1",
+                            direction: "direction 1",
+                        })
+                        .end((error, response) => {
+                            expect(response).to.have.status(401);
+                            expect(response.body).to.be.an('object');
+                            expect(response.body.data.message).to.equal('Unauthenticated USER.');
+                            
+                            done();
+                        });
+                });
+                it('it should return correct validation errors if wrong data is provided', (done) => {
+                    chai.request(app)
+                        .post('/api/v1/recipes')
+                        .set('token', token)
+                        .send({})
+                        .end((error, response) => {
+
+                            expect(response).to.have.status(422);
+                            
+                            const errors = response.body.data.errors;
+
+                            expect(errors).to.include('Recipe Name is required.');
+                            expect(errors).to.include('Recipe Category is required.');
+                            expect(errors).to.include('Recipe Ingredients are required.');
+                            expect(errors).to.include('Recipe Description is required.');
+                            expect(errors).to.include('Method required.');
+                            expect(response.body.data.message).to.equal('Please fill all Fields');
+
+                            done();
+                        });
+                });
+            });
+            
+            describe('/UPDATE Recipes endpoints/', () => {
+                it('it should update only the personal recipe of the Signed in User', (done) => {
+                     chai.request(app)
+                    .put('/api/v1/recipes/13')
+                    .set('token', token)
+                    .send({
+                        name: "Chicken Chilli Sauce",
+                        category: "Stews and Sauce",
+                        ingredients: "Chicken, Chilli Pepper, Veggies",
+                        description: "Sauce to be served along side pasta",
+                        method: "add Chicken, then add Chilli Pepper"
+                    })
+                    .end((error, response) => {
+                        expect(response).to.have.status(201);
+        
+                        const recipe = response.body.data.recipe[1];
+                        expect(recipe.id).to.equal(13);
+                        expect(recipe.name).to.equal('Chicken Chilli Sauce');
+                        expect(recipe.category).to.equal('Stews and Sauce');
+                        expect(recipe.ingredients).to.equal('Chicken, Chilli Pepper, Veggies');
+                        expect(recipe.description).to.equal('Sauce to be served along side pasta');
+                        expect(recipe.method).to.equal('add Chicken, then add Chilli Pepper');
+                        expect(response.body.data.message).to.equal('Successfully updated recipe');
+        
+                        done();
+                    });
+                });
+                it('it should return an error if User is not Signed in', (done) => {
+                    chai.request(app)
+                   .put('/api/v1/recipes/13')
+                   .send({
+                       name: "Chicken Chilli Sauce",
+                       category: "Stews and Sauce",
+                       ingredients: "Chicken, Chilli Pepper, Veggies",
+                       description: "Sauce to be served along side pasta",
+                       method: "add Chicken, then add Chilli Pepper"
+                   })
+                   .end((error, response) => {
+                       expect(response).to.have.status(401);
+                       expect(response.body.data.message).to.equal('Unauthenticated USER.');
+       
+                       done();
+                   });
+               });
+               it('it should return an error if Recipe to be updated is not found', (done) => {
+                chai.request(app)
+               .put('/api/v1/recipes/60')
+               .set('token', token)
+               .send({
+                   name: "Chicken Chilli Sauce",
+                   category: "Stews and Sauce",
+                   ingredients: "Chicken, Chilli Pepper, Veggies",
+                   description: "Sauce to be served along side pasta",
+                   method: "add Chicken, then add Chilli Pepper"
+               })
+               .end((error, response) => {
+                   expect(response).to.have.status(404);
+                   expect(response.body.data.message).to.equal('Recipe not found');
+   
+                   done();
+               });
+           });
+                it('it should return an error if recipe to be updated is not personal recipe of the Signed in User', (done) => {
+                    chai.request(app)
+                   .put('/api/v1/recipes/1')
+                   .set('token', token)
+                   .send({
+                       name: "Chicken Chilli Sauce",
+                       category: "Stews and Sauce",
+                       ingredients: "Chicken, Chilli Pepper, Veggies",
+                       description: "Sauce to be served along side pasta",
+                       method: "add Chicken, then add Chilli Pepper"
+                   })
+                   .end((error, response) => {
+                       expect(response).to.have.status(401);
+                       expect(response.body.data.message).to.equal('Unauthorized USER');
+       
+                       done();
+                   });
+               });
+                it('it should return an error if the recipe id of the recipe to be updated is not an integer', (done) => {
+                    chai.request(app)
+                    .put('/api/v1/recipes/Rachel')
+                    .set('token', token)
+                    .send({
+                        recipeName: "Chicken Chilli Sauce",
+                        recipeType: "Stews and Sauce",
+                        ingredients: "Chicken, Chilli Pepper, Veggies",
+                        description: "Sauce to be served along side pasta",
+                        direction: "add Chicken, then add Chilli Pepper"
+                    })
+                    .end((error, response) => {
+                        expect(response).to.have.status(422); 
+                        expect(response.body.data.message).to.equal('Invalid Request');
+                        
+                        done();   
+                    });
+                });
+            });
+        
+            describe('/recipes DELETE endpoint', () => {
+                it('it should return an error if User is not Signed in', (done) => {
+                    chai.request(app)
+                   .delete('/api/v1/recipes/12')
+                   .end((error, response) => {
+                       expect(response).to.have.status(401);
+                       expect(response.body.data.message).to.equal('Unauthenticated USER.');
+       
+                       done();
+                   });
+               });
+               it('it should return an error if Recipe to be deleted is not found', (done) => {
+                chai.request(app)
+               .delete('/api/v1/recipes/60')
+               .set('token', token)
+               .end((error, response) => {
+                   expect(response).to.have.status(404);
+                   expect(response.body.data.message).to.equal('Recipe not found');
+   
+                   done();
+               });
+           });
+                it('it should return an error if recipe to be deleted is not personal recipe of the Signed in User', (done) => {
+                    chai.request(app)
+                   .delete('/api/v1/recipes/1')
+                   .set('token', token)
+                   .end((error, response) => {
+                       expect(response).to.have.status(401);
+                       expect(response.body.data.message).to.equal('Unauthorized USER');
+       
+                       done();
+                   });
+               });
+                it('it should return an error if the recipe id of the recipe to be deleted is not an integer', (done) => {
+                    chai.request(app)
+                    .delete('/api/v1/recipes/Rachel')
+                    .set('token', token)
+                    .end((error, response) => {
+                        expect(response).to.have.status(422); 
+                        expect(response.body.data.message).to.equal('Invalid Request');
+                        
+                        done();   
+                    });
+                });
+                it('it should delete only the personal recipe of the Signed in User', (done) => {
+                    chai.request(app)
+                    .delete('/api/v1/recipes/12')
+                    .set('token', token)
+        
+                    .end((error, response) => {
+                        expect(response).to.have.status(200);
+                        expect(response.body.data.message).to.equal('Successfully deleted recipe');
+        
+                        done();
+                        
+                    });
+                });
+            });
+            
+            describe('/POST Reviews endpoint', () => {
+                it('it should add a review to the recipe whose Id is specified by a Signed in User', (done) => {
+                    chai.request(app)
+                    .post('/api/v1/recipes/2/review')
+                    .set('token', token)
+                    .send({
+                        review: "Awesome Stuff"
+                    })
+
+                    .end((error, response) => {
+                        expect(response).to.have.status(201);
+                        expect(response.body.data.review.review).to.equal('Awesome Stuff');
+                        expect(response.body.data.message).to.equal('Review successfully added!');
+                        
+                        done();
+
+                    });
+                });
+                it('it should return an error if User adding a review is not Signed in', (done) => {
+                    chai.request(app)
+                    .post('/api/v1/recipes/2/review')
+                    .send({
+                        review: "Awesome Stuff"
+                    })
+
+                    .end((error, response) => {
+                        expect(response).to.have.status(401);
+                        expect(response.body.data.message).to.equal('Unauthenticated USER.');
+                        
+                        done();
+
+                    });
+                });
+                it('it should return an error if the Id of the recipe to be reviewed does not exist', (done) => {
+                    chai.request(app)
+                    .post('/api/v1/recipes/1000/review')
+                    .set('token', token)
+                    .send({
+                        review: "Awesome Stuff"
+                    })
+
+                    .end((error, response) => {
+                        expect(response).to.have.status(404);
+                        expect(response.body.data.message).to.equal('Recipe to be reviewed not found');
+
+                        done();
+                    });
+                });
+                it('it should return an error if the Id of the recipe to be reviewed is not an integer', (done) => {
+                    chai.request(app)
+                    .post('/api/v1/recipes/Rachel/review')
+                    .set('token', token)
+                    .send({
+                        review: "Awesome Stuff"
+                    })
+
+                    .end((error, response) => {
+                        expect(response).to.have.status(422);
+                        expect(response.body.data.message).to.equal('Invalid Request');
+
+                        done();
+                    });
+                });
+                it('it should return an error if the Review field is empty', (done) => {
+                    chai.request(app)
+                    .post('/api/v1/recipes/Rachel/review')
+                    .set('token', token)
+                    .send({})
+
+                    .end((error, response) => {
+                        expect(response).to.have.status(422);
+                        expect(response.body.data.message).to.equal('Review field empty');
+
+                        done();
+                    });
+                });
+            });
+         });
+       });
     });
-
-    describe('/recipes PUT endpoint', () => {
-        it('it should update the recipe with specified recipe Id', (done) => {
-             chai.request(app)
-            .put('/api/v1/recipes/1')
-            .send({
-                recipeName: "Chicken Chilli Sauce",
-                recipeType: "Stews and Sauce",
-                ingredients: "Chicken, Chilli Pepper, Veggies",
-                description: "Sauce to be served along side pasta",
-                direction: "add Chicken, then add Chilli Pepper"
-            })
-            .end((error, response) => {
-                expect(response).to.have.status(201);
-
-                const recipe = response.body.data.recipe;
-                expect(recipe.id).to.equal(1);
-                expect(recipe.recipeName).to.equal('Chicken Chilli Sauce');
-                expect(recipe.recipeType).to.equal('Stews and Sauce');
-                expect(recipe.ingredients).to.equal('Chicken, Chilli Pepper, Veggies');
-                expect(recipe.description).to.equal('Sauce to be served along side pasta');
-                expect(recipe.direction).to.equal('add Chicken, then add Chilli Pepper');
-
-                done();
-            });
-        });
-        it('it should return an error if the recipe id of the recipe to be updated is not specified', (done) => {
-            chai.request(app)
-            .put('/api/v1/recipes/Rachel')
-            .send({
-                recipeName: "Chicken Chilli Sauce",
-                recipeType: "Stews and Sauce",
-                ingredients: "Chicken, Chilli Pepper, Veggies",
-                description: "Sauce to be served along side pasta",
-                direction: "add Chicken, then add Chilli Pepper"
-            })
-            .end((error, response) => {
-                expect(response).to.have.status(404); 
-                expect(response.body.data.message).to.equal('the recipe was not found in the database');
-                
-                done();   
-            });
-        });
-    });
-
-    describe('/recipes DELETE endpoint', () => {
-        it('it should delete the recipe with specified recipe Id', (done) => {
-            chai.request(app)
-            .delete('/api/v1/recipes/1')
-
-            .end((error, response) => {
-                expect(response).to.have.status(200);
-                expect(response.body.data.message).to.equal('Recipe successfully deleted.');
-
-                done();
-                
-            });
-        });
-        it('it should return an error if recipe Id is not specified', (done) => {
-            chai.request(app)
-            .delete('/api/v1/recipes/Rachel')
-
-            .end((error, response) => {
-                expect(response).to.have.status(404);
-                expect(response.body.data.message).to.equal('the recipe to be deleted was not found in the database');
-
-                done();
-            });
-        });
-    });
-
-    describe('/recipes POST endpoint', () => {
-        it('it should add a review to the recipe whose Id is specified', (done) => {
-            chai.request(app)
-            .post('/api/v1/recipes/2/review')
-            .send({
-                reviews: "Awesome Stuff"
-            })
-
-            .end((error, response) => {
-                expect(response).to.have.status(201);
-                expect(response.body.data.recipe.reviews).to.include('Awesome Stuff');
-                expect(response.body.data.message).to.equal('Review successfully added!');
-                
-                done();
-
-            });
-        });
-        it('it should return an error if the Id of the recipe to be reviewed does not exist', (done) => {
-            chai.request(app)
-            .post('/api/v1/recipes/7/review')
-            .send({
-                reviews: "Awesome Stuff"
-            })
-
-            .end((error, response) => {
-                expect(response).to.have.status(404);
-                expect(response.body.data.message).to.equal('the recipe you want to review was not found in the database!');
-
-                done();
-            });
-        });
-    });
+  });
 });
 
