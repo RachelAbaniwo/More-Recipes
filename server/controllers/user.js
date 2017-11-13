@@ -57,13 +57,13 @@ export default class UserController {
     const errors = [];
 
     if (!req.body.Username) {
-      errors.push('the Username is required');
+      errors.push('The Username is required');
     }
     if (!req.body.Password) {
-      errors.push('the Password is required');
+      errors.push('The Password is required');
     }
     if (errors.length > 0) {
-      return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);  
+      return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
     }
     return db.User.findOne({ where: { Username: req.body.Username } }).then((user) => {
       if (!user) {
