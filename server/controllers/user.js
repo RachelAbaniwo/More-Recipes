@@ -72,7 +72,9 @@ export default class UserController {
       if (bcrypt.compareSync(req.body.Password, user.Password)) {
         const token = jwt.sign(user.get(), 'secret');
         return apiResponse('success', 201, { token, message: 'Successfully signed in.' }, res);
-      } return apiResponse('fail', 422, { message: 'Wrong credentials' }, res);
+      }
+
+      return apiResponse('fail', 422, { message: 'Wrong credentials' }, res);
     }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
 }

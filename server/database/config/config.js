@@ -1,3 +1,5 @@
+'use strict';
+
 require('dotenv').config();
 
 module.exports = {
@@ -9,11 +11,12 @@ module.exports = {
     dialect: 'postgres'
   },
   test: {
-    username: 'root',
+    username: 'postgres',
     password: null,
-    database: 'database_test',
+    database: 'more-recipes-test',
     host: '127.0.0.1',
-    dialect: 'mysql'
+    dialect: 'postgres',
+    logging: false
   },
   production: {
     username: 'xggivfpa',
@@ -21,5 +24,5 @@ module.exports = {
     database: 'xggivfpa',
     host: 'stampy.db.elephantsql.com',
     dialect: 'postgres'
-  },
+  }
 };
