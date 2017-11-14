@@ -36,9 +36,19 @@
   }
   .form-control{width:20%}
   
-  h1, h2, h3, h4, h5,button, p, a, figcaption.fig-caption, input, label, li {
+  h1, h2, h3, h4, h5,button, p, a, label,figcaption.fig-caption, li {
     font-family: Candara;
     color:#fff;
+}
+input {
+  font-family: Candara;
+  color:gray;
+
+}
+label{
+  font-family: Candara;
+  
+
 }
   
 .card-1 {
@@ -49,39 +59,39 @@
   .card-1:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
-  a:hover {
+  a:hover, h4:hover {
     font-weight: bold;
    }
   button:hover {
       background-color:rgba(27, 255, 164, 0.473);
   }
 
-  .loginmodal-container {
+  .card-container {
     padding: 30px;
     max-width: 350px;
     width: 100% !important;
-    background-color: rgba(247, 247, 247, 0.205);
+    background-color: rgba(73, 67, 67, 0.679);
     margin: 0 auto;
     border-radius: 2px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(27, 255, 164, 0.967);
     overflow: hidden;
     font-family: roboto;
   }
   
-  .loginmodal-container h1 {
+  .card-container h1 {
     text-align: center;
     font-size: 1.8em;
     font-family: roboto;
   }
   
-  .loginmodal-container input[type=submit] {
+  .card-container input[type=submit] {
     width: 100%;
     display: block;
     margin-bottom: 10px;
     position: relative;
   }
   
-  .loginmodal-container input[type=text], input[type=password] {
+  .card-container input[type=text], input[type=password] {
     height: 44px;
     font-size: 16px;
     width: 100%;
@@ -96,7 +106,7 @@
     -moz-box-sizing: border-box;
   }
   
-  .loginmodal-container input[type=text]:hover, input[type=password]:hover {
+  .card-container input[type=text]:hover, input[type=password]:hover {
     border: 1px solid #b9b9b9;
     border-top: 1px solid #a0a0a0;
     -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
@@ -121,7 +131,7 @@
     border: 0px;
     color: #fff;
     text-shadow: 0 1px rgba(0,0,0,0.1); 
-    background-color: #4d90fe;
+    background-color: rgba(27, 255, 164, 0.473);
     padding: 17px 0px;
     font-family: roboto;
     font-size: 14px;
@@ -132,11 +142,11 @@
     /* border: 1px solid #2f5bb7; */
     border: 0px;
     text-shadow: 0 1px rgba(0,0,0,0.3);
-    background-color: #357ae8;
+    background-color: rgba(5, 65, 41, 0.926);
     /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
   }
   
-  .loginmodal-container a {
+  .card-container a {
     text-decoration: none;
     color: #666;
     font-weight: 400;

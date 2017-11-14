@@ -181,6 +181,20 @@ header.masthead {
     header.masthead .intro-text .skills {
       font-size: 1.75em; } }
 
+#slider {
+        max-height:100%;
+        max-width: 100%;
+     }
+
+.carousel-item {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 100%;
+      height: 100%;
+      
+  }
+
 #portfolio .portfolio-item {
   right: 0;
   margin: 0 0 15px; }
