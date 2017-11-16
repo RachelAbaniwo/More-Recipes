@@ -3,34 +3,20 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import db from '../database/models/index'
 import bcrypt from 'bcrypt';
-
+import faker from 'faker';
+import jwt from 'jsonwebtoken';
 import app from '../app';
 const expect = chai.expect;
 chai.use(chaiHttp);
-let signinDetailsTwo = {
-	Username: 'Rae_bTwo',
-	Password: 'rachel',
-	};
-let signinDetailsOne = {
-	Username: 'Rae_b',
-	Password: 'rachel',
-  };
-	 
-let registerDetailsOne = {
-  Firstname: 'Rachel',
-  Lastname: 'Abaniwo',
-  Username: 'Rae_b',
-  Email: 'rae_@gmail.com',
-  Password: 'rachel',
-  };
 
-let registerDestailsTwo = {
-  Firstname: 'RachelTwo',
-  Lastname: 'AbaniwoTwo',
-  Username: 'Rae_bTwo',
-  Email: 'raetwo_@gmail.com',
-  Password: 'rachel',
-  };
+const fakeUser = {
+    Firstname: faker.name.firstName(),
+    Lastname: faker.name.lastName(),
+    Username: faker.internet.userName(),
+    Email: faker.internet.email(),
+    Password: bcrypt.hashSync(faker.internet.password(), 10)
+};
+
 	 
 describe('/UNKNOWN ROUTES/', () => {
   it('should return an error if an unregistered Route is called', (done) => {
@@ -45,68 +31,89 @@ describe('/UNKNOWN ROUTES/', () => {
 });
 
 describe('/Unauthenticated/Unauthorised Endpoints', () => {
-	describe('/recipes GET endpoint', () => {
-    describe('/GET all Recipes and one Recipe/', () => {
-      before(async () => {
-        await db.Recipe.destroy({ where: {} });
-        await db.Recipe.create({
-          id: 1,
+  before(async () => {
+    await db.Recipe.destroy({ where: {} })
+    await db.User.destroy({ where: {} })
+  });
+  after(async () => {
+    await db.Recipe.destroy({ where: {} });
+    await db.User.destroy({ where: {} })
+  });
+
+  describe('/GET all Recipes and one Recipe/', () => {
+    
+    it('should return a list of all recipes when User requests for all recipes ', (done) => {
+      db.User.create(fakeUser).then((user) => {
+        db.Recipe.create({
           name: 'Fried Noodles',
           category: 'Pasta',
           ingredients: 'Noodles, Pepper, Olive Oil, Onions',
           description: 'Noodles',
           method: 'fry noodles',
-        });
-      });
-      after(async () => {
-        await db.Recipe.destroy({ where: {} });
-      });
-      it('should return a list of all recipes when User requests for all recipes ', (done) => {
-       
-        chai.request(app)
-        .get('/api/v1/recipes')
-        .end((error, response) => {
+          userId: user.id,
+        }).then((recipe) => {
+      
+          chai.request(app)
+          .get('/api/v1/recipes')
+          .end((error, response) => {
 
-          expect(response).to.have.status(200);
-          expect(response.body).to.be.an('object');
-          expect(response.body.data.recipes[0].name).to.equal('Fried Noodles');
-          expect(response.body.data.recipes[0].category).to.equal('Pasta');
-          expect(response.body.data.recipes[0].ingredients).to.equal('Noodles, Pepper, Olive Oil, Onions');
-          expect(response.body.data.recipes[0].description).to.equal('Noodles');
-          expect(response.body.data.recipes[0].method).to.equal('fry noodles');
-          expect(response.body.data.recipes[0].id).to.equal(1);
-          done();
+            expect(response).to.have.status(200);
+            expect(response.body).to.be.an('object');
+            expect(response.body.data.recipes[0].name).to.equal('Fried Noodles');
+            expect(response.body.data.recipes[0].id).to.equal(recipe.id);
+            expect(response.body.data.recipes[0].userId).to.equal(user.id);
+            
+          });
         });
       });
-      it('should return the recipe with recipe ID requested by the User', (done) => {
-        chai.request(app)
-        .get('/api/v1/recipes/1')
-        .end((error, response) => {
-        const recipe = response.body.data.recipe;
+      done();
+    });
+    it('should return the recipe with recipe ID requested by the User', (done) => {
+      db.User.create(fakeUser).then((user) => {
+        db.Recipe.create({
+          name: 'Fried Noodles',
+          category: 'Pasta',
+          ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+          description: 'Noodles',
+          method: 'fry noodles',
+          userId: user.id,
+        }).then((newRecipe) => {
+          chai.request(app)
+          .get('/api/v1/recipes/recipe.id')
+          .end((error, response) => {
+          const recipe = response.body.data.recipe;
             expect(response).to.have.status(200);
             expect(response.body).to.be.an('object');
             expect(recipe.name).to.equal('Fried Noodles');
-            expect(recipe.category).to.equal('Pasta');
-            expect(recipe.ingredients).to.equal('Noodles, Pepper, Olive Oil, Onions');
-            expect(recipe.description).to.equal('Noodles');
-            expect(recipe.method).to.equal('fry noodles');
-            expect(recipe.id).to.equal(1);
-            done();
-
-            
+            expect(recipe.id).to.equal(newRecipe.id);
+          });
         });
       });
+      done();
     });
     it('should return an error if the recipe requested by the User doesn\'t exist', (done)=> {
-      chai.request(app)
-      .get('/api/v1/recipes/9000')
-      .end((error, response) => {
-        const recipe = response.body.data.recipe;
-        expect(response).to.have.status(404);
-        expect(response.body).to.be.an('object');
-        expect(response.body.data.message).to.equal('Recipe not found');
-        done();
+      db.User.create(fakeUser).then((user) => {
+        db.Recipe.create({
+          name: 'Fried Noodles',
+          category: 'Pasta',
+          ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+          description: 'Noodles',
+          method: 'fry noodles',
+          userId: user.id,
+        }).then((newRecipe) => {
+          db.Recipe.destroy({where:{id: newRecipe}}).then(() => {
+            chai.request(app)
+            .get('/api/v1/recipes/newRecipe.id')
+            .end((error, response) => {
+              const recipe = response.body.data.recipe;
+              expect(response).to.have.status(404);
+              expect(response.body).to.be.an('object');
+              expect(response.body.data.message).to.equal('Recipe not found');
+            });
+          });
+        });
       });
+      done();
     });
     it('should return an error if the id of the recipe requested by the User is not an Integer', (done) => {
       chai.request(app)
@@ -121,24 +128,31 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
   });
 });
 
+
 describe('/Authenticated/Authorised Endpoints', () => {
+  before(async () => {
+    await db.Recipe.destroy({ where: {} })
+    await db.User.destroy({ where: {} })
+  });
+  after(async () => {
+    await db.Recipe.destroy({ where: {} });
+    await db.User.destroy({ where: {} })
+  });
   describe('/User Sign up and Sign In/', () => {
-    describe('Sign User Up', () => {
-      before(async () => {
-        await db.User.destroy({ where: {} });
-      });
-      after(async () => {
-        await db.User.destroy({ where: {} });
-      });
-      it('should Register a New User', (done) => {
-        chai.request(app)
-        .post('/api/v1/signup')
-        .send(registerDetailsOne)
-        .end((error, response) => {
-            expect(response).to.have.status(201);
-            expect(response.body.data.message).to.equal('Successfully signed up! Check Email for Activation link.');
-            done();
-        });
+    it('should Register a New User', (done) => {
+      chai.request(app)
+      .post('/api/v1/signup')
+      .send({
+      Firstname: faker.name.firstName(),
+      Lastname: faker.name.lastName(),
+      Username: faker.internet.userName(),
+      Email: faker.internet.email(),
+      Password: faker.internet.password(),
+      })
+      .end((error, response) => {
+          expect(response).to.have.status(201);
+          expect(response.body.data.message).to.equal('Successfully signed up! Check Email for Activation link.');
+          done();
       });
     });
     it('should return correct validation error if New User doesn\'t fill all fields', (done) => {
@@ -159,98 +173,131 @@ describe('/Authenticated/Authorised Endpoints', () => {
       });
     });
     it('should return correct error if New User Registers with an Email already in use', (done) => {
-      chai.request(app)
-      .post('/api/v1/signup')
-      .send({
-        Firstname: 'Rachel',
-        Lastname: 'Abaniwo',
-        Username: 'RaeAban',
-        Email: 'raeaban@gmail.com',
-        Password: 'stella'
+      const password = faker.internet.password();
+      const fakeUserSignup = {
+        Firstname: faker.name.firstName(),
+        Lastname: faker.name.lastName(),
+        Username: faker.internet.userName(),
+        Email: faker.internet.email(),
+        Password: bcrypt.hashSync(password, 10)
+      };
 
-      })
-      .end((error, response) => {
+      db.User.create(fakeUserSignup).then((newUser) => {
+        chai.request(app)
+        .post('/api/v1/signup')
+        .send({
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: fakeUserSignup.Email,
+          Password:faker.internet.password(), 
+        })
+        .end((error, response) => {
         expect(response).to.have.status(422);
+        expect(response.body.data.message).to.equal('The Email already exists.');
         done();
+        });
       });
     });
     it('should return correct error if New User Registers with a User name already in use', (done) => {
-      chai.request(app)
-      .post('/api/v1/signup')
-      .send({
-        Firstname: 'Rachel',
-        Lastname: 'Abaniwo',
-        Username: 'RaAban',
-        Email: 'rae_@gmail.com',
-        Password: 'stella'
+      const password = faker.internet.password();
+      const fakeUserSignup = {
+        Firstname: faker.name.firstName(),
+        Lastname: faker.name.lastName(),
+        Username: faker.internet.userName(),
+        Email: faker.internet.email(),
+        Password: bcrypt.hashSync(password, 10)
+      };
 
-      })
-      .end((error, response) => {
+      db.User.create(fakeUserSignup).then((newUser) => {
+        chai.request(app)
+        .post('/api/v1/signup')
+        .send({
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: fakeUserSignup.Username,
+          Email: faker.internet.email(),
+          Password: faker.internet.password(), 
+        })
+        .end((error, response) => {
         expect(response).to.have.status(422);
+        expect(response.body.data.message).to.equal('The Username is already in use.');
         done();
+        });
       });
     });
     it('should return correct error if New User Registers with an Email with a wrong format', (done) => {
       chai.request(app)
       .post('/api/v1/signup')
       .send({
-        Firstname: 'Rachel',
-        Lastname: 'Abaniwo',
-        Username: 'Raban',
-        Email: 'raecom',
-        Password: 'stella'
+        Firstname: faker.name.firstName(),
+        Lastname: faker.name.lastName(),
+        Username: faker.internet.userName(),
+        Email: 'nene.com',
+        Password: faker.internet.password(),
 
       })
       .end((error, response) => {
         expect(response).to.have.status(422);
+        expect(response.body.data.message).to.equal('Validation error: The Email entered is invalid');
         done();
       });
     });
     describe('Sign In User', () => {
-      before(async () => {
-        await db.User.destroy({ where: {} });
-        await db.User.create({
-          id: 1,
-          Firstname: 'Rachel',
-          Lastname: 'Abaniwo',
-          Username: 'Rae_b',
-          Email: 'rae_@gmail.com',
-          Password: bcrypt.hashSync('rachel', 10),
-        });
-      });
-      after(async () => {
-        await db.User.destroy({ where: {} });
-      });
       it('Should Sign In a Registered User', (done) => {
-        chai.request(app)
-        .post('/api/v1/signin')
-        .send({
-          Username: 'Rae_b',
-          Password: 'rachel'
-        })
-        .end((error,response) => {
-          console.log(response.body);
-          expect(response).to.have.status(201);
-          expect(response.body.data).to.have.property('token');
-          let token = response.body.data.token;
-          expect(response.body.data.message).to.equal('Successfully signed in.')
-          done();
+        const password = faker.internet.password();
+        const fakeUserSignin = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(password, 10)
+        };
+
+        db.User.create(fakeUserSignin).then((newUser) => {
+          chai.request(app)
+          .post('/api/v1/signin')
+          .send({
+            Username: fakeUserSiginin.Username,
+            Password: password
+          })
+          .end((error,response) => {
+
+            expect(response).to.have.status(201);
+            expect(response.body.data).to.have.property('token');
+   
+            expect(response.body.data.message).to.equal('Successfully signed in.');
+            done();
+          });
         });
+        done();
       });
       it('should return correct error if wrong Password is inputed by the User Signing In', (done) => {
-        chai.request(app)
-        .post('/api/v1/signin')
-        .send({
-          Username: 'Rae_b',
-          Password: 'stellaa',
-        })
-        .end((error, response) => {
+        const password = faker.internet.password();
+        const fakeUserSignin = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(password, 10)
+        };
+
+        db.User.create(fakeUserSignin).then((newUser) => {
+          chai.request(app)
+          .post('/api/v1/signin')
+          .send({
+            Username: fakeUserSiginin.Username,
+            Password: 'stella'
+          })
+          .end((error,response) => {
           expect(response).to.have.status(422);
           expect(response.body.data.message).to.equal('Wrong credentials');
           done();
+          });
         });
+        done();
       });
-      it.only('should return correct error if User name of the User Signing In is not found', (done) => {
+      it('should return correct error if User name of the User Signing In is not found', (done) => {
         chai.request(app)
         .post('/api/v1/signin')
         .send({
@@ -263,36 +310,49 @@ describe('/Authenticated/Authorised Endpoints', () => {
           done();
         });
       });
-    });
-    it('should return correct error if User does not fill all fields when Signing in', (done) => {
-      chai.request(app)
-      .post('/api/v1/signin')
-      .send({})
-      .end((error, response) => {
-        expect(response).to.have.status(422);
-        const errors = response.body.data.errors;
-        expect(errors).to.include('The Username is required');
-        expect(errors).to.include('The Password is required');
-        expect(response.body.data.message).to.equal('Please fix the validation errors');
-        done();
+      it('should return correct error if User does not fill all fields when Signing in', (done) => {
+        chai.request(app)
+        .post('/api/v1/signin')
+        .send({})
+        .end((error, response) => {
+          expect(response).to.have.status(422);
+          const errors = response.body.data.errors;
+          expect(errors).to.include('The Username is required');
+          expect(errors).to.include('The Password is required');
+          expect(response.body.data.message).to.equal('Please fix the validation errors');
+          done();
+        });
       });
     });
-  });
-
+   });
   describe('/Authenticated Routes/', () => {
           
     describe('/GET Recipes Authenticated Routes/', () => {
       it('should return all recipes created by a User when called by that User', (done) => {
-        chai.request(app)
-        .get('/api/v1/users/myrecipes')
-        .set('token', token)
-        
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body).to.be.an('object');
-          
-          done();
+        db.User.create(fakeUser).then((user) => {
+          const token = jwt.sign(user.get(), 'secret');
+
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((newRecipe) => {
+            chai.request(app)
+            .get('/api/v1/users/myrecipes')
+            .set('token', token)
+            
+            .end((error, response)=>{
+              const recipe = response.body.data.recipe;
+              expect(response).to.have.status(200);
+              expect(response.body.data.recipes[0].name).to.equal(newRecipe.name);
+              expect(response.body.data.recipes[0].userId).to.equal(user.id);
+            });
+          });
         });
+        done();
       });
       it('should return an error if User is not Signed In', (done) => {
         chai.request(app)
@@ -305,26 +365,47 @@ describe('/Authenticated/Authorised Endpoints', () => {
         });
       });
       it('should return an error if Signed in User has no Recipes', (done) => {
-        chai.request(app)
-        .get('/api/v1/users/myrecipes')
-        .set('token', signinToken)
-        .end((error, response) => {
+        db.User.create(fakeUser).then((user) => {
+          const token = jwt.sign(user.get(), 'secret');
+          chai.request(app)
+          .get('/api/v1/users/myrecipes')
+          .set('token', token)
+          .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
           expect(response.body.data.message).to.equal('You have no Recipes');
           done();
+          });
         });
+        done();
       });
       it('should return all recipes created by a User when called by another Signed in User', (done) => {
-        chai.request(app)
-        .get('/api/v1/users/1/recipes')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body).to.be.an('object');
-          
-          done();
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              chai.request(app)
+              .get('/api/v1/users/user.id/recipes')
+              .set('token', tokenone)
+              
+              .end((error, response)=>{
+                const recipe = response.body.data.recipe;
+                expect(response).to.have.status(200);
+                expect(response.body.data.recipes[0].name).to.equal(newRecipe.name);
+                expect(response.body.data.recipes[0].userId).to.equal(user.id);
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if the user calling the route isn\'t signed in', (done) => {
         chai.request(app)
@@ -337,66 +418,89 @@ describe('/Authenticated/Authorised Endpoints', () => {
         });
       });
       it('should return an error if the id of the User requested does not exist', (done) => {
-        chai.request(app)
-        .get('/api/v1/users/90/recipes')
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body).to.be.an('object');
-          expect(response.body.data.message).to.equal('User not Found');
-          done();
+        db.User.create(fakeUser).then((user) => {
+          const token = jwt.sign(user.get(), 'secret');
+          db.User.create(fakeUser).then((userone) => {
+            db.User.destroy({where: {id: userone.id}}).then(()=>{
+              chai.request(app)
+              .get('/api/v1/users/userone.id/recipes')
+              .set('token', token)
+              .end((error, response) => {
+                expect(response).to.have.status(404);
+                expect(response.body).to.be.an('object');
+                expect(response.body.data.message).to.equal('User not Found');
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if the User being requested has no Recipes', (done) => {
-        chai.request(app)
-        .get('/api/v1/users/4/recipes')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body).to.be.an('object');
-          expect(response.body.data.message).to.equal('User has no Recipes');
-          done();
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            chai.request(app)
+            .get('/api/v1/users/user.id/recipes')
+            .set('token', token)
+            .end((error, response) => {
+              expect(response).to.have.status(404);
+              expect(response.body).to.be.an('object');
+              expect(response.body.data.message).to.equal('User has no Recipes');
+              done();
+            });
+          });
         });
+        done();
       });
       it('should return an error if the id of the User requested is not an Integer', (done) => {
-        chai.request(app)
-        .get('/api/v1/users/Rachel/recipes')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(422);
-          expect(response.body).to.be.an('object');
-          expect(response.body.data.message).to.equal('Invalid Request');
-          done();
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .get('/api/v1/users/Rachel/recipes')
+          .set('token', token)
+          .end((error, response) => {
+            expect(response).to.have.status(422);
+            expect(response.body).to.be.an('object');
+            expect(response.body.data.message).to.equal('Invalid Request');
+            done();
+          });
         });
+        done();
       });
     });
     
     describe('/POST Recipes endpoints/', () => { 
       it('should add a new recipe when called by Signed in User', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes')
-        .set('token', token)
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .post('/api/v1/recipes')
+          .set('token', token)
 
-        .send({
-          name: "Ofaku",
-          category: "Nigerian-Soup",
-          ingredients:"Palm fruits",
-          description: "description 1",
-          method: "direction 1",
-          })
-        .end((error, response) => {
-          expect(response).to.have.status(201);
-          const recipe = response.body.data.recipe;
-          expect(recipe.id).to.not.be.undefined;
-          expect(recipe.name).to.equal('Ofaku');
-          expect(recipe.category).to.equal('Nigerian-Soup');
-          expect(recipe.ingredients).to.equal('Palm fruits');
-          expect(recipe.description).to.equal('description 1');
-          expect(recipe.method).to.equal('direction 1');
-          expect(response.body).to.be.an('object');
-          expect(response.body.data.message).to.equal('Successfully created recipe');
-          console.log(recipe.id);
-          done();
+          .send({
+            name: "Ofaku",
+            category: "Nigerian-Soup",
+            ingredients:"Palm fruits",
+            description: "description 1",
+            method: "direction 1",
+            })
+          .end((error, response) => {
+            expect(response).to.have.status(201);
+            const recipe = response.body.data.recipe;
+            expect(recipe.id).to.not.be.undefined;
+            expect(recipe.name).to.equal('Ofaku');
+            expect(recipe.category).to.equal('Nigerian-Soup');
+            expect(recipe.ingredients).to.equal('Palm fruits');
+            expect(recipe.description).to.equal('description 1');
+            expect(recipe.method).to.equal('direction 1');
+            expect(response.body).to.be.an('object');
+            expect(response.body.data.message).to.equal('Successfully created recipe');
+            console.log(recipe.id);
+            done();
+          });
         });
+        done();
       });
       it('it should return an error if User creating Recipe is not Signed In', (done) => {
         chai.request(app)
@@ -417,352 +521,652 @@ describe('/Authenticated/Authorised Endpoints', () => {
         });
       });
       it('it should return correct validation errors if wrong data is provided', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes')
-        .set('token', token)
-        .send({})
-        .end((error, response) => {
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .post('/api/v1/recipes')
+          .set('token', token)
+          .send({})
+          .end((error, response) => {
 
-          expect(response).to.have.status(422);
-          
-          const errors = response.body.data.errors;
+            expect(response).to.have.status(422);
+            
+            const errors = response.body.data.errors;
 
-          expect(errors).to.include('Recipe Name is required.');
-          expect(errors).to.include('Recipe Category is required.');
-          expect(errors).to.include('Recipe Ingredients are required.');
-          expect(errors).to.include('Recipe Description is required.');
-          expect(errors).to.include('Method required.');
-          expect(response.body.data.message).to.equal('Please fill all Fields');
+            expect(errors).to.include('Recipe Name is required.');
+            expect(errors).to.include('Recipe Category is required.');
+            expect(errors).to.include('Recipe Ingredients are required.');
+            expect(errors).to.include('Recipe Description is required.');
+            expect(errors).to.include('Method required.');
+            expect(response.body.data.message).to.equal('Please fill all Fields');
 
-          done();
+            done();
+          });
         });
-      });
-    });    
-    
+        done();
+      });    
+    });
+      
     describe('/UPDATE Recipes endpoints/', () => {
-      it('it should update only the personal recipe of the Signed in User', (done) => {
-        chai.request(app)
-        .put('/api/v1/recipes/13')
-        .set('token', token)
-        .send({
-          name: "Chicken Chilli Sauce",
-          category: "Stews and Sauce",
-          ingredients: "Chicken, Chilli Pepper, Veggies",
-          description: "Sauce to be served along side pasta",
-          method: "add Chicken, then add Chilli Pepper"
-        })
-        .end((error, response) => {
-          expect(response).to.have.status(201);
+      it('it should update the personal recipe of the Signed in User', (done) => {
+        db.User.create(fakeUser).then((user) => {
+          const token = jwt.sign(user.get(), 'secret');
 
-          const recipe = response.body.data.recipe[1];
-          expect(recipe.id).to.equal(13);
-          expect(recipe.name).to.equal('Chicken Chilli Sauce');
-          expect(recipe.category).to.equal('Stews and Sauce');
-          expect(recipe.ingredients).to.equal('Chicken, Chilli Pepper, Veggies');
-          expect(recipe.description).to.equal('Sauce to be served along side pasta');
-          expect(recipe.method).to.equal('add Chicken, then add Chilli Pepper');
-          expect(response.body.data.message).to.equal('Successfully updated recipe');
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((newRecipe) => {
+            chai.request(app)
+            .put('/api/v1/recipes/newRecipe.id')
+            .set('token', token)
+            .send({
+              name: "Chicken Chilli Sauce",
+              category: "Stews and Sauce",
+              ingredients: "Chicken, Chilli Pepper, Veggies",
+              description: "Sauce to be served along side pasta",
+              method: "add Chicken, then add Chilli Pepper"
+            })
+            .end((error, response) => {
+              expect(response).to.have.status(201);
 
-          done();
+              const recipe = response.body.data.recipe[1];
+              expect(recipe.id).to.equal(13);
+              expect(recipe.name).to.equal('Chicken Chilli Sauce');
+              expect(recipe.category).to.equal('Stews and Sauce');
+              expect(recipe.ingredients).to.equal('Chicken, Chilli Pepper, Veggies');
+              expect(recipe.description).to.equal('Sauce to be served along side pasta');
+              expect(recipe.method).to.equal('add Chicken, then add Chilli Pepper');
+              expect(response.body.data.message).to.equal('Successfully updated recipe');
+
+              done();
+            });
+          });
         });
+        done();
       });
       it('it should return an error if User is not Signed in', (done) => {
-        chai.request(app)
-        .put('/api/v1/recipes/13')
-        .send({
-          name: "Chicken Chilli Sauce",
-          category: "Stews and Sauce",
-          ingredients: "Chicken, Chilli Pepper, Veggies",
-          description: "Sauce to be served along side pasta",
-          method: "add Chicken, then add Chilli Pepper"
-        })
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthenticated USER.');
+        db.User.create(fakeUser).then((user) => {
+          const token = jwt.sign(user.get(), 'secret');
 
-          done();
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((newRecipe) => {
+            chai.request(app)
+            .put('/api/v1/recipes/newRecipe.id')
+            .send({
+              name: "Chicken Chilli Sauce",
+              category: "Stews and Sauce",
+              ingredients: "Chicken, Chilli Pepper, Veggies",
+              description: "Sauce to be served along side pasta",
+              method: "add Chicken, then add Chilli Pepper"
+            })
+            .end((error, response) => {
+              expect(response).to.have.status(401);
+              expect(response.body.data.message).to.equal('Unauthenticated USER.');
+
+              done();
+            });
+          });
         });
+        done();
       });
       it('it should return an error if Recipe to be updated is not found', (done) => {
-        chai.request(app)
-        .put('/api/v1/recipes/60')
-        .set('token', token)
-        .send({
-          name: "Chicken Chilli Sauce",
-          category: "Stews and Sauce",
-          ingredients: "Chicken, Chilli Pepper, Veggies",
-          description: "Sauce to be served along side pasta",
-          method: "add Chicken, then add Chilli Pepper"
-        })
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body.data.message).to.equal('Recipe not found');
+        db.User.create(fakeUser).then((user) => {
+          const token = jwt.sign(user.get(), 'secret');
 
-          done();
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((newRecipe) => {
+            db.Recipe.destroy({where:{id:newRecipe.id}}).then(() => {
+              chai.request(app)
+              .put('/api/v1/recipes/newRecipe.id')
+              .set('token', token)
+              .send({
+                name: "Chicken Chilli Sauce",
+                category: "Stews and Sauce",
+                ingredients: "Chicken, Chilli Pepper, Veggies",
+                description: "Sauce to be served along side pasta",
+                method: "add Chicken, then add Chilli Pepper"
+              })
+              .end((error, response) => {
+                expect(response).to.have.status(404);
+                expect(response.body.data.message).to.equal('Recipe not found');
+
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('it should return an error if recipe to be updated is not personal recipe of the Signed in User', (done) => {
-        chai.request(app)
-        .put('/api/v1/recipes/1')
-        .set('token', token)
-        .send({
-          name: "Chicken Chilli Sauce",
-          category: "Stews and Sauce",
-          ingredients: "Chicken, Chilli Pepper, Veggies",
-          description: "Sauce to be served along side pasta",
-          method: "add Chicken, then add Chilli Pepper"
-        })
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthorized USER');
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              chai.request(app)
+              .put('/api/v1/recipes/newRecipe.id')
+              .set('token', tokenone)
+              .send({
+                name: "Chicken Chilli Sauce",
+                category: "Stews and Sauce",
+                ingredients: "Chicken, Chilli Pepper, Veggies",
+                description: "Sauce to be served along side pasta",
+                method: "add Chicken, then add Chilli Pepper"
+              })
+              .end((error, response) => {
+                expect(response).to.have.status(401);
+                expect(response.body.data.message).to.equal('Unauthorized USER');
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('it should return an error if the recipe id of the recipe to be updated is not an integer', (done) => {
-        chai.request(app)
-        .put('/api/v1/recipes/Rachel')
-        .set('token', token)
-        .send({
-          recipeName: "Chicken Chilli Sauce",
-          recipeType: "Stews and Sauce",
-          ingredients: "Chicken, Chilli Pepper, Veggies",
-          description: "Sauce to be served along side pasta",
-          direction: "add Chicken, then add Chilli Pepper"
-        })
-        .end((error, response) => {
-          expect(response).to.have.status(422); 
-          expect(response.body.data.message).to.equal('Invalid Request');
-          
-          done();   
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .put('/api/v1/recipes/Rachel')
+          .set('token', tokenone)
+          .send({
+            recipeName: "Chicken Chilli Sauce",
+            recipeType: "Stews and Sauce",
+            ingredients: "Chicken, Chilli Pepper, Veggies",
+            description: "Sauce to be served along side pasta",
+            direction: "add Chicken, then add Chilli Pepper"
+          })
+          .end((error, response) => {
+            expect(response).to.have.status(422); 
+            expect(response.body.data.message).to.equal('Invalid Request');
+            
+            done();   
+          });
         });
+        done();
       });
     });
 
     describe('/recipes DELETE endpoint', () => {
       it('it should return an error if User is not Signed in', (done) => {
-        chai.request(app)
-        .delete('/api/v1/recipes/12')
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthenticated USER.');
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((newRecipe) => {
+            chai.request(app)
+            .delete('/api/v1/recipes/newRecipe.id')
+            .end((error, response) => {
+              expect(response).to.have.status(401);
+              expect(response.body.data.message).to.equal('Unauthenticated USER.');
 
-          done();
+              done();
+            });
+          });
         });
+        done();
       });
       it('it should return an error if Recipe to be deleted is not found', (done) => {
-        chai.request(app)
-        .delete('/api/v1/recipes/60')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body.data.message).to.equal('Recipe not found');
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((newRecipe) => {
+            db.Recipe.destroy({where:{id:newRecipe.id}}).then(() => {
+              chai.request(app)
+              .delete('/api/v1/recipes/newRecip.id')
+              .set('token', tokenone)
+              .end((error, response) => {
+                expect(response).to.have.status(404);
+                expect(response.body.data.message).to.equal('Recipe not found');
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('it should return an error if recipe to be deleted is not personal recipe of the Signed in User', (done) => {
-        chai.request(app)
-        .delete('/api/v1/recipes/1')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthorized USER');
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              chai.request(app)
+              .delete('/api/v1/recipes/newRecipe.id')
+              .set('token', tokenone)
+              .end((error, response) => {
+                expect(response).to.have.status(401);
+                expect(response.body.data.message).to.equal('Unauthorized USER');
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('it should return an error if the recipe id of the recipe to be deleted is not an integer', (done) => {
-        chai.request(app)
-        .delete('/api/v1/recipes/Rachel')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(422); 
-          expect(response.body.data.message).to.equal('Invalid Request');
-          
-          done();   
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .delete('/api/v1/recipes/Rachel')
+          .set('token', tokenone)
+          .end((error, response) => {
+            expect(response).to.have.status(422); 
+            expect(response.body.data.message).to.equal('Invalid Request');
+            
+            done();   
+          });
         });
+        done();
       });
       it('it should delete only the personal recipe of the Signed in User', (done) => {
-        chai.request(app)
-        .delete('/api/v1/recipes/12')
-        .set('token', token)
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((newRecipe) => {
+            chai.request(app)
+            .delete('/api/v1/recipes/newRecipe.id')
+            .set('token', tokenone)
 
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body.data.message).to.equal('Successfully deleted recipe');
+            .end((error, response) => {
+              expect(response).to.have.status(200);
+              expect(response.body.data.message).to.equal('Successfully deleted recipe');
 
-          done();
-          
+              done();
+              
+            });
+          });
         });
+        done();
       });
     });
-        
+      
     describe('/POST Reviews endpoint', () => {
       it('it should add a review to the recipe whose Id is specified by a Signed in User', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/2/review')
-        .set('token', token)
-        .send({
-          review: "Awesome Stuff"
-        })
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/newRecipe.id/review')
+              .set('token', tokenone)
+              .send({
+                review: "Awesome Stuff"
+              })
+              .end((error, response) => {
+                expect(response).to.have.status(201);
+                expect(response.body.data.review.review).to.equal('Awesome Stuff');
+                expect(response.body.data.message).to.equal('Review successfully added!');
+                
+                done();
 
-        .end((error, response) => {
-          expect(response).to.have.status(201);
-          expect(response.body.data.review.review).to.equal('Awesome Stuff');
-          expect(response.body.data.message).to.equal('Review successfully added!');
-          
-          done();
-
+              });
+            });
+          });
         });
+        done();
       });
       it('it should return an error if User adding a review is not Signed in', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/2/review')
-        .send({
-          review: "Awesome Stuff"
-        })
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((newRecipe) => {
+            chai.request(app)
+            .post('/api/v1/recipes/newRecipe.id/review')
+            .send({
+              review: "Awesome Stuff"
+            })
+            .end((error, response) => {
+              expect(response).to.have.status(401);
+              expect(response.body.data.message).to.equal('Unauthenticated USER.');
+              
+              done();
 
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthenticated USER.');
-          
-          done();
-
+            });
+          });
         });
-      });
+        done();
+      });   
       it('it should return an error if the Id of the recipe to be reviewed does not exist', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/1000/review')
-        .set('token', token)
-        .send({
-          review: "Awesome Stuff"
-        })
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              db.Recipe.destroy({where:{id:newRecipe.id}}).then(() => {
+                chai.request(app)
+                .post('/api/v1/recipes/newRecipe.id/review')
+                .set('token', tokenone)
+                .send({
+                  review: "Awesome Stuff"
+                })
 
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body.data.message).to.equal('Recipe to be reviewed not found');
+                .end((error, response) => {
+                  expect(response).to.have.status(404);
+                  expect(response.body.data.message).to.equal('Recipe to be reviewed not found');
 
-          done();
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('it should return an error if the Id of the recipe to be reviewed is not an integer', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/Rachel/review')
-        .set('token', token)
-        .send({
-          review: "Awesome Stuff"
-        })
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .post('/api/v1/recipes/Rachel/review')
+          .set('token', token)
+          .send({
+            review: "Awesome Stuff"
+          })
 
-        .end((error, response) => {
-          expect(response).to.have.status(422);
-          expect(response.body.data.message).to.equal('Invalid Request');
+          .end((error, response) => {
+            expect(response).to.have.status(422);
+            expect(response.body.data.message).to.equal('Invalid Request');
 
-          done();
+            done();
+          });
         });
+        done();
       });
       it('it should return an error if the Review field is empty', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/Rachel/review')
-        .set('token', token)
-        .send({})
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/newRecipe.id/review')
+              .set('token', tokenone)
+              .send({})
 
-        .end((error, response) => {
-          expect(response).to.have.status(422);
-          expect(response.body.data.message).to.equal('Review field empty');
+              .end((error, response) => {
+                expect(response).to.have.status(422);
+                expect(response.body.data.message).to.equal('Review field empty');
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
     });
     
     describe('/POST and Retrieve Favorite Recipes Routes/', () => {
       it('should add a Recipe of a Signed In User\'s choice to that User\'s List of Favorite Recipes', (done) => {
-        chai.request(app)
-        .post('/api/v1/users/favorite/1')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(201);
-          expect(response.body.data.message).to.equal('Recipe successfully added to Favorites!')
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              chai.request(app)
+              .post('/api/v1/users/favorite/newRecipe.id')
+              .set('token', tokenone)
+              .end((error, response) => {
+                expect(response).to.have.status(201);
+                expect(response.body.data.message).to.equal('Recipe successfully added to Favorites!')
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
-      it('should remove a Recipe of a Signed In User\'s List of Favorite Recipes when called twice for the same Recipe', (done) => {
-        chai.request(app)
-        .post('/api/v1/users/favorite/1')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body.data.message).to.equal('Successfully removed this recipe from Favorites')
+      it('should remove a Recipe from a Signed In User\'s List of Favorite Recipes when called twice for the same Recipe', (done) => {
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              chai.request(app)
+              .post('/api/v1/users/favorite/newRecipe.id')
+              .set('token', tokenone)
+              .end((error, response) => {
+                chai.request(app)
+                .post('/api/v1/users/favorite/newRecipe.id')
+                .set('token', tokenone)
+                .end((error, response) => {
 
-          done();
+                  expect(response).to.have.status(200);
+                  expect(response.body.data.message).to.equal('Successfully removed this recipe from Favorites')
+
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if User trying to add a recipe to his/her Favorites isn\'t signed in', (done) =>{
-        chai.request(app)
-        .post('/api/v1/users/favorite/1')
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthenticated USER.')
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              chai.request(app)
+              .post('/api/v1/users/favorite/newRecipe.id')
+              .end((error, response) => {
+                expect(response).to.have.status(401);
+                expect(response.body.data.message).to.equal('Unauthenticated USER.')
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if User is trying to add a recipe that doesn\'t exist to List of Favorites', (done) =>{
-        chai.request(app)
-        .post('/api/v1/users/favorite/9000')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body.data.message).to.equal('Recipe not found.')
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              db.Recipe.destroy({where:{id:newRecipe.id}}).then(() => {
+                chai.request(app)
+                .post('/api/v1/users/favorite/newRecipe.id')
+                .set('token', tokenone)
+                .end((error, response) => {
+                  expect(response).to.have.status(404);
+                  expect(response.body.data.message).to.equal('Recipe not found.')
 
-          done();
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if User is trying to add a recipe with an ID that isn\'t an integer to List of Favorites', (done) =>{
-        chai.request(app)
-        .post('/api/v1/users/favorite/Rachel')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(422);
-          expect(response.body.data.message).to.equal('Invalid Request.')
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .post('/api/v1/users/favorite/Rachel')
+          .set('token', token)
+          .end((error, response) => {
+            expect(response).to.have.status(422);
+            expect(response.body.data.message).to.equal('Invalid Request.')
 
-          done();
+            done();
+          });
         });
+        done();
       });
       it('should return an error if User is trying to add a Personal recipe to List of Favorites', (done) =>{
-        chai.request(app)
-        .post('/api/v1/users/favorite/15')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthorized.')
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: userone.id
+          }).then((newRecipe) => {
+            chai.request(app)
+            .post('/api/v1/users/favorite/newRecipe.id')
+            .set('token', tokenone)
+            .end((error, response) => {
+              expect(response).to.have.status(401);
+              expect(response.body.data.message).to.equal('Unauthorized.')
 
-          done();
+              done();
+            });
+          });
         });
+        done();
       });
       it('should return a User\'s List of Favorites', (done) =>{
-        chai.request(app)
-        .get('/api/v1/users/favorites')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body).to.be.an('object');
-          
-          done();
+        db.User.create(fakeUser).then((userone) => {
+          const tokenone = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((newRecipe) => {
+              db.Favorite.create({
+                userId: userone.id,
+                recipeId: newRecipe.id,
+              }).then(() => {
+                chai.request(app)
+                .get('/api/v1/users/favorites')
+                .set('token', tokenone)
+                .end((error, response) => {
+                  expect(response).to.have.status(200);
+                  expect(response.body).to.be.an('object');
+                  expect(response.body.data.recipes[0].userId).to.equal(user.id);
+                  expect(response.body.data.recipes[0].id).to.equal(newRecipe.id);
+                  
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an Error if User has no Recipe in List of Favorites', (done) =>{
-        chai.request(app)
-        .get('/api/v1/users/favorites')
-        .set('token', signinToken)
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body).to.be.an('object');
-          expect(response.body.data.message).to.equal('You have no Favorite Recipes')
-          done();
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .get('/api/v1/users/favorites')
+          .set('token', token)
+          .end((error, response) => {
+            expect(response).to.have.status(404);
+            expect(response.body).to.be.an('object');
+            expect(response.body.data.message).to.equal('You have no Favorite Recipes')
+            done();
+          });
         });
+        done();
       });
       it('should return an Error if User is not Signed In', (done) =>{
         chai.request(app)
@@ -779,174 +1183,366 @@ describe('/Authenticated/Authorised Endpoints', () => {
     
     describe('/POST UPVOTES to Recipes/', () => {
       it('should add an upvote to a Recipe when called by a Signed in User', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/1/upvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(201);
-          expect(response.body.data.message).to.equal('Recipe Upvoted successfully')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/recipe.id/upvote')
+              .set('token', token)
+              .end((error, response) => {
+                expect(response).to.have.status(201);
+                expect(response.body.data.message).to.equal('Recipe Upvoted successfully')
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('should add an upvote to a Recipe and Remove Downvote if Recipe was previously Downvoted', (done) => {
-        
-        chai.request(app)
-        .post('/api/v1/recipes/3/downvote')
-        .set('token', signinToken)
-        .end((error, response) => {});
-        
-        chai.request(app)
-        .post('/api/v1/recipes/3/upvote')
-        .set('token', signinToken)
-        .end((error, response) => {
-          expect(response).to.have.status(201);
-          expect(response.body.data.message).to.equal('Recipe Upvoted successfully')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/recipe.id/downvote')
+              .set('token', token)
+              .end((error, response) => {
+              
+                chai.request(app)
+                .post('/api/v1/recipes/recipe.id/upvote')
+                .set('token', token)
+                .end((error, response) => {
+                  expect(response).to.have.status(201);
+                  expect(response.body.data.message).to.equal('Recipe Upvoted successfully')
 
-          done();
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('should remove an Upvote from a Recipe when called twice for the same Recipe by the same User', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/1/upvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body.data.message).to.equal('Successfully removed Upvote from this recipe')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/recipe.id/upvote')
+              .set('token', token)
+              .end((error, response) => {
+                chai.request(app)
+                .post('/api/v1/recipes/recipe.id/upvote')
+                .set('token', token)
+                .end((error, response) => {
+                  expect(response).to.have.status(200);
+                  expect(response.body.data.message).to.equal('Successfully removed Upvote from this recipe')
 
-          done();
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if User trying to add an upvote isn\'t Signed In', (done) =>{
-        chai.request(app)
-        .post('/api/v1/recipes/1/upvote')
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthenticated USER.')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/recipe.id/upvote')
+              .end((error, response) => {
+                expect(response).to.have.status(401);
+                expect(response.body.data.message).to.equal('Unauthenticated USER.')
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if User is trying to add an upvote to a recipe that doesn\'t exist', (done) =>{
-        chai.request(app)
-        .post('/api/v1/recipes/9000/upvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body.data.message).to.equal('Recipe not found.')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              db.Recipe.destroy({where:{id:user.id}}).then(() => {
+                chai.request(app)
+                .post('/api/v1/recipes/recipe.id/upvote')
+                .set('token', token)
+                .end((error, response) => {
+                  expect(response).to.have.status(404);
+                  expect(response.body.data.message).to.equal('Recipe not found.')
 
-          done();
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if User is trying to Upvote a recipe with an ID that isn\'t an integer', (done) =>{
-        chai.request(app)
-        .post('/api/v1/recipes/Rachel/upvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(422);
-          expect(response.body.data.message).to.equal('Invalid Request.')
-
-          done();
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .post('/api/v1/recipes/Rachel/upvote')
+          .set('token', token)
+          .end((error, response) => {
+            expect(response).to.have.status(422);
+            expect(response.body.data.message).to.equal('Invalid Request.')
+          });
         });
+        done();
       });
       it('should return an error if User is trying to add an Upvote to a Personal recipe', (done) =>{
-        chai.request(app)
-        .post('/api/v1/recipes/15/upvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthorized.')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((recipe) => {
+            chai.request(app)
+            .post('/api/v1/recipes/recipe.id/upvote')
+            .set('token', token)
+            .end((error, response) => {
+              expect(response).to.have.status(401);
+              expect(response.body.data.message).to.equal('Unauthorized.')
 
-          done();
+              done();
+            });
+          });
         });
+        done();
       });
-    });;
-    
+    });
+  
     describe('/POST DOWNVOTES to Recipes/', () => {
       it('should add a Downvote to a Recipe when called by a Signed in User', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/2/downvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(201);
-          expect(response.body.data.message).to.equal('Recipe Downvoted successfully')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/recipe.id/downvote')
+              .set('token', token)
+              .end((error, response) => {
+                expect(response).to.have.status(201);
+                expect(response.body.data.message).to.equal('Recipe Downpvoted successfully')
 
-          done();
+                done();
+              });
+            });
+          });
         });
+        done();
       });
       it('should add a Downvote to a Recipe and Remove Upvote if Recipe was previously Upvoted', (done) => {
-        
-        chai.request(app)
-        .post('/api/v1/recipes/3/upvote')
-        .set('token', token)
-        .end((error, response) => {});
-        
-        chai.request(app)
-        .post('/api/v1/recipes/3/downvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(201);
-          expect(response.body.data.message).to.equal('Recipe Downvoted successfully')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/recipe.id/upvote')
+              .set('token', token)
+              .end((error, response) => {
+              
+                chai.request(app)
+                .post('/api/v1/recipes/recipe.id/downvote')
+                .set('token', token)
+                .end((error, response) => {
+                  expect(response).to.have.status(201);
+                  expect(response.body.data.message).to.equal('Recipe Downvoted successfully')
 
-          done();
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('should remove a downvote from a Recipe when called twice for the same Recipe by the same User', (done) => {
-        chai.request(app)
-        .post('/api/v1/recipes/2/downvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body.data.message).to.equal('Successfully removed Downvote from this recipe')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/recipe.id/downvote')
+              .set('token', token)
+              .end((error, response) => {
+                chai.request(app)
+                .post('/api/v1/recipes/recipe.id/downvote')
+                .set('token', token)
+                .end((error, response) => {
+                  expect(response).to.have.status(200);
+                  expect(response.body.data.message).to.equal('Successfully removed Downvote from this recipe')
 
-          done();
+                  done();
+                });
+              });
+            });
+          });
         });
+        done();
       });
       it('should return an error if User trying to add a downvote isn\'t Signed In', (done) =>{
-        chai.request(app)
-        .post('/api/v1/recipes/1/downvote')
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthenticated USER.')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              chai.request(app)
+              .post('/api/v1/recipes/recipe.id/downvote')
+              .end((error, response) => {
+                expect(response).to.have.status(401);
+                expect(response.body.data.message).to.equal('Unauthenticated USER.')
 
-          done();
-        })
-      })
+                done();
+              });
+            });
+          });
+        });
+        done();
+      });
       it('should return an error if User is trying to add a downvote to a recipe that doesn\'t exist', (done) =>{
-        chai.request(app)
-        .post('/api/v1/recipes/9000/downvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body.data.message).to.equal('Recipe not found.')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.User.create(fakeUser).then((user) => {
+            db.Recipe.create({
+              name: 'Fried Noodles',
+              category: 'Pasta',
+              ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+              description: 'Noodles',
+              method: 'fry noodles',
+              userId: user.id
+            }).then((recipe) => {
+              db.Recipe.destroy({where:{id:user.id}}).then(() => {
+                chai.request(app)
+                .post('/api/v1/recipes/recipe.id/downvote')
+                .set('token', token)
+                .end((error, response) => {
+                  expect(response).to.have.status(404);
+                  expect(response.body.data.message).to.equal('Recipe not found.')
 
-          done();
-        })
-      })
+                  done();
+                });
+              });
+            });
+          });
+        });
+        done();
+      });
       it('should return an error if User is trying to downvote a recipe with an ID that isn\'t an integer', (done) =>{
-        chai.request(app)
-        .post('/api/v1/recipes/Rachel/downvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(422);
-          expect(response.body.data.message).to.equal('Invalid Request.')
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          chai.request(app)
+          .post('/api/v1/recipes/Rachel/downvote')
+          .set('token', token)
+          .end((error, response) => {
+            expect(response).to.have.status(422);
+            expect(response.body.data.message).to.equal('Invalid Request.')
+          });
+        });
+        done();
+      });
+      it('should return an error if User is trying to add a Downvote to a Personal recipe', (done) =>{
+        db.User.create(fakeUser).then((userone) => {
+          const token = jwt.sign(userone.get(), 'secret');
+          db.Recipe.create({
+            name: 'Fried Noodles',
+            category: 'Pasta',
+            ingredients: 'Noodles, Pepper, Olive Oil, Onions',
+            description: 'Noodles',
+            method: 'fry noodles',
+            userId: user.id
+          }).then((recipe) => {
+            chai.request(app)
+            .post('/api/v1/recipes/recipe.id/downvote')
+            .set('token', token)
+            .end((error, response) => {
+              expect(response).to.have.status(401);
+              expect(response.body.data.message).to.equal('Unauthorized.')
 
-          done();
-        })
-      })
-      it('should return an error if User is trying to add a downvote to a Personal recipe', (done) =>{
-        chai.request(app)
-        .post('/api/v1/recipes/15/downvote')
-        .set('token', token)
-        .end((error, response) => {
-          expect(response).to.have.status(401);
-          expect(response.body.data.message).to.equal('Unauthorized.')
-
-          done();
-        })
-      })
+              done();
+            });
+          });
+        });
+        done();
+      });
     });
   });
 });
-
-        

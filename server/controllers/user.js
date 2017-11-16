@@ -34,7 +34,7 @@ export default class UserController {
     if (errors.length > 0) {
       return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
     }
-    console.log(req.body);
+
     db.User.create({
       Firstname: req.body.Firstname,
       Lastname: req.body.Lastname,

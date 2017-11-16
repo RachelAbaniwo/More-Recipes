@@ -87,6 +87,7 @@ export default class RecipesController {
     if (errors.length > 0) {
       return apiResponse('fail', 422, { errors, message: 'Please fill all Fields' }, res);
     }
+
     return db.Recipe.create({
       name: req.body.name,
       category: req.body.category,

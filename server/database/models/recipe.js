@@ -11,31 +11,24 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Users', key: 'id'
       }
     }
-  }, {
-    classMethods: {
-      /**
-   * declares associations
-   * @param {object} models
-   * @returns {integer} foriegn key declared
-   */
-      associate(models) {
-        Recipe.belongsTo(models.User, {
-          foreignKey: 'userId'
-        });
-        Recipe.hasMany(models.Review, {
-          foreignKey: 'recipeId'
-        });
-        Recipe.hasMany(models.Favorite, {
-          foreignKey: 'recipeId'
-        });
-        Recipe.hasMany(models.Upvote, {
-          foreignKey: 'recipeId'
-        });
-        Recipe.hasMany(models.Downvote, {
-          foreignKey: 'recipeId'
-        });
-      }
-    }
   });
+
+  Recipe.associate = (models) => {
+    Recipe.belongsTo(models.User, {
+      foreignKey: 'userId'
+    });
+    Recipe.hasMany(models.Review, {
+      foreignKey: 'recipeId'
+    });
+    Recipe.hasMany(models.Favorite, {
+      foreignKey: 'recipeId'
+    });
+    Recipe.hasMany(models.Upvote, {
+      foreignKey: 'recipeId'
+    });
+    Recipe.hasMany(models.Downvote, {
+      foreignKey: 'recipeId'
+    });
+  };
   return Recipe;
 };
