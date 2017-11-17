@@ -9,11 +9,7 @@ import app from '../app';
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-before(async () => {
-  await db.Recipe.destroy({ where: {} });
-  await db.User.destroy({where: {}});
-  });
-  
+
 	 
 describe('/UNKNOWN ROUTES/', () => {
   it('should return an error if an unregistered Route is called', (done) => {
@@ -123,6 +119,7 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
       done();
     });
     it('should return an error if the id of the recipe requested by the User is not an Integer', (done) => {
+      
       chai.request(app)
       .get('/api/v1/recipes/Rachel')
       .end((error, response) => {
@@ -143,11 +140,11 @@ describe('/Authenticated/Authorised Endpoints', () => {
       chai.request(app)
       .post('/api/v1/signup')
       .send({
-      Firstname: faker.name.firstName(),
-      Lastname: faker.name.lastName(),
-      Username: faker.internet.userName(),
-      Email: faker.internet.email(),
-      Password: faker.internet.password(),
+        Firstname: faker.name.firstName(),
+        Lastname: faker.name.lastName(),
+        Username: faker.internet.userName(),
+        Email: faker.internet.email(),
+        Password: faker.internet.password(),
       })
       .end((error, response) => {
           expect(response).to.have.status(201);
