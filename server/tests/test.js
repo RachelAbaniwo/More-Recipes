@@ -9,14 +9,11 @@ import app from '../app';
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-const fakeUser = {
-    Firstname: faker.name.firstName(),
-    Lastname: faker.name.lastName(),
-    Username: faker.internet.userName(),
-    Email: faker.internet.email(),
-    Password: bcrypt.hashSync(faker.internet.password(), 10)
-};
-
+before(async () => {
+  await db.Recipe.destroy({ where: {} });
+  await db.User.destroy({where: {}});
+  });
+  
 	 
 describe('/UNKNOWN ROUTES/', () => {
   it('should return an error if an unregistered Route is called', (done) => {
@@ -31,19 +28,17 @@ describe('/UNKNOWN ROUTES/', () => {
 });
 
 describe('/Unauthenticated/Unauthorised Endpoints', () => {
-  before(async () => {
-    await db.Recipe.destroy({ where: {} })
-    await db.User.destroy({ where: {} })
-  });
-  after(async () => {
-    await db.Recipe.destroy({ where: {} });
-    await db.User.destroy({ where: {} })
-  });
 
   describe('/GET all Recipes and one Recipe/', () => {
-    
     it('should return a list of all recipes when User requests for all recipes ', (done) => {
-      db.User.create(fakeUser).then((user) => {
+      const thisUser = {
+        Firstname: faker.name.firstName(),
+        Lastname: faker.name.lastName(),
+        Username: faker.internet.userName(),
+        Email: faker.internet.email(),
+        Password: bcrypt.hashSync(faker.internet.password(), 10)
+      };
+      db.User.create(thisUser).then((user) => {
         db.Recipe.create({
           name: 'Fried Noodles',
           category: 'Pasta',
@@ -52,7 +47,6 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
           method: 'fry noodles',
           userId: user.id,
         }).then((recipe) => {
-      
           chai.request(app)
           .get('/api/v1/recipes')
           .end((error, response) => {
@@ -62,14 +56,20 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
             expect(response.body.data.recipes[0].name).to.equal('Fried Noodles');
             expect(response.body.data.recipes[0].id).to.equal(recipe.id);
             expect(response.body.data.recipes[0].userId).to.equal(user.id);
-            
           });
         });
       });
       done();
     });
     it('should return the recipe with recipe ID requested by the User', (done) => {
-      db.User.create(fakeUser).then((user) => {
+      const thisUser = {
+        Firstname: faker.name.firstName(),
+        Lastname: faker.name.lastName(),
+        Username: faker.internet.userName(),
+        Email: faker.internet.email(),
+        Password: bcrypt.hashSync(faker.internet.password(), 10)
+      };
+      db.User.create(thisUser).then((user) => {
         db.Recipe.create({
           name: 'Fried Noodles',
           category: 'Pasta',
@@ -79,7 +79,7 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
           userId: user.id,
         }).then((newRecipe) => {
           chai.request(app)
-          .get('/api/v1/recipes/recipe.id')
+          .get('/api/v1/recipes/newRecipe.id')
           .end((error, response) => {
           const recipe = response.body.data.recipe;
             expect(response).to.have.status(200);
@@ -92,7 +92,14 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
       done();
     });
     it('should return an error if the recipe requested by the User doesn\'t exist', (done)=> {
-      db.User.create(fakeUser).then((user) => {
+      const thisUser = {
+        Firstname: faker.name.firstName(),
+        Lastname: faker.name.lastName(),
+        Username: faker.internet.userName(),
+        Email: faker.internet.email(),
+        Password: bcrypt.hashSync(faker.internet.password(), 10)
+      };
+      db.User.create(thisUser).then((user) => {
         db.Recipe.create({
           name: 'Fried Noodles',
           category: 'Pasta',
@@ -130,14 +137,7 @@ describe('/Unauthenticated/Unauthorised Endpoints', () => {
 
 
 describe('/Authenticated/Authorised Endpoints', () => {
-  before(async () => {
-    await db.Recipe.destroy({ where: {} })
-    await db.User.destroy({ where: {} })
-  });
-  after(async () => {
-    await db.Recipe.destroy({ where: {} });
-    await db.User.destroy({ where: {} })
-  });
+ 
   describe('/User Sign up and Sign In/', () => {
     it('should Register a New User', (done) => {
       chai.request(app)
@@ -258,7 +258,7 @@ describe('/Authenticated/Authorised Endpoints', () => {
           chai.request(app)
           .post('/api/v1/signin')
           .send({
-            Username: fakeUserSiginin.Username,
+            Username: newUser.Username,
             Password: password
           })
           .end((error,response) => {
@@ -267,14 +267,13 @@ describe('/Authenticated/Authorised Endpoints', () => {
             expect(response.body.data).to.have.property('token');
    
             expect(response.body.data.message).to.equal('Successfully signed in.');
-            done();
           });
         });
         done();
       });
       it('should return correct error if wrong Password is inputed by the User Signing In', (done) => {
         const password = faker.internet.password();
-        const fakeUserSignin = {
+        const userSignin = {
           Firstname: faker.name.firstName(),
           Lastname: faker.name.lastName(),
           Username: faker.internet.userName(),
@@ -282,17 +281,16 @@ describe('/Authenticated/Authorised Endpoints', () => {
           Password: bcrypt.hashSync(password, 10)
         };
 
-        db.User.create(fakeUserSignin).then((newUser) => {
+        db.User.create(userSignin).then((newUser) => {
           chai.request(app)
           .post('/api/v1/signin')
           .send({
-            Username: fakeUserSiginin.Username,
+            Username: newUser.Username,
             Password: 'stella'
           })
           .end((error,response) => {
           expect(response).to.have.status(422);
           expect(response.body.data.message).to.equal('Wrong credentials');
-          done();
           });
         });
         done();
@@ -329,7 +327,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
           
     describe('/GET Recipes Authenticated Routes/', () => {
       it('should return all recipes created by a User when called by that User', (done) => {
-        db.User.create(fakeUser).then((user) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((user) => {
           const token = jwt.sign(user.get(), 'secret');
 
           db.Recipe.create({
@@ -365,7 +370,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         });
       });
       it('should return an error if Signed in User has no Recipes', (done) => {
-        db.User.create(fakeUser).then((user) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((user) => {
           const token = jwt.sign(user.get(), 'secret');
           chai.request(app)
           .get('/api/v1/users/myrecipes')
@@ -373,16 +385,29 @@ describe('/Authenticated/Authorised Endpoints', () => {
           .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
-          expect(response.body.data.message).to.equal('You have no Recipes');
-          done();
+          expect(response.body.data.message).to.equal('You have no Recipes')
           });
         });
         done();
       });
       it('should return all recipes created by a User when called by another Signed in User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -400,7 +425,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 expect(response).to.have.status(200);
                 expect(response.body.data.recipes[0].name).to.equal(newRecipe.name);
                 expect(response.body.data.recipes[0].userId).to.equal(user.id);
-                done();
               });
             });
           });
@@ -418,9 +442,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         });
       });
       it('should return an error if the id of the User requested does not exist', (done) => {
-        db.User.create(fakeUser).then((user) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((user) => {
           const token = jwt.sign(user.get(), 'secret');
-          db.User.create(fakeUser).then((userone) => {
+          db.User.create(anotherUser).then((userone) => {
             db.User.destroy({where: {id: userone.id}}).then(()=>{
               chai.request(app)
               .get('/api/v1/users/userone.id/recipes')
@@ -429,7 +467,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 expect(response).to.have.status(404);
                 expect(response.body).to.be.an('object');
                 expect(response.body.data.message).to.equal('User not Found');
-                done();
               });
             });
           });
@@ -437,9 +474,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if the User being requested has no Recipes', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const oneUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(oneUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(thisUser).then((user) => {
             chai.request(app)
             .get('/api/v1/users/user.id/recipes')
             .set('token', token)
@@ -447,14 +498,20 @@ describe('/Authenticated/Authorised Endpoints', () => {
               expect(response).to.have.status(404);
               expect(response.body).to.be.an('object');
               expect(response.body.data.message).to.equal('User has no Recipes');
-              done();
             });
           });
         });
         done();
       });
       it('should return an error if the id of the User requested is not an Integer', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .get('/api/v1/users/Rachel/recipes')
@@ -463,7 +520,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
             expect(response).to.have.status(422);
             expect(response.body).to.be.an('object');
             expect(response.body.data.message).to.equal('Invalid Request');
-            done();
           });
         });
         done();
@@ -472,7 +528,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
     
     describe('/POST Recipes endpoints/', () => { 
       it('should add a new recipe when called by Signed in User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .post('/api/v1/recipes')
@@ -496,8 +559,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
             expect(recipe.method).to.equal('direction 1');
             expect(response.body).to.be.an('object');
             expect(response.body.data.message).to.equal('Successfully created recipe');
-            console.log(recipe.id);
-            done();
           });
         });
         done();
@@ -521,7 +582,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         });
       });
       it('it should return correct validation errors if wrong data is provided', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .post('/api/v1/recipes')
@@ -539,8 +607,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
             expect(errors).to.include('Recipe Description is required.');
             expect(errors).to.include('Method required.');
             expect(response.body.data.message).to.equal('Please fill all Fields');
-
-            done();
           });
         });
         done();
@@ -549,7 +615,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
       
     describe('/UPDATE Recipes endpoints/', () => {
       it('it should update the personal recipe of the Signed in User', (done) => {
-        db.User.create(fakeUser).then((user) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((user) => {
           const token = jwt.sign(user.get(), 'secret');
 
           db.Recipe.create({
@@ -581,15 +654,20 @@ describe('/Authenticated/Authorised Endpoints', () => {
               expect(recipe.description).to.equal('Sauce to be served along side pasta');
               expect(recipe.method).to.equal('add Chicken, then add Chilli Pepper');
               expect(response.body.data.message).to.equal('Successfully updated recipe');
-
-              done();
             });
           });
         });
         done();
       });
       it('it should return an error if User is not Signed in', (done) => {
-        db.User.create(fakeUser).then((user) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((user) => {
           const token = jwt.sign(user.get(), 'secret');
 
           db.Recipe.create({
@@ -612,15 +690,20 @@ describe('/Authenticated/Authorised Endpoints', () => {
             .end((error, response) => {
               expect(response).to.have.status(401);
               expect(response.body.data.message).to.equal('Unauthenticated USER.');
-
-              done();
             });
           });
         });
         done();
       });
       it('it should return an error if Recipe to be updated is not found', (done) => {
-        db.User.create(fakeUser).then((user) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((user) => {
           const token = jwt.sign(user.get(), 'secret');
 
           db.Recipe.create({
@@ -645,8 +728,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(404);
                 expect(response.body.data.message).to.equal('Recipe not found');
-
-                done();
               });
             });
           });
@@ -654,9 +735,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('it should return an error if recipe to be updated is not personal recipe of the Signed in User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -678,8 +773,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(401);
                 expect(response.body.data.message).to.equal('Unauthorized USER');
-
-                done();
               });
             });
           });
@@ -687,7 +780,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('it should return an error if the recipe id of the recipe to be updated is not an integer', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .put('/api/v1/recipes/Rachel')
@@ -702,8 +802,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
           .end((error, response) => {
             expect(response).to.have.status(422); 
             expect(response.body.data.message).to.equal('Invalid Request');
-            
-            done();   
           });
         });
         done();
@@ -712,7 +810,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
 
     describe('/recipes DELETE endpoint', () => {
       it('it should return an error if User is not Signed in', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
           db.Recipe.create({
             name: 'Fried Noodles',
@@ -720,22 +825,27 @@ describe('/Authenticated/Authorised Endpoints', () => {
             ingredients: 'Noodles, Pepper, Olive Oil, Onions',
             description: 'Noodles',
             method: 'fry noodles',
-            userId: user.id
+            userId: userone.id
           }).then((newRecipe) => {
             chai.request(app)
             .delete('/api/v1/recipes/newRecipe.id')
             .end((error, response) => {
               expect(response).to.have.status(401);
               expect(response.body.data.message).to.equal('Unauthenticated USER.');
-
-              done();
             });
           });
         });
         done();
       });
       it('it should return an error if Recipe to be deleted is not found', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
           db.Recipe.create({
             name: 'Fried Noodles',
@@ -743,7 +853,7 @@ describe('/Authenticated/Authorised Endpoints', () => {
             ingredients: 'Noodles, Pepper, Olive Oil, Onions',
             description: 'Noodles',
             method: 'fry noodles',
-            userId: user.id
+            userId: userone.id
           }).then((newRecipe) => {
             db.Recipe.destroy({where:{id:newRecipe.id}}).then(() => {
               chai.request(app)
@@ -752,8 +862,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(404);
                 expect(response.body.data.message).to.equal('Recipe not found');
-
-                done();
               });
             });
           });
@@ -761,9 +869,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('it should return an error if recipe to be deleted is not personal recipe of the Signed in User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -778,8 +900,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(401);
                 expect(response.body.data.message).to.equal('Unauthorized USER');
-
-                done();
               });
             });
           });
@@ -787,7 +907,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('it should return an error if the recipe id of the recipe to be deleted is not an integer', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .delete('/api/v1/recipes/Rachel')
@@ -795,14 +922,19 @@ describe('/Authenticated/Authorised Endpoints', () => {
           .end((error, response) => {
             expect(response).to.have.status(422); 
             expect(response.body.data.message).to.equal('Invalid Request');
-            
-            done();   
           });
         });
         done();
       });
       it('it should delete only the personal recipe of the Signed in User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
           db.Recipe.create({
             name: 'Fried Noodles',
@@ -810,7 +942,7 @@ describe('/Authenticated/Authorised Endpoints', () => {
             ingredients: 'Noodles, Pepper, Olive Oil, Onions',
             description: 'Noodles',
             method: 'fry noodles',
-            userId: user.id
+            userId: userone.id
           }).then((newRecipe) => {
             chai.request(app)
             .delete('/api/v1/recipes/newRecipe.id')
@@ -819,9 +951,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
             .end((error, response) => {
               expect(response).to.have.status(200);
               expect(response.body.data.message).to.equal('Successfully deleted recipe');
-
-              done();
-              
             });
           });
         });
@@ -831,9 +960,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
       
     describe('/POST Reviews endpoint', () => {
       it('it should add a review to the recipe whose Id is specified by a Signed in User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -852,8 +995,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 expect(response).to.have.status(201);
                 expect(response.body.data.review.review).to.equal('Awesome Stuff');
                 expect(response.body.data.message).to.equal('Review successfully added!');
-                
-                done();
 
               });
             });
@@ -862,7 +1003,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('it should return an error if User adding a review is not Signed in', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
           db.Recipe.create({
             name: 'Fried Noodles',
@@ -870,7 +1018,7 @@ describe('/Authenticated/Authorised Endpoints', () => {
             ingredients: 'Noodles, Pepper, Olive Oil, Onions',
             description: 'Noodles',
             method: 'fry noodles',
-            userId: user.id
+            userId: userone.id
           }).then((newRecipe) => {
             chai.request(app)
             .post('/api/v1/recipes/newRecipe.id/review')
@@ -880,18 +1028,29 @@ describe('/Authenticated/Authorised Endpoints', () => {
             .end((error, response) => {
               expect(response).to.have.status(401);
               expect(response.body.data.message).to.equal('Unauthenticated USER.');
-              
-              done();
-
             });
           });
         });
         done();
       });   
       it('it should return an error if the Id of the recipe to be reviewed does not exist', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -911,8 +1070,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
                   expect(response).to.have.status(404);
                   expect(response.body.data.message).to.equal('Recipe to be reviewed not found');
-
-                  done();
                 });
               });
             });
@@ -921,7 +1078,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('it should return an error if the Id of the recipe to be reviewed is not an integer', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .post('/api/v1/recipes/Rachel/review')
@@ -933,16 +1097,28 @@ describe('/Authenticated/Authorised Endpoints', () => {
           .end((error, response) => {
             expect(response).to.have.status(422);
             expect(response.body.data.message).to.equal('Invalid Request');
-
-            done();
           });
         });
         done();
       });
       it('it should return an error if the Review field is empty', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -959,8 +1135,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(422);
                 expect(response.body.data.message).to.equal('Review field empty');
-
-                done();
               });
             });
           });
@@ -971,9 +1145,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
     
     describe('/POST and Retrieve Favorite Recipes Routes/', () => {
       it('should add a Recipe of a Signed In User\'s choice to that User\'s List of Favorite Recipes', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -988,8 +1176,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(201);
                 expect(response.body.data.message).to.equal('Recipe successfully added to Favorites!')
-
-                done();
               });
             });
           });
@@ -997,9 +1183,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should remove a Recipe from a Signed In User\'s List of Favorite Recipes when called twice for the same Recipe', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1018,9 +1218,7 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
 
                   expect(response).to.have.status(200);
-                  expect(response.body.data.message).to.equal('Successfully removed this recipe from Favorites')
-
-                  done();
+                  expect(response.body.data.message).to.equal('Successfully removed this recipe from Favorites');
                 });
               });
             });
@@ -1029,9 +1227,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User trying to add a recipe to his/her Favorites isn\'t signed in', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1045,8 +1257,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(401);
                 expect(response.body.data.message).to.equal('Unauthenticated USER.')
-
-                done();
               });
             });
           });
@@ -1054,9 +1264,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User is trying to add a recipe that doesn\'t exist to List of Favorites', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1072,8 +1296,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
                   expect(response).to.have.status(404);
                   expect(response.body.data.message).to.equal('Recipe not found.')
-
-                  done();
                 });
               });
             });
@@ -1082,22 +1304,34 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User is trying to add a recipe with an ID that isn\'t an integer to List of Favorites', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .post('/api/v1/users/favorite/Rachel')
-          .set('token', token)
+          .set('token', tokenone)
           .end((error, response) => {
             expect(response).to.have.status(422);
             expect(response.body.data.message).to.equal('Invalid Request.')
-
-            done();
           });
         });
         done();
       });
       it('should return an error if User is trying to add a Personal recipe to List of Favorites', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
           db.Recipe.create({
             name: 'Fried Noodles',
@@ -1113,17 +1347,29 @@ describe('/Authenticated/Authorised Endpoints', () => {
             .end((error, response) => {
               expect(response).to.have.status(401);
               expect(response.body.data.message).to.equal('Unauthorized.')
-
-              done();
             });
           });
         });
         done();
       });
       it('should return a User\'s List of Favorites', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const tokenone = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1144,8 +1390,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                   expect(response.body).to.be.an('object');
                   expect(response.body.data.recipes[0].userId).to.equal(user.id);
                   expect(response.body.data.recipes[0].id).to.equal(newRecipe.id);
-                  
-                  done();
                 });
               });
             });
@@ -1154,7 +1398,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an Error if User has no Recipe in List of Favorites', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .get('/api/v1/users/favorites')
@@ -1163,7 +1414,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
             expect(response).to.have.status(404);
             expect(response.body).to.be.an('object');
             expect(response.body.data.message).to.equal('You have no Favorite Recipes')
-            done();
           });
         });
         done();
@@ -1183,9 +1433,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
     
     describe('/POST UPVOTES to Recipes/', () => {
       it('should add an upvote to a Recipe when called by a Signed in User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1200,8 +1464,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(201);
                 expect(response.body.data.message).to.equal('Recipe Upvoted successfully')
-
-                done();
               });
             });
           });
@@ -1209,9 +1471,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should add an upvote to a Recipe and Remove Downvote if Recipe was previously Downvoted', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1231,8 +1507,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
                   expect(response).to.have.status(201);
                   expect(response.body.data.message).to.equal('Recipe Upvoted successfully')
-
-                  done();
                 });
               });
             });
@@ -1241,9 +1515,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should remove an Upvote from a Recipe when called twice for the same Recipe by the same User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1262,8 +1550,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
                   expect(response).to.have.status(200);
                   expect(response.body.data.message).to.equal('Successfully removed Upvote from this recipe')
-
-                  done();
                 });
               });
             });
@@ -1272,9 +1558,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User trying to add an upvote isn\'t Signed In', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1288,8 +1588,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(401);
                 expect(response.body.data.message).to.equal('Unauthenticated USER.')
-
-                done();
               });
             });
           });
@@ -1297,9 +1595,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User is trying to add an upvote to a recipe that doesn\'t exist', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1315,8 +1627,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
                   expect(response).to.have.status(404);
                   expect(response.body.data.message).to.equal('Recipe not found.')
-
-                  done();
                 });
               });
             });
@@ -1325,7 +1635,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User is trying to Upvote a recipe with an ID that isn\'t an integer', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .post('/api/v1/recipes/Rachel/upvote')
@@ -1338,7 +1655,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User is trying to add an Upvote to a Personal recipe', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           db.Recipe.create({
             name: 'Fried Noodles',
@@ -1346,7 +1670,7 @@ describe('/Authenticated/Authorised Endpoints', () => {
             ingredients: 'Noodles, Pepper, Olive Oil, Onions',
             description: 'Noodles',
             method: 'fry noodles',
-            userId: user.id
+            userId: userone.id
           }).then((recipe) => {
             chai.request(app)
             .post('/api/v1/recipes/recipe.id/upvote')
@@ -1354,8 +1678,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
             .end((error, response) => {
               expect(response).to.have.status(401);
               expect(response.body.data.message).to.equal('Unauthorized.')
-
-              done();
             });
           });
         });
@@ -1365,9 +1687,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
   
     describe('/POST DOWNVOTES to Recipes/', () => {
       it('should add a Downvote to a Recipe when called by a Signed in User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1382,8 +1718,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(201);
                 expect(response.body.data.message).to.equal('Recipe Downpvoted successfully')
-
-                done();
               });
             });
           });
@@ -1391,9 +1725,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should add a Downvote to a Recipe and Remove Upvote if Recipe was previously Upvoted', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1413,8 +1761,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
                   expect(response).to.have.status(201);
                   expect(response.body.data.message).to.equal('Recipe Downvoted successfully')
-
-                  done();
                 });
               });
             });
@@ -1423,9 +1769,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should remove a downvote from a Recipe when called twice for the same Recipe by the same User', (done) => {
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1444,8 +1804,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
                   expect(response).to.have.status(200);
                   expect(response.body.data.message).to.equal('Successfully removed Downvote from this recipe')
-
-                  done();
                 });
               });
             });
@@ -1454,9 +1812,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User trying to add a downvote isn\'t Signed In', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1470,8 +1842,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
               .end((error, response) => {
                 expect(response).to.have.status(401);
                 expect(response.body.data.message).to.equal('Unauthenticated USER.')
-
-                done();
               });
             });
           });
@@ -1479,9 +1849,23 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User is trying to add a downvote to a recipe that doesn\'t exist', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        const anotherUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
-          db.User.create(fakeUser).then((user) => {
+          db.User.create(anotherUser).then((user) => {
             db.Recipe.create({
               name: 'Fried Noodles',
               category: 'Pasta',
@@ -1497,8 +1881,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
                 .end((error, response) => {
                   expect(response).to.have.status(404);
                   expect(response.body.data.message).to.equal('Recipe not found.')
-
-                  done();
                 });
               });
             });
@@ -1507,7 +1889,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User is trying to downvote a recipe with an ID that isn\'t an integer', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           chai.request(app)
           .post('/api/v1/recipes/Rachel/downvote')
@@ -1520,7 +1909,14 @@ describe('/Authenticated/Authorised Endpoints', () => {
         done();
       });
       it('should return an error if User is trying to add a Downvote to a Personal recipe', (done) =>{
-        db.User.create(fakeUser).then((userone) => {
+        const thisUser = {
+          Firstname: faker.name.firstName(),
+          Lastname: faker.name.lastName(),
+          Username: faker.internet.userName(),
+          Email: faker.internet.email(),
+          Password: bcrypt.hashSync(faker.internet.password(), 10)
+        };
+        db.User.create(thisUser).then((userone) => {
           const token = jwt.sign(userone.get(), 'secret');
           db.Recipe.create({
             name: 'Fried Noodles',
@@ -1528,7 +1924,7 @@ describe('/Authenticated/Authorised Endpoints', () => {
             ingredients: 'Noodles, Pepper, Olive Oil, Onions',
             description: 'Noodles',
             method: 'fry noodles',
-            userId: user.id
+            userId: userone.id
           }).then((recipe) => {
             chai.request(app)
             .post('/api/v1/recipes/recipe.id/downvote')
@@ -1536,8 +1932,6 @@ describe('/Authenticated/Authorised Endpoints', () => {
             .end((error, response) => {
               expect(response).to.have.status(401);
               expect(response.body.data.message).to.equal('Unauthorized.')
-
-              done();
             });
           });
         });
