@@ -36,9 +36,14 @@
   }
   .form-control{width:20%}
   
-  h1, h2, h3, h4, h5,button, p, a, label,figcaption.fig-caption, li {
+  h1, h2, h3, h4, h5,p, a, label,figcaption.fig-caption, li {
     font-family: Candara;
     color:#fff;
+}
+button{
+  font-family: Candara;
+  color:rgba(68, 66, 66, 0.693);
+
 }
 input {
   font-family: Candara;
@@ -59,11 +64,13 @@ label{
   .card-1:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
-  a:hover, h4:hover {
+  a:hover, h4:hover, .register-link:hover, .forgot-link:hover{
     font-weight: bold;
    }
   button:hover {
-      background-color:rgba(27, 255, 164, 0.473);
+      color:black;
+      font-weight: bold;
+      background-color:rgba(54, 191, 136, 0.529);
   }
 
   .card-container {
