@@ -31,31 +31,25 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  }, {
-    classMethods: {
-    /**
-   * declares associations
-   * @param {object} models
-   * @returns {integer} foreign key declared
-   */
-      associate(models) {
-        User.hasMany(models.Recipe, {
-          foreignKey: 'userId'
-        });
-        User.hasMany(models.Favorite, {
-          foreignKey: 'userId'
-        });
-        User.hasMany(models.Review, {
-          foreignKey: 'userId'
-        });
-        User.hasMany(models.Upvote, {
-          foreignKey: 'userId'
-        });
-        User.hasMany(models.Downvote, {
-          foreignKey: 'userId'
-        });
-      },
-    },
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.Recipe, {
+      foreignKey: 'userId'
+    });
+    User.hasMany(models.Favorite, {
+      foreignKey: 'userId'
+    });
+    User.hasMany(models.Review, {
+      foreignKey: 'userId'
+    });
+    User.hasMany(models.Upvote, {
+      foreignKey: 'userId'
+    });
+    User.hasMany(models.Downvote, {
+      foreignKey: 'userId'
+    });
+  };
+
   return User;
 };

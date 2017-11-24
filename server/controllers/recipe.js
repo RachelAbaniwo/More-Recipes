@@ -12,8 +12,8 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   getRecipes(req, res) {
-    db.Recipe.findAll({
-      include: { model: db.User }
+    return db.Recipe.findAll({
+      //  include: { model: db.User }
     }).then(recipes => apiResponse('success', 200, { recipes }, res))
       .catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
@@ -87,6 +87,7 @@ export default class RecipesController {
     if (errors.length > 0) {
       return apiResponse('fail', 422, { errors, message: 'Please fill all Fields' }, res);
     }
+
     return db.Recipe.create({
       name: req.body.name,
       category: req.body.category,
@@ -94,7 +95,7 @@ export default class RecipesController {
       method: req.body.method,
       ingredients: req.body.ingredients,
       userId: req.AuthUser.id
-    }).then(recipe => apiResponse('success', 200, { recipe, message: 'Successfully created recipe' }, res))
+    }).then(recipe => apiResponse('success', 201, { recipe, message: 'Successfully created recipe' }, res))
       .catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
   /**
@@ -115,7 +116,7 @@ export default class RecipesController {
       returning: true,
       plain: true
     })
-      .then(Recipe => apiResponse('success', 200, { Recipe, message: 'Successfully updated recipe' }, res))
+      .then(recipe => apiResponse('success', 201, { recipe, message: 'Successfully updated recipe' }, res))
       .catch(error => apiResponse('fail', 500, { message: error.message }, res));
   }
   /**
@@ -205,7 +206,7 @@ export default class RecipesController {
    * @param {object} res express response object
    * @returns {json} json returned to client
    */
-  async addUpvotes(req, res) {
+  async addUpvote(req, res) {
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
     const upvote = await db.Upvote.findOne(query);
 
@@ -221,7 +222,7 @@ export default class RecipesController {
 
     //  const numberOfUpvotes = await db.Downvote.count({ where: { recipeId: req.params.id } });
 
-    return apiResponse('success', 201, { message: 'recipe upvoted successfully' }, res);
+    return apiResponse('success', 201, { message: 'Recipe Upvoted successfully' }, res);
   }
   /**
    * add Downvotes of recipes to database
@@ -229,7 +230,7 @@ export default class RecipesController {
    * @param {object} res express response object
    * @returns {json} json returned to client
    */
-  async addDownvotes(req, res) {
+  async addDownvote(req, res) {
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
     const downvote = await db.Downvote.findOne(query);
 
@@ -245,6 +246,6 @@ export default class RecipesController {
 
     //  const numberOfUpvotes = await db.Downvote.count({ where: { recipeId: req.params.id } });
 
-    return apiResponse('success', 201, { message: 'recipe downvoted successfully' }, res);
+    return apiResponse('success', 201, { message: 'Recipe Downvoted successfully' }, res);
   }
 }

@@ -31,12 +31,12 @@ app.post('/api/v1/recipes', authenticationMiddleWare, recipesController.addRecip
 app.put('/api/v1/recipes/:id', authenticationMiddleWare, authorisationMiddleWare, recipesController.updateRecipe);
 app.delete('/api/v1/recipes/:id', authenticationMiddleWare, authorisationMiddleWare, recipesController.deleteRecipe);
 app.post('/api/v1/recipes/:id/review', authenticationMiddleWare, recipesController.addReviews);
-app.post('/api/v1/signup/', userController.userSignUp);
+app.post('/api/v1/signup', userController.userSignUp);
 app.post('/api/v1/signin', userController.userSignIn);
 app.post('/api/v1/users/favorite/:recipeId', authenticationMiddleWare, canFavoriteMiddleWare, recipesController.addFavorite);
 app.get('/api/v1/users/favorites', authenticationMiddleWare, recipesController.getFavorites);
-app.post('/api/v1/recipes/:recipeId/upvotes', authenticationMiddleWare, canUpvoteMiddleWare, recipesController.addUpvotes);
-app.post('/api/v1/recipes/:recipeId/downvotes', authenticationMiddleWare, canDownvoteMiddleWare, recipesController.addDownvotes);
+app.post('/api/v1/recipes/:recipeId/upvote', authenticationMiddleWare, canUpvoteMiddleWare, recipesController.addUpvote);
+app.post('/api/v1/recipes/:recipeId/downvote', authenticationMiddleWare, canDownvoteMiddleWare, recipesController.addDownvote);
 
 
 app.use((req, res) => {
