@@ -190,6 +190,7 @@ describe('/Authenticated/Authorised Endpoints', () => {
           Password:faker.internet.password(), 
         })
         .end((error, response) => {
+          console.log(response.body);
         expect(response).to.have.status(422);
         expect(response.body.data.message).to.equal('The Email already exists.');
         done();
