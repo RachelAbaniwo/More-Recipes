@@ -21,6 +21,13 @@
  
   }
 
+  .navbar-custom {
+
+    background-color: rgba(73, 67, 67, 0.9);
+  }
+  #nav {
+    background-color: transparent;
+  }
 .carousel-item {
     background-size: cover;
     background-repeat: no-repeat;
@@ -34,7 +41,11 @@
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(114, 110, 110, 0.801);
   }
-  .form-control{width:20%}
+
+.form-control:focus {
+  border: 2px solid rgba(27, 255, 164, 0.473);
+  box-shadow: none;
+}
   
   h1, h2, h3, h4, h5,p, a, label,figcaption.fig-caption, li {
     font-family: Candara;
