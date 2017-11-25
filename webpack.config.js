@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Constant with our paths
 const paths = {
@@ -13,7 +14,7 @@ module.exports = {
   entry: path.join(paths.JS, 'app.js'),
   output: {
     path: paths.DIST,
-    filename: 'app.moin-moin.js'
+    filename: 'app.bundle.js'
   },
   devServer: {
     contentBase: paths.SRC
@@ -21,7 +22,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, 'index.html'),
-    })
+    }),
+    new ExtractTextPlugin('style.bundle.css'),
   ],
   module: {
     rules: [
@@ -34,8 +36,20 @@ module.exports = {
             presets: ['env', 'react']
           }
         },
-      }
-    ]
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          use: 'css-loader',
+        }),
+      },
+      {
+        test: /\.(png|jpg|jpeg|jfif|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+    ],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
