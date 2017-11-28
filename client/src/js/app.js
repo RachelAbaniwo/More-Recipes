@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import '../css/style.css';
-import './script.js';
+
 import Navbar from './components/Navbar';
 
 class App extends React.Component {
