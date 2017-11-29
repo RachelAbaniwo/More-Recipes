@@ -2,12 +2,13 @@
    max-height:100%;
    max-width: 100%;
 }
-.bg {
-  background: linear-gradient(rgba(58, 56, 56, 0.45), rgba(63, 62, 62, 0.45)),url(../image/headimg.jpeg);
-  
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.bg, .register-bg{
+  background: url("../image/food-9.jpg") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+ 
   
   
   /* Set up proportionate scaling */
@@ -19,6 +20,12 @@
   top: 0;
   left: 0;
  
+  }
+  .view-recipe-bg {
+    background-color: rgba(233, 165, 165, 0.099);
+  }
+  .view-recipe-container{
+    background-color: rgba(145, 140, 140, 0.099);
   }
 
   .navbar-custom {
@@ -49,8 +56,10 @@
   
   h1, h2, h3, h4, h5,p, a, label,figcaption.fig-caption, li {
     font-family: Candara;
-    color:#fff;
+    color:rgb(155, 151, 151);
 }
+
+
 button{
   font-family: Candara;
   color:rgba(68, 66, 66, 0.693);
@@ -110,7 +119,7 @@ label{
   }
   
   .card-container input[type=submit] {
-    width: 100%;
+    width: 30%;
     display:block;
     margin-bottom: 10px;
     position: relative;
@@ -121,7 +130,7 @@ label{
   }
   
   .card-container input[type=text], input[type=password] {
-    height: 44px;
+    height: 35px;
     font-size: 16px;
     width: 70%;
     margin-bottom: 10px;
