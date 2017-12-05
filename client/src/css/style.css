@@ -2,6 +2,31 @@
   max-height:100%;
   max-width: 100%;
 }
+.bg, .register-bg{
+ background: url("../assets/image/food-9.jpg") no-repeat center center fixed; 
+       -webkit-background-size: cover;
+       -moz-background-size: cover;
+       -o-background-size: cover;
+       background-size: cover;
+
+ 
+ 
+ /* Set up proportionate scaling */
+ width: 100%;
+ height: auto;
+ 
+ /* Set up positioning */
+ 
+ top: 0;
+ left: 0;
+
+ }
+ .view-recipe-bg {
+   background-color: rgba(233, 165, 165, 0.099);
+ }
+ .view-recipe-container{
+   background-color: rgba(145, 140, 140, 0.099);
+ }
 
  .navbar-custom {
 
@@ -18,22 +43,24 @@
    height: 100%;
    
 }
-.add-on .input-group-btn > .btn {
+.add-on .input-group-btn  .btn {
    border-left-width:0;left:-2px;
    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
    box-shadow: inset 0 1px 1px rgba(114, 110, 110, 0.801);
  }
 
-.form-control:focus {
+.form-control:focus, {
  border: 2px solid rgba(27, 255, 164, 0.473);
  box-shadow: none;
 }
  
  h1, h2, h3, h4, h5,p, a, label,figcaption.fig-caption, li {
    font-family: Candara;
-   color:#fff;
+   color:rgb(155, 151, 151);
 }
-button{
+
+
+button,.link-button{
  font-family: Candara;
  color:rgba(68, 66, 66, 0.693);
 
@@ -57,10 +84,17 @@ label{
  .card-1:hover {
    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
  }
+ .navbar-register:hover{
+   color: white;
+   text-decoration: none
+   
+ }
  a:hover, h4:hover, .register-link:hover, .forgot-link:hover{
    font-weight: bold;
+   
   }
- button:hover {
+  
+ button:hover, .link-button:hover {
      color:black;
      font-weight: bold;
      background-color:rgba(54, 191, 136, 0.529);
@@ -68,7 +102,7 @@ label{
 
  .card-container {
    padding: 30px;
-   max-width: 350px;
+   max-width: 450px;
    width: 100% !important;
    background-color: rgba(73, 67, 67, 0.679);
    margin: 0 auto;
@@ -76,6 +110,7 @@ label{
    box-shadow: 0px 2px 2px rgba(27, 255, 164, 0.967);
    overflow: hidden;
    font-family: roboto;
+   text-align: center;
  }
  
  .card-container h1 {
@@ -85,16 +120,20 @@ label{
  }
  
  .card-container input[type=submit] {
-   width: 100%;
-   display: block;
+   width: 30%;
+   display:block;
    margin-bottom: 10px;
    position: relative;
+   
+   
+   
+   
  }
  
  .card-container input[type=text], input[type=password] {
-   height: 44px;
+   height: 35px;
    font-size: 16px;
-   width: 100%;
+   width: 70%;
    margin-bottom: 10px;
    -webkit-appearance: none;
    background: #fff;
@@ -113,8 +152,10 @@ label{
    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
  }
+
  
- .loginmodal {
+ 
+ .login-card, .register-card {
    text-align: center;
    font-size: 14px;
    font-family: 'Arial', sans-serif;
@@ -126,7 +167,7 @@ label{
    user-select: none; */
  }
  
- .loginmodal-submit {
+ .login-card-submit, .register-card-submit{
    /* border: 1px solid #3079ed; */
    border: 0px;
    color: #fff;
@@ -135,10 +176,11 @@ label{
    padding: 17px 0px;
    font-family: roboto;
    font-size: 14px;
+   
    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
  }
  
- .loginmodal-submit:hover {
+ .login-card-submit:hover, .register-card-submit:hover {
    /* border: 1px solid #2f5bb7; */
    border: 0px;
    text-shadow: 0 1px rgba(0,0,0,0.3);
@@ -156,7 +198,7 @@ label{
    transition: opacity ease 0.5s;
  } 
  
- .login-help{
+ .login-help, .register-help {
    font-size: 12px;
  }
  

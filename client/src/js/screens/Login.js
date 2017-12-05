@@ -3,19 +3,75 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router';
 
 export default class Login extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+     error: null,
+     Username: '',
+     Password:'',
+    };
+
+    this.handleSignIn = this.handleSignIn.bind(this);
+  }
+
+  async handleSignIn() {
+    try {
+      const user = await this.props.signInUser({ 
+        Username: this.state.Username, 
+        Password: this.state.Password
+      });
+
+      this.props.router.push('/');
+    } catch (error) {
+      
+      if (error.response.status === 422) {
+        this.setState({
+          error: error.response.data.data.errors
+        });
+      } 
+      else if(error.response.status === 404) {
+        this.setState({
+          error: error.response.data.data.message
+        });
+      } else {
+        this.setState({
+          error: 'Please try again after some time.'
+        });
+      }
+    }
+  }
+
+
+
   render() {
+
+    let errorHolder = ( <small></small> );
+
+    if (this.state.error) {
+      errorHolder = ( 
+      <small className="mb-3" style={{
+      color: 'red',
+      fontFamily: 'candara',
+      fontWeight: 'bold'
+      }}> 
+        {this.state.error}
+      </small> 
+      );
+    } 
+
     return (
-      <div>
+      <div >
         <section id="nav">
           <nav className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
-            <a className="navbar-brand" href="#">MORE RECIPES</a>
+            <Link to='/home' className="navbar-brand" href="#">MORE RECIPES</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a className="navbar-register" style={{marginRight: 20}} href="#">REGISTER</a>
+                  <Link to='/signup' className="navbar-register" style={{marginRight: 20}} href="#">REGISTER</Link>
                 </li>
               </ul>
               <form className="form-inline my-2 my-lg-0">
@@ -29,14 +85,13 @@ export default class Login extends React.Component {
             <div className="col-md-6">
               <div className="card card-container" id="login-card">
                 <h1 className="card-header text-center" style={{fontFamily: 'Candara'}}>SIGN IN</h1><br />
+                {errorHolder}
                 <div className="card-body">
-                  <form>
-                    <input type="text" name="user" placeholder="Username" />
-                    <input type="password" name="pass" placeholder="Password" />
+                    <input type="text" name="user" placeholder="Username" value={this.state.Username} onChange={ (event) => {this.setState({ Username: event.target.value}); }} />
+                    <input type="password" name="pass" placeholder="Password" value={this.state.Password} onChange={ (event) => {this.setState({ Password: event.target.value}); }} />
                     <div className="row justify-content-center">
-                      <input type="submit" name="login" className="login login-card-submit" style={{fontFamily: 'Candara'}} defaultValue="SIGN IN" />
+                      <input type="submit" name="login" className="login login-card-submit" onClick={ (event) => {this.handleSignIn(); }} style={{fontFamily: 'Candara'}} defaultValue="SIGN IN" />
                     </div>
-                  </form>
                   <div className="login-help" style={{color: 'white', fontFamily: 'Candara'}}>
                     <Link to = 'signup' className="register-link mr-1" href="#" style={{color: 'white'}}>REGISTER NEW ACCOUNT</Link><a className="forgot-link" href="#" style={{color: 'white'}}>FORGOT PASSWORD?</a>
                   </div>

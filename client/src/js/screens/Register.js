@@ -1,14 +1,125 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
+import checkEmail from '../helpers';
 
 export default class Register extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Firstname: '',
+      Lastname: '',
+      Username: '',
+      Email: '',
+      Password: '',
+      error: null,
+      errors: []
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleValidation = this.handleValidation.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+  }
+
+  async handleInputChange(event) {
+   this.setState ({
+     [event.target.Firstname]: event.target.value,
+     [event.target.Lastname]: event.target.value,
+     [event.target.Username]: event.target.value,
+     [event.target.Email]: event.target.value,
+     [event.target.Password]: event.target.value,
+   });
+
+   await this.handleValidation();
+  }
+
+  async handleValidation() {
+    let errors = [];
+
+    if( this.state.Firstname.length < 1 ) {
+      errors.push('Fill in your First Name');
+    }
+
+    if( this.state.Lastname.length < 1 ) {
+      errors.push('Fill in your Last Name');
+    }
+
+    if( this.state.Email.length < 1 ) {
+      errors.push('Fill in your Last Name');
+    }
+
+    if( this.state.Username.length < 1 ) {
+      errors.push('Fill in a preferred User-Name');
+    }
+    
+    if( this.state.Password.length < 6) {
+      errors.push('Your Password should have a minimum of 6 characters');
+    }
+
+    this.setState( {errors}, () => {
+      return Promise.resolve();
+    });
+
+  }
+
+
+  async handleRegister() {
+    await this.handleValidation();
+    
+    if( this.state.errors.length > 0) {
+      return;
+    }
+
+    try {
+
+      const response = await this.props.signUpUser({
+        Firstname: this.state.Firstname,
+        Lastname: this.state.Lastname,
+        Email: this.state.Email,
+        Username: this.state.Username,
+        Password: this.state.Password
+      });
+      
+      this.props.router.push('/');
+
+    } catch (error) {
+      
+      if (error.response.status === 422) {
+        this.setState({
+          errors: error.response.data.data.errors
+        });
+      } else {
+        this.setState({
+          error: 'Try again after some time.'
+        });
+
+      }
+    }
+  }
+
+
   render() {
+
+    let errorHolder = this.state.errors.map((error, index) => {
+      return (
+        <span key={index}>
+          <small className="mb-3" style={{
+            color: 'red',
+            fontFamily: 'candara',
+            fontWeight: 'bold'
+          }}>{error}</small>
+          <br />
+        </span>
+      );
+    });
+
     return (
       <div>
         <section id="nav">
           <nav className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
-            <a className="navbar-brand" href="#">MORE RECIPES</a>
+            <Link to ='/home' className="navbar-brand" href="#">MORE RECIPES</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
             </button>
@@ -29,17 +140,54 @@ export default class Register extends React.Component {
             <div className="col-md-6">
               <div className="card card-container " id="register-card">
                 <h1 className="card-header text-center" style={{fontFamily: 'Candara'}}>CREATE NEW ACCOUNT</h1><br />
+                {errorHolder}
                 <div className="card-body">
-                  <form>
-                    <input type="text" name="user" placeholder="Firstname" />
-                    <input type="text" name="user" placeholder="Lastname" />
-                    <input type="text" name="user" placeholder="Email" />
-                    <input type="text" name="user" placeholder="Username" />
-                    <input type="password" name="pass" placeholder="Password" />
+                    <input type="text" 
+                    name="user" 
+                    placeholder="Firstname"
+                    value={this.state.Firstname}
+                    onChange={ (event)=>{
+                      this.handleInputChange(event);
+                      }} 
+                      onBlur={this.handleValidation}/>
+                    <input type="text" 
+                    name="user" 
+                    placeholder="Lastname"
+                    value={this.state.Lastname}
+                    onChange={ (event)=>{
+                      this.handleInputChange(event);
+                      }} 
+                      onBlur={this.handleValidation}/>
+                    <input 
+                    type="text" 
+                    name="user" 
+                    placeholder="Email"
+                    value={this.state.Email}
+                    onChange={ (event)=>{
+                      this.handleInputChange(event);
+                      }} 
+                      onBlur={this.handleValidation} />
+                    <input 
+                    type="text" 
+                    name="user" 
+                    placeholder="Username" 
+                    value={this.state.Username}
+                    onChange={ (event)=>{
+                      this.handleInputChange(event);
+                      }} 
+                      onBlur={this.handleValidation}/>
+                    <input 
+                    type="password" 
+                    name="pass" 
+                    placeholder="Password"
+                    value={this.state.Password}
+                    onChange={ (event)=>{
+                      this.handleInputChange(event);
+                      }} 
+                      onBlur={this.handleValidation} />
                     <div className="row justify-content-center">
-                      <input type="submit" name="register" className="register-card-submit" style={{fontFamily: 'Candara'}} defaultValue="SIGN UP" />
+                      <input type="submit" name="register" className="register-card-submit" onClick={ (event) => {this.handleRegister();}} style={{fontFamily: 'Candara'}} defaultValue="SIGN UP" />
                     </div>
-                  </form>
                   <div className="register-help">
                     <Link to = '/signin' className="register-link" href="#" style={{color: 'white', fontFamily: 'Candara'}}>ALREADY REGISTERED?  SIGN IN</Link>
                   </div>

@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 export default class Home extends React.Component {
        render() {
           return (
-            <div>
+            <div style={{backgroundColor: '#eee'}}>
              
               <Navbar/>
               <section id="slider">
@@ -33,18 +33,11 @@ export default class Home extends React.Component {
                         </div>
                       </div>  
                     </div>
-                    <div className="container" style={{position: 'absolute', top: 200, left: 0, right: 0, margin: '0 auto', width: '40%', minWidth: 250}}>
-                      <form className="navbar-form" role="search">
-                        <div className="input-group add-on">
-                          <input className="form-control" placeholder="Find a Recipe" name="srch-term" id="srch-term" type="text" />
-                          <div className="input-group-btn">
-                            <button className="btn btn-default" type="submit"><i className="fa fa-search" aria-hidden="true" /></button>
-                          </div>
-                        </div>
-                      </form>
+                    <div className="container" style={{position: 'absolute', top:250, left: 0, right: 0, margin: '0 auto', width: '40%', minWidth: 250}}>
+                     
                       <div className="container text-center">
-                        <Link to='/signin' type="button" className="btn btn-default mr-3" style={{width: 150, marginTop: 10}}>LOGIN</Link>
-                        <Link to ='/signup' type="button" className="btn btn-default" style={{width: 150, marginTop: 10}}>REGISTER</Link>
+                        <Link to='/signin' type="button" className="btn btn-default link-button mr-3" style={{width: 150, marginTop: 10}}>LOGIN</Link>
+                        <Link to ='/signup' type="button" className="btn btn-default link-button mr-3" style={{width: 150, marginTop: 10}}>REGISTER</Link>
                       </div>
                     </div>
                     <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -57,15 +50,15 @@ export default class Home extends React.Component {
                     </a>
                   </div>
                 </section>
-                <section className="container-fluid row no-gutters justify-content-between text-center" style={{backgroundColor: '#eee'}}>
-                  <div className="card card-1 col-sm-12 col-md-5 card" style={{marginTop: 20, marginBottom: 20}}>
+                <section className="container-fluid row no-gutters justify-content-between text-center" style={{backgroundColor: '#eee',marginTop: 50, marginBottom: 50}}>
+                  <div className="card card-1 col-sm-12 col-md-5 card" >
                     <div className="card-body">
                       <h2 className="card-subtitle text-muted">TOP FAVORITES</h2>
                     </div>
                     <img className="img-fluid mx-auto" src="assets/image/image10.jpeg" alt="Photo of sunset" />
                     <p className="card-text text-center" style={{color: 'rgba(73, 67, 67, 0.9)'}}>TAKE A SURVEY OF OUR ALL TIME FAVORITE RECIPES.</p>
                   </div>
-                  <div className="card card-1 col-sm-12 col-md-5 card" style={{marginTop: 20, marginBottom: 20}}>
+                  <div className="card card-1 col-sm-12 col-md-5 card">
                     <div className="card-body">
                       <h2 className="card-subtitle text-muted">TOP VOTED</h2>
                     </div>

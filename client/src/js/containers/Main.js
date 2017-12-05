@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import * as actions from './../store/actions';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,13 +29,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    removeRecipe() {
-      dispatch({
-        type: 'REMOVE_RECIPE'
-      });
-    },
-  }
+  return bindActionCreators(actions, dispatch)
 }
 
 const Main = connect(mapStateToProps, mapDispatchToProps)(App);

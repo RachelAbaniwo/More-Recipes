@@ -1,5 +1,6 @@
 
 import express from 'express';
+import cors from 'cors';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import RecipesController from './controllers/recipe';
@@ -16,6 +17,9 @@ const app = express();
 
 // Log requests to the console.
 app.use(logger('dev'));
+
+// enable cors for all requests
+app.use(cors());
 
 // Parse incoming requests data
 app.use(bodyParser.json());
