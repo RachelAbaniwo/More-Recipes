@@ -27,8 +27,6 @@ export default class Register extends React.Component {
    this.setState ({
      [event.target.name]: event.target.value,
    });
-
-   await this.handleValidation();
   }
 
   async handleValidation() {
