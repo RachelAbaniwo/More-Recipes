@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
-import checkEmail from '../helpers';
+import { checkEmail } from '../helpers';
 
 export default class Register extends React.Component {
 
@@ -32,6 +32,7 @@ export default class Register extends React.Component {
   async handleValidation() {
     let errors = [];
 
+    
     if( this.state.Firstname.length < 1 ) {
       errors.push('Fill in your First Name');
     }
@@ -42,6 +43,10 @@ export default class Register extends React.Component {
 
     if( this.state.Email.length < 1 ) {
       errors.push('Fill in your Email');
+    }
+    
+    if(this.state.Email.length > 1 && (!checkEmail(this.state.Email))) {
+      errors.push('Enter Valid Email Address');
     }
 
     if( this.state.Username.length < 1 ) {
