@@ -25,11 +25,7 @@ export default class Register extends React.Component {
 
   async handleInputChange(event) {
    this.setState ({
-     [event.target.Firstname]: event.target.value,
-     [event.target.Lastname]: event.target.value,
-     [event.target.Username]: event.target.value,
-     [event.target.Email]: event.target.value,
-     [event.target.Password]: event.target.value,
+     [event.target.name]: event.target.value,
    });
 
    await this.handleValidation();
@@ -47,7 +43,7 @@ export default class Register extends React.Component {
     }
 
     if( this.state.Email.length < 1 ) {
-      errors.push('Fill in your Last Name');
+      errors.push('Fill in your Email');
     }
 
     if( this.state.Username.length < 1 ) {
@@ -143,47 +139,38 @@ export default class Register extends React.Component {
                 {errorHolder}
                 <div className="card-body">
                     <input type="text" 
-                    name="user" 
+                    name="Firstname" 
                     placeholder="Firstname"
                     value={this.state.Firstname}
-                    onChange={ (event)=>{
-                      this.handleInputChange(event);
-                      }} 
+                    onChange={
+                      this.handleInputChange} 
                       onBlur={this.handleValidation}/>
                     <input type="text" 
-                    name="user" 
+                    name="Lastname" 
                     placeholder="Lastname"
                     value={this.state.Lastname}
-                    onChange={ (event)=>{
-                      this.handleInputChange(event);
-                      }} 
+                    onChange={this.handleInputChange} 
                       onBlur={this.handleValidation}/>
                     <input 
                     type="text" 
-                    name="user" 
+                    name="Email" 
                     placeholder="Email"
                     value={this.state.Email}
-                    onChange={ (event)=>{
-                      this.handleInputChange(event);
-                      }} 
+                    onChange={this.handleInputChange} 
                       onBlur={this.handleValidation} />
                     <input 
                     type="text" 
-                    name="user" 
+                    name="Username" 
                     placeholder="Username" 
                     value={this.state.Username}
-                    onChange={ (event)=>{
-                      this.handleInputChange(event);
-                      }} 
+                    onChange={this.handleInputChange} 
                       onBlur={this.handleValidation}/>
                     <input 
                     type="password" 
-                    name="pass" 
+                    name="Password" 
                     placeholder="Password"
                     value={this.state.Password}
-                    onChange={ (event)=>{
-                      this.handleInputChange(event);
-                      }} 
+                    onChange={this.handleInputChange} 
                       onBlur={this.handleValidation} />
                     <div className="row justify-content-center">
                       <input type="submit" name="register" className="register-card-submit" onClick={ (event) => {this.handleRegister();}} style={{fontFamily: 'Candara'}} defaultValue="SIGN UP" />
