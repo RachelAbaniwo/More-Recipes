@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import db from './../database/models';
 import apiResponse from '../helpers';
 
+
 /**
  * Controls the user endpoints
  */
@@ -42,10 +43,18 @@ export default class UserController {
       Email: req.body.Email,
       Password: bcrypt.hashSync(req.body.Password, 10) 
     }).then((user) => {
+      const createdUser = {
+        firstname: user.Firstname
+      };
       const token = jwt.sign(user.get(), 'secret');
-      return apiResponse('success', 201, { user, token }, res);
+      res.status(201).json({
+        createdUser,
+        token
+      });
     }).catch((error) => {
-      return apiResponse('fail', 422, { message: error.message }, res);
+      res.status(422).json({
+        error: error.message
+      });
     });
   }
   /**
