@@ -41,7 +41,7 @@ export function signOutUser() {
 }
 
 
-export function signUpUser({ Firstname, Lastname, Email, Usernamw, Password }) {
+export function signUpUser({ Firstname, Lastname, Email, Username, Password }) {
   return async (dispatch, getState) => {
     
     try {

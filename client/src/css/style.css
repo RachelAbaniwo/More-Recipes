@@ -63,6 +63,7 @@
 button,.link-button{
  font-family: Candara;
  color:rgba(68, 66, 66, 0.693);
+ background-color: white;
 
 }
 input {
@@ -93,6 +94,11 @@ label{
    font-weight: bold;
    
   }
+
+.newButton {
+  
+  cursor: pointer;
+}
   
  button:hover, .link-button:hover {
      color:black;

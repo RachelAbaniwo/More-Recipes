@@ -36,8 +36,8 @@ export default class Home extends React.Component {
                     <div className="container" style={{position: 'absolute', top:250, left: 0, right: 0, margin: '0 auto', width: '40%', minWidth: 250}}>
                      
                       <div className="container text-center">
-                        <Link to='/signin' type="button" className="btn btn-default link-button mr-3" style={{width: 150, marginTop: 10}}>LOGIN</Link>
-                        <Link to ='/signup' type="button" className="btn btn-default link-button mr-3" style={{width: 150, marginTop: 10}}>REGISTER</Link>
+                        <Link to='/signin' className="button btn btn-default link-button mr-2" style={{width: 150, marginTop: 10}}>LOGIN</Link>
+                        <Link to ='/signup' className="button btn btn-default link-button mr-2" style={{width: 150, marginTop: 10}}>REGISTER</Link>
                       </div>
                     </div>
                     <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
