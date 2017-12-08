@@ -53,6 +53,14 @@
  border: 2px solid rgba(27, 255, 164, 0.473);
  box-shadow: none;
 }
+
+.navbar-brand, .moreRecipes {
+  font-family: kaushan script;
+  color: rgba(55, 143, 106, 0.967);
+  font-size: 30px;
+  font-weight: bold;
+  
+}
  
  h1, h2, h3, h4, h5,p, a, label,figcaption.fig-caption, li {
    font-family: Candara;
@@ -90,7 +98,11 @@ label{
    text-decoration: none
    
  }
- a:hover, h4:hover, .register-link:hover, .forgot-link:hover{
+ .moreRecipes:hover{
+   text-decoration: none;
+   color:rgba(183, 240, 215, 0.699);
+ }
+ a:hover, h4:hover, .register-link:hover, .forgot-link:hover, .moreRecipes:hover{
    font-weight: bold;
    
   }

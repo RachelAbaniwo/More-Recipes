@@ -5,7 +5,7 @@ export default class Navbar extends React.Component {
     return (
       <section id="nav">
       <nav className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
-        <a className="navbar-brand" href="#">MORE RECIPES</a>
+        <a className="moreRecipes" href="#">MORE RECIPES</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>

@@ -118,7 +118,7 @@ export default class Register extends React.Component {
       <div>
         <section id="nav">
           <nav className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
-            <Link to ='/home' className="navbar-brand" href="#">MORE RECIPES</Link>
+            <Link to ='/home' className="moreRecipes" href="#">MORE RECIPES</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
             </button>
