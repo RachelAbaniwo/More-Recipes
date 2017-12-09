@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import db from './../database/models';
+import db from '../models';
 import apiResponse from '../helpers';
 
 

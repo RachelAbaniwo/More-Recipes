@@ -1,4 +1,4 @@
-import db from '../database/models';
+import db from '../models';
 import apiResponse from '../helpers';
 
 /**

@@ -3,13 +3,12 @@ import express from 'express';
 import cors from 'cors';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import db from './database/models';
+import db from './models';
 import routes from './routes/routes';
 
 
 // Set up the express app
 const app = express();
-//  app.use('/api/recipes', router);
 
 // Log requests to the console.
 app.use(logger('dev'));
@@ -21,9 +20,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Setup a default catch-all route that sends back a welcome message in JSON format.
+// mount all routes on /api routes
 
 app.use('/api/v1', routes);
+
+// Setup a default catch-all route that sends back a welcome message in JSON format.
 
 app.use((req, res) => {
   res.json('UNKNOWN REQUEST.');
