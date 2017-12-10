@@ -1,11 +1,11 @@
 import db from '../models';
 
 /**
- * Controls the upvotes endpoints
+ * Controls the upvote endpoints
  */
 export default class UpvotesController {
   /**
-   * adds Upvotes to recipes
+   * adds an Upvote to a recipe and removes the vote if recipe is already upvoted or downvoted
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json returned to client
