@@ -1,16 +1,15 @@
 import db from '../models/index';
-import apiResponse from '../helpers';
 
 export default (req, res, next) => {
   db.Recipe.findById(req.params.id).then((recipe) => {
     if (!recipe) {
-      return apiResponse('fail', 404, { message: 'Recipe not found' }, res);
+      return res.status(404).json({ message: 'Recipe not found' });
     }
 
     if (recipe.userId !== req.AuthUser.id) {
-      return apiResponse('fail', 401, { message: 'Unauthorized USER' }, res);
+      return res.status(401).json({ message: 'Unauthorized USER' });
     }
 
     next();
-  }).catch(() => apiResponse('fail', 422, { message: 'Invalid Request' }, res));
+  }).catch(() => res.status(422).json({ message: 'Invalid Request' }));
 };

@@ -3,8 +3,15 @@ import ReviewsController from '../controllers/reviews';
 import authenticationMiddleware from '../middleware/authenticate';
 
 
-const reviewsController = new ReviewsController();
-
 const router = express.Router();
 
-router.post('/recipes/:recipeId/review', authenticationMiddleware, reviewsController.addReviews);
+const reviewsController = new ReviewsController();
+
+// POST /api/v1/recipes/reviews/:recipeId - Add a review to specified recipe
+
+router.route('/:recipeId')
+
+  .post(authenticationMiddleware, reviewsController.addReviews);
+
+
+export default router;

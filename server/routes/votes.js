@@ -6,11 +6,24 @@ import authenticationMiddleware from '../middleware/authenticate';
 import canDownvoteMiddleware from '../middleware/canDownvote';
 import canUpvoteMiddleware from '../middleware/canUpvote';
 
+const router = express.Router();
+
 const downvotesController = new DownvotesController();
 const upvotesController = new UpvotesController();
 
-const router = express.Router();
+
+// POST api/v1/recipes/:recipeId/upvote - add an upvote to a recipe
+
+router.route('/:recipeId/upvote')
+
+  .post(authenticationMiddleware, canUpvoteMiddleware, upvotesController.addUpvote);
 
 
-router.post('/recipes/:recipeId/upvote', authenticationMiddleware, canUpvoteMiddleware, upvotesController.addUpvote);
-router.post('/recipes/:recipeId/downvote', authenticationMiddleware, canDownvoteMiddleware, downvotesController.addDownvote);
+// POST api/v1/recipes/:recipeId/downvote - add a downvote to a recipe
+
+router.route('/:recipeId/downvote')
+
+  .post(authenticationMiddleware, canDownvoteMiddleware, downvotesController.addDownvote);
+
+
+export default router;

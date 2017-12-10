@@ -97,4 +97,5 @@ export default class UserController {
 
 // update user, delete user, find user. token, exclude pword, delete review,
 // update review,delete from favorites, middle ware for long if statements, check for empty
-// fields for update user and update recipe, add image, eagerloading.
+// fields for update user and update recipe, add image, eagerloading, id-uiid,view reviews
+// token expiry

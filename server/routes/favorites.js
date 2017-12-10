@@ -4,10 +4,22 @@ import canFavoriteMiddleware from '../middleware/canFavorite';
 import authenticationMiddleware from '../middleware/authenticate';
 
 
-const favoritesController = new FavoritesController();
 const router = express.Router();
 
+const favoritesController = new FavoritesController();
+
+// GET /api/v1/users/favorites - Gets signed in user favorites
+
+router.route('/')
+
+  .get(authenticationMiddleware, favoritesController.getFavorites);
 
 
-router.post('/users/favorite/:recipeId', authenticationMiddleware, canFavoriteMiddleware, favoritesController.addFavorite);
-router.get('/users/favorites', authenticationMiddleware, favoritesController.getFavorites);
+// POST /api/v1/users/favorites/:recipeId
+
+router.route('/:recipeId')
+
+  .post(authenticationMiddleware, canFavoriteMiddleware, favoritesController.addFavorite);
+
+
+export default router;
