@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../models';
-import apiResponse from '../helpers';
 
 
 /**
@@ -17,23 +16,26 @@ export default class UserController {
   userSignUp(req, res) {
     const errors = [];
     if (!req.body.Firstname) {
-      errors.push('*First name is Required!');
+      errors.push('First name is Required!');
     }
     if (!req.body.Lastname) {
-      errors.push('*Last name is Required!');
+      errors.push('Last name is Required!');
     }
     if (!req.body.Username) {
-      errors.push('*Choose your User Name.');
+      errors.push('Choose your User Name.');
     }
     if (!req.body.Email) {
-      errors.push('*Email Address is Required!');
+      errors.push('Email Address is Required!');
     }
     if (!req.body.Password) {
-      errors.push('*Choose a Password');
+      errors.push('Choose a Password');
     }
 
     if (errors.length > 0) {
-      return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
+      return res.status(422).json({
+        errors,
+        message: 'Please fix the validation errors'
+      });
     }
 
     db.User.create({
@@ -41,7 +43,7 @@ export default class UserController {
       Lastname: req.body.Lastname,
       Username: req.body.Username,
       Email: req.body.Email,
-      Password: bcrypt.hashSync(req.body.Password, 10) 
+      Password: bcrypt.hashSync(req.body.Password, 10)
     }).then((user) => {
       const createdUser = {
         firstname: user.Firstname
@@ -58,7 +60,7 @@ export default class UserController {
     });
   }
   /**
-   * adds a new user to database
+   * signs user in
    * @param {object} req express request object
    * @param {object} res express response object
    * @returns {json} json returned to client
@@ -67,24 +69,32 @@ export default class UserController {
     const errors = [];
 
     if (!req.body.Username) {
-      errors.push('*Username is required   ');
+      errors.push('Username is required');
     }
     if (!req.body.Password) {
-      errors.push('*Password is required');
+      errors.push('Password is required');
     }
     if (errors.length > 0) {
-      return apiResponse('fail', 422, { errors, message: 'Please fix the validation errors' }, res);
+      return res.status(422).json({ errors, message: 'Please fix the validation errors' });
     }
     return db.User.findOne({ where: { Username: req.body.Username } }).then((user) => {
       if (!user) {
-        return apiResponse('fail', 404, { message: '*Wrong credentials' }, res);
+        return res.status(404).json({ message: 'Wrong credentials' });
       }
       if (bcrypt.compareSync(req.body.Password, user.Password)) {
         const token = jwt.sign(user.get(), 'secret');
-        return apiResponse('success', 201, { user, token }, res);
+        return res.status(201).json({ user, token });
       }
 
-      return apiResponse('fail', 404, { message: '*Wrong credentials' }, res);
-    }).catch(error => apiResponse('fail', 500, { message: error.message }, res));
+      return res.status(404).json({ message: 'Wrong credentials' });
+    }).catch((error) => {
+      res.status(500).json({
+        message: error.message
+      });
+    });
   }
 }
+
+// update user, delete user, find user. token, exclude pword, delete review,
+// update review,delete from favorites, middle ware for long if statements, check for empty
+// fields for update user and update recipe.
