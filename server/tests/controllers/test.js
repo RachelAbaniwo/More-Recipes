@@ -1,11 +1,11 @@
 /* eslint-disable */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import db from '../database/models/index'
+import db from '../../models/index'
 import bcrypt from 'bcrypt';
 import faker from 'faker';
 import jwt from 'jsonwebtoken';
-import app from '../app';
+import app from '../../app';
 const expect = chai.expect;
 chai.use(chaiHttp);
 

@@ -99,3 +99,5 @@ export default class UserController {
 // update review,delete from favorites, middle ware for long if statements, check for empty
 // fields for update user and update recipe, add image, eagerloading, id-uiid,view reviews
 // token expiry
+// "pretest": "npm run cleardb && NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all",
+
