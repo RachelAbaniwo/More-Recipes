@@ -40,46 +40,7 @@ export default class RecipesController {
       message: 'Invalid Request'
     }));
   }
-  /**
-   * gets a user's personal recipes from database
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
-   */
-  getMyRecipes(req, res) {
-    db.Recipe.findAll({ where: { userId: req.AuthUser.id } }).then((recipes) => {
-      if (recipes.length < 1) {
-        return res.status(404).json({
-          message: 'You have no Recipes'
-        });
-      } res.status(200).json({
-        recipes
-      });
-    }).catch(error =>
-      res.status(500).json({
-        message: error.message
-      }));
-  }
-  /**
-   * gets any user's recipes by the user's id
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
-   */
-  getUserRecipes(req, res) {
-    db.Recipe.findAll({ where: { userId: req.params.userId } }).then((recipes) => {
-      if (recipes.length < 1) {
-        return res.status(404).json({
-          message: 'User has no Recipes'
-        });
-      } res.status(200).json({
-        recipes
-      });
-    }).catch(() =>
-      res.status(422).json({
-        message: 'Invalid Request'
-      }));
-  }
+  
   /**
    * creates a new recipe
    * @param {object} req express request object

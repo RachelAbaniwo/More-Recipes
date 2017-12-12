@@ -2,7 +2,8 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../models';
 
-
+const { User } = db;
+const { Recipe } = db;
 /**
  * Controls the user endpoints
  */
@@ -38,7 +39,7 @@ export default class UserController {
       });
     }
 
-    db.User.create({
+    User.create({
       Firstname: req.body.Firstname,
       Lastname: req.body.Lastname,
       Username: req.body.Username,
@@ -46,12 +47,19 @@ export default class UserController {
       Password: bcrypt.hashSync(req.body.Password, 10)
     }).then((user) => {
       const createdUser = {
-        firstname: user.Firstname
+        firstname: user.Firstname,
+        lastname: user.Lastname,
+        username: user.Username,
+        email: user.Email,
+        id: user.id
       };
-      const token = jwt.sign(user.get(), 'secret');
+      const token = jwt.sign(createdUser, 'secret', {
+        expiresIn: 60 * 60 * 24
+      });
       res.status(201).json({
         createdUser,
-        token
+        token,
+        message: 'Successfully signed up!'
       });
     }).catch((error) => {
       res.status(422).json({
@@ -77,13 +85,20 @@ export default class UserController {
     if (errors.length > 0) {
       return res.status(422).json({ errors, message: 'Please fix the validation errors' });
     }
-    return db.User.findOne({ where: { Username: req.body.Username } }).then((user) => {
+    return User.findOne({ where: { Username: req.body.Username } }).then((user) => {
       if (!user) {
         return res.status(404).json({ message: 'Wrong credentials' });
       }
       if (bcrypt.compareSync(req.body.Password, user.Password)) {
-        const token = jwt.sign(user.get(), 'secret');
-        return res.status(201).json({ user, token });
+        const existingUser = {
+          firstname: user.Firstname,
+          lastname: user.Lastname,
+          username: user.Username,
+          email: user.Email,
+          id: user.id
+        };
+        const token = jwt.sign(existingUser, 'secret');
+        return res.status(201).json({ existingUser, token });
       }
 
       return res.status(404).json({ message: 'Wrong credentials' });
@@ -92,6 +107,46 @@ export default class UserController {
         message: error.message
       });
     });
+  }
+  /**
+   * gets a user's personal recipes from database
+   * @param {object} req request object
+   * @param {object} res response object
+   * @returns {json} json returned to client
+   */
+  getMyRecipes(req, res) {
+    Recipe.findAll({ where: { userId: req.AuthUser.id } }).then((recipes) => {
+      if (recipes.length < 1) {
+        return res.status(404).json({
+          message: 'You have no Recipes'
+        });
+      } res.status(200).json({
+        recipes
+      });
+    }).catch(error =>
+      res.status(500).json({
+        message: error.message
+      }));
+  }
+  /**
+   * gets any user's recipes by the user's id
+   * @param {object} req request object
+   * @param {object} res response object
+   * @returns {json} json returned to client
+   */
+  getUserRecipes(req, res) {
+    Recipe.findAll({ where: { userId: req.params.userId } }).then((recipes) => {
+      if (recipes.length < 1) {
+        return res.status(404).json({
+          message: 'User has no Recipes'
+        });
+      } res.status(200).json({
+        recipes
+      });
+    }).catch(() =>
+      res.status(422).json({
+        message: 'Invalid Request'
+      }));
   }
 }
 

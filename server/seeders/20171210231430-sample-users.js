@@ -1,4 +1,5 @@
 'use strict';
+import bcrypt from 'bcrypt';
 
 module.exports = {
   up: queryInterface =>
@@ -7,7 +8,7 @@ module.exports = {
       Lastname: 'Abaniwo',
       Username: 'RachelAbaniwo',
       Email: 'rachel.abaniwo@test.com',
-      Password: 'rachel',
+      Password: bcrypt.hashSync('rachel', 10),
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -15,7 +16,7 @@ module.exports = {
       Lastname: 'Abaniwo',
       Username: 'IneneAbaniwo',
       Email: 'inene.abaniwo@test.com',
-      Password: 'rachel',
+      Password: bcrypt.hashSync('rachel', 10),
       createdAt: new Date(),
       updatedAt: new Date(),
     }
