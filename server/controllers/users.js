@@ -33,7 +33,7 @@ export default class UserController {
     }
 
     if (errors.length > 0) {
-      return res.status(422).json({
+      return res.status(400).json({
         errors,
         message: 'Please fix the validation errors'
       });
@@ -62,8 +62,8 @@ export default class UserController {
         message: 'Successfully signed up!'
       });
     }).catch((error) => {
-      res.status(422).json({
-        error: error.message
+      res.status(400).json({
+        message: error.message
       });
     });
   }
@@ -83,7 +83,7 @@ export default class UserController {
       errors.push('Password is required');
     }
     if (errors.length > 0) {
-      return res.status(422).json({ errors, message: 'Please fix the validation errors' });
+      return res.status(400).json({ errors, message: 'Please fix the validation errors' });
     }
     return User.findOne({ where: { Username: req.body.Username } }).then((user) => {
       if (!user) {
@@ -98,7 +98,7 @@ export default class UserController {
           id: user.id
         };
         const token = jwt.sign(existingUser, 'secret');
-        return res.status(201).json({ existingUser, token });
+        return res.status(200).json({ existingUser, token, message: 'Successfully signed in.' });
       }
 
       return res.status(404).json({ message: 'Wrong credentials' });

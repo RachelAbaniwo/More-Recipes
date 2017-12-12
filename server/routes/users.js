@@ -1,13 +1,11 @@
 import express from 'express';
 import UserController from '../controllers/users';
-import RecipesController from '../controllers/recipes';
 import authenticationMiddleware from '../middleware/authenticate';
 
 
 const router = express.Router();
 
 const userController = new UserController();
-const recipesController = new RecipesController();
 
 
 // GET /api/v1/users/signup - Registers a new User
@@ -28,14 +26,14 @@ router.route('/signin')
 
 router.route('/myrecipes')
 
-  .get(authenticationMiddleware, recipesController.getMyRecipes);
+  .get(authenticationMiddleware, userController.getMyRecipes);
 
 
 // GET /api/users/:userId/recipes - Gets another user's recipes with user specified by Id
 
 router.route('/:userId/recipes')
 
-  .get(authenticationMiddleware, recipesController.getUserRecipes);
+  .get(authenticationMiddleware, userController.getUserRecipes);
 
 
 export default router;
