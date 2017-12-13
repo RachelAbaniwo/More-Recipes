@@ -75,7 +75,7 @@ describe('FAVORITES CONTROLLER', () => {
     });
     it('should return an error if a User is trying to add a recipe that doesn\'t exist to List of Favorites', (done) =>{
       chai.request(app)
-      .post('/api/v1/users/favorites/8')
+      .post('/api/v1/users/favorites/10')
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(404);

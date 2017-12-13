@@ -38,6 +38,24 @@ module.exports = {
       userId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+    }, {
+      name: 'Nigerian Doughnut',
+      category: 'Pastries',
+      ingredients: 'Flour, Sugar',
+      description: 'Mix and Fry',
+      method: 'Deep Fry',
+      userId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }, {
+      name: 'Jamaican Sauce',
+      category: 'Sauces',
+      ingredients: 'Chicken, Veggies',
+      description: 'Nice Sauce',
+      method: 'Slice Veggies, Slice Chicken into bits',
+      userId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }
     ], {}),
 

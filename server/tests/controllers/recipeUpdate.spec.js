@@ -67,7 +67,7 @@ describe('RECIPE CONTROLLER', () => {
     });
     it('should return an error if Recipe to be updated is not found', (done) => {
       chai.request(app)
-      .put('/api/v1/recipes/8')
+      .put('/api/v1/recipes/10')
       .set('token', user1Token)
       .send(updateRecipe)
       .end((error, response) => {

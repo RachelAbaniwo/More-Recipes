@@ -67,7 +67,7 @@ describe('REVIEW CONTROLLER', () => {
     });
     it('should return an error if the Id of the recipe to be reviewed does not exist', (done) => {
       chai.request(app)
-      .post('/api/v1/recipes/reviews/8')
+      .post('/api/v1/recipes/reviews/10')
       .set('token', user1Token)
       .send({
         review: "Awesome Stuff"

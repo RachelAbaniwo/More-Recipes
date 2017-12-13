@@ -51,7 +51,7 @@ describe('RECIPE CONTROLLER', () => {
     });
     it('should return an error if Recipe to be deleted is not found', (done) => {
       chai.request(app)
-      .delete('/api/v1/recipes/8')
+      .delete('/api/v1/recipes/10')
       .set('token', user2Token)
       .end((error, response) => {
         expect(response).to.have.status(404);

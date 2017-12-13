@@ -53,7 +53,7 @@ describe('RECIPE CONTROLLER', () => {
     });
     it('should return an error if the recipe requested by the User doesn\'t exist', (done) => {``
       chai.request(app)
-      .get('/api/v1/recipes/5')
+      .get('/api/v1/recipes/10')
       .end((error, response) => {
         const recipe = response.body.recipe;
         expect(response).to.have.status(404);
