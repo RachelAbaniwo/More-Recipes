@@ -20,6 +20,24 @@ module.exports = {
       userId: 2,
       createdAt: new Date(),
       updatedAt: new Date(),
+    }, {
+      name: 'Chilli Fries',
+      category: 'Fries',
+      ingredients: 'Irish Potatoes',
+      description: 'Irish Potatoes',
+      method: 'Deep Fry Potatoes',
+      userId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }, {
+      name: 'Chicken Sauce',
+      category: 'Sauces',
+      ingredients: 'Chicken',
+      description: 'Chicken',
+      method: 'Boil Chicken in veggies',
+      userId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }
     ], {}),
 

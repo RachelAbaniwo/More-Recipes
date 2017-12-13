@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../models';
+import config from './../config';
 
 const { User } = db;
 const { Recipe } = db;
@@ -53,7 +54,7 @@ export default class UserController {
         email: user.Email,
         id: user.id
       };
-      const token = jwt.sign(createdUser, 'secret', {
+      const token = jwt.sign(createdUser, config.jwtSecret, {
         expiresIn: 60 * 60 * 24
       });
       res.status(201).json({
@@ -97,7 +98,9 @@ export default class UserController {
           email: user.Email,
           id: user.id
         };
-        const token = jwt.sign(existingUser, 'secret');
+        const token = jwt.sign(existingUser, config.jwtSecret, {
+          expiresIn: 60 * 60 * 24
+        });
         return res.status(200).json({ existingUser, token, message: 'Successfully signed in.' });
       }
 
@@ -151,11 +154,11 @@ export default class UserController {
           recipes
         });
       }).catch(() =>
-        res.status(422).json({
+        res.status(400).json({
           message: 'Invalid Request'
         }));
     }).catch(() =>
-      res.status(422).json({
+      res.status(400).json({
         message: 'Invalid Request'
       }));
   }

@@ -36,11 +36,10 @@ export default class RecipesController {
       return res.status(200).json({
         recipe
       });
-    }).catch(() => res.status(422).json({
+    }).catch(() => res.status(400).json({
       message: 'Invalid Request'
     }));
   }
-  
   /**
    * creates a new recipe
    * @param {object} req express request object
@@ -67,7 +66,7 @@ export default class RecipesController {
     }
 
     if (errors.length > 0) {
-      return res.status(422).json({
+      return res.status(400).json({
         errors,
         message: 'Please fill all Fields'
       });
@@ -106,10 +105,21 @@ export default class RecipesController {
       returning: true,
       plain: true
     })
-      .then(recipe => res.status(201).json({
-        recipe, message: 'Successfully updated recipe'
-      }))
-      .catch(error => res.status(500).json({
+      .then((recipe) => {
+        const updatedRecipe = {
+          name: recipe[1].name,
+          category: recipe[1].category,
+          description: recipe[1].description,
+          method: recipe[1].method,
+          ingredients: recipe[1].ingredients,
+          id: recipe[1].id,
+          userId: recipe[1].userId
+
+        };
+        res.status(201).json({
+          updatedRecipe, message: 'Successfully updated recipe'
+        });
+      }).catch(error => res.status(500).json({
         message: error.message
       }));
   }

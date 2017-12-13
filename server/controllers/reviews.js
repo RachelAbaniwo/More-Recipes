@@ -12,7 +12,7 @@ export default class ReviewsController {
    */
   addReviews(req, res) {
     if (!req.body.review) {
-      return res.status(422).json({
+      return res.status(400).json({
         message: 'Review field empty'
       });
     }
@@ -32,7 +32,7 @@ export default class ReviewsController {
           message: 'Recipe to be reviewed not found'
         });
       }
-    }).catch(() => res.status(422).json({
+    }).catch(() => res.status(400).json({
       message: 'Invalid Request'
     }));
   }

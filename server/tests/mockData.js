@@ -54,5 +54,12 @@ export default {
     description: 'Ofada Rice is eaten with complimentary sauce',
     method: 'Boil Rice'
   },
+  updateRecipe: {
+    name: 'Chicken Chilli Sauce',
+    category: 'Stews and Sauce',
+    ingredients: 'Chicken, Chilli Pepper, Veggies',
+    description: 'Sauce to be served along side pasta',
+    method: 'add Chicken, then add Chilli Pepper'
+  },
 };
 

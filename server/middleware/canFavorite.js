@@ -15,6 +15,6 @@ export default async (req, res, next) => {
     req.FavoriteRecipe = recipe;
     next();
   } catch (error) {
-    return res.status(422).json({ message: 'Invalid Request.' });
+    return res.status(400).json({ message: 'Invalid Request.' });
   }
 };
