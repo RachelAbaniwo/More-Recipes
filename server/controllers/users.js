@@ -135,14 +135,25 @@ export default class UserController {
    * @returns {json} json returned to client
    */
   getUserRecipes(req, res) {
-    Recipe.findAll({ where: { userId: req.params.userId } }).then((recipes) => {
-      if (recipes.length < 1) {
+    User.findOne({ where: { id: req.params.userId } }).then((user) => {
+      if (!user) {
         return res.status(404).json({
-          message: 'User has no Recipes'
+          message: 'User not Found'
         });
-      } res.status(200).json({
-        recipes
-      });
+      }
+      Recipe.findAll({ where: { userId: req.params.userId } }).then((recipes) => {
+        if (recipes.length < 1) {
+          return res.status(404).json({
+            message: 'User has no Recipes'
+          });
+        }
+        res.status(200).json({
+          recipes
+        });
+      }).catch(() =>
+        res.status(422).json({
+          message: 'Invalid Request'
+        }));
     }).catch(() =>
       res.status(422).json({
         message: 'Invalid Request'
@@ -155,4 +166,3 @@ export default class UserController {
 // fields for update user and update recipe, add image, eagerloading, id-uiid,view reviews
 // token expiry
 // "pretest": "npm run cleardb && NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all",
-

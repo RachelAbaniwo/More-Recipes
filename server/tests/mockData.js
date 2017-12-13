@@ -7,6 +7,10 @@ export default {
     Username: 'IneneAbaniwo',
     Password: 'rachel'
   },
+  signinUser3: {
+    Username: 'NelsonAbang',
+    Password: 'rachel'
+  },
   wrongUsernameSignIn: {
     Username: 'Abaniwo',
     Password: 'rachel'
