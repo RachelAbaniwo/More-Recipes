@@ -1,20 +1,20 @@
-import db from '../database/models/index';
-import apiResponse from '../helpers';
+import db from '../models/index';
+
 
 export default async (req, res, next) => {
   try {
     const recipe = await db.Recipe.findById(req.params.recipeId);
 
     if (!recipe) {
-      return apiResponse('fail', 404, { message: 'Recipe not found.' }, res);
+      return res.status(404).json({ message: 'Recipe not found.' });
     }
 
     if (recipe.userId === req.AuthUser.id) {
-      return apiResponse('fail', 401, { message: 'Unauthorized.' }, res);
+      return res.status(401).json({ message: 'Unauthorized.' });
     }
     req.FavoriteRecipe = recipe;
     next();
   } catch (error) {
-    return apiResponse('fail', 422, { message: 'Invalid Request.' }, res);
+    return res.status(400).json({ message: 'Invalid Request.' });
   }
 };

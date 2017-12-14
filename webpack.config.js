@@ -17,7 +17,8 @@ module.exports = {
     filename: 'app.bundle.js'
   },
   devServer: {
-    contentBase: paths.SRC
+    contentBase: paths.SRC,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
