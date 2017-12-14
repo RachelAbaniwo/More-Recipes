@@ -4,8 +4,21 @@ export default class Navbar extends React.Component {
   render() {
     return (
       <section id="nav">
-      <nav className="navbar navbar-expand-md navbar-dark fixed-top" style={{backgroundColor: 'rgba(73, 67, 67, 0.9)', width: '100%', height: 50, fontSize: 15}}>
-        <a className="navbar-brand" href="#page-top"><h4 style={{color: 'rgba(27, 255, 164, 0.473)'}}> MORE RECIPES</h4><span className="sr-only">(current)</span></a>
+      <nav className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
+        <a className="moreRecipes" href="#">MORE RECIPES</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a className="navbar-register" style={{marginRight: 20}} href="#">POPULAR RECIPES</a>
+            </li>
+          </ul>
+          <form className="form-inline my-2 my-lg-0">
+            <input className="form-control mr-sm-2" type="search" placeholder="Find a Recipe" aria-label="Search" />
+          </form>
+        </div>
       </nav>
     </section>
     );

@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Recipe = sequelize.define('Recipe', {
+    recipeImage: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     name: DataTypes.STRING,
     category: DataTypes.STRING,
     ingredients: DataTypes.TEXT,
