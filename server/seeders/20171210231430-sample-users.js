@@ -1,9 +1,11 @@
 'use strict';
+
 const bcrypt = require('bcrypt');
 
 module.exports = {
   up: queryInterface =>
     queryInterface.bulkInsert('Users', [{
+      profilePicture: '',
       Firstname: 'Rachel',
       Lastname: 'Abaniwo',
       Username: 'RachelAbaniwo',
@@ -12,6 +14,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
+      profilePicture: '',
       Firstname: 'Inene',
       Lastname: 'Abaniwo',
       Username: 'IneneAbaniwo',
@@ -20,6 +23,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
+      profilePicture: '',
       Firstname: 'Nelson',
       Lastname: 'Abang',
       Username: 'NelsonAbang',

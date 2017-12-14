@@ -4,14 +4,17 @@ import userRoutes from './users';
 import reviewRoutes from './reviews';
 import voteRoutes from './votes';
 import favoriteRoutes from './favorites';
+import modifyUserRoutes from './modifyUser';
 
 const router = express.Router();
 
 
 router.use('/recipes', recipeRoutes);
 router.use('/users', userRoutes);
-router.use('/recipes/reviews', reviewRoutes);
+router.use('/reviews', reviewRoutes);
 router.use('/recipes/', voteRoutes);
-router.use('/users/favorites', favoriteRoutes);
+router.use('/favorites', favoriteRoutes);
+router.use('/users', modifyUserRoutes);
+
 
 export default router;

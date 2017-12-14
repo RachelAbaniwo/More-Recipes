@@ -29,11 +29,17 @@ router.route('/myrecipes')
   .get(authenticationMiddleware, userController.getMyRecipes);
 
 
-// GET /api/users/:userId/recipes - Gets another user's recipes with user specified by Id
+// GET /api/v1/users/:userId/recipes - Gets another user's recipes with user specified by Id
 
 router.route('/:userId/recipes')
 
   .get(authenticationMiddleware, userController.getUserRecipes);
+
+// GET /api/v1/users/:userId - Gets one User
+
+router.route('/:userId')
+
+  .get(userController.findUser);
 
 
 export default router;

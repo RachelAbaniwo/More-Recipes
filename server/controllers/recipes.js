@@ -94,34 +94,38 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   updateRecipe(req, res) {
-    return db.Recipe.update({
-      name: req.body.name,
-      category: req.body.category,
-      description: req.body.description,
-      method: req.body.method,
-      ingredients: req.body.ingredients,
-    }, {
-      where: { id: req.params.recipeId },
-      returning: true,
-      plain: true
-    })
-      .then((recipe) => {
-        const updatedRecipe = {
-          name: recipe[1].name,
-          category: recipe[1].category,
-          description: recipe[1].description,
-          method: recipe[1].method,
-          ingredients: recipe[1].ingredients,
-          id: recipe[1].id,
-          userId: recipe[1].userId
+    db.Recipe.findById(req.params.recipeId).then((recipe) => {
+      db.Recipe.update({
+        name: req.body.name || recipe.name,
+        category: req.body.category || recipe.category,
+        description: req.body.description || recipe.description,
+        method: req.body.method || recipe.method,
+        ingredients: req.body.ingredients || recipe.ingredients,
+      }, {
+        where: { id: req.params.recipeId },
+        returning: true,
+        plain: true
+      })
+        .then((newRecipe) => {
+          const updatedRecipe = {
+            name: newRecipe[1].name,
+            category: newRecipe[1].category,
+            description: newRecipe[1].description,
+            method: newRecipe[1].method,
+            ingredients: newRecipe[1].ingredients,
+            id: newRecipe[1].id,
+            userId: newRecipe[1].userId
 
-        };
-        res.status(201).json({
-          updatedRecipe, message: 'Successfully updated recipe'
-        });
-      }).catch(error => res.status(500).json({
-        message: error.message
-      }));
+          };
+          res.status(201).json({
+            updatedRecipe, message: 'Successfully updated recipe'
+          });
+        }).catch(error => res.status(500).json({
+          message: error.message
+        }));
+    }).catch(error => res.status(500).json({
+      message: error.message
+    }));
   }
   /**
    * deletes a recipe

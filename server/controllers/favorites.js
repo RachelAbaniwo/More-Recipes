@@ -58,4 +58,21 @@ export default class FavoritesController {
       });
     }
   }
+  /**
+     * deletes a user from database
+     * @param {object} req request object
+     * @param {object} res response object
+     * @returns {json} json returns message to client
+     */
+  deleteFavorite(req, res) {
+    return db.Favorite.findById(req.params.favoriteId).then((favorite) => {
+      favorite.destroy().then(() => res.status(200).json({
+        message: 'Successfully deleted this recipe from your favorites'
+      }))
+        .catch(error => res.status(500).json({
+          message: error.message
+        }));
+    });
+  }
 }
+

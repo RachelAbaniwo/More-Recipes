@@ -3,6 +3,7 @@
 module.exports = {
   up: queryInterface =>
     queryInterface.bulkInsert('Recipes', [{
+      recipeImage: '',
       name: 'Fried Noodles',
       category: 'Pasta',
       ingredients: 'Noodles, Pepper, Olive Oil, Onions',
@@ -12,6 +13,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
+      recipeImage: '',
       name: 'Coconut Rice',
       category: 'Rice',
       ingredients: 'Rice, Coconut Milk, Pepper, Olive Oil, Onions',
@@ -21,6 +23,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
+      recipeImage: '',
       name: 'Chilli Fries',
       category: 'Fries',
       ingredients: 'Irish Potatoes',
@@ -30,6 +33,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
+      recipeImage: '',
       name: 'Chicken Sauce',
       category: 'Sauces',
       ingredients: 'Chicken',
@@ -39,6 +43,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
+      recipeImage: '',
       name: 'Nigerian Doughnut',
       category: 'Pastries',
       ingredients: 'Flour, Sugar',
@@ -48,6 +53,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
+      recipeImage: '',
       name: 'Jamaican Sauce',
       category: 'Sauces',
       ingredients: 'Chicken, Veggies',

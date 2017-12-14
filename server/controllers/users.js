@@ -54,7 +54,7 @@ export default class UserController {
         email: user.Email,
         id: user.id
       };
-      const token = jwt.sign(createdUser, config.jwtSecret, {
+      const token = jwt.sign({ id: user.id }, config.jwtSecret, {
         expiresIn: 60 * 60 * 24
       });
       res.status(201).json({
@@ -98,7 +98,7 @@ export default class UserController {
           email: user.Email,
           id: user.id
         };
-        const token = jwt.sign(existingUser, config.jwtSecret, {
+        const token = jwt.sign({ id: user.id }, config.jwtSecret, {
           expiresIn: 60 * 60 * 24
         });
         return res.status(200).json({ existingUser, token, message: 'Successfully signed in.' });
@@ -110,6 +110,34 @@ export default class UserController {
         message: error.message
       });
     });
+  }
+  /**
+   * find a user
+   * @param {object} req request object
+   * @param {object} res response object
+   * @returns {json} json returned to client
+   */
+  findUser(req, res) {
+    User.findOne({ where: { id: req.params.userId } }).then((user) => {
+      if (!user) {
+        return res.status(404).json({
+          message: 'User not Found'
+        });
+      }
+      const foundUser = {
+        Firstname: user.Firstname,
+        Lastname: user.Lastname,
+        Username: user.Username,
+        Email: user.Email,
+        id: user.id
+      };
+      res.status(200).json({
+        foundUser
+      });
+    }).catch(() =>
+      res.status(400).json({
+        message: 'Invalid Request'
+      }));
   }
   /**
    * gets a user's personal recipes from database
@@ -164,7 +192,7 @@ export default class UserController {
   }
 }
 
-// update user, delete user, find user. token, exclude pword, delete review,
+// update user, delete user, find user. token, exclude pword, delete review, get reviews
 // update review,delete from favorites, middle ware for long if statements, check for empty
 // fields for update user and update recipe, add image, eagerloading, id-uiid,view reviews
 // token expiry
