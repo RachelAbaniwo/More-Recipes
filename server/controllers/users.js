@@ -195,5 +195,5 @@ export default class UserController {
 
 // middle ware for long if statements
 //  eagerloading,
-// token expiry, search,same user, same recipe
-// when token expires, .env file stuff.
+// token expiry, search,same user, same recipe, sort recipes
+// when token expires, .env file stuff, document api, readme, pivotal tracker, jsdoc, template
