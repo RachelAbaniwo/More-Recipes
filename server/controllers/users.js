@@ -12,8 +12,8 @@ const { Recipe } = db;
 export default class UserController {
 /**
    * adds a new user to database
-   * @param {object} req express request object
-   * @param {object} res express response object
+   * @param {object} req request object
+   * @param {object} res response object
    * @returns {json} json returned to client
    */
   userSignUp(req, res) {
@@ -71,8 +71,8 @@ export default class UserController {
   }
   /**
    * signs user in
-   * @param {object} req express request object
-   * @param {object} res express response object
+   * @param {object} req request object
+   * @param {object} res response object
    * @returns {json} json returned to client
    */
   userSignIn(req, res) {
@@ -113,7 +113,7 @@ export default class UserController {
     });
   }
   /**
-   * find a user
+   * finds a user
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json returned to client
@@ -161,7 +161,7 @@ export default class UserController {
       }));
   }
   /**
-   * gets any user's recipes by the user's id
+   * gets any user's personal recipes by the user's id
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json returned to client
@@ -193,9 +193,7 @@ export default class UserController {
   }
 }
 
-// update user, delete user, find user. token, exclude pword, delete review, get reviews
-// update review,delete from favorites, middle ware for long if statements, check for empty
-// fields for update user and update recipe, add image, eagerloading, id-uiid,view reviews
-// token expiry, regex, search,same user, same recipe
-// "pretest": "npm run cleardb && NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all",
-// [^\S\r\n]{2,} when token expires
+// middle ware for long if statements
+//  eagerloading,
+// token expiry, search,same user, same recipe
+// when token expires, .env file stuff.

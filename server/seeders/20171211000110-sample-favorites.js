@@ -7,6 +7,11 @@ module.exports = {
       userId: 2,
       createdAt: new Date(),
       updatedAt: new Date(),
+    }, {
+      recipeId: 1,
+      userId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }
     ], {}),
 

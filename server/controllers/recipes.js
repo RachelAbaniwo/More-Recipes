@@ -1,5 +1,5 @@
 import db from '../models';
-import { checkInput, checkRecipeField, returnParameter } from '../helpers/checkInput';
+import { checkField, returnParameter } from '../helpers/checkInput';
 
 const { Recipe } = db;
 
@@ -52,19 +52,19 @@ export default class RecipesController {
   addRecipes(req, res) {
     const errors = [];
 
-    if ((!req.body.name) || (checkRecipeField(req.body.name))) {
+    if ((!req.body.name) || (checkField(req.body.name))) {
       errors.push('Recipe Name is required.');
     }
-    if ((!req.body.category) || (checkRecipeField(req.body.category))) {
+    if ((!req.body.category) || (checkField(req.body.category))) {
       errors.push('Recipe Category is required.');
     }
-    if ((!req.body.ingredients) || (checkRecipeField(req.body.ingredients))) {
+    if ((!req.body.ingredients) || (checkField(req.body.ingredients))) {
       errors.push('Recipe Ingredients are required.');
     }
-    if ((!req.body.description) || (checkRecipeField(req.body.description))) {
+    if ((!req.body.description) || (checkField(req.body.description))) {
       errors.push('Recipe Description is required.');
     }
-    if ((!req.body.method) || (checkRecipeField(req.body.method))) {
+    if ((!req.body.method) || (checkField(req.body.method))) {
       errors.push('Method required.');
     }
 

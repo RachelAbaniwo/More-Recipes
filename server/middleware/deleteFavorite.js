@@ -9,7 +9,7 @@ export default (req, res, next) => {
     }
 
     if (favorite.userId !== req.AuthUser.id) {
-      return res.status(401).json({ message: 'Unauthorised!' });
+      return res.status(401).json({ message: 'Unauthorized USER' });
     }
 
     next();
