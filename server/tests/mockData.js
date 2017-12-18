@@ -1,7 +1,11 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 export default {
   signinUser1: {
     Username: 'RachelAbaniwo',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   signinUser2: {
     Username: 'IneneAbaniwo',

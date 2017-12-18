@@ -6,7 +6,6 @@ import bodyParser from 'body-parser';
 import db from './models';
 import routes from './routes/routes';
 
-
 // Set up the express app
 const app = express();
 
