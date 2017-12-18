@@ -6,7 +6,7 @@ import data from '../mockData'
 
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
-const { signinUser1, signinUser2, signinUser3, recipe1, updateRecipe } = data;
+const { signinUser1, signinUser2, signinUser3 } = data;
 
 chai.use(chaiHttp);
 
@@ -41,7 +41,7 @@ describe('FAVORITES CONTROLLER', () => {
     
     it('should add a Recipe of a Signed In User\'s choice to that User\'s List of Favorite Recipes', (done) => {
       chai.request(app)
-      .post('/api/v1/users/favorites/2')
+      .post('/api/v1/favorites/2')
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(201);
@@ -51,11 +51,11 @@ describe('FAVORITES CONTROLLER', () => {
     });
     it('should remove a Recipe from a Signed In User\'s List of Favorite Recipes when called twice for the same Recipe', (done) => {
       chai.request(app)
-      .post('/api/v1/users/favorites/3')
+      .post('/api/v1/favorites/3')
       .set('token', user2Token)
       .end((error, response) => {
         chai.request(app)
-        .post('/api/v1/users/favorites/3')
+        .post('/api/v1/favorites/3')
         .set('token', user2Token)
         .end((error, response) => {
           expect(response).to.have.status(200);
@@ -66,7 +66,7 @@ describe('FAVORITES CONTROLLER', () => {
     });
     it('should return an error if User trying to add a recipe to his/her Favorites isn\'t signed in', (done) =>{
       chai.request(app)
-      .post('/api/v1/users/favorites/3')
+      .post('/api/v1/favorites/3')
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body.message).to.equal('Unauthenticated USER.')
@@ -75,7 +75,7 @@ describe('FAVORITES CONTROLLER', () => {
     });
     it('should return an error if a User is trying to add a recipe that doesn\'t exist to List of Favorites', (done) =>{
       chai.request(app)
-      .post('/api/v1/users/favorites/10')
+      .post('/api/v1/favorites/10')
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(404);
@@ -85,7 +85,7 @@ describe('FAVORITES CONTROLLER', () => {
     });
     it('should return an error if User is trying to add a recipe with an ID that isn\'t an integer to List of Favorites', (done) =>{
       chai.request(app)
-      .post('/api/v1/users/favorites/Rachel')
+      .post('/api/v1/favorites/Rachel')
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(400);
@@ -95,7 +95,7 @@ describe('FAVORITES CONTROLLER', () => {
     });
     it('should return an error if User is trying to add a Personal recipe to List of Favorites', (done) =>{
       chai.request(app)
-      .post('/api/v1/users/favorites/1')
+      .post('/api/v1/favorites/1')
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(401);
@@ -109,7 +109,7 @@ describe('FAVORITES CONTROLLER', () => {
     
     it('should return a User\'s List of Favorites', (done) =>{
       chai.request(app)
-      .get('/api/v1/users/favorites')
+      .get('/api/v1/favorites')
       .set('token', user2Token)
       .end((error, response) => {
         expect(response).to.have.status(200);
@@ -120,7 +120,7 @@ describe('FAVORITES CONTROLLER', () => {
     });
     it('should return an Error if User has no Recipe in List of Favorites', (done) =>{
       chai.request(app)
-      .get('/api/v1/users/favorites')
+      .get('/api/v1/favorites')
       .set('token', user3Token)
       .end((error, response) => {
         expect(response).to.have.status(404);
@@ -131,7 +131,7 @@ describe('FAVORITES CONTROLLER', () => {
     });
     it('should return an Error if User is not Signed In', (done) =>{
       chai.request(app)
-      .get('/api/v1/users/favorites')
+      .get('/api/v1/favorites')
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');

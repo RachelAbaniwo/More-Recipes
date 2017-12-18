@@ -7,7 +7,7 @@ import data from '../mockData'
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
 
-const { signinUser1, signinUser2, signinUser3, wrongUsernameSignIn, 
+const { signinUser1, signinUser2, signinUser3, wrongCharacterSignUp, wrongUsernameSignIn, 
        wrongPasswordSignIn, signupUser, emailInUseSignUp,
        usernameInUseSignUp, wrongEmailFormat } = data;
 
@@ -35,6 +35,23 @@ describe('USER CONTROLLER', () => {
         chai.request(app)
         .post('/api/v1/users/signup')
         .send({})
+        .end((error, response) => {
+          expect(response).to.have.status(400);
+          const errors = response.body.errors;
+          expect(errors).to.include('First name is Required!');
+          expect(errors).to.include('Last name is Required!');
+          expect(errors).to.include('Choose your User Name.');
+          expect(errors).to.include('Email Address is Required!');
+          expect(errors).to.include('Choose a Password');
+
+          expect(response.body.message).to.equal('Please fix the validation errors');
+          done();
+        });
+      });
+      it('should return correct validation errors if New User fills in invalid characters and wrong number of characters', (done) => {
+        chai.request(app)
+        .post('/api/v1/users/signup')
+        .send({wrongCharacterSignUp})
         .end((error, response) => {
           expect(response).to.have.status(400);
           const errors = response.body.errors;

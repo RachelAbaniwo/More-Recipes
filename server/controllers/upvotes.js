@@ -1,5 +1,7 @@
 import db from '../models';
 
+const { Upvote } = db;
+
 /**
  * Controls the upvote endpoints
  */
@@ -12,7 +14,7 @@ export default class UpvotesController {
    */
   async addUpvote(req, res) {
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
-    const upvote = await db.Upvote.findOne(query);
+    const upvote = await Upvote.findOne(query);
 
     if (upvote) {
       await upvote.destroy();
@@ -21,7 +23,7 @@ export default class UpvotesController {
       });
     }
 
-    await db.Upvote.create({
+    await Upvote.create({
       userId: req.AuthUser.id,
       recipeId: req.params.recipeId
     });

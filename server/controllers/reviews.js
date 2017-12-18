@@ -1,24 +1,27 @@
 import db from '../models';
+import { checkField, returnParameter } from '../helpers/checkInput';
+
+const { Recipe, Review } = db;
 
 /**
  * Controls the reviews endpoints
  */
 export default class ReviewsController {
 /**
-   * adds reviews to recipes database
+   * adds reviews to recipes
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json with updated reviews returned to client
    */
   addReviews(req, res) {
-    if (!req.body.review) {
+    if ((!req.body.review) || (checkField(req.body.review))) {
       return res.status(400).json({
         message: 'Review field empty'
       });
     }
-    db.Recipe.findById(req.params.recipeId).then((recipe) => {
+    Recipe.findById(req.params.recipeId).then((recipe) => {
       if (recipe) {
-        db.Review.create({
+        Review.create({
           review: req.body.review,
           recipeId: recipe.id,
           userId: req.AuthUser.id
@@ -37,19 +40,19 @@ export default class ReviewsController {
     }));
   }
   /**
-   * edit reviews
+   * gets recipe reviews
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json with updated reviews returned to client
    */
   getRecipeReviews(req, res) {
-    db.Recipe.findOne({ where: { id: req.params.recipeId } }).then((recipe) => {
+    Recipe.findOne({ where: { id: req.params.recipeId } }).then((recipe) => {
       if (!recipe) {
         return res.status(404).json({
           message: 'Recipe not Found'
         });
       }
-      db.Review.findAll({ where: { recipeId: req.params.recipeId } }).then((reviews) => {
+      Review.findAll({ where: { recipeId: req.params.recipeId } }).then((reviews) => {
         if (reviews.length < 1) {
           return res.status(404).json({
             message: 'Recipe has no Reviews'
@@ -69,15 +72,15 @@ export default class ReviewsController {
       }));
   }
   /**
-   * edit reviews
+   * edits reviews
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json with updated reviews returned to client
    */
   updateReview(req, res) {
-    db.Review.findById(req.params.reviewId).then((review) => {
-      db.Review.update({
-        review: req.body.review || review.review,
+    Review.findById(req.params.reviewId).then((review) => {
+      Review.update({
+        review: returnParameter(req.body.review) || review.review,
         id: review.id
       }, {
         where: { id: req.params.reviewId },
@@ -106,7 +109,7 @@ export default class ReviewsController {
    * @returns {json} json with updated reviews returned to client
    */
   deleteReview(req, res) {
-    db.Review.findById(req.params.reviewId).then((review) => {
+    Review.findById(req.params.reviewId).then((review) => {
       review.destroy().then(() => res.status(200).json({
         message: 'Successfully deleted your review'
       }))

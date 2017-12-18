@@ -8,6 +8,12 @@ module.exports = {
       userId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+    }, {
+      review: 'Super Nice!',
+      recipeId: 1,
+      userId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }
     ], {}),
 

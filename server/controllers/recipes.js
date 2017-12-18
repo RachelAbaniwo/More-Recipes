@@ -1,4 +1,7 @@
 import db from '../models';
+import { checkField, returnParameter } from '../helpers/checkInput';
+
+const { Recipe } = db;
 
 /**
  * Controls the recipes endpoints
@@ -11,7 +14,7 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   getRecipes(req, res) {
-    return db.Recipe.findAll({
+    return Recipe.findAll({
       //  include: { model: db.User }
     }).then(recipes => res.status(200).json({
       recipes
@@ -27,7 +30,7 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   getOneRecipe(req, res) {
-    db.Recipe.findById(req.params.recipeId).then((recipe) => {
+    Recipe.findById(req.params.recipeId).then((recipe) => {
       if (!recipe) {
         return res.status(404).json({
           message: 'Recipe not found'
@@ -49,19 +52,19 @@ export default class RecipesController {
   addRecipes(req, res) {
     const errors = [];
 
-    if (!req.body.name) {
+    if ((!req.body.name) || (checkField(req.body.name))) {
       errors.push('Recipe Name is required.');
     }
-    if (!req.body.category) {
+    if ((!req.body.category) || (checkField(req.body.category))) {
       errors.push('Recipe Category is required.');
     }
-    if (!req.body.ingredients) {
+    if ((!req.body.ingredients) || (checkField(req.body.ingredients))) {
       errors.push('Recipe Ingredients are required.');
     }
-    if (!req.body.description) {
+    if ((!req.body.description) || (checkField(req.body.description))) {
       errors.push('Recipe Description is required.');
     }
-    if (!req.body.method) {
+    if ((!req.body.method) || (checkField(req.body.method))) {
       errors.push('Method required.');
     }
 
@@ -72,7 +75,7 @@ export default class RecipesController {
       });
     }
 
-    return db.Recipe.create({
+    return Recipe.create({
       name: req.body.name,
       category: req.body.category,
       description: req.body.description,
@@ -94,13 +97,13 @@ export default class RecipesController {
    * @returns {json} json returned to client
    */
   updateRecipe(req, res) {
-    db.Recipe.findById(req.params.recipeId).then((recipe) => {
-      db.Recipe.update({
-        name: req.body.name || recipe.name,
-        category: req.body.category || recipe.category,
-        description: req.body.description || recipe.description,
-        method: req.body.method || recipe.method,
-        ingredients: req.body.ingredients || recipe.ingredients,
+    Recipe.findById(req.params.recipeId).then((recipe) => {
+      Recipe.update({
+        name: returnParameter(req.body.name) || recipe.name,
+        category: returnParameter(req.body.category) || recipe.category,
+        description: returnParameter(req.body.description) || recipe.description,
+        method: returnParameter(req.body.method) || recipe.method,
+        ingredients: returnParameter(req.body.ingredients) || recipe.ingredients,
       }, {
         where: { id: req.params.recipeId },
         returning: true,
@@ -134,7 +137,7 @@ export default class RecipesController {
    * @returns {json} json returns message to client
    */
   deleteRecipe(req, res) {
-    return db.Recipe.findById(req.params.recipeId).then((recipe) => {
+    return Recipe.findById(req.params.recipeId).then((recipe) => {
       recipe.destroy().then(() => res.status(200).json({
         message: 'Successfully deleted recipe'
       }))

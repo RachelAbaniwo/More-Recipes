@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../models';
 import config from './../config';
+import { checkname, checkUsername, checkPassword } from '../helpers/checkInput';
 
 const { User } = db;
 const { Recipe } = db;
@@ -11,25 +12,25 @@ const { Recipe } = db;
 export default class UserController {
 /**
    * adds a new user to database
-   * @param {object} req express request object
-   * @param {object} res express response object
+   * @param {object} req request object
+   * @param {object} res response object
    * @returns {json} json returned to client
    */
   userSignUp(req, res) {
     const errors = [];
-    if (!req.body.Firstname) {
+    if ((!req.body.Firstname) || (!checkname(req.body.Firstname))) {
       errors.push('First name is Required!');
     }
-    if (!req.body.Lastname) {
+    if ((!req.body.Lastname) || (!checkname(req.body.Lastname))) {
       errors.push('Last name is Required!');
     }
-    if (!req.body.Username) {
+    if ((!req.body.Username) || (!checkUsername(req.body.Username))) {
       errors.push('Choose your User Name.');
     }
     if (!req.body.Email) {
       errors.push('Email Address is Required!');
     }
-    if (!req.body.Password) {
+    if ((!req.body.Password) || (!checkPassword(req.body.Password))) {
       errors.push('Choose a Password');
     }
 
@@ -70,14 +71,14 @@ export default class UserController {
   }
   /**
    * signs user in
-   * @param {object} req express request object
-   * @param {object} res express response object
+   * @param {object} req request object
+   * @param {object} res response object
    * @returns {json} json returned to client
    */
   userSignIn(req, res) {
     const errors = [];
 
-    if (!req.body.Username) {
+    if ((!req.body.Username) || (!checkUsername(req.body.Username))) {
       errors.push('Username is required');
     }
     if (!req.body.Password) {
@@ -112,7 +113,7 @@ export default class UserController {
     });
   }
   /**
-   * find a user
+   * finds a user
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json returned to client
@@ -160,7 +161,7 @@ export default class UserController {
       }));
   }
   /**
-   * gets any user's recipes by the user's id
+   * gets any user's personal recipes by the user's id
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json returned to client
@@ -191,9 +192,3 @@ export default class UserController {
       }));
   }
 }
-
-// update user, delete user, find user. token, exclude pword, delete review, get reviews
-// update review,delete from favorites, middle ware for long if statements, check for empty
-// fields for update user and update recipe, add image, eagerloading, id-uiid,view reviews
-// token expiry
-// "pretest": "npm run cleardb && NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all",
