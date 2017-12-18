@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/RachelAbaniwo/More-Recipes.svg?branch=develop)](https://travis-ci.org/RachelAbaniwo/More-Recipes)
+[![Maintainability](https://api.codeclimate.com/v1/badges/84f59b2028971023e876/maintainability)](https://codeclimate.com/github/RachelAbaniwo/More-Recipes/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/RachelAbaniwo/More-Recipes/badge.svg?branch=server-side-integration-tests)](https://coveralls.io/github/RachelAbaniwo/More-Recipes?branch=server-side-integration-tests)
 # MORE-RECIPES
 
