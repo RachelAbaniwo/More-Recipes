@@ -4,7 +4,6 @@ import config from './../config';
 
 export default (req, res, next) => {
   const { token } = req.headers;
-console.log(token);
   return jwt.verify(token, config.jwtSecret, (error, user) => {
     if (error) {
       return res.status(401).json({ message: 'Unauthenticated USER.' });

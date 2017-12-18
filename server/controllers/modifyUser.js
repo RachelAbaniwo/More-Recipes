@@ -1,4 +1,5 @@
 import db from '../models';
+import { returnName, returnUsername } from '../helpers/checkInput';
 
 const { User } = db;
 /**
@@ -6,7 +7,7 @@ const { User } = db;
  */
 export default class ModifyUserController {
 /**
-   * updates an existing user profile
+   * updates an existing user's profile
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json returned to client
@@ -14,9 +15,9 @@ export default class ModifyUserController {
   updateUser(req, res) {
     User.findById(req.params.userId).then((user) => {
       User.update({
-        Firstname: req.body.Firstname || user.Firstname,
-        Lastname: req.body.Lastname || user.Lastname,
-        Username: req.body.Username || user.Username,
+        Firstname: returnName(req.body.Firstname) || user.Firstname,
+        Lastname: returnName(req.body.Lastname) || user.Lastname,
+        Username: returnUsername(req.body.Username) || user.Username,
         Email: req.body.Email || user.Email,
         id: user.id
       }, {

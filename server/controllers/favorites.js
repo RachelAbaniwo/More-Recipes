@@ -1,18 +1,19 @@
 import db from '../models';
 
+const { Favorite, Recipe } = db;
 /**
  * Controls the favorites endpoints
  */
 export default class FavoritesController {
 /**
- * adds User's Favorite recipes to database
- * @param {object} req express request object
- * @param {object} res express response object
- * @returns {json} json returned to client
+ * Adds a Recipe to a User's list Favorite recipes
+ * @param {object} req - request id of recipe to be added to Favorites
+ * @param {object} res - success message indicating recipe added or removed from favorites
+ * @returns {json} - success message returned
  */
   async addFavorite(req, res) {
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
-    const favorite = await db.Favorite.findOne(query);
+    const favorite = await Favorite.findOne(query);
 
     if (favorite) {
       await favorite.destroy();
@@ -21,7 +22,7 @@ export default class FavoritesController {
       });
     }
 
-    await db.Favorite.create({
+    await Favorite.create({
       userId: req.AuthUser.id,
       recipeId: req.params.recipeId
     });
@@ -31,15 +32,15 @@ export default class FavoritesController {
     });
   }
   /**
-   * gets User's Favorite recipes from database
-   * @param {object} req express request object
-   * @param {object} res express response object
+   * Get User's Favorite recipes
+   * @param {object} req request object
+   * @param {object} res response object
    * @returns {json} json returned to client
    */
   async getFavorites(req, res) {
     try {
       const query = { where: { userId: req.AuthUser.id } };
-      const favorites = await db.Favorite.findAll(query);
+      const favorites = await Favorite.findAll(query);
 
       if (favorites.length < 1) {
         return res.status(404).json({
@@ -48,7 +49,7 @@ export default class FavoritesController {
       }
       const recipeIds = favorites.map(favorite => favorite.recipeId);
       const nextQuery = { where: { id: { [db.Sequelize.Op.in]: recipeIds } } };
-      const recipes = await db.Recipe.findAll(nextQuery);
+      const recipes = await Recipe.findAll(nextQuery);
       return res.status(200).json({
         recipes
       });
@@ -59,13 +60,13 @@ export default class FavoritesController {
     }
   }
   /**
-     * deletes a user from database
-     * @param {object} req request object
+     * deletes a recipe from user's favorites
+     * @param {object} req  object
      * @param {object} res response object
      * @returns {json} json returns message to client
      */
   deleteFavorite(req, res) {
-    return db.Favorite.findById(req.params.favoriteId).then((favorite) => {
+    return Favorite.findById(req.params.favoriteId).then((favorite) => {
       favorite.destroy().then(() => res.status(200).json({
         message: 'Successfully deleted this recipe from your favorites'
       }))
