@@ -6,10 +6,10 @@ const { Favorite, Recipe } = db;
  */
 export default class FavoritesController {
 /**
- * adds a User's Favorite recipes to database
- * @param {object} req request object
- * @param {object} res response object
- * @returns {json} json returned to client
+ * Adds a Recipe to a User's list Favorite recipes
+ * @param {object} req - request id of recipe to be added to Favorites
+ * @param {object} res - success message indicating recipe added or removed from favorites
+ * @returns {json} - success message returned
  */
   async addFavorite(req, res) {
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
@@ -32,7 +32,7 @@ export default class FavoritesController {
     });
   }
   /**
-   * gets User's Favorite recipes from database
+   * Get User's Favorite recipes
    * @param {object} req request object
    * @param {object} res response object
    * @returns {json} json returned to client

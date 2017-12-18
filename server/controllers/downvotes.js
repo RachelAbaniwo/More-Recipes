@@ -4,14 +4,14 @@ const { Downvote } = db;
 
 
 /**
- * Controls the downvote endpoints
+ * Controls the Downvote endpoints
  */
 export default class DownvotesController {
 /**
- * adds a Downvote to a recipe and removes the vote if recipe is already Upvoted or Downvoted
- * @param {object} req request object
- * @param {object} res response object
- * @returns {json} json returned to client
+ * Adds a Downvote to a recipe or Remove the vote if recipe is already Upvoted or Downvoted
+ * @param {object} req - Recipe to be voted
+ * @param {object} res - success message indicating downvote added or removed
+ * @returns {json} - success message returned to User
  */
   async addDownvote(req, res) {
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
