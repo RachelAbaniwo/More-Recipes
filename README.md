@@ -41,7 +41,7 @@ $ npm install
 * Build the Application with `npm run start`
 * Server should run on port `4044`
 ### TESTING
-* Make current directory More-Recipes.
+* Make the current directory More-Recipes.
 * Add a test database URL to the `.env` file (optional).
 * Run:
 `npm run test`
