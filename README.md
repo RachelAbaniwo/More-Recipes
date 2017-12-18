@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/RachelAbaniwo/More-Recipes.svg?branch=api)](https://travis-ci.org/RachelAbaniwo/More-Recipes)
+[![Build Status](https://travis-ci.org/RachelAbaniwo/More-Recipes.svg?branch=ft-recipe-routes)](https://travis-ci.org/RachelAbaniwo/More-Recipes)
 [![Coverage Status](https://coveralls.io/repos/github/RachelAbaniwo/More-Recipes/badge.svg?branch=server-side-integration-tests)](https://coveralls.io/github/RachelAbaniwo/More-Recipes?branch=server-side-integration-tests)
 # MORE-RECIPES
 
