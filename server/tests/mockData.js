@@ -9,19 +9,19 @@ export default {
   },
   signinUser2: {
     Username: 'IneneAbaniwo',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   signinUser3: {
     Username: 'NelsonAbang',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   signinUser4: {
     Username: 'NeneRae',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   signinUser5: {
     Username: 'NnennaRemi',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   review1: {
     review: 'Awesome Stuff'
@@ -31,7 +31,7 @@ export default {
   },
   wrongUsernameSignIn: {
     Username: 'Abaniwo',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   wrongPasswordSignIn: {
     Username: 'IneneAbaniwo',
@@ -53,28 +53,28 @@ export default {
     Lastname: 'Nek',
     Username: 'HenryNek',
     Email: 'henrynek@test.com',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   wrongEmailFormat: {
     Firstname: 'Dan',
     Lastname: 'Enun',
     Username: 'DannyE',
     Email: 'racheltest.com',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   emailInUseSignUp: {
     Firstname: 'Danny',
     Lastname: 'Enun',
     Username: 'DannyEnun',
     Email: 'rachel.abaniwo@test.com',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   usernameInUseSignUp: {
     Firstname: 'Danny',
     Lastname: 'Enun',
     Username: 'RachelAbaniwo',
     Email: 'dannyenun@test.com',
-    Password: 'rachel'
+    Password: process.env.PASSWORD
   },
   wrongCharacterSignUp: {
     Firstname: '  ',

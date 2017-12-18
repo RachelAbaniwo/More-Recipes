@@ -1,8 +1,11 @@
+import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../models';
-import config from './../config';
 import { checkname, checkUsername, checkPassword } from '../helpers/checkInput';
+
+dotenv.config();
+const jwtSecret = process.env.JWT_SECRET;
 
 const { User } = db;
 const { Recipe } = db;
@@ -55,7 +58,7 @@ export default class UserController {
         email: user.Email,
         id: user.id
       };
-      const token = jwt.sign({ id: user.id }, config.jwtSecret, {
+      const token = jwt.sign({ id: user.id }, jwtSecret, {
         expiresIn: 60 * 60 * 24
       });
       res.status(201).json({
@@ -99,7 +102,7 @@ export default class UserController {
           email: user.Email,
           id: user.id
         };
-        const token = jwt.sign({ id: user.id }, config.jwtSecret, {
+        const token = jwt.sign({ id: user.id }, jwtSecret, {
           expiresIn: 60 * 60 * 24
         });
         return res.status(200).json({ existingUser, token, message: 'Successfully signed in.' });

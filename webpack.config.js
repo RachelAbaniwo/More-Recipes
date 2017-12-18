@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Constant with our paths
 const paths = {
   DIST: path.resolve(__dirname, 'client/dist'),
-  JS: path.resolve(__dirname, 'client/src/js'),
+  JS: path.resolve(__dirname, 'client/src'),
   SRC: path.resolve(__dirname, 'client/src')
 };
 
@@ -22,7 +22,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, 'index.html'),
+      template: path.join(paths.SRC, '../index.html'),
     }),
     new ExtractTextPlugin('style.bundle.css'),
   ],

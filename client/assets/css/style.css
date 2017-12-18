@@ -3,7 +3,7 @@
   max-width: 100%;
 }
 .bg, .register-bg{
- background: url("../assets/image/food-9.jpg") no-repeat center center fixed; 
+ background: url("../image/food-9.jpg") no-repeat center center fixed; 
        -webkit-background-size: cover;
        -moz-background-size: cover;
        -o-background-size: cover;

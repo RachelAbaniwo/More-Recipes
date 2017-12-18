@@ -6,7 +6,7 @@ import Login from './screens/Login'
 import Register from './screens/Register'
 import axios from 'axios';
 
-import '../css/style.css';
+import '../assets/css/style.css';
 
 import store from './store';
 import Main from './containers/Main'
