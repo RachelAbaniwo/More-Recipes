@@ -2,6 +2,11 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
+import food9 from '../../assets/image/food-9.jpg';
+import food20 from '../../assets/image/food-20.jpg';
+import food23 from '../../assets/image/food-23.jpg';
+import image10 from '../../assets/image/image10.jpeg';
+import image5 from '../../assets/image/image5.jpeg';
 
 export default class Home extends React.Component {
        render() {
@@ -13,20 +18,20 @@ export default class Home extends React.Component {
                   <div id="carouselExampleIndicators" className="carousel slide" data-interval={2000} data-ride="carousel">
                     <div className="carousel-inner fullHeight">
                       <div className="carousel-item active">
-                        <img className="d-block w-100" src="assets/image/food-9.jpg" alt="First slide" />
+                        <img className="d-block w-100" src={food9} alt="First slide" />
                         <div className="carousel-caption d-none d-md-block">
                           <h3>Check Out Our All Time Favorites</h3>
                           <p>from around the world</p>
                         </div>
                       </div>
                       <div className="carousel-item">
-                        <img className="d-block w-100" src="assets/image/food-20.jpg" alt="Third slide" />
+                        <img className="d-block w-100" src={food20} alt="Third slide" />
                         <div className="carousel-caption d-none d-md-block">
                           <h3>Amazing Desserts</h3>
                         </div>
                       </div>
                       <div className="carousel-item">
-                        <img className="d-block w-100" src="assets/image/food-23.jpg" alt="Third slide" />
+                        <img className="d-block w-100" src={food23} alt="Third slide" />
                         <div className="carousel-caption d-none d-md-block">
                           <h3>Breakfast Recipes</h3>
                           <p>to help you start your day</p>
@@ -55,14 +60,14 @@ export default class Home extends React.Component {
                     <div className="card-body">
                       <h2 className="card-subtitle text-muted">TOP FAVORITES</h2>
                     </div>
-                    <img className="img-fluid mx-auto" src="assets/image/image10.jpeg" alt="Photo of sunset" />
+                    <img className="img-fluid mx-auto" src={image10} alt="Photo of sunset" />
                     <p className="card-text text-center" style={{color: 'rgba(73, 67, 67, 0.9)'}}>TAKE A SURVEY OF OUR ALL TIME FAVORITE RECIPES.</p>
                   </div>
                   <div className="card card-1 col-sm-12 col-md-5 card">
                     <div className="card-body">
                       <h2 className="card-subtitle text-muted">TOP VOTED</h2>
                     </div>
-                    <img className="img-fluid mx-auto" src="assets/image/image5.jpeg" alt="Photo of sunset" />
+                    <img className="img-fluid mx-auto" src={image5} alt="Photo of sunset" />
                     <p className="card-text text-center" style={{color: 'rgba(73, 67, 67, 0.9)'}}>CHECKOUT THE RECIPES WITH THE MOST UPVOTES.</p>
                   </div>
                 </section>

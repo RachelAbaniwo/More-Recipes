@@ -9,9 +9,9 @@ const { Recipe, Review } = db;
 export default class ReviewsController {
 /**
    * adds reviews to recipes
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json with updated reviews returned to client
+   * @param {object} req review object to be added to the recipe
+   * @param {object} res added review object
+   * @returns {json} returns recipe and review object
    */
   addReviews(req, res) {
     if ((!req.body.review) || (checkField(req.body.review))) {
@@ -41,9 +41,9 @@ export default class ReviewsController {
   }
   /**
    * gets recipe reviews
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json with updated reviews returned to client
+   * @param {object} req recipe id request
+   * @param {object} res array of recipe reviews
+   * @returns {json} returns recipe and array of reviews
    */
   getRecipeReviews(req, res) {
     Recipe.findOne({ where: { id: req.params.recipeId } }).then((recipe) => {
@@ -73,9 +73,9 @@ export default class ReviewsController {
   }
   /**
    * edits reviews
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json with updated reviews returned to client
+   * @param {object} req - review object to be updated
+   * @param {object} res - updated review object
+   * @returns {json} - returns updated review
    */
   updateReview(req, res) {
     Review.findById(req.params.reviewId).then((review) => {
@@ -104,9 +104,9 @@ export default class ReviewsController {
 
   /**
    * deletes reviews
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json with updated reviews returned to client
+   * @param {object} req review object to be deleted
+   * @param {object} res message
+   * @returns {json} returns message
    */
   deleteReview(req, res) {
     Review.findById(req.params.reviewId).then((review) => {

@@ -8,7 +8,7 @@ const { Downvote } = db;
  */
 export default class DownvotesController {
 /**
- * Adds a Downvote to a recipe or Remove the vote if recipe is already Upvoted or Downvoted
+ * Adds a Downvote to a recipe or Removes the vote if recipe is already Upvoted or Downvoted
  * @param {object} req - Recipe to be voted
  * @param {object} res - success message indicating downvote added or removed
  * @returns {json} - success message returned to User

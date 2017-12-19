@@ -85,9 +85,9 @@ export default class Register extends React.Component {
 
     } catch (error) {
       
-      if (error.response.status === 422) {
+      if (error.response.status === 400) {
         this.setState({
-          errors: error.response.data.data.errors
+          errors: error.response.data.errors
         });
       } else {
         this.setState({
@@ -146,35 +146,30 @@ export default class Register extends React.Component {
                     placeholder="Firstname"
                     value={this.state.Firstname}
                     onChange={
-                      this.handleInputChange} 
-                      onBlur={this.handleValidation}/>
+                      this.handleInputChange}/>
                     <input type="text" 
                     name="Lastname" 
                     placeholder="Lastname"
                     value={this.state.Lastname}
-                    onChange={this.handleInputChange} 
-                      onBlur={this.handleValidation}/>
+                    onChange={this.handleInputChange}/>
                     <input 
                     type="text" 
                     name="Email" 
                     placeholder="Email"
                     value={this.state.Email}
-                    onChange={this.handleInputChange} 
-                      onBlur={this.handleValidation} />
+                    onChange={this.handleInputChange} />
                     <input 
                     type="text" 
                     name="Username" 
                     placeholder="Username" 
                     value={this.state.Username}
-                    onChange={this.handleInputChange} 
-                      onBlur={this.handleValidation}/>
+                    onChange={this.handleInputChange}/>
                     <input 
                     type="password" 
                     name="Password" 
                     placeholder="Password"
                     value={this.state.Password}
-                    onChange={this.handleInputChange} 
-                      onBlur={this.handleValidation} />
+                    onChange={this.handleInputChange} />
                     <div className="row justify-content-center">
                       <input type="submit" name="register" className="register-card-submit" onClick={ (event) => {this.handleRegister();}} style={{fontFamily: 'Candara'}} defaultValue="SIGN UP" />
                     </div>

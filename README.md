@@ -12,7 +12,7 @@ More-Recipes is a Recipe Web Application, it could be thought of as an online me
   * First name, Last name, a unique and valid Email Address, a unique User name and a Password are required of the User to successfully Register. 
   * As a **MEMBER**, signing in and out of the Application is done quite easily, a **MEMBER** can also update personal profile details, or delete the account completely.
   * A **MEMBER** can create a RECIPE, update that RECIPE and delete it.
-  * A **MEMEBER** can view all the recipes created.
+  * A **MEMBER** can view all the recipes created.
   * A **MEMBER** can add an up-vote or down-vote to a recipe and add any recipe to personal favorites.
   * A **MEMBER** can view favorite recipes and delete any recipe from the list of personal favorites.
   * A **MEMBER** can add reviews to recipes, update reviews previously made or delete them.

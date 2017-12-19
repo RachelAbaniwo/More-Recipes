@@ -33,9 +33,9 @@ export default class FavoritesController {
   }
   /**
    * Get User's Favorite recipes
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req - request to get all the favorite recipes of a user
+   * @param {object} res - array of recipes
+   * @returns {json} - array of recipes
    */
   async getFavorites(req, res) {
     try {
@@ -60,10 +60,10 @@ export default class FavoritesController {
     }
   }
   /**
-     * deletes a recipe from user's favorites
-     * @param {object} req  object
-     * @param {object} res response object
-     * @returns {json} json returns message to client
+     * deletes a recipe from a user's favorites
+     * @param {object} req - recipe object
+     * @param {object} res - message
+     * @returns {json} - message returned
      */
   deleteFavorite(req, res) {
     return Favorite.findById(req.params.favoriteId).then((favorite) => {

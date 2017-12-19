@@ -8,9 +8,9 @@ const { User } = db;
 export default class ModifyUserController {
 /**
    * updates an existing user's profile
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req user object
+   * @param {object} res updated userbobject
+   * @returns {json} return updated user
    */
   updateUser(req, res) {
     User.findById(req.params.userId).then((user) => {
@@ -43,9 +43,9 @@ export default class ModifyUserController {
   }
   /**
      * deletes a user from database
-     * @param {object} req request object
-     * @param {object} res response object
-     * @returns {json} json returns message to client
+     * @param {object} req user object
+     * @param {object} res message
+     * @returns {json} returns a message
      */
   deleteUser(req, res) {
     return User.findById(req.params.userId).then((user) => {

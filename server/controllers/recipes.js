@@ -9,9 +9,9 @@ const { Recipe } = db;
 export default class RecipesController {
   /**
    * gets all recipes in the database
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req request to get all recipes
+   * @param {object} res array of recipes or error
+   * @returns {json} returns array of recipes or error
    */
   getRecipes(req, res) {
     return Recipe.findAll({
@@ -25,9 +25,9 @@ export default class RecipesController {
   }
   /**
    * gets a recipe by its id
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req recipe object
+   * @param {object} res recipe object
+   * @returns {json} recipe returned
    */
   getOneRecipe(req, res) {
     Recipe.findById(req.params.recipeId).then((recipe) => {
@@ -45,9 +45,9 @@ export default class RecipesController {
   }
   /**
    * creates a new recipe
-   * @param {object} req express request object
-   * @param {object} res express response object
-   * @returns {json} json returned to client
+   * @param {object} req request from user
+   * @param {object} res created recipe or error
+   * @returns {json} returns created object or error message
    */
   addRecipes(req, res) {
     const errors = [];
@@ -92,9 +92,9 @@ export default class RecipesController {
   }
   /**
    * updates a recipe
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req recipe to be updated
+   * @param {object} res updated recipe
+   * @returns {json} updated recipe returned
    */
   updateRecipe(req, res) {
     Recipe.findById(req.params.recipeId).then((recipe) => {
@@ -132,9 +132,9 @@ export default class RecipesController {
   }
   /**
    * deletes a recipe
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returns message to client
+   * @param {object} req recipe to be deleted
+   * @param {object} res message or error
+   * @returns {json} returns message
    */
   deleteRecipe(req, res) {
     return Recipe.findById(req.params.recipeId).then((recipe) => {

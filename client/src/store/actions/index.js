@@ -5,17 +5,17 @@ import axios from 'axios';
 export function signInUser({Username, Password}) {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.post(`http://localhost:4044/api/v1/signin`, {
+      const response = await axios.post(`http://localhost:4044/api/v1/users/signin`, {
         Username, Password
       });
-      localStorage.setItem('authUser', JSON.stringify(response.data.data));
+      localStorage.setItem('authUser', JSON.stringify(response.data));
 
       
       return;
 
       dispatch ({
         type: 'SIGN_IN_USER',
-        authUser: response.data.data
+        authUser: response.data
       });
 
       return Promise.resolve(response);
@@ -45,17 +45,17 @@ export function signUpUser({ Firstname, Lastname, Email, Username, Password }) {
   return async (dispatch, getState) => {
     
     try {
-      const response = await axios.post(`http://localhost:4044/api/v1/signup`, {
+      const response = await axios.post(`http://localhost:4044/api/v1/users/signup`, {
         Firstname, Lastname, Email, Username, Password
       });
-      localStorage.setItem('authUser', JSON.stringify(response.data.data));
+      localStorage.setItem('authUser', JSON.stringify(response.data));
 
       
       return;
 
       dispatch ({
         type: 'SIGN_IN_USER',
-        authUser: response.data.data
+        authUser: response.data
       });
 
       return Promise.resolve(response);

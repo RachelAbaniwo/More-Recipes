@@ -15,9 +15,9 @@ const { Recipe } = db;
 export default class UserController {
 /**
    * adds a new user to database
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req request object from user
+   * @param {object} res created user
+   * @returns {json} returns created user object
    */
   userSignUp(req, res) {
     const errors = [];
@@ -74,18 +74,18 @@ export default class UserController {
   }
   /**
    * signs user in
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req request object from user
+   * @param {object} res message or error
+   * @returns {json} message
    */
   userSignIn(req, res) {
     const errors = [];
 
     if ((!req.body.Username) || (!checkUsername(req.body.Username))) {
-      errors.push('Username is required');
+      errors.push('Username is required! ');
     }
     if (!req.body.Password) {
-      errors.push('Password is required');
+      errors.push('Password is required!');
     }
     if (errors.length > 0) {
       return res.status(400).json({ errors, message: 'Please fix the validation errors' });
@@ -117,9 +117,9 @@ export default class UserController {
   }
   /**
    * finds a user
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req request object from user with user id specified
+   * @param {object} res found user object
+   * @returns {json} returns user object
    */
   findUser(req, res) {
     User.findOne({ where: { id: req.params.userId } }).then((user) => {
@@ -145,9 +145,9 @@ export default class UserController {
   }
   /**
    * gets a user's personal recipes from database
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req request object from user
+   * @param {object} res array of recipes
+   * @returns {json} returns array of recipes to user
    */
   getMyRecipes(req, res) {
     Recipe.findAll({ where: { userId: req.AuthUser.id } }).then((recipes) => {
@@ -165,9 +165,9 @@ export default class UserController {
   }
   /**
    * gets any user's personal recipes by the user's id
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
+   * @param {object} req request object from user
+   * @param {object} res array of recipes
+   * @returns {json} returns array of recipes to user
    */
   getUserRecipes(req, res) {
     User.findOne({ where: { id: req.params.userId } }).then((user) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
-
+import { checkname, checkUsername, checkPassword } from '../../../server/helpers/checkInput'
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +16,7 @@ export default class Login extends React.Component {
   }
 
   async handleSignIn() {
+    
     try {
       const user = await this.props.signInUser({ 
         Username: this.state.Username, 
@@ -24,15 +25,14 @@ export default class Login extends React.Component {
 
       this.props.router.push('/');
     } catch (error) {
-      
-      if (error.response.status === 422) {
+      if (error.response.status === 400) {
         this.setState({
-          error: error.response.data.data.errors
+          error: error.response.data.errors
         });
       } 
       else if(error.response.status === 404) {
         this.setState({
-          error: error.response.data.data.message
+          error: error.response.data.message
         });
       } else {
         this.setState({

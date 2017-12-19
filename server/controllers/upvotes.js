@@ -7,11 +7,11 @@ const { Upvote } = db;
  */
 export default class UpvotesController {
   /**
-   * adds an Upvote to a recipe and removes the vote if recipe is already upvoted or downvoted
-   * @param {object} req request object
-   * @param {object} res response object
-   * @returns {json} json returned to client
-   */
+ * Adds an Upvote to a recipe or Removes the vote if recipe is already Upvoted or Downvoted
+ * @param {object} req - Recipe to be voted
+ * @param {object} res - success message indicating upvote added or removed
+ * @returns {json} - success message returned to User
+ */
   async addUpvote(req, res) {
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
     const upvote = await Upvote.findOne(query);
