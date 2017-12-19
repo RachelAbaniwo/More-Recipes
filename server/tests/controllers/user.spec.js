@@ -140,8 +140,8 @@ describe('USER CONTROLLER', () => {
         .end((error, response) => {
           expect(response).to.have.status(400);
           const errors = response.body.errors;
-          expect(errors).to.include('Username is required');
-          expect(errors).to.include('Password is required');
+          expect(errors).to.include('Username is required! ');
+          expect(errors).to.include('Password is required!');
           expect(response.body.message).to.equal('Please fix the validation errors');
           done();
         });
