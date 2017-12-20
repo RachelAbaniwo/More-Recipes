@@ -38,7 +38,7 @@ $ cd /More-Recipes
 ```typescript
 $ npm install
 ```
-* Create a `.env` file in the root directory and set up required configurations as described in the `.env.example` file.
+* Create a `.env` file in the root directory and set up required configurations as described in the `.env.sample` file.
 * Build the Application with `npm run start`
 * Server should run on port `4044`
 ### TESTING
