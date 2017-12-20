@@ -8,6 +8,10 @@ import routes from './routes/routes';
 // Set up the express app
 const app = express();
 
+require('dotenv').config();
+
+const port = parseInt(process.env.PORT, 10) || 4044;
+
 // Log requests to the console.
 app.use(logger('dev'));
 
@@ -29,7 +33,7 @@ app.use((req, res) => {
 });
 
 db.sequelize.sync().then(() => {
-  app.listen(4044, () => {
+  app.listen(port, () => {
     console.log('server is running');
   });
 });
