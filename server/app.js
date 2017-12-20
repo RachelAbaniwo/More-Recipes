@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import cors from 'cors';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
@@ -21,10 +22,14 @@ app.use(cors());
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(express.static(path.join(__dirname, 'public')));
 // mount all routes on /api routes
 
 app.use('/api/v1', routes);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'server', 'public/index.html'));
+});
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 

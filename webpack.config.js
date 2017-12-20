@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Constant with our paths
 const paths = {
-  DIST: path.resolve(__dirname, 'client/dist'),
+  DIST: path.resolve(__dirname, 'server/public'),
   JS: path.resolve(__dirname, 'client/src'),
   SRC: path.resolve(__dirname, 'client/src')
 };
