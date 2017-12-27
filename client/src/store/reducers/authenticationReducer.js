@@ -8,6 +8,5 @@ export default function authenticationReducer(state = {}, action) {
       return newState;
     default:
     return state;
-
   }
 }
