@@ -54,24 +54,24 @@
   box-shadow: none;
 }
   
-  h1, h2, h3, h4, h5,p, a, label,figcaption.fig-caption, li {
-    font-family: Candara;
+  h1, h2, h3, h4, h5,p, a, label,figcaption.fig-caption,.figure-caption, li {
+    font-family: kaushan script;
     color:rgb(155, 151, 151);
 }
 
 
 button{
-  font-family: Candara;
+  font-family: kaushan script;
   color:rgba(68, 66, 66, 0.693);
 
 }
 input {
-  font-family: Candara;
+  font-family: kaushan script;
   color:gray;
 
 }
 label{
-  font-family: Candara;
+  font-family: kaushan script;
   
 
 }
