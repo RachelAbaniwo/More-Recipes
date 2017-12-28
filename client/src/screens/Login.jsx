@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
+import { signInUser } from '../store/actions';
 import { checkname, checkUsername, checkPassword } from '../../../server/helpers/checkInput'
 
 import '../../assets/css/style.css';
-export default class Login extends React.Component {
+class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -37,9 +40,7 @@ export default class Login extends React.Component {
       errors.push('Password is required');
       }
 
-    this.setState( {errors}, () => {
-      return Promise.resolve();
-    });
+    this.setState( {errors});
   }
 
   async handleSignIn() {
@@ -57,13 +58,14 @@ export default class Login extends React.Component {
       this.props.router.push('/');
     } catch (error) {
       if (error.response.status === 400) {
+        
         this.setState({
-          errors: error.response.data.errors
+          errors: [error.response.data.errors]
         });
       } 
       else if(error.response.status === 404) {
         this.setState({
-          errors: error.response.data.message
+          errors: [error.response.data.message]
         });
       } else {
         this.setState({
@@ -135,3 +137,20 @@ export default class Login extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {};
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    signInUser
+  }, dispatch);
+};
+
+const Login = connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+
+export default Login;
+
+
+
