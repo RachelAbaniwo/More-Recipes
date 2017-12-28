@@ -2,6 +2,8 @@ import React from 'react';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
 import { checkname, checkUsername, checkPassword } from '../../../server/helpers/checkInput'
+
+import '../../assets/css/style.css';
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -10,12 +12,41 @@ export default class Login extends React.Component {
      error: null,
      Username: '',
      Password:'',
+     errors: []
     };
 
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleValidation = this.handleValidation.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
   }
 
+  async handleInputChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  async handleValidation() {
+   let errors = [];
+
+    if(( this.state.Username.length < 1 ) || (!checkUsername(this.state.Username))) {
+    errors.push('Username is required');
+    }
+
+    if( this.state.Password.length < 1 ) {
+      errors.push('Password is required');
+      }
+
+    this.setState( {errors}, () => {
+      return Promise.resolve();
+    });
+  }
+
   async handleSignIn() {
+    await this.handleValidation();
+    if (this.state.errors.length > 0) {
+      return
+    }
     
     try {
       const user = await this.props.signInUser({ 
@@ -27,12 +58,12 @@ export default class Login extends React.Component {
     } catch (error) {
       if (error.response.status === 400) {
         this.setState({
-          error: error.response.data.errors
+          errors: error.response.data.errors
         });
       } 
       else if(error.response.status === 404) {
         this.setState({
-          error: error.response.data.message
+          errors: error.response.data.message
         });
       } else {
         this.setState({
@@ -46,19 +77,18 @@ export default class Login extends React.Component {
 
   render() {
 
-    let errorHolder = ( <small></small> );
-
-    if (this.state.error) {
-      errorHolder = ( 
-      <small className="mb-3" style={{
-      color: 'red',
-      fontFamily: 'candara',
-      fontWeight: 'bold'
-      }}> 
-        {this.state.error}
-      </small> 
+    let errorHolder = this.state.errors.map((error, index) => {
+      return (
+        <span key={index}>
+          <small className="mb-3" style={{
+            color: 'red',
+            fontFamily: 'kaushan script',
+            fontWeight: 'bold'
+          }}>{error}</small>
+          <br />
+        </span>
       );
-    } 
+    });
 
     return (
       <div >
@@ -82,17 +112,17 @@ export default class Login extends React.Component {
         </section>
         <div className="container" style={{position: 'absolute', top: 40, left: 0, right: 0, margin: '0 auto'}}>
           <div className="row justify-content-center py-5">
-            <div className="col-md-6">
+            <div className="col-sm-12 col-md-8">
               <div className="card card-container" id="login-card">
-                <h1 className="card-header text-center" style={{fontFamily: 'Candara'}}>SIGN IN</h1><br />
+                <h1 className="card-header text-center" style={{fontFamily: 'kaushan script'}}>SIGN IN</h1><br />
                 {errorHolder}
                 <div className="card-body">
-                    <input type="text" name="user" placeholder="Username" value={this.state.Username} onChange={ (event) => {this.setState({ Username: event.target.value}); }} />
-                    <input type="password" name="pass" placeholder="Password" value={this.state.Password} onChange={ (event) => {this.setState({ Password: event.target.value}); }} />
+                    <input type="text" name="Username" placeholder="Username" value={this.state.Username} onChange={this.handleInputChange} />
+                    <input type="password" name="Password" placeholder="Password" value={this.state.Password} onChange={this.handleInputChange} />
                     <div className="row justify-content-center">
-                      <input type="submit" name="login" className="login login-card-submit" onClick={ (event) => {this.handleSignIn(); }} style={{fontFamily: 'Candara'}} defaultValue="SIGN IN" />
+                      <input type="submit" name="login" className="login login-card-submit" onClick={ (event) => {this.handleSignIn(); }} style={{fontFamily: 'kaushan script'}} defaultValue="SIGN IN" />
                     </div>
-                  <div className="login-help" style={{color: 'white', fontFamily: 'Candara'}}>
+                  <div className="login-help" style={{color: 'white', fontFamily: 'kaushan script'}}>
                     <Link to = 'signup' className="register-link mr-1" href="#" style={{color: 'white'}}>REGISTER NEW ACCOUNT</Link><a className="forgot-link" href="#" style={{color: 'white'}}>FORGOT PASSWORD?</a>
                   </div>
                 </div>
