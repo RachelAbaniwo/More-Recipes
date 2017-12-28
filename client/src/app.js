@@ -8,6 +8,7 @@ import CreateRecipe from './screens/CreateRecipe';
 import axios from 'axios';
 
 
+import './../assets/css/style.css';
 
 import store from './store';
 import Main from './containers/Main'

@@ -38,11 +38,10 @@ export function createRecipe(recipe) {
       });
       return Promise.resolve();
     } catch (error) {
-      console.log(error.response);
+      return Promise.reject();
     }
   }; 
 }
-
 
 export function signOutUser() {
   return async (dispatch) => {

@@ -12,7 +12,7 @@ class App extends React.Component {
 
     return (
       <div>
-        {React.cloneElement(this.props.children, this.props)}
+        {this.props.children}
       </div>
     );
   }

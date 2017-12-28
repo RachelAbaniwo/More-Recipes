@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
+import { createRecipe } from '../store/actions';
 import { checkField } from '../helpers'
 import '../../assets/css/style.css';
 
-export default class CreateRecipe extends React.Component {
+class CreateRecipeScreen extends React.Component {
   constructor(props) {
     super(props);
     
@@ -33,23 +36,23 @@ export default class CreateRecipe extends React.Component {
     let errors = [];
     
     if(( this.state.name.length < 1 ) || (checkField(this.state.name)))  {
-      errors.push('Fill in recipe name');
+      errors.push('Recipe name is required');
     }
 
     if(( this.state.category.length < 1 ) || (checkField(this.state.category))) {
-      errors.push('Fill in recipe category');
+      errors.push('Recipe category is required');
     }
 
     if(( this.state.description.length < 1 ) || (checkField(this.state.description))) {
-      errors.push('Fill in recipe description');
+      errors.push('Recipe description is required');
     }
     
     if(( this.state.ingredients.length < 1 ) || (checkField(this.state.ingredients))) {
-      errors.push('Fill in recipe ingredients');
+      errors.push('Recipe ingredients are required');
     }
     
     if(( this.state.method.length < 1 ) || (checkField(this.state.method))) {
-      errors.push('Fill in preparation method');
+      errors.push('Preparation method is required');
     }
     
 
@@ -126,8 +129,8 @@ export default class CreateRecipe extends React.Component {
         <section className="container text-center mx auto view-recipe-container" style={{border: '1px solid lightgrey', padding: 30, marginTop: 90, marginBottom: 50}}>
           <section className="row justify-content-center py-5">
             <section className="col-md-8">
-              <div className="card">
-                <h4 className="card-header text-center">ADD RECIPE</h4><br />
+              <div className="card" style={{backgroundColor: 'rgba(233, 231, 231, 0.863)'}}>
+                <h4 className="card-header text-center">CREATE RECIPE</h4><br />
                 {errorHolder}
                 <div className="card-body">
                   <form>
@@ -153,7 +156,7 @@ export default class CreateRecipe extends React.Component {
                     </div>
                     <button type="button" 
                     onClick={this.handleSubmit}
-                    className="btn btn-default" style={{backgroundColor: 'rgb(212, 208, 208)', marginLeft: 10, marginTop: 20,marginBottom: 20}}>Add Recipe</button>
+                    className="btn btn-default" style={{ marginLeft: 10, marginTop: 20,marginBottom: 20}}>ADD RECIPE</button>
                   </form>
                 </div>
               </div>
@@ -166,3 +169,17 @@ export default class CreateRecipe extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {};
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    createRecipe
+  }, dispatch);
+};
+
+const CreateRecipe = connect(mapStateToProps, mapDispatchToProps)(CreateRecipeScreen);
+
+export default CreateRecipe;

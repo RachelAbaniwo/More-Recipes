@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
+import { signUpUser } from '../store/actions';
 import { checkEmail, checkUsername, checkname, checkPassword } from '../helpers';
 import '../../assets/css/style.css';
 
-export default class Register extends React.Component {
+class RegisterScreen extends React.Component {
 
   constructor(props) {
     super(props);
@@ -35,23 +38,23 @@ export default class Register extends React.Component {
 
     
     if(( this.state.Firstname.length < 1 ) || (!checkname(this.state.Firstname)))  {
-      errors.push('Fill in your first name');
+      errors.push('First name is required');
     }
 
     if(( this.state.Lastname.length < 1 ) || (!checkname(this.state.Lastname))) {
-      errors.push('Fill in your last name');
+      errors.push('Last name is required');
     }
 
     if( this.state.Email.length < 1 ) {
-      errors.push('Fill in your email');
+      errors.push('Email address is required');
     }
     
     if(this.state.Email.length > 1 && (!checkEmail(this.state.Email))) {
-      errors.push('Enter valid email address');
+      errors.push('Please enter a valid email address');
     }
 
     if(( this.state.Username.length < 1 ) || (!checkUsername(this.state.Username))) {
-      errors.push('Fill in a preferred username');
+      errors.push('Choose a preferred username');
     }
     
     if( this.state.Password.length < 6) {
@@ -89,10 +92,9 @@ export default class Register extends React.Component {
       this.props.router.push('/');
 
     } catch (error) {
-      
       if (error.response.status === 400) {
-        this.setState({
-          errors: error.response.data.errors
+          this.setState({
+          errors: [error.response.data.message]
         });
       } else {
         this.setState({
@@ -191,3 +193,17 @@ export default class Register extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {};
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    signUpUser
+  }, dispatch);
+};
+
+const Register = connect(mapStateToProps, mapDispatchToProps)(RegisterScreen);
+
+export default Register;
