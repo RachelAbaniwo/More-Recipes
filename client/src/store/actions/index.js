@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import axios from 'axios';
 
 
@@ -24,6 +26,21 @@ export function signInUser({Username, Password}) {
       return Promise.reject(error);
     }
   };
+}
+
+export function createRecipe(recipe) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:4044/api/v1/recipes', recipe);
+      dispatch({
+        type: 'NEW_RECIPE_ADDED',
+        payload: response.data.recipe
+      });
+      return Promise.resolve();
+    } catch (error) {
+      console.log(error.response);
+    }
+  }; 
 }
 
 

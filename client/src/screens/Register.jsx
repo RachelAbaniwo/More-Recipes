@@ -1,7 +1,8 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
-import { checkEmail } from '../helpers';
+import { checkEmail, checkUsername, checkname, checkPassword } from '../helpers';
+import '../../assets/css/style.css';
 
 export default class Register extends React.Component {
 
@@ -33,29 +34,33 @@ export default class Register extends React.Component {
     let errors = [];
 
     
-    if( this.state.Firstname.length < 1 ) {
-      errors.push('Fill in your First Name');
+    if(( this.state.Firstname.length < 1 ) || (!checkname(this.state.Firstname)))  {
+      errors.push('Fill in your first name');
     }
 
-    if( this.state.Lastname.length < 1 ) {
-      errors.push('Fill in your Last Name');
+    if(( this.state.Lastname.length < 1 ) || (!checkname(this.state.Lastname))) {
+      errors.push('Fill in your last name');
     }
 
     if( this.state.Email.length < 1 ) {
-      errors.push('Fill in your Email');
+      errors.push('Fill in your email');
     }
     
     if(this.state.Email.length > 1 && (!checkEmail(this.state.Email))) {
-      errors.push('Enter Valid Email Address');
+      errors.push('Enter valid email address');
     }
 
-    if( this.state.Username.length < 1 ) {
-      errors.push('Fill in a preferred User-Name');
+    if(( this.state.Username.length < 1 ) || (!checkUsername(this.state.Username))) {
+      errors.push('Fill in a preferred username');
     }
     
     if( this.state.Password.length < 6) {
-      errors.push('Your Password should have a minimum of 6 characters');
+      errors.push('Your password should have a minimum of 6 characters');
     }
+    if( this.state.Password.length >= 6 && (!checkPassword(this.state.Password))) {
+      errors.push('Password should only include (a-z, 0-9, -, _, .)');
+    }
+
 
     this.setState( {errors}, () => {
       return Promise.resolve();
@@ -106,7 +111,7 @@ export default class Register extends React.Component {
         <span key={index}>
           <small className="mb-3" style={{
             color: 'red',
-            fontFamily: 'candara',
+            fontFamily: 'kaushan script',
             fontWeight: 'bold'
           }}>{error}</small>
           <br />
@@ -136,9 +141,9 @@ export default class Register extends React.Component {
         </section>
         <div className="container" style={{position: 'absolute', top: 20, left: 0, right: 0, margin: '0 auto'}}>
           <div className="row justify-content-center py-5">
-            <div className="col-md-6">
+            <div className="col-sm-12 col-md-8">
               <div className="card card-container " id="register-card">
-                <h1 className="card-header text-center" style={{fontFamily: 'Candara'}}>CREATE NEW ACCOUNT</h1><br />
+                <h1 className="card-header text-center" style={{fontFamily: 'kaushan script'}}>CREATE NEW ACCOUNT</h1><br />
                 {errorHolder}
                 <div className="card-body">
                     <input type="text" 
@@ -171,10 +176,10 @@ export default class Register extends React.Component {
                     value={this.state.Password}
                     onChange={this.handleInputChange} />
                     <div className="row justify-content-center">
-                      <input type="submit" name="register" className="register-card-submit" onClick={ (event) => {this.handleRegister();}} style={{fontFamily: 'Candara'}} defaultValue="SIGN UP" />
+                      <input type="submit" name="register" className="register-card-submit" onClick={ (event) => {this.handleRegister();}} style={{fontFamily: 'kaushan script'}} defaultValue="SIGN UP" />
                     </div>
                   <div className="register-help">
-                    <Link to = '/signin' className="register-link" href="#" style={{color: 'white', fontFamily: 'Candara'}}>ALREADY REGISTERED?  SIGN IN</Link>
+                    <Link to = '/signin' className="register-link" href="#" style={{color: 'white', fontFamily: 'kaushan script'}}>ALREADY REGISTERED?  SIGN IN</Link>
                   </div>
                 </div>
               </div>

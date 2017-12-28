@@ -7,6 +7,7 @@ import food20 from '../../assets/image/food-20.jpg';
 import food23 from '../../assets/image/food-23.jpg';
 import image10 from '../../assets/image/image10.jpeg';
 import image5 from '../../assets/image/image5.jpeg';
+import '../../assets/css/style.css';
 
 export default class Home extends React.Component {
        render() {

@@ -2,11 +2,12 @@ import React from 'react';
 import { Router, Link, Route, browserHistory, IndexRoute } from 'react-router';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
-import Login from './screens/Login'
-import Register from './screens/Register'
+import Login from './screens/Login';
+import Register from './screens/Register';
+import CreateRecipe from './screens/CreateRecipe';
 import axios from 'axios';
 
-import '../assets/css/style.css';
+
 
 import store from './store';
 import Main from './containers/Main'
@@ -54,6 +55,7 @@ ReactDom.render(
         <Route path="/home" component={Home}></Route>
         <Route path="/signup" component={Register} onEnter={ ifAuthenticated }></Route>
         <Route path="/signin" component={Login} onEnter={ ifAuthenticated }></Route>
+        <Route path="/create-recipe" component={CreateRecipe}></Route>
       </Route>
     </Router>
   </Provider>
