@@ -48,7 +48,10 @@ export default class FavoritesController {
         });
       }
       const recipeIds = favorites.map(favorite => favorite.recipeId);
-      const nextQuery = { where: { id: { [db.Sequelize.Op.in]: recipeIds } } };
+      const nextQuery = {
+        where: { id: { [db.Sequelize.Op.in]: recipeIds } },
+        include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+      };
       const recipes = await Recipe.findAll(nextQuery);
       return res.status(200).json({
         recipes

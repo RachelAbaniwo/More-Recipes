@@ -56,20 +56,20 @@ export default class Home extends React.Component {
                     </a>
                   </div>
                 </section>
-                <section className="container-fluid row no-gutters justify-content-between text-center" style={{backgroundColor: '#eee',marginTop: 50, marginBottom: 50}}>
-                  <div className="card card-1 col-sm-12 col-md-5 card" >
+                <section className="container-fluid row no-gutters justify-content-between text-center"id="popular" style={{backgroundColor: '#eee',marginTop: 50, marginBottom: 50}}>
+                  <div className="card card-1 col-sm-12 col-md-5 card my-3" >
                     <div className="card-body">
                       <h2 className="card-subtitle text-muted">TOP FAVORITES</h2>
                     </div>
                     <img className="img-fluid mx-auto" src={image10} alt="Photo of sunset" />
-                    <p className="card-text text-center" style={{color: 'rgba(73, 67, 67, 0.9)'}}>TAKE A SURVEY OF OUR ALL TIME FAVORITE RECIPES.</p>
+                    <p className="card-text text-center" style={{color: 'rgba(73, 67, 67, 0.9)'}}>Take a survey of our all time favorite recipes.</p>
                   </div>
-                  <div className="card card-1 col-sm-12 col-md-5 card">
+                  <div className="card card-1 col-sm-12 col-md-5 card my-3">
                     <div className="card-body">
                       <h2 className="card-subtitle text-muted">TOP VOTED</h2>
                     </div>
                     <img className="img-fluid mx-auto" src={image5} alt="Photo of sunset" />
-                    <p className="card-text text-center" style={{color: 'rgba(73, 67, 67, 0.9)'}}>CHECKOUT THE RECIPES WITH THE MOST UPVOTES.</p>
+                    <p className="card-text text-center" style={{color: 'rgba(73, 67, 67, 0.9)'}}>Checkout the recipes with the most upvotes.</p>
                   </div>
                 </section>
                 <Footer/>

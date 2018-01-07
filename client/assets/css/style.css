@@ -25,7 +25,11 @@
    background-color: rgba(233, 165, 165, 0.099);
  }
  .view-recipe-container{
-   background-color: rgba(191, 194, 191, 0.445);
+  background-color: rgba(233, 233, 233, 0.993);
+   
+ }
+ .create-recipe-container{
+  background-color: rgba(191, 194, 191, 0.445);
  }
 
  .navbar-custom {

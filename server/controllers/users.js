@@ -62,7 +62,7 @@ export default class UserController {
         expiresIn: 60 * 60 * 24
       });
       res.status(201).json({
-        createdUser,
+        user: createdUser,
         token,
         message: 'Successfully signed up!'
       });
@@ -105,7 +105,7 @@ export default class UserController {
         const token = jwt.sign({ id: user.id }, jwtSecret, {
           expiresIn: 60 * 60 * 24
         });
-        return res.status(200).json({ existingUser, token, message: 'Successfully signed in.' });
+        return res.status(200).json({ user: existingUser, token, message: 'Successfully signed in.' });
       }
 
       return res.status(404).json({ message: 'Wrong credentials' });
@@ -150,7 +150,10 @@ export default class UserController {
    * @returns {json} returns array of recipes to user
    */
   getMyRecipes(req, res) {
-    Recipe.findAll({ where: { userId: req.AuthUser.id } }).then((recipes) => {
+    Recipe.findAll({
+      where: { userId: req.AuthUser.id },
+      include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+    }).then((recipes) => {
       if (recipes.length < 1) {
         return res.status(404).json({
           message: 'You have no Recipes'
@@ -176,7 +179,10 @@ export default class UserController {
           message: 'User not Found'
         });
       }
-      Recipe.findAll({ where: { userId: req.params.userId } }).then((recipes) => {
+      Recipe.findAll({
+        where: { userId: req.params.userId },
+        include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+      }).then((recipes) => {
         if (recipes.length < 1) {
           return res.status(404).json({
             message: 'User has no Recipes'

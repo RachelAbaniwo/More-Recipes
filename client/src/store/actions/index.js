@@ -3,6 +3,14 @@
 import axios from 'axios';
 
 
+export function setImageUrl(imageFile) {
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_IMAGE_FILE', 
+      payload: imageFile
+    });
+  };
+}
 
 export function signInUser({Username, Password}) {
   return async (dispatch, getState) => {
@@ -31,7 +39,9 @@ export function signInUser({Username, Password}) {
 export function createRecipe(recipe) {
   return async (dispatch) => {
     try {
+      console.log(recipe);
       const response = await axios.post('http://localhost:4044/api/v1/recipes', recipe);
+      console.log(response);
       dispatch({
         type: 'NEW_RECIPE_ADDED',
         payload: response.data.recipe
@@ -78,6 +88,23 @@ export function signUpUser({ Firstname, Lastname, Email, Username, Password }) {
     }
     catch (error) {
       return Promise.reject(error);
+    }
+  };
+}
+
+export function getRecipe(recipeId) {
+  return async (dispatch, getState) => {
+
+    try {
+      const response = await axios.get(`http://localhost:4044/api/v1/recipes/${recipeId}`);
+      console.log(response);
+      dispatch({
+        type: 'NEW_RECIPE_ADDED',
+        payload: response.data.recipe
+      });
+      return Promise.resolve();
+    } catch (error) {
+      return Promise.reject();
     }
   };
 }

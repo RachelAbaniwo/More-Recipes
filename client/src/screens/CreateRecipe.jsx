@@ -1,7 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
+import ImageFile from '../components/ImageUploader'
 import { Link } from 'react-router';
 import { createRecipe } from '../store/actions';
 import { checkField } from '../helpers'
@@ -12,11 +14,11 @@ class CreateRecipeScreen extends React.Component {
     super(props);
     
     this.state = {
-      name: 'ASDASDASDASD',
-      category: 'ASDASDASD',
-      method: 'asdasdasdasd',
-      description: 'asl;as;lkasd;asd',
-      ingredients: 'asdasdnlsdknakldnasd',
+      name: '',
+      category: '',
+      method: '',
+      description: '',
+      ingredients: '',
       error: null,
       errors: []
     };
@@ -54,12 +56,35 @@ class CreateRecipeScreen extends React.Component {
     if(( this.state.method.length < 1 ) || (checkField(this.state.method))) {
       errors.push('Preparation method is required');
     }
+
+    if(!this.props.imageFile ) {
+      errors.push('Recipe image is required');
+    }
     
 
 
     this.setState( {errors}, () => {
       return Promise.resolve();
     });
+  }
+
+  async uploadToCloudinary() {
+    const formData = new FormData();
+
+    formData.append('file', this.props.imageFile);
+    formData.append('upload_preset', 'jj8czdds');
+
+    try {
+      delete axios.defaults.headers.common['token'];
+
+      const response = await axios.post('https://api.cloudinary.com/v1_1/rachelabaniwo/image/upload', formData);
+
+      axios.defaults.headers.common['token'] = JSON.parse(localStorage.getItem('authUser')).token;
+
+      return Promise.resolve(response.data.secure_url);
+    } catch (errors) {
+      console.log(errors);
+    }
   }
 
   async handleSubmit() {
@@ -70,7 +95,13 @@ class CreateRecipeScreen extends React.Component {
     }
     
     try {    
-      const recipe = await this.props.createRecipe(this.state);
+      const imageUrl = await this.uploadToCloudinary();
+
+      const recipeData = this.state;
+      recipeData.imageUrl = imageUrl;
+      
+      const recipe = await this.props.createRecipe(recipeData);
+      
       //  this.props.router.push('/');
     } catch (error) {
       
@@ -104,7 +135,7 @@ class CreateRecipeScreen extends React.Component {
       <div>
         <section id="nav">
           <nav className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
-            <a className="moreRecipes" href="#">MORE RECIPES</a>
+            <Link to ='/home'className="moreRecipes" href="#">MORE RECIPES</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
             </button>
@@ -126,7 +157,7 @@ class CreateRecipeScreen extends React.Component {
             </div>
           </nav>
         </section>
-        <section className="container text-center mx auto view-recipe-container" style={{border: '1px solid lightgrey', padding: 30, marginTop: 90, marginBottom: 50}}>
+        <section className="container text-center mx auto create-recipe-container" style={{border: '1px solid lightgrey', padding: 30, marginTop: 90, marginBottom: 50}}>
           <section className="row justify-content-center py-5">
             <section className="col-md-8">
               <div className="card" style={{backgroundColor: 'rgba(233, 231, 231, 0.863)'}}>
@@ -140,19 +171,19 @@ class CreateRecipeScreen extends React.Component {
                       />
                     </div>
                     <div className="form-group">
-                      <input type="text" onChange={this.handleChange} className="form-control" name="category" placeholder="Category" value={this.state.category} />
+                      <input type="text" onChange={this.handleChange} className="form-control" name="category" placeholder="Recipe category" value={this.state.category} />
                     </div>
                     <div className="form-group">
-                      <textarea type="text" onChange={this.handleChange} className="form-control" name="ingredients" placeholder="Ingredients" value={this.state.ingredients} />
+                      <textarea type="text" onChange={this.handleChange} className="form-control" name="ingredients" placeholder="Ingredients (separate with commas)" value={this.state.ingredients} />
                     </div>
                     <div className="form-group">
-                      <textarea type="text" onChange={this.handleChange} className="form-control" name="description" placeholder="Description" value={this.state.description} />
+                      <textarea type="text" onChange={this.handleChange} className="form-control" name="description" placeholder="Recipe description" value={this.state.description} />
                     </div>
                     <div className="form-group">
-                      <textarea type="text" onChange={this.handleChange} className="form-control" name="method" placeholder="Method" value={this.state.method} />
+                      <textarea type="text" onChange={this.handleChange} className="form-control" name="method" placeholder="Recipe directions (separate each step with a period)" value={this.state.method} />
                     </div>
-                    <div className="form-group col-md-4 p-0 m-0">
-                      <input type="file" className="form-control" />
+                    <div className="form-group p-0 m-0">
+                    <ImageFile/>
                     </div>
                     <button type="button" 
                     onClick={this.handleSubmit}
@@ -171,7 +202,9 @@ class CreateRecipeScreen extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    imageFile: state.imageUpload.imageFile
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {

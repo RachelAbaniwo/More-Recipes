@@ -46,13 +46,16 @@ export default class ReviewsController {
    * @returns {json} returns recipe and array of reviews
    */
   getRecipeReviews(req, res) {
-    Recipe.findOne({ where: { id: req.params.recipeId } }).then((recipe) => {
+    Recipe.findOne({ where: { id: req.params.recipeId }, }).then((recipe) => {
       if (!recipe) {
         return res.status(404).json({
           message: 'Recipe not Found'
         });
       }
-      Review.findAll({ where: { recipeId: req.params.recipeId } }).then((reviews) => {
+      Review.findAll({
+        where: { recipeId: req.params.recipeId },
+        include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+      }).then((reviews) => {
         if (reviews.length < 1) {
           return res.status(404).json({
             message: 'Recipe has no Reviews'
