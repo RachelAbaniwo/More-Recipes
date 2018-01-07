@@ -44,15 +44,6 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Favorite, {
       foreignKey: 'userId'
     });
-    User.hasMany(models.Review, {
-      foreignKey: 'userId'
-    });
-    User.hasMany(models.Upvote, {
-      foreignKey: 'userId'
-    });
-    User.hasMany(models.Downvote, {
-      foreignKey: 'userId'
-    });
   };
 
   return User;

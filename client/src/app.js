@@ -5,7 +5,9 @@ import { Provider } from 'react-redux';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import CreateRecipe from './screens/CreateRecipe';
+import ViewRecipe from './screens/ViewRecipe'
 import axios from 'axios';
+import { syncHistoryWithStore } from 'react-router-redux'
 
 
 import './../assets/css/style.css';
@@ -43,20 +45,16 @@ function ifNotAuthenticated(nextState, replace) {
   }
 }
 
-
-
-
-
-
 ReactDom.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={syncHistoryWithStore(browserHistory, store)}>
       <Route path="/" component={Main}>
         <IndexRoute component={Home}></IndexRoute>
         <Route path="/home" component={Home}></Route>
         <Route path="/signup" component={Register} onEnter={ ifAuthenticated }></Route>
         <Route path="/signin" component={Login} onEnter={ ifAuthenticated }></Route>
-        <Route path="/create-recipe" component={CreateRecipe}></Route>
+        <Route path="/recipes/create" component={CreateRecipe}></Route>
+        <Route path="/view-recipe/:recipeId" component={ViewRecipe}></Route>
       </Route>
     </Router>
   </Provider>

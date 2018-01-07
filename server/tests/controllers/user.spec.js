@@ -26,7 +26,7 @@ describe('USER CONTROLLER', () => {
         .end((error, response) => {
           expect(response).to.have.status(201);
           expect(response.body).to.have.property('token');
-          expect(response.body).to.have.property('createdUser');
+          expect(response.body).to.have.property('user');
           expect(response.body.message).to.equal('Successfully signed up!');
           done();
         });

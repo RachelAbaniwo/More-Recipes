@@ -4,7 +4,11 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 
 const defaultState = {
-  authUser: null
+  authUser: null,
+  recipes: [],
+  imageUpload: {
+    imageFile: null
+  }
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

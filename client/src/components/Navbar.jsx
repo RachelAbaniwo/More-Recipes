@@ -12,7 +12,7 @@ export default class Navbar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a className="navbar-register" style={{marginRight: 20}} href="#">POPULAR RECIPES</a>
+              <a className="navbar-register" style={{marginRight: 20}} href="#popular">POPULAR RECIPES</a>
             </li>
           </ul>
           <form className="form-inline my-2 my-lg-0">

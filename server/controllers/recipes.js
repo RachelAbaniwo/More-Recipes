@@ -15,7 +15,7 @@ export default class RecipesController {
    */
   getRecipes(req, res) {
     return Recipe.findAll({
-      //  include: { model: db.User }
+      include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
     }).then(recipes => res.status(200).json({
       recipes
     }))
@@ -30,7 +30,9 @@ export default class RecipesController {
    * @returns {json} recipe returned
    */
   getOneRecipe(req, res) {
-    Recipe.findById(req.params.recipeId).then((recipe) => {
+    Recipe.findById(req.params.recipeId, {
+      include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+    }).then((recipe) => {
       if (!recipe) {
         return res.status(404).json({
           message: 'Recipe not found'
@@ -67,6 +69,9 @@ export default class RecipesController {
     if ((!req.body.method) || (checkField(req.body.method))) {
       errors.push('Method required.');
     }
+    if (!req.body.imageUrl) {
+      errors.push('Recipe Image is required.');
+    }
 
     if (errors.length > 0) {
       return res.status(400).json({
@@ -81,7 +86,8 @@ export default class RecipesController {
       description: req.body.description,
       method: req.body.method,
       ingredients: req.body.ingredients,
-      userId: req.AuthUser.id
+      userId: req.AuthUser.id,
+      recipeImage: req.body.imageUrl
     }).then(recipe => res.status(201).json({
       recipe,
       message: 'Successfully created recipe'
@@ -104,6 +110,7 @@ export default class RecipesController {
         description: returnParameter(req.body.description) || recipe.description,
         method: returnParameter(req.body.method) || recipe.method,
         ingredients: returnParameter(req.body.ingredients) || recipe.ingredients,
+        recipeImage: req.body.imageUrl || recipe.recipeImage
       }, {
         where: { id: req.params.recipeId },
         returning: true,
@@ -117,7 +124,8 @@ export default class RecipesController {
             method: newRecipe[1].method,
             ingredients: newRecipe[1].ingredients,
             id: newRecipe[1].id,
-            userId: newRecipe[1].userId
+            userId: newRecipe[1].userId,
+            recipeImage: newRecipe[1].imageUrl
 
           };
           res.status(201).json({
