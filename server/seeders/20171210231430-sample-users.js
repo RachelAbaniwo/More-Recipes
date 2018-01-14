@@ -1,6 +1,9 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 module.exports = {
   up: queryInterface =>
@@ -10,7 +13,7 @@ module.exports = {
       Lastname: 'Abaniwo',
       Username: 'RachelAbaniwo',
       Email: 'rachel.abaniwo@test.com',
-      Password: bcrypt.hashSync('rachel', 10),
+      Password: bcrypt.hashSync(process.env.PASSWORD, 10),
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -19,7 +22,7 @@ module.exports = {
       Lastname: 'Abaniwo',
       Username: 'IneneAbaniwo',
       Email: 'inene.abaniwo@test.com',
-      Password: bcrypt.hashSync('rachel', 10),
+      Password: bcrypt.hashSync(process.env.PASSWORD, 10),
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -28,7 +31,7 @@ module.exports = {
       Lastname: 'Abang',
       Username: 'NelsonAbang',
       Email: 'nelson.abang@test.com',
-      Password: bcrypt.hashSync('rachel', 10),
+      Password: bcrypt.hashSync(process.env.PASSWORD, 10),
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -37,7 +40,7 @@ module.exports = {
       Lastname: 'Rae',
       Username: 'NeneRae',
       Email: 'nene.rae@test.com',
-      Password: bcrypt.hashSync('rachel', 10),
+      Password: bcrypt.hashSync(process.env.PASSWORD, 10),
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -46,7 +49,7 @@ module.exports = {
       Lastname: 'Remi',
       Username: 'NnennaRemi',
       Email: 'nnenna.remi@test.com',
-      Password: bcrypt.hashSync('rachel', 10),
+      Password: bcrypt.hashSync(process.env.PASSWORD, 10),
       createdAt: new Date(),
       updatedAt: new Date(),
     },

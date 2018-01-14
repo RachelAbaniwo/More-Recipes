@@ -174,10 +174,10 @@ class CreateRecipeScreen extends React.Component {
                       <input type="text" onChange={this.handleChange} className="form-control" name="category" placeholder="Recipe category" value={this.state.category} />
                     </div>
                     <div className="form-group">
-                      <textarea type="text" onChange={this.handleChange} className="form-control" name="ingredients" placeholder="Ingredients (separate with commas)" value={this.state.ingredients} />
+                      <textarea type="text" onChange={this.handleChange} className="form-control" name="description" placeholder="Recipe description" value={this.state.description} />
                     </div>
                     <div className="form-group">
-                      <textarea type="text" onChange={this.handleChange} className="form-control" name="description" placeholder="Recipe description" value={this.state.description} />
+                      <textarea type="text" onChange={this.handleChange} className="form-control" name="ingredients" placeholder="Ingredients (separate with commas)" value={this.state.ingredients} />
                     </div>
                     <div className="form-group">
                       <textarea type="text" onChange={this.handleChange} className="form-control" name="method" placeholder="Recipe directions (separate each step with a period)" value={this.state.method} />

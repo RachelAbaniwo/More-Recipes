@@ -88,7 +88,8 @@ export default {
     category: 'Rice',
     ingredients: 'Ofada Rice, Pepper, Olive Oil, Onions',
     description: 'Ofada Rice is eaten with complimentary sauce',
-    method: 'Boil Rice'
+    method: 'Boil Rice',
+    imageUrl: 'https://img.com/1.png'
   },
   updateRecipe: {
     name: 'Chicken Chilli Sauce',

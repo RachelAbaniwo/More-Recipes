@@ -23,21 +23,21 @@ describe('USER CONTROLLER', () => {
       .send(signinUser1)
       .end((error,response) => {
         user1Token = response.body.token;
-        user1 = response.body.existingUser;
+        user1 = response.body.user;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
       .send(signinUser3)
       .end((error,response) => {
         user3Token = response.body.token;
-        user3 = response.body.existingUser;
+        user3 = response.body.user;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
       .send(signinUser2)
       .end((error,response) => {
         user2Token = response.body.token;
-        user2 = response.body.existingUser;
+        user2 = response.body.user;
         done();
       });
     });
@@ -47,6 +47,7 @@ describe('USER CONTROLLER', () => {
       .get('/api/v1/users/myrecipes')
       .set('token', user1Token)
       .end((error, response) => {
+        console.log(error);
         expect(response).to.have.status(200);
         expect(response.body.recipes[0].name).to.equal('Fried Noodles');
         expect(response.body.recipes[0].userId).to.equal(user1.id);
