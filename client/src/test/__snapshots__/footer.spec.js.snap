@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The footer component Should render without crashing 1`] = `
+<footer
+  className="fixed-bottom"
+  style={
+    Object {
+      "backgroundColor": "rgba(73, 67, 67, 0.9)",
+      "height": 30,
+      "maxWidth": "100%",
+    }
+  }
+>
+  <p
+    className="text-center"
+    style={
+      Object {
+        "color": "#fff",
+        "fontSize": 12,
+        "marginBottom": 5,
+        "paddingTop": 5,
+      }
+    }
+  >
+    © 2017 More-Recipes
+  </p>
+</footer>
+`;

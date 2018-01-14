@@ -49,7 +49,7 @@ export default class UserController {
       Lastname: req.body.Lastname,
       Username: req.body.Username,
       Email: req.body.Email,
-      Password: bcrypt.hashSync(req.body.Password, 10)
+      Password: bcrypt.hashSync(req.body.Password, process.env.NODE_ENV === 'test' ? 1 : 10)
     }).then((user) => {
       const createdUser = {
         firstname: user.Firstname,
