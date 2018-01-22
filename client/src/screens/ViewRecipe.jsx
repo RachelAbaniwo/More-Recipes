@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 import { Link } from 'react-router';
 import { getRecipe } from '../store/actions';
 import food9 from '../../assets/image/food-9.jpg';
-
+import AddReview from './../components/AddReview';
 import '../../assets/css/style.css';
 
 class ViewRecipeScreen extends React.Component {
@@ -102,8 +102,8 @@ class ViewRecipeScreen extends React.Component {
             <section className="text-justify" style={{paddingLeft: 50, paddingRight: 50}}>
                 <ReviewList reviews={recipe.Reviews}/>
             </section>
-            <div className="row">
-              <button type="button" className="btn btn-default" style={{marginLeft: 10, marginBottom: 20}}>Add Review</button>
+            <div className="row justify-content-center">
+                <AddReview recipeId={recipe.id}/>
             </div>
           </section>
           <Footer/>

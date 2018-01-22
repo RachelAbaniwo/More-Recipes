@@ -1,7 +1,7 @@
 import db from '../models';
 import { checkField, returnParameter } from '../helpers/checkInput';
 
-const { Recipe, Review } = db;
+const { Recipe, Review, User } = db;
 
 /**
  * Controls the reviews endpoints
@@ -25,11 +25,15 @@ export default class ReviewsController {
           review: req.body.review,
           recipeId: recipe.id,
           userId: req.AuthUser.id
-        }).then(review => res.status(201).json({
-          recipe,
-          review,
-          message: 'Review successfully added!'
-        }));
+        }).then(review => {
+          return Review.findById(review.id, {
+            include: [{ model: User, exclude: 'Password' }]
+          }).then(reviewWithUser => res.status(201).json({
+            recipe,
+            review: reviewWithUser,
+            message: 'Review successfully added!'
+          }));
+        });
       } else {
         return res.status(404).json({
           message: 'Recipe to be reviewed not found'

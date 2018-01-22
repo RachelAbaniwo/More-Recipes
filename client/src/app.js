@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import CreateRecipe from './screens/CreateRecipe';
-import ViewRecipe from './screens/ViewRecipe'
+import ViewRecipe from './screens/ViewRecipe';
 import axios from 'axios';
 import { syncHistoryWithStore } from 'react-router-redux'
 

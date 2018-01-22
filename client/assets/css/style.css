@@ -78,6 +78,9 @@ button,.link-button{
  background-color: white;
 
 }
+button.btn.btn-default:disabled {
+  cursor: not-allowed;
+}
 input, textarea{
  font-family: kaushan script;
  color:gray;

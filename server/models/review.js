@@ -13,23 +13,15 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Users', key: 'id'
       }
     },
-  }, {
-    classMethods: {
-      /**
-   * declares associations
-   * @param {object} models
-   * @returns {integer} foreign key declared
-   */
-      associate(models) {
-        Review.belongsTo(models.Recipe, {
-          foreignKey: 'recipeId'
-        });
-        Review.belongsTo(models.User, {
-          foreignKey: 'userId',
-          as: 'user'
-        });
-      }
-    }
   });
+  
+  Review.associate = models => {
+    Review.belongsTo(models.Recipe, {
+      foreignKey: 'recipeId'
+    });
+    Review.belongsTo(models.User, {
+      foreignKey: 'userId'
+    });
+  };
   return Review;
 };

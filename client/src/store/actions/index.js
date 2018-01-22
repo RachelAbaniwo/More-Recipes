@@ -20,9 +20,6 @@ export function signInUser({Username, Password}) {
       });
       localStorage.setItem('authUser', JSON.stringify(response.data));
 
-      
-      return;
-
       dispatch ({
         type: 'SIGN_IN_USER',
         authUser: response.data
@@ -104,6 +101,28 @@ export function getRecipe(recipeId) {
       });
       return Promise.resolve();
     } catch (error) {
+      return Promise.reject();
+    }
+  };
+}
+
+export function createReview(review, recipeId) {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.post(`http://localhost:4044/api/v1/reviews/${recipeId}`, { review });
+        dispatch({
+          type: 'ADD_RECIPE_REVIEW',
+          payload: response.data.review
+        });
+        dispatch({
+          type: 'NOTIFICATION',
+          payload: {
+            level: 'SUCCESS',
+            message: 'Review created successfully.'
+          }
+        });
+        return Promise.resolve();
+    } catch(error) {
       return Promise.reject();
     }
   };

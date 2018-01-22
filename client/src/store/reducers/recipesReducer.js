@@ -12,6 +12,20 @@ export default function recipesReducer(state = [], action) {
         ...state,
         action.payload
       ];
+    case 'ADD_RECIPE_REVIEW':
+      return state.map((recipe) => {
+        if (recipe.id !== action.payload.recipeId) {
+          return recipe;
+        }
+
+        return {
+          ...recipe,
+          Reviews: [
+            ...recipe.Reviews,
+            action.payload
+          ]
+        };
+      });
     default:
       return state;
   }

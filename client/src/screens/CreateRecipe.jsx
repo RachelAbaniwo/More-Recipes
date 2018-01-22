@@ -6,8 +6,9 @@ import Footer from '../components/Footer';
 import ImageFile from '../components/ImageUploader'
 import { Link } from 'react-router';
 import { createRecipe } from '../store/actions';
-import { checkField } from '../helpers'
+import { checkField } from '../helpers';
 import '../../assets/css/style.css';
+import AddReview from './../components/AddReview';
 
 class CreateRecipeScreen extends React.Component {
   constructor(props) {
