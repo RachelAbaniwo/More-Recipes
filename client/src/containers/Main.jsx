@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './../store/actions';
+import Notification from './../components/Notification';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,9 +12,10 @@ class App extends React.Component {
   render() {
 
     return (
-      <div>
+      <Fragment>
+        <Notification />
         {this.props.children}
-      </div>
+      </Fragment>
     );
   }
 }
