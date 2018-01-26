@@ -75,7 +75,7 @@ class ViewRecipeScreen extends React.Component {
                        className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto" 
                        style={{ maxWidth: 900, maxHeight: 700 }} />
                   <figcaption className="figure-caption" style={{textAlign: 'left'}}>
-                    <p style={{fontSize: '18px'}}><i className="fa fa-user-circle-o" aria-hidden="true" /> &nbsp;{recipe.User.Username}</p>
+                    <p style={{fontSize: '18px'}}><i className="fa fa-user-circle-o" aria-hidden="true" /> &nbsp;{recipe.User.username}</p>
                     <p style={{fontSize: '18px'}}><i className="fa fa-thumbs-up text-info" aria-hidden="true" />{recipe.Upvotes.length} &nbsp; 
                     <i className="fa fa-thumbs-down text-danger" aria-hidden="true" />
                     {recipe.Downvotes.length} &nbsp; 

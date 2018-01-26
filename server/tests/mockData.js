@@ -4,24 +4,24 @@ dotenv.config();
 
 export default {
   signinUser1: {
-    Username: 'RachelAbaniwo',
-    Password: process.env.PASSWORD
+    email: 'rachel.abaniwo@test.com',
+    password: process.env.PASSWORD
   },
   signinUser2: {
-    Username: 'IneneAbaniwo',
-    Password: process.env.PASSWORD
+    email: 'inene.abaniwo@test.com',
+    password: process.env.PASSWORD
   },
   signinUser3: {
-    Username: 'NelsonAbang',
-    Password: process.env.PASSWORD
+    email: 'nelson.abang@test.com',
+    password: process.env.PASSWORD
   },
   signinUser4: {
-    Username: 'NeneRae',
-    Password: process.env.PASSWORD
+    email: 'nene.rae@test.com',
+    password: process.env.PASSWORD
   },
   signinUser5: {
-    Username: 'NnennaRemi',
-    Password: process.env.PASSWORD
+    email: 'nnenna.remi@test.com',
+    password: process.env.PASSWORD
   },
   review1: {
     review: 'Awesome Stuff'
@@ -29,59 +29,60 @@ export default {
   review2: {
     review: 'Nice!'
   },
-  wrongUsernameSignIn: {
-    Username: 'Abaniwo',
-    Password: process.env.PASSWORD
+  wrongEmailSignIn: {
+    email: 'abaniwo@test.com',
+    password: process.env.PASSWORD
   },
   wrongPasswordSignIn: {
-    Username: 'IneneAbaniwo',
-    Password: 'rach'
+    email: 'inene.abaniwo@test.com',
+    password: 'rach'
   },
   updateUser1: {
-    Firstname: 'Rach',
-    Lastname: 'Dyna',
-    Username: 'RachDyna',
-    Email: 'rach.dyna@test.com',
+    firstname: 'Rach',
+    lastname: 'Dyna',
+    username: 'RachDyna',
+    email: 'rach.dyna@test.com',
+    aboutMe: 'I love food more than anything else'
   },
   wrongUpdateUser: {
-    Firstname: ' ',
-    Lastname: ' * ',
-    Username: ''
+    firstname: ' ',
+    lastname: ' * ',
+    username: ''
   },
   signupUser: {
-    Firstname: 'Henry',
-    Lastname: 'Nek',
-    Username: 'HenryNek',
-    Email: 'henrynek@test.com',
-    Password: process.env.PASSWORD
+    firstname: 'Henry',
+    lastname: 'Nek',
+    username: 'HenryNek',
+    email: 'henrynek@test.com',
+    password: process.env.PASSWORD
   },
   wrongEmailFormat: {
-    Firstname: 'Dan',
-    Lastname: 'Enun',
-    Username: 'DannyE',
-    Email: 'racheltest.com',
-    Password: process.env.PASSWORD
+    firstname: 'Dan',
+    lastname: 'Enun',
+    username: 'DannyE',
+    email: 'racheltest.com',
+    password: process.env.PASSWORD
   },
   emailInUseSignUp: {
-    Firstname: 'Danny',
-    Lastname: 'Enun',
-    Username: 'DannyEnun',
-    Email: 'rachel.abaniwo@test.com',
-    Password: process.env.PASSWORD
+    firstname: 'Danny',
+    lastname: 'Enun',
+    username: 'DannyEnun',
+    email: 'rachel.abaniwo@test.com',
+    password: process.env.PASSWORD
   },
   usernameInUseSignUp: {
-    Firstname: 'Danny',
-    Lastname: 'Enun',
-    Username: 'RachelAbaniwo',
-    Email: 'dannyenun@test.com',
-    Password: process.env.PASSWORD
+    firstname: 'Danny',
+    lastname: 'Enun',
+    username: 'RachelAbaniwo',
+    email: 'dannyenun@test.com',
+    password: process.env.PASSWORD
   },
   wrongCharacterSignUp: {
-    Firstname: '  ',
-    Lastname: ' ',
-    Username: 'ab',
-    Email: '  *\' ',
-    Password: 'a'
+    firstname: '  ',
+    lastname: ' ',
+    username: 'ab',
+    email: '  *\' ',
+    password: 'a'
   },
   recipe1: {
     name: 'Ofada Rice',
@@ -89,7 +90,11 @@ export default {
     ingredients: 'Ofada Rice, Pepper, Olive Oil, Onions',
     description: 'Ofada Rice is eaten with complimentary sauce',
     method: 'Boil Rice',
-    imageUrl: 'https://img.com/1.png'
+    imageUrl: 'https://img.com/1.png',
+    upvotes: 2,
+    downvotes: 2,
+    views: 0,
+    favorites: 0
   },
   updateRecipe: {
     name: 'Chicken Chilli Sauce',

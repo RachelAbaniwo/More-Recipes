@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
 import { Link } from 'react-router';
 import { signInUser } from '../store/actions';
-import { checkname, checkUsername, checkPassword } from '../../../server/helpers/checkInput'
+import { checkEmail } from '../../../server/helpers/checkInput'
 
 import '../../assets/css/style.css';
 class LoginScreen extends React.Component {
@@ -12,10 +12,10 @@ class LoginScreen extends React.Component {
     super(props);
 
     this.state = {
-     error: null,
-     Username: '',
-     Password:'',
-     errors: []
+      error: null,
+      email: '',
+      password: '',
+      errors: []
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,17 +30,17 @@ class LoginScreen extends React.Component {
   }
 
   async handleValidation() {
-   let errors = [];
+    let errors = [];
 
-    if(( this.state.Username.length < 1 ) || (!checkUsername(this.state.Username))) {
-    errors.push('Username is required');
+    if ((this.state.email.length < 1) || (!checkEmail(this.state.email))) {
+      errors.push('Email is required');
     }
 
-    if( this.state.Password.length < 1 ) {
+    if (this.state.password.length < 1) {
       errors.push('Password is required');
-      }
+    }
 
-    this.setState( {errors});
+    this.setState({ errors });
   }
 
   async handleSignIn() {
@@ -48,22 +48,23 @@ class LoginScreen extends React.Component {
     if (this.state.errors.length > 0) {
       return
     }
-    
+
     try {
-      const user = await this.props.signInUser({ 
-        Username: this.state.Username, 
-        Password: this.state.Password
+      const user = await this.props.signInUser({
+        email: this.state.email,
+        password: this.state.password
       });
 
       this.props.router.push('/');
     } catch (error) {
+      console.log(error);
       if (error.response.status === 400) {
-        
+
         this.setState({
           errors: [error.response.data.errors]
         });
-      } 
-      else if(error.response.status === 404) {
+      }
+      else if (error.response.status === 404) {
         this.setState({
           errors: [error.response.data.message]
         });
@@ -103,7 +104,7 @@ class LoginScreen extends React.Component {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link to='/signup' className="navbar-register" style={{marginRight: 20}} href="#">REGISTER</Link>
+                  <Link to='/signup' className="navbar-register" style={{ marginRight: 20 }} href="#">REGISTER</Link>
                 </li>
               </ul>
               <form className="form-inline my-2 my-lg-0">
@@ -112,27 +113,27 @@ class LoginScreen extends React.Component {
             </div>
           </nav>
         </section>
-        <div className="container" style={{position: 'absolute', top: 40, left: 0, right: 0, margin: '0 auto'}}>
+        <div className="container" style={{ position: 'absolute', top: 40, left: 0, right: 0, margin: '0 auto' }}>
           <div className="row justify-content-center py-5">
             <div className="col-sm-12 col-md-8">
               <div className="card card-container" id="login-card">
-                <h1 className="card-header text-center" style={{fontFamily: 'kaushan script'}}>SIGN IN</h1><br />
+                <h1 className="card-header text-center" style={{ fontFamily: 'kaushan script' }}>SIGN IN</h1><br />
                 {errorHolder}
                 <div className="card-body">
-                    <input type="text" name="Username" placeholder="Username" value={this.state.Username} onChange={this.handleInputChange} />
-                    <input type="password" name="Password" placeholder="Password" value={this.state.Password} onChange={this.handleInputChange} />
-                    <div className="row justify-content-center">
-                      <input type="submit" name="login" className="login login-card-submit" onClick={ (event) => {this.handleSignIn(); }} style={{fontFamily: 'kaushan script'}} defaultValue="SIGN IN" />
-                    </div>
-                  <div className="login-help" style={{color: 'white', fontFamily: 'kaushan script'}}>
-                    <Link to = 'signup' className="register-link mr-1" href="#" style={{color: 'white'}}>REGISTER NEW ACCOUNT</Link><a className="forgot-link" href="#" style={{color: 'white'}}>FORGOT PASSWORD?</a>
+                  <input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.handleInputChange} />
+                  <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} />
+                  <div className="row justify-content-center">
+                    <input type="submit" name="login" className="login login-card-submit" onClick={(event) => { this.handleSignIn(); }} style={{ fontFamily: 'kaushan script' }} defaultValue="SIGN IN" />
+                  </div>
+                  <div className="login-help" style={{ color: 'white', fontFamily: 'kaushan script' }}>
+                    <Link to='signup' className="register-link mr-1" href="#" style={{ color: 'white' }}>REGISTER NEW ACCOUNT</Link><a className="forgot-link" href="#" style={{ color: 'white' }}>FORGOT PASSWORD?</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     );
   }

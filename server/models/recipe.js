@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     recipeImage: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: ''
     },
     name: DataTypes.STRING,
     category: DataTypes.STRING,
@@ -14,7 +15,23 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'Users', key: 'id'
       }
-    }
+    },
+    upvotes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    downvotes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    favorites: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    views: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
   });
 
   Recipe.associate = (models) => {

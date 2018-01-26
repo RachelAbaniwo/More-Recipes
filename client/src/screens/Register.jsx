@@ -13,11 +13,11 @@ class RegisterScreen extends React.Component {
     super(props);
 
     this.state = {
-      Firstname: '',
-      Lastname: '',
-      Username: '',
-      Email: '',
-      Password: '',
+      firstname: '',
+      lastname: '',
+      username: '',
+      email: '',
+      password: '',
       error: null,
       errors: []
     };
@@ -37,30 +37,34 @@ class RegisterScreen extends React.Component {
     let errors = [];
 
     
-    if(( this.state.Firstname.length < 1 ) || (!checkname(this.state.Firstname)))  {
+    if(( this.state.firstname.length < 1 ) || (!checkname(this.state.firstname)))  {
       errors.push('First name is required');
     }
 
-    if(( this.state.Lastname.length < 1 ) || (!checkname(this.state.Lastname))) {
+    if(( this.state.lastname.length < 1 ) || (!checkname(this.state.lastname))) {
       errors.push('Last name is required');
     }
 
-    if( this.state.Email.length < 1 ) {
+    if( this.state.email.length < 1 ) {
       errors.push('Email address is required');
     }
     
-    if(this.state.Email.length > 1 && (!checkEmail(this.state.Email))) {
+    if(this.state.email.length > 1 && (!checkEmail(this.state.email))) {
       errors.push('Please enter a valid email address');
     }
 
-    if(( this.state.Username.length < 1 ) || (!checkUsername(this.state.Username))) {
+    if(( this.state.username.length < 1 ) || (!checkUsername(this.state.username))) {
       errors.push('Choose a preferred username');
     }
     
-    if( this.state.Password.length < 6) {
+    if( this.state.password.length < 1 ) {
+      errors.push('Choose a password');
+    }
+
+    if( this.state.password.length < 6) {
       errors.push('Your password should have a minimum of 6 characters');
     }
-    if( this.state.Password.length >= 6 && (!checkPassword(this.state.Password))) {
+    if( this.state.password.length >= 6 && (!checkPassword(this.state.password))) {
       errors.push('Password should only include (a-z, 0-9, -, _, .)');
     }
 
@@ -82,11 +86,11 @@ class RegisterScreen extends React.Component {
     try {
 
       const response = await this.props.signUpUser({
-        Firstname: this.state.Firstname,
-        Lastname: this.state.Lastname,
-        Email: this.state.Email,
-        Username: this.state.Username,
-        Password: this.state.Password
+        firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password
       });
       
       this.props.router.push('/');
@@ -149,33 +153,33 @@ class RegisterScreen extends React.Component {
                 {errorHolder}
                 <div className="card-body">
                     <input type="text" 
-                    name="Firstname" 
+                    name="firstname" 
                     placeholder="Firstname"
-                    value={this.state.Firstname}
+                    value={this.state.firstname}
                     onChange={
                       this.handleInputChange}/>
                     <input type="text" 
-                    name="Lastname" 
+                    name="lastname" 
                     placeholder="Lastname"
-                    value={this.state.Lastname}
+                    value={this.state.lastname}
                     onChange={this.handleInputChange}/>
                     <input 
                     type="text" 
-                    name="Email" 
+                    name="email" 
                     placeholder="Email"
-                    value={this.state.Email}
+                    value={this.state.email}
                     onChange={this.handleInputChange} />
                     <input 
                     type="text" 
-                    name="Username" 
+                    name="username" 
                     placeholder="Username" 
-                    value={this.state.Username}
+                    value={this.state.username}
                     onChange={this.handleInputChange}/>
                     <input 
                     type="password" 
-                    name="Password" 
+                    name="password" 
                     placeholder="Password"
-                    value={this.state.Password}
+                    value={this.state.password}
                     onChange={this.handleInputChange} />
                     <div className="row justify-content-center">
                       <input type="submit" name="register" className="register-card-submit" onClick={ (event) => {this.handleRegister();}} style={{fontFamily: 'kaushan script'}} defaultValue="SIGN UP" />

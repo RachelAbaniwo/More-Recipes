@@ -7,7 +7,7 @@ const ReviewList =  (props) => {
   let ReviewList = ReviewArray.map((review, index) => <div style={{fontSize: '18px'}}  key={index} 
     style={{borderBottom: '1px solid lightgrey', marginBottom: 20}} >
     <p >{review.review}</p><p><i className="fa fa-user-circle-o" aria-hidden="true" />
-    &nbsp; {review.User.Username}</p></div>);
+    &nbsp; {review.User.username}</p></div>);
    return(
     <article style={{paddingBottom: 30}}>
       {ReviewList}
@@ -19,4 +19,5 @@ ReviewList.propTypes = {
   reviews: PropTypes.array.isRequired
 };
 
- export default ReviewList;
+export default ReviewList;
+

@@ -25,15 +25,13 @@ export default class ReviewsController {
           review: req.body.review,
           recipeId: recipe.id,
           userId: req.AuthUser.id
-        }).then(review => {
-          return Review.findById(review.id, {
-            include: [{ model: User, exclude: 'Password' }]
-          }).then(reviewWithUser => res.status(201).json({
-            recipe,
-            review: reviewWithUser,
-            message: 'Review successfully added!'
-          }));
-        });
+        }).then(review => Review.findById(review.id, {
+          include: [{ model: User, exclude: 'password' }]
+        }).then(reviewWithUser => res.status(201).json({
+          recipe,
+          review: reviewWithUser,
+          message: 'Review successfully added!'
+        })));
       } else {
         return res.status(404).json({
           message: 'Recipe to be reviewed not found'
@@ -58,7 +56,7 @@ export default class ReviewsController {
       }
       Review.findAll({
         where: { recipeId: req.params.recipeId },
-        include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+        include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
       }).then((reviews) => {
         if (reviews.length < 1) {
           return res.status(404).json({
@@ -101,7 +99,7 @@ export default class ReviewsController {
             userId: newReview[1].userId
           };
           res.status(201).json({
-            updatedReview, message: 'Successfully updated your review'
+            review: updatedReview, message: 'Successfully updated your review'
           });
         }).catch(error => res.status(500).json({
           message: error.message

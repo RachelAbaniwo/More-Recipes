@@ -21,21 +21,21 @@ describe('RECIPE CONTROLLER', () => {
       .send(signinUser1)
       .end((error, response) => {
         user1Token = response.body.token;
-        user1 = response.body.existingUser;
+        user1 = response.body.user;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
       .send(signinUser2)
       .end((error, response) => {
         user2Token = response.body.token;
-        user2 = response.body.existingUser;
+        user2 = response.body.user;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
       .send(signinUser3)
       .end((error, response) => {
         user3Token = response.body.token;
-        user3 = response.body.existingUser;
+        user3 = response.body.user;
         done();
       });
     });
@@ -47,7 +47,7 @@ describe('RECIPE CONTROLLER', () => {
       .send(updateRecipe)
       .end((error, response) => {
         expect(response).to.have.status(201);
-        const recipe = response.body.updatedRecipe;
+        const recipe = response.body.recipe;
         expect(recipe.id).to.equal(4);
         expect(recipe.name).to.equal('Chicken Chilli Sauce');
         expect(recipe.category).to.equal('Stews and Sauce');

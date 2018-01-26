@@ -1,9 +1,11 @@
 import db from '../models/index';
 
+const { Recipe } = db;
+
 
 export default async (req, res, next) => {
   try {
-    const recipe = await db.Recipe.findById(req.params.recipeId);
+    const recipe = await Recipe.findById(req.params.recipeId);
 
     if (!recipe) {
       return res.status(404).json({ message: 'Recipe not found.' });

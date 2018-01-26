@@ -1,7 +1,10 @@
 import db from '../models/index';
 
+const { Recipe } = db;
+
+
 export default (req, res, next) => {
-  db.Recipe.findById(req.params.recipeId).then((recipe) => {
+  Recipe.findById(req.params.recipeId).then((recipe) => {
     if (!recipe) {
       return res.status(404).json({ message: 'Recipe not found' });
     }

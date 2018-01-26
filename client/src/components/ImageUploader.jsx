@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import { bindActionCreators } from 'redux';
-import {  setImageUrl } from '../store/actions';
+import { setImageUrl } from '../store/actions';
 import foodPlaceholder from '../../assets/image/food-placeholder.jpeg';
 
 import '../../assets/css/hover.css';

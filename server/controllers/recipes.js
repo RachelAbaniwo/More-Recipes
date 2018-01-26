@@ -1,5 +1,6 @@
 import db from '../models';
 import { checkField, returnParameter } from '../helpers/checkInput';
+import pagination from '../helpers/pagination';
 
 const { Recipe } = db;
 
@@ -14,14 +15,66 @@ export default class RecipesController {
    * @returns {json} returns array of recipes or error
    */
   getRecipes(req, res) {
-    return Recipe.findAll({
-      include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
-    }).then(recipes => res.status(200).json({
-      recipes
-    }))
-      .catch(error => res.status(500).json({
+    const limit = req.query.limit || 6;
+    const offset = req.query.offset || 0;
+    if (req.query.sort && req.query.order) {
+      return Recipe.findAndCountAll({
+        limit,
+        offset,
+        group: 'id',
+        order: db.sequelize.literal(`max(${req.query.sort}) ${req.query.order.toUpperCase()}`)
+      }).then(({ rows: recipes, count }) => {
+        res.status(200).json({
+          recipes,
+          pageData: pagination(count.length, limit, offset),
+        });
+      }).catch(error => res.status(500).json({
         message: error.message
       }));
+    } else if (req.query.search) {
+      const op = db.Sequelize.Op;
+      return Recipe.findAndCountAll({
+        limit,
+        offset,
+        where: {
+          [op.or]: {
+            name: {
+              [op.iLike]: `%${req.query.search}%`
+            },
+            description: {
+              [op.iLike]: `%${req.query.search}%`
+            },
+            ingredients: {
+              [op.iLike]: `%${req.query.search}%`
+            }
+          }
+        }
+      }).then(({ rows: recipes, count }) => {
+        if (recipes.length === 0) {
+          return res.status(404).json({
+            message: 'Recipe not found'
+          });
+        }
+        return res.status(404).json({
+          recipes,
+          pageData: pagination(count, limit, offset),
+        });
+      }).catch(error => res.status(500).json({
+        message: error.message
+      }));
+    }
+    return Recipe.findAndCountAll({
+      limit,
+      offset,
+      include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
+    }).then(({ rows: recipes, count }) => {
+      res.status(200).json({
+        recipes,
+        pageData: pagination(count, limit, offset),
+      });
+    }).catch(error => res.status(500).json({
+      message: error.message
+    }));
   }
   /**
    * gets a recipe by its id
@@ -31,7 +84,7 @@ export default class RecipesController {
    */
   getOneRecipe(req, res) {
     Recipe.findById(req.params.recipeId, {
-      include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+      include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
     }).then((recipe) => {
       if (!recipe) {
         return res.status(404).json({
@@ -129,7 +182,7 @@ export default class RecipesController {
 
           };
           res.status(201).json({
-            updatedRecipe, message: 'Successfully updated recipe'
+            recipe: updatedRecipe, message: 'Successfully updated recipe'
           });
         }).catch(error => res.status(500).json({
           message: error.message

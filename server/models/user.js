@@ -3,23 +3,24 @@ module.exports = (sequelize, DataTypes) => {
     profilePicture: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: ''
     },
-    Firstname: {
+    firstname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Lastname: {
+    lastname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Username: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: {
         msg: 'The Username is already in use.'
       },
     },
-    Email: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: {
@@ -31,7 +32,13 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    Password: {
+    aboutMe: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: ''
+
+    },
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },

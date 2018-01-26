@@ -1,6 +1,8 @@
 import express from 'express';
 import UserController from '../controllers/users';
 import authenticationMiddleware from '../middleware/authenticate';
+import userSignupValidator from '../middleware/userSignupValidator';
+import userSigninValidator from '../middleware/userSigninValidator';
 
 
 const router = express.Router();
@@ -12,14 +14,14 @@ const userController = new UserController();
 
 router.route('/signup')
 
-  .post(userController.userSignUp);
+  .post(userSignupValidator, userController.userSignUp);
 
 
 // POST /api/v1/users/signin - Signs a user in
 
 router.route('/signin')
 
-  .post(userController.userSignIn);
+  .post(userSigninValidator, userController.userSignIn);
 
 
 // GET /api/v1/users/myrecipes - Gets a Registered User's recipes

@@ -1,5 +1,5 @@
 import db from '../models';
-import { returnName, returnUsername } from '../helpers/checkInput';
+import { returnName, returnUsername, returnParameter, returnEmail, returnPassword } from '../helpers/checkInput';
 
 const { User } = db;
 /**
@@ -15,11 +15,12 @@ export default class ModifyUserController {
   updateUser(req, res) {
     User.findById(req.params.userId).then((user) => {
       User.update({
-        Firstname: returnName(req.body.Firstname) || user.Firstname,
-        Lastname: returnName(req.body.Lastname) || user.Lastname,
-        Username: returnUsername(req.body.Username) || user.Username,
-        Email: req.body.Email || user.Email,
-        id: user.id
+        firstname: returnName(req.body.firstname) || user.firstname,
+        lastname: returnName(req.body.lastname) || user.lastname,
+        username: returnUsername(req.body.username) || user.username,
+        email: returnEmail(req.body.email) || user.email,
+        id: user.id,
+        aboutMe: returnParameter(req.body.aboutMe) || user.aboutMe
       }, {
         where: { id: req.params.userId },
         returning: true,
@@ -27,14 +28,15 @@ export default class ModifyUserController {
       })
         .then((newUser) => {
           const updatedUser = {
-            Firstname: newUser[1].Firstname,
-            Lastname: newUser[1].Lastname,
-            Username: newUser[1].Username,
-            Email: newUser[1].Email,
+            firstname: newUser[1].firstname,
+            lastname: newUser[1].lastname,
+            username: newUser[1].username,
+            email: newUser[1].email,
             id: newUser[1].id,
+            aboutMe: newUser[1].aboutMe
           };
           res.status(201).json({
-            updatedUser, message: 'Successfully updated profile'
+            user: updatedUser, message: 'Successfully updated profile'
           });
         }).catch(error => res.status(500).json({
           message: error.message

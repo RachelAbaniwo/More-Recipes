@@ -9,7 +9,7 @@ module.exports = {
       updatedAt: new Date(),
     }, {
       recipeId: 1,
-      userId: 2,
+      userId: 4,
       createdAt: new Date(),
       updatedAt: new Date(),
     }

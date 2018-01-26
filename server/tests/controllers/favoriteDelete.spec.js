@@ -5,8 +5,8 @@ import app from '../../app';
 import data from '../mockData'
 
 const expect = chai.expect;
-let user1Token, user2Token, user3Token, user1, user2, user3;
-const { signinUser1, signinUser2, signinUser3 } = data;
+let user1Token, user2Token, user3Token, user4Token, user1, user2, user3, user4;
+const { signinUser1, signinUser2, signinUser3, signinUser4  } = data;
 
 chai.use(chaiHttp);
 
@@ -35,6 +35,13 @@ describe('FAVORITE CONTROLLER', () => {
         .end((error, response) => {
           user3Token = response.body.token;
           user3 = response.body.existingUser;
+        });
+        chai.request(app)
+        .post('/api/v1/users/signin')
+        .send(signinUser4)
+        .end((error, response) => {
+          user4Token = response.body.token;
+          user4 = response.body.existingUser;
           done();
         });
       });
@@ -81,7 +88,7 @@ describe('FAVORITE CONTROLLER', () => {
       it('should delete only the favorites of a Signed in User', (done) => {
         chai.request(app)
         .delete('/api/v1/favorites/2')
-        .set('token', user2Token)
+        .set('token', user4Token)
         .end((error, response) => {
           expect(response).to.have.status(200);
           expect(response.body.message).to.equal('Successfully deleted this recipe from your favorites');

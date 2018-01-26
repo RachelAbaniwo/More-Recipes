@@ -4,34 +4,40 @@ module.exports = {
       profilePicture: {
         type: Sequelize.STRING,
         allowNull: true,
+        defaultValue: ''
       },
       id: {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      Firstname: {
+      firstname: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      Lastname: {
+      lastname: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      Username: {
+      username: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      Email: {
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
         isEmail: true,
       },
-      Password: {
+      password: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      aboutMe: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: ''
 
       },
       createdAt: {

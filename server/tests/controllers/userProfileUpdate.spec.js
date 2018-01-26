@@ -21,21 +21,21 @@ describe('MODIFY USER CONTROLLER', () => {
       .send(signinUser1)
       .end((error, response) => {
         user1Token = response.body.token;
-        user1 = response.body.existingUser;
+        user1 = response.body.user;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
       .send(signinUser4)
       .end((error, response) => {
         user4Token = response.body.token;
-        user4 = response.body.existingUser;
+        user4 = response.body.user;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
       .send(signinUser5)
       .end((error, response) => {
         user5Token = response.body.token;
-        user5 = response.body.existingUser;
+        user5 = response.body.user;
         done();
       });
     });
@@ -89,9 +89,9 @@ describe('MODIFY USER CONTROLLER', () => {
       .send(updateUser1)
       .end((error, response) => {
         expect(response).to.have.status(201);
-        const user = response.body.updatedUser;
+        const user = response.body.user;
         expect(user.id).to.equal(4);
-        expect(user.Firstname).to.equal('Rach');
+        expect(user.firstname).to.equal('Rach');
         expect(response.body.message).to.equal('Successfully updated profile');
         done();
       });
@@ -103,9 +103,9 @@ describe('MODIFY USER CONTROLLER', () => {
       .send(wrongUpdateUser)
       .end((error, response) => {
         expect(response).to.have.status(201);
-        const user = response.body.updatedUser;
+        const user = response.body.user;
         expect(user.id).to.equal(1);
-        expect(user.Firstname).to.equal('Rachel');
+        expect(user.firstname).to.equal('Rachel');
         expect(response.body.message).to.equal('Successfully updated profile');
         done();
       });

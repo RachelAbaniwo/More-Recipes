@@ -6,21 +6,21 @@ import axios from 'axios';
 export function setImageUrl(imageFile) {
   return (dispatch) => {
     dispatch({
-      type: 'SET_IMAGE_FILE', 
+      type: 'SET_IMAGE_FILE',
       payload: imageFile
     });
   };
 }
 
-export function signInUser({Username, Password}) {
+export function signInUser({ email, password }) {
   return async (dispatch, getState) => {
     try {
       const response = await axios.post(`http://localhost:4044/api/v1/users/signin`, {
-        Username, Password
+        email, password
       });
       localStorage.setItem('authUser', JSON.stringify(response.data));
 
-      dispatch ({
+      dispatch({
         type: 'SIGN_IN_USER',
         authUser: response.data
       });
@@ -47,7 +47,7 @@ export function createRecipe(recipe) {
     } catch (error) {
       return Promise.reject();
     }
-  }; 
+  };
 }
 
 export function signOutUser() {
@@ -55,7 +55,7 @@ export function signOutUser() {
 
     localStorage.removeItem(authUser);
 
-    dispatch ({
+    dispatch({
       type: 'SIGN_OUT_USER'
     });
 
@@ -64,19 +64,19 @@ export function signOutUser() {
 }
 
 
-export function signUpUser({ Firstname, Lastname, Email, Username, Password }) {
+export function signUpUser({ firstname, lastname, email, username, password }) {
   return async (dispatch, getState) => {
-    
+
     try {
       const response = await axios.post(`http://localhost:4044/api/v1/users/signup`, {
-        Firstname, Lastname, Email, Username, Password
+        firstname, lastname, email, username, password
       });
       localStorage.setItem('authUser', JSON.stringify(response.data));
 
-      
+
       return;
 
-      dispatch ({
+      dispatch({
         type: 'SIGN_IN_USER',
         authUser: response.data
       });
@@ -110,19 +110,19 @@ export function createReview(review, recipeId) {
   return async (dispatch, getState) => {
     try {
       const response = await axios.post(`http://localhost:4044/api/v1/reviews/${recipeId}`, { review });
-        dispatch({
-          type: 'ADD_RECIPE_REVIEW',
-          payload: response.data.review
-        });
-        dispatch({
-          type: 'NOTIFICATION',
-          payload: {
-            level: 'SUCCESS',
-            message: 'Review created successfully.'
-          }
-        });
-        return Promise.resolve();
-    } catch(error) {
+      dispatch({
+        type: 'ADD_RECIPE_REVIEW',
+        payload: response.data.review
+      });
+      dispatch({
+        type: 'NOTIFICATION',
+        payload: {
+          level: 'SUCCESS',
+          message: 'Review created successfully.'
+        }
+      });
+      return Promise.resolve();
+    } catch (error) {
       return Promise.reject();
     }
   };

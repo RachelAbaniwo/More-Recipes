@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
-import ImageFile from '../components/ImageUploader'
+import ImageFile from '../components/ImageUploader';
 import { Link } from 'react-router';
 import { createRecipe } from '../store/actions';
 import { checkField } from '../helpers';
@@ -13,7 +13,7 @@ import AddReview from './../components/AddReview';
 class CreateRecipeScreen extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       name: '',
       category: '',
@@ -36,37 +36,35 @@ class CreateRecipeScreen extends React.Component {
   }
 
   async handleValidation() {
-    let errors = [];
-    
-    if(( this.state.name.length < 1 ) || (checkField(this.state.name)))  {
+    const errors = [];
+
+    if ((this.state.name.length < 1) || (checkField(this.state.name))) {
       errors.push('Recipe name is required');
     }
 
-    if(( this.state.category.length < 1 ) || (checkField(this.state.category))) {
+    if ((this.state.category.length < 1) || (checkField(this.state.category))) {
       errors.push('Recipe category is required');
     }
 
-    if(( this.state.description.length < 1 ) || (checkField(this.state.description))) {
+    if ((this.state.description.length < 1) || (checkField(this.state.description))) {
       errors.push('Recipe description is required');
     }
-    
-    if(( this.state.ingredients.length < 1 ) || (checkField(this.state.ingredients))) {
+
+    if ((this.state.ingredients.length < 1) || (checkField(this.state.ingredients))) {
       errors.push('Recipe ingredients are required');
     }
-    
-    if(( this.state.method.length < 1 ) || (checkField(this.state.method))) {
+
+    if ((this.state.method.length < 1) || (checkField(this.state.method))) {
       errors.push('Preparation method is required');
     }
 
-    if(!this.props.imageFile ) {
+    if (!this.props.imageFile) {
       errors.push('Recipe image is required');
     }
-    
 
 
-    this.setState( {errors}, () => {
-      return Promise.resolve();
-    });
+
+    this.setState({ errors }, () => Promise.resolve());
   }
 
   async uploadToCloudinary() {
@@ -76,11 +74,11 @@ class CreateRecipeScreen extends React.Component {
     formData.append('upload_preset', 'jj8czdds');
 
     try {
-      delete axios.defaults.headers.common['token'];
+      delete axios.defaults.headers.common.token;
 
       const response = await axios.post('https://api.cloudinary.com/v1_1/rachelabaniwo/image/upload', formData);
 
-      axios.defaults.headers.common['token'] = JSON.parse(localStorage.getItem('authUser')).token;
+      axios.defaults.headers.common.token = JSON.parse(localStorage.getItem('authUser')).token;
 
       return Promise.resolve(response.data.secure_url);
     } catch (errors) {
@@ -89,23 +87,21 @@ class CreateRecipeScreen extends React.Component {
   }
 
   async handleSubmit() {
-
     await this.handleValidation();
     if (this.state.errors.length > 0) {
-      return
+      return;
     }
-    
-    try {    
+
+    try {
       const imageUrl = await this.uploadToCloudinary();
 
       const recipeData = this.state;
       recipeData.imageUrl = imageUrl;
-      
+
       const recipe = await this.props.createRecipe(recipeData);
-      
+
       //  this.props.router.push('/');
     } catch (error) {
-      
       if (error.response.status === 400) {
         this.setState({
           errors: error.response.data.errors
@@ -114,14 +110,11 @@ class CreateRecipeScreen extends React.Component {
         this.setState({
           error: 'Try again after some time.'
         });
-
       }
     }
   }
   render() {
-
-    let errorHolder = this.state.errors.map((error, index) => {
-      return (
+    const errorHolder = this.state.errors.map((error, index) => (
         <span key={index}>
           <small className="mb-3" style={{
             color: 'red',
@@ -130,13 +123,12 @@ class CreateRecipeScreen extends React.Component {
           }}>{error}</small>
           <br />
         </span>
-      );
-    });
-    return(
+      ));
+    return (
       <div>
         <section id="nav">
           <nav className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
-            <Link to ='/home'className="moreRecipes" href="#">MORE RECIPES</Link>
+            <Link to='/home'className="moreRecipes" href="#">MORE RECIPES</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon" />
             </button>
@@ -146,22 +138,24 @@ class CreateRecipeScreen extends React.Component {
                   <input className="form-control mr-sm-2" type="search" placeholder="Find a Recipe" aria-label="Search" />
                 </form>
                 <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" style={{marginRight: 50}} href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a className="nav-link dropdown-toggle" style={{ marginRight: 50 }} href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Hi Rachel!
                   </a>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a className="dropdown-item" href="topFavorites.html" style={{fontSize: 15}}>PROFILE</a>
-                    <a className="dropdown-item" href="topFavorites.html" style={{fontSize: 15}}>LOG OUT</a>
+                    <a className="dropdown-item" href="topFavorites.html" style={{ fontSize: 15 }}>PROFILE</a>
+                    <a className="dropdown-item" href="topFavorites.html" style={{ fontSize: 15 }}>LOG OUT</a>
                   </div>
                 </li>
               </ul>
             </div>
           </nav>
         </section>
-        <section className="container text-center mx auto create-recipe-container" style={{border: '1px solid lightgrey', padding: 30, marginTop: 90, marginBottom: 50}}>
+        <section className="container text-center mx auto create-recipe-container" style={{ 
+border: '1px solid lightgrey', padding: 30, marginTop: 90, marginBottom: 50
+ }}>
           <section className="row justify-content-center py-5">
             <section className="col-md-8">
-              <div className="card" style={{backgroundColor: 'rgba(233, 231, 231, 0.863)'}}>
+              <div className="card" style={{ backgroundColor: 'rgba(233, 231, 231, 0.863)' }}>
                 <h4 className="card-header text-center">CREATE RECIPE</h4><br />
                 {errorHolder}
                 <div className="card-body">
@@ -186,9 +180,9 @@ class CreateRecipeScreen extends React.Component {
                     <div className="form-group p-0 m-0">
                     <ImageFile/>
                     </div>
-                    <button type="button" 
+                    <button type="button"
                     onClick={this.handleSubmit}
-                    className="btn btn-default" style={{ marginLeft: 10, marginTop: 20,marginBottom: 20}}>ADD RECIPE</button>
+                    className="btn btn-default" style={{ marginLeft: 10, marginTop: 20, marginBottom: 20 }}>ADD RECIPE</button>
                   </form>
                 </div>
               </div>
@@ -198,21 +192,17 @@ class CreateRecipeScreen extends React.Component {
         <Footer/>
       </div>
 
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     imageFile: state.imageUpload.imageFile
-  };
-}
+  });
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
+const mapDispatchToProps = (dispatch) => bindActionCreators({
     createRecipe
   }, dispatch);
-};
 
 const CreateRecipe = connect(mapStateToProps, mapDispatchToProps)(CreateRecipeScreen);
 
