@@ -22,7 +22,7 @@ export default class DownvotesController {
       await downvote.destroy();
       await recipe.decrement('downvotes');
       return res.status(200).json({
-        recipe, message: 'Successfully removed Downvote from this recipe'
+        recipe, message: 'Successfully removed downvote from this recipe'
       });
     }
     await Downvote.create({
@@ -32,7 +32,7 @@ export default class DownvotesController {
     await recipe.increment('downvotes');
 
     return res.status(201).json({
-      recipe, message: 'Recipe Downvoted successfully'
+      recipe, message: 'Recipe downvoted successfully'
     });
   }
 }

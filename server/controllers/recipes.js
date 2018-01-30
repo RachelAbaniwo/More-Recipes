@@ -22,6 +22,7 @@ export default class RecipesController {
         limit,
         offset,
         group: 'id',
+        distinct: true,
         order: db.sequelize.literal(`max(${req.query.sort}) ${req.query.order.toUpperCase()}`)
       }).then(({ rows: recipes, count }) => {
         res.status(200).json({
@@ -33,19 +34,21 @@ export default class RecipesController {
       }));
     } else if (req.query.search) {
       const op = db.Sequelize.Op;
+      const searchQuery = req.query.search.trim();
       return Recipe.findAndCountAll({
         limit,
         offset,
+        distinct: true,
         where: {
           [op.or]: {
             name: {
-              [op.iLike]: `%${req.query.search}%`
+              [op.iLike]: `%${searchQuery}%`
             },
             description: {
-              [op.iLike]: `%${req.query.search}%`
+              [op.iLike]: `%${searchQuery}%`
             },
             ingredients: {
-              [op.iLike]: `%${req.query.search}%`
+              [op.iLike]: `%${searchQuery}%`
             }
           }
         }
@@ -66,6 +69,7 @@ export default class RecipesController {
     return Recipe.findAndCountAll({
       limit,
       offset,
+      distinct: true,
       include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
     }).then(({ rows: recipes, count }) => {
       res.status(200).json({
@@ -95,7 +99,7 @@ export default class RecipesController {
         recipe
       });
     }).catch(() => res.status(400).json({
-      message: 'Invalid Request'
+      message: 'Invalid request'
     }));
   }
   /**
@@ -129,7 +133,7 @@ export default class RecipesController {
     if (errors.length > 0) {
       return res.status(400).json({
         errors,
-        message: 'Please fill all Fields'
+        message: 'Please fill all fields'
       });
     }
 

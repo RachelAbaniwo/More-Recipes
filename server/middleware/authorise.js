@@ -10,7 +10,7 @@ export default (req, res, next) => {
     }
 
     if (recipe.userId !== req.AuthUser.id) {
-      return res.status(401).json({ message: 'Unauthorized USER' });
+      return res.status(401).json({ message: 'Unauthorized' });
     }
 
     next();

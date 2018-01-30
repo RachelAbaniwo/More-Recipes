@@ -6,6 +6,7 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 import CreateRecipe from './screens/CreateRecipe';
 import ViewRecipe from './screens/ViewRecipe';
+import AllRecipesScreen from './components/AllRecipes';
 import axios from 'axios';
 import { syncHistoryWithStore } from 'react-router-redux'
 
@@ -13,14 +14,14 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import './../assets/css/style.css';
 
 import store from './store';
-import Main from './containers/Main'
+import Main from './containers/Main';
 
 import Home from './screens/Home';
 
 
-function setAxios () {
+function setAxios() {
   const authUser = localStorage.getItem('authUser');
-  if(authUser) {
+  if (authUser) {
     axios.defaults.headers.common['token'] = JSON.parse(authUser).token;
   }
 }
@@ -29,8 +30,8 @@ setAxios();
 
 function ifAuthenticated(nextState, replace) {
   const authUser = localStorage.getItem('authUser');
-  if(authUser) {
-    replace ({
+  if (authUser) {
+    replace({
       pathname: '/'
     });
   }
@@ -38,8 +39,8 @@ function ifAuthenticated(nextState, replace) {
 
 function ifNotAuthenticated(nextState, replace) {
   const authUser = localStorage.getItem('authUser');
-  if(!authUser) {
-    replace ({
+  if (!authUser) {
+    replace({
       pathname: '/signin'
     });
   }
@@ -51,11 +52,13 @@ ReactDom.render(
       <Route path="/" component={Main}>
         <IndexRoute component={Home}></IndexRoute>
         <Route path="/home" component={Home}></Route>
-        <Route path="/signup" component={Register} onEnter={ ifAuthenticated }></Route>
-        <Route path="/signin" component={Login} onEnter={ ifAuthenticated }></Route>
+        <Route path="/signup" component={Register} onEnter={ifAuthenticated}></Route>
+        <Route path="/signin" component={Login} onEnter={ifAuthenticated}></Route>
         <Route path="/recipes/create" component={CreateRecipe}></Route>
+        <Route path="/recipes" component={AllRecipesScreen} />
         <Route path="/view-recipe/:recipeId" component={ViewRecipe}></Route>
       </Route>
     </Router>
   </Provider>
-  , document.getElementById('root'));
+  , document.getElementById('root')
+);

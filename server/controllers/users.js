@@ -90,7 +90,7 @@ export default class UserController {
     User.findOne({ where: { id: req.params.userId } }).then((user) => {
       if (!user) {
         return res.status(404).json({
-          message: 'User not Found'
+          message: 'User not found'
         });
       }
       const foundUser = {
@@ -106,7 +106,7 @@ export default class UserController {
       });
     }).catch(() =>
       res.status(400).json({
-        message: 'Invalid Request'
+        message: 'Invalid request'
       }));
   }
   /**
@@ -122,7 +122,7 @@ export default class UserController {
     }).then((recipes) => {
       if (recipes.length < 1) {
         return res.status(404).json({
-          message: 'You have no Recipes'
+          message: 'You have no recipes'
         });
       } res.status(200).json({
         recipes
@@ -142,7 +142,7 @@ export default class UserController {
     User.findOne({ where: { id: req.params.userId } }).then((user) => {
       if (!user) {
         return res.status(404).json({
-          message: 'User not Found'
+          message: 'User not found'
         });
       }
       Recipe.findAll({
@@ -151,7 +151,7 @@ export default class UserController {
       }).then((recipes) => {
         if (recipes.length < 1) {
           return res.status(404).json({
-            message: 'User has no Recipes'
+            message: 'User has no recipes'
           });
         }
         res.status(200).json({
@@ -159,11 +159,11 @@ export default class UserController {
         });
       }).catch(() =>
         res.status(400).json({
-          message: 'Invalid Request'
+          message: 'Invalid request'
         }));
     }).catch(() =>
       res.status(400).json({
-        message: 'Invalid Request'
+        message: 'Invalid request'
       }));
   }
 }

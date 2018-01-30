@@ -4,7 +4,7 @@ import { checkEmail, checkname, checkUsername, checkPassword } from '../helpers/
 export default (req, res, next) => {
   const errors = [];
   if (!req.body.firstname) {
-    errors.push('First name is Required!');
+    errors.push('First name is required!');
   }
   if (req.body.firstname && req.body.firstname.length < 3) {
     errors.push('Your first name should have a minimum of 3 characters');
@@ -14,13 +14,13 @@ export default (req, res, next) => {
     errors.push('First name should include letters only');
   }
   if (!req.body.lastname) {
-    errors.push('Last name is Required!');
+    errors.push('Last name is required!');
   }
   if (req.body.lastname && req.body.lastname.length < 3) {
     errors.push('Your last name should have a minimum of 3 characters');
   }
   if ((req.body.lastname) && (req.body.lastname.length >= 3) &&
-  (!checkname(req.body.firstname))) {
+  (!checkname(req.body.lastname))) {
     errors.push('Last name should include letters only');
   }
   if (!req.body.username) {
@@ -34,7 +34,7 @@ export default (req, res, next) => {
     errors.push('Username should include only ( letters, numbers, - and _ )');
   }
   if (!req.body.email) {
-    errors.push('Email Address is Required!');
+    errors.push('Email Address is required!');
   }
   if ((req.body.email) && (!checkEmail(req.body.email))) {
     errors.push('Email format is wrong, enter valid email address');

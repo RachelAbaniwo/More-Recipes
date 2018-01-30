@@ -3,7 +3,7 @@ import { checkEmail } from '../helpers/checkInput';
 export default (req, res, next) => {
   const errors = [];
   if (!req.body.email) {
-    errors.push('Email Address is Required!');
+    errors.push('Email Address is required!');
   }
   if ((req.body.email) && (!checkEmail(req.body.email))) {
     errors.push('Email format is wrong, enter valid email address');

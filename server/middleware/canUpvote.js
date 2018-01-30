@@ -12,7 +12,7 @@ export default async (req, res, next) => {
     }
 
     if (recipe.userId === req.AuthUser.id) {
-      return res.status(401).json({ message: 'Unauthorized.' });
+      return res.status(401).json({ message: 'Unauthorized' });
     }
 
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
@@ -25,6 +25,6 @@ export default async (req, res, next) => {
     }
     next();
   } catch (error) {
-    return res.status(400).json({ message: 'Invalid Request.' });
+    return res.status(400).json({ message: 'Invalid request.' });
   }
 };

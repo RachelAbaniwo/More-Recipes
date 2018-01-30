@@ -1,5 +1,5 @@
 import db from '../models';
-import { returnName, returnUsername, returnParameter, returnEmail, returnPassword } from '../helpers/checkInput';
+import { returnName, returnUsername, returnParameter, returnEmail } from '../helpers/checkInput';
 
 const { User } = db;
 /**
@@ -41,7 +41,7 @@ export default class ModifyUserController {
         }).catch(error => res.status(500).json({
           message: error.message
         }));
-    }).catch(() => res.status(400).json({ message: 'Invalid Request' }));
+    }).catch(() => res.status(400).json({ message: 'Invalid request' }));
   }
   /**
      * deletes a user from database

@@ -27,6 +27,9 @@ module.exports = {
     }),
     new ExtractTextPlugin('style.bundle.css'),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {

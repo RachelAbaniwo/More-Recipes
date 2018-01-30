@@ -8,8 +8,10 @@ const { Recipe, Upvote } = db;
 export default class UpvotesController {
   /**
  * Adds an Upvote to a recipe or Removes the vote if recipe is already Upvoted or Downvoted
+ *
  * @param {object} req - Recipe to be voted
  * @param {object} res - success message indicating upvote added or removed
+ * 
  * @returns {json} - success message returned to User
  */
   async addUpvote(req, res) {
@@ -21,7 +23,7 @@ export default class UpvotesController {
       await upvote.destroy();
       await recipe.decrement('upvotes');
       return res.status(200).json({
-        recipe, message: 'Successfully removed Upvote from this recipe'
+        recipe, message: 'Successfully removed upvote from this recipe'
       });
     }
     await Upvote.create({
@@ -31,7 +33,7 @@ export default class UpvotesController {
     await recipe.increment('upvotes');
 
     return res.status(201).json({
-      recipe, message: 'Recipe Upvoted successfully'
+      recipe, message: 'Recipe upvoted successfully'
     });
   }
 }

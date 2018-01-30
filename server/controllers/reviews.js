@@ -38,7 +38,7 @@ export default class ReviewsController {
         });
       }
     }).catch(() => res.status(400).json({
-      message: 'Invalid Request'
+      message: 'Invalid request'
     }));
   }
   /**
@@ -51,7 +51,7 @@ export default class ReviewsController {
     Recipe.findOne({ where: { id: req.params.recipeId }, }).then((recipe) => {
       if (!recipe) {
         return res.status(404).json({
-          message: 'Recipe not Found'
+          message: 'Recipe not found'
         });
       }
       Review.findAll({
@@ -60,7 +60,7 @@ export default class ReviewsController {
       }).then((reviews) => {
         if (reviews.length < 1) {
           return res.status(404).json({
-            message: 'Recipe has no Reviews'
+            message: 'Recipe has no reviews'
           });
         }
         res.status(200).json({
@@ -69,11 +69,11 @@ export default class ReviewsController {
         });
       }).catch(() =>
         res.status(400).json({
-          message: 'Invalid Request'
+          message: 'Invalid request'
         }));
     }).catch(() =>
       res.status(400).json({
-        message: 'Invalid Request'
+        message: 'Invalid request'
       }));
   }
   /**
@@ -104,7 +104,7 @@ export default class ReviewsController {
         }).catch(error => res.status(500).json({
           message: error.message
         }));
-    }).catch(() => res.status(400).json({ message: 'Invalid Request' }));
+    }).catch(() => res.status(400).json({ message: 'Invalid request' }));
   }
 
   /**
