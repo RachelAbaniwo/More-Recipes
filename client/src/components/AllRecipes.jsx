@@ -88,10 +88,10 @@ class AllRecipeScreen extends React.Component {
         <section
           className="container text-center mx auto view-recipe-container"
           style={{
-          border: '1px solid lightgrey',
-          padding: 30,
-          marginTop: 90,
-          marginBottom: 50
+            border: '1px solid lightgrey',
+            padding: 30,
+            marginTop: 90,
+            marginBottom: 50
           }}
         >
           <div className="row">
@@ -100,6 +100,40 @@ class AllRecipeScreen extends React.Component {
                 All Recipes
               </h1>
             </section>
+            <div className="row">
+              <form className="form-inline col-lg-12 justify-content-center">
+                <input
+                  className="form-control ml-sm-4 mr-sm-4"
+                  style={{ width: 250, fontFamily: '"kaushan script"' }}
+                  type="search"
+                  placeholder="Search Recipes"
+                  aria-label="Search"
+                />
+                <select
+                  className="custom-select mb-2 ml-sm-4 mr-sm-4 mb-sm-0"
+                  style={{ width: 250, fontFamily: '"kaushan script"' }}
+                  id="inlineFormCustomSelect"
+                >
+                  <option selected>Sort By...</option>
+                  <option value={1}>Most Upvotes</option>
+                  <option value={2}>Most Favorited</option>
+                </select>
+                <select className="custom-select mb-2 ml-sm-4 mr-sm-4 mb-sm-0" style={{ width: 250, fontFamily: '"kaushan script"' }} id="inlineFormCustomSelect">
+                  <option selected>Recipes per page</option>
+                  <option value={1}>3</option>
+                  <option value={2}>6</option>
+                  <option value={3}>9</option>
+                </select>
+                <button
+                  style={{ width: 150 }}
+                  type="submit"
+                  className="btn btn-default"
+                >Search
+                </button>
+              </form>
+            </div>
+
+
             <div className="row" style={{ padding: '10px' }}>
               {recipes.map(recipe => <SingleRecipe key={recipe.id} recipe={recipe} />)}
             </div>

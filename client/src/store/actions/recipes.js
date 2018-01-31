@@ -6,7 +6,14 @@ export const NEW_RECIPE_ADDED = 'NEW_RECIPE_ADDED';
 export const ADD_RECIPE_REVIEW = 'ADD_RECIPE_REVIEW';
 export const SET_IMAGE_FILE = 'SET_IMAGE_FILE';
 
-
+/**
+ * @function
+ *
+ * @param {object} dispatch
+ * @param {object} getState
+ *
+ * @returns {object} response
+ */
 export function getAllRecipes() {
   return async (dispatch, getState) => {
     try {
@@ -17,11 +24,18 @@ export function getAllRecipes() {
         payload: { recipes, pageData }
       });
     } catch (error) {
-      // dispatch error to store. 
+      // dispatch error to store.
     }
-  }
+  };
 }
 
+/**
+ * @function
+ *
+ * @param {object} imageFile
+ *
+ * @returns {object} dispatch
+ */
 export function setImageUrl(imageFile) {
   return (dispatch) => {
     dispatch({

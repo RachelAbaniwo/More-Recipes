@@ -22,7 +22,7 @@ export default class RecipesController {
         limit,
         offset,
         group: 'id',
-        distinct: true,
+        include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }],
         order: db.sequelize.literal(`max(${req.query.sort}) ${req.query.order.toUpperCase()}`)
       }).then(({ rows: recipes, count }) => {
         res.status(200).json({
@@ -30,7 +30,7 @@ export default class RecipesController {
           pageData: pagination(count.length, limit, offset),
         });
       }).catch(error => res.status(500).json({
-        message: error.message
+        message: error
       }));
     } else if (req.query.search) {
       const op = db.Sequelize.Op;
@@ -38,7 +38,7 @@ export default class RecipesController {
       return Recipe.findAndCountAll({
         limit,
         offset,
-        distinct: true,
+        include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }],
         where: {
           [op.or]: {
             name: {
@@ -69,7 +69,6 @@ export default class RecipesController {
     return Recipe.findAndCountAll({
       limit,
       offset,
-      distinct: true,
       include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
     }).then(({ rows: recipes, count }) => {
       res.status(200).json({

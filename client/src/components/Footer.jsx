@@ -9,8 +9,8 @@ import React from 'react';
  */
 const Footer = () => ((
   <footer
+    className="fixed-bottom"
     style={{
-      marginBottom: '0px',
       backgroundColor: 'rgba(73, 67, 67, 0.9)',
       maxWidth: '100%',
       height: 30
