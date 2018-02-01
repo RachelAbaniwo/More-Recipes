@@ -3,9 +3,9 @@ import { TOGGLE_VOTE, TOGGLE_FAVORITES } from '../actions/votes';
 
 /**
  * The recipes reducer
- * @param {array} state default recipes state
- * @param {obj} action action to be reduced
- * @returns {array} new state
+ * @param {object} state default recipes state
+ * @param {object} action action to be reduced
+ * @returns {object} new state
  */
 export default function recipesReducer(state = {
   rows: [],

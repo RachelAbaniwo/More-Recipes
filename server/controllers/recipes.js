@@ -2,7 +2,7 @@ import db from '../models';
 import { checkField, returnParameter } from '../helpers/checkInput';
 import pagination from '../helpers/pagination';
 
-const { Recipe } = db;
+const { Recipe, User } = db;
 
 /**
  * Controls the recipes endpoints
@@ -17,27 +17,68 @@ export default class RecipesController {
   getRecipes(req, res) {
     const limit = req.query.limit || 6;
     const offset = req.query.offset || 0;
-    if (req.query.sort && req.query.order) {
+    const op = db.Sequelize.Op;
+    const { search } = req.query;
+    const searchQuery = search ? search.trim() : '';
+    if (req.query.sort && req.query.search) {
       return Recipe.findAndCountAll({
         limit,
         offset,
-        group: 'id',
-        include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }],
-        order: db.sequelize.literal(`max(${req.query.sort}) ${req.query.order.toUpperCase()}`)
+        group: ['Recipe.id', 'User.id'],
+        order: db.sequelize.literal(`max(${req.query.sort}) DESC`),
+        include: [{ model: User, attributes: { exclude: ['password'] } }],
+        where: {
+          [op.or]: {
+            name: {
+              [op.iLike]: `%${searchQuery}%`
+            },
+            description: {
+              [op.iLike]: `%${searchQuery}%`
+            },
+            ingredients: {
+              [op.iLike]: `%${searchQuery}%`
+            }
+          }
+        }
       }).then(({ rows: recipes, count }) => {
-        res.status(200).json({
+        if (recipes.length === 0) {
+          return res.status(404).json({
+            message: 'Recipe not found'
+          });
+        }
+        return res.status(200).json({
           recipes,
           pageData: pagination(count.length, limit, offset),
         });
       }).catch(error => res.status(500).json({
-        message: error
+        message: error.message
       }));
-    } else if (req.query.search) {
-      const op = db.Sequelize.Op;
-      const searchQuery = req.query.search.trim();
+    }
+    if (req.query.sort) {
       return Recipe.findAndCountAll({
         limit,
         offset,
+        group: ['Recipe.id', 'User.id'],
+        order: db.sequelize.literal(`max(${req.query.sort}) DESC`),
+        include: [{ model: User, attributes: { exclude: ['password'] } }],
+      }).then(({ rows: recipes, count }) => {
+        if (recipes.length === 0) {
+          return res.status(404).json({
+            message: 'Recipe not found'
+          });
+        }
+        return res.status(200).json({
+          recipes,
+          pageData: pagination(count.length, limit, offset),
+        });
+      }).catch(error => res.status(500).json({
+        message: error.message
+      }));
+    } else if (req.query.search) {
+      return Recipe.findAndCountAll({
+        limit,
+        offset,
+        distinct: true,
         include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }],
         where: {
           [op.or]: {
@@ -58,7 +99,7 @@ export default class RecipesController {
             message: 'Recipe not found'
           });
         }
-        return res.status(404).json({
+        return res.status(200).json({
           recipes,
           pageData: pagination(count, limit, offset),
         });
@@ -79,6 +120,7 @@ export default class RecipesController {
       message: error.message
     }));
   }
+
   /**
    * gets a recipe by its id
    * @param {object} req recipe object

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
-import { Link } from 'react-router';
 import { signInUser } from '../store/actions/user';
 import { checkEmail } from '../../../server/helpers/checkInput';
 import '../../assets/css/style.css';
@@ -244,6 +245,12 @@ class LoginScreen extends React.Component {
     );
   }
 }
+LoginScreen.propTypes = {
+  signInUser: PropTypes.func.isRequired,
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+};
 /**
  * Map state to props
  * @param {object} state

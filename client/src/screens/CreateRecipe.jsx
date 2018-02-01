@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
@@ -319,6 +320,11 @@ class CreateRecipeScreen extends React.Component {
     );
   }
 }
+
+CreateRecipeScreen.propTypes = {
+  imageFile: PropTypes.string.isRequired,
+  createRecipe: PropTypes.func.isRequired
+};
 /**
  * Map state to props
  * @param {object} state

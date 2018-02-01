@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
@@ -295,6 +296,12 @@ class RegisterScreen extends React.Component {
     );
   }
 }
+RegisterScreen.propTypes = {
+  signUpUser: PropTypes.func.isRequired,
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+};
 /**
  * Map state to props
  * @param {object} state

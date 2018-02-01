@@ -1,11 +1,18 @@
-/* eslint-disable */
 import axios from 'axios';
 import config from './../../config';
 import setNotification from './notification';
 
 export const TOGGLE_VOTE = 'TOGGLE_VOTE';
 export const TOGGLE_FAVORITES = 'TOGGLE_FAVORITES';
-
+/**
+ * @function
+ *
+ * @param {number} recipeId
+ * @param {string} voteType
+ *
+ * @returns {object} dispatch
+ * @returns {object} getState
+ */
 export function toggleVote(recipeId, voteType) {
   return async (dispatch, getState) => {
     try {
@@ -19,20 +26,27 @@ export function toggleVote(recipeId, voteType) {
 
       dispatch(setNotification('success', message));
     } catch (error) {
-      if(error.response.data.message === 'Unauthenticated') {
+      if (error.response.data.message === 'Unauthenticated') {
         dispatch(setNotification('error', `Please signin to ${voteType} this recipe.`)); 
       } else {
         dispatch(setNotification('error', `You can't ${voteType} a recipe you created.`)); 
       }
     }
-  }
+  };
 }
-
+/**
+ * @function
+ *
+ * @param {number} recipeId
+ *
+ * @returns {object} dispatch
+ * @returns {object} getState
+ */
 export function toggleFavorite(recipeId) {
   return async (dispatch, getState) => {
     try {
       const response = await axios.post(`${config.apiUrl}/favorites/${recipeId}`);
-      const{ recipe, message } = response.data;
+      const { recipe, message } = response.data;
 
       dispatch({
         type: TOGGLE_FAVORITES,
@@ -40,11 +54,11 @@ export function toggleFavorite(recipeId) {
       });
       dispatch(setNotification('success', message));
     } catch (error) {
-      if(error.response.data.message === 'Unauthenticated') {
-        dispatch(setNotification('error', `Please signin to favorite this recipe.`));
+      if (error.response.data.message === 'Unauthenticated') {
+        dispatch(setNotification('error', 'Please signin to favorite this recipe.'));
       } else {
-        dispatch(setNotification('error', `You can't favorite a recipe you created.`));
+        dispatch(setNotification('error', 'You can\'t favorite a recipe you created.'));
       }
     }
-  }
+  };
 }

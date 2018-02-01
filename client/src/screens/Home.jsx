@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import food9 from '../../assets/image/food-9.jpg';
 import food20 from '../../assets/image/food-20.jpg';
 import food23 from '../../assets/image/food-23.jpg';

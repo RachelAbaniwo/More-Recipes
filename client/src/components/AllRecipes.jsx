@@ -17,11 +17,47 @@ import SingleRecipe from './SingleRecipe';
  */
 class AllRecipeScreen extends React.Component {
   /**
+   * Initialize component
+   * @param {obj} props
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: '',
+      sort: '',
+      order: 'DESC',
+      limit: 6
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  /**
    * Execute before component mounts
    * @returns {null} null
    */
   componentWillMount() {
     this.props.getAllRecipes();
+  }
+  /**
+   *Handle inpuit change
+   * @param {object} event
+   * @returns {null} null
+   */
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+  /**
+   *Handle inpuit change
+   * @param {object} event
+   * @returns {null} null
+   */
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.getAllRecipes(this.state);
+    // send the data to the server
   }
   /**
    * Display recipes
@@ -95,39 +131,52 @@ class AllRecipeScreen extends React.Component {
           }}
         >
           <div className="row">
-            <section className="col-sm-12">
+            <section className="col-sm-12" style={{ marginTop: 30 }}>
               <h1>
-                All Recipes
+                Recipes
               </h1>
             </section>
             <div className="row">
-              <form className="form-inline col-lg-12 justify-content-center">
+              <form className="form-inline col-lg-12 justify-content-center" style={{ marginBottom: 30, marginTop: 50 }} onSubmit={this.handleSubmit}>
                 <input
                   className="form-control ml-sm-4 mr-sm-4"
                   style={{ width: 250, fontFamily: '"kaushan script"' }}
                   type="search"
+                  name="search"
                   placeholder="Search Recipes"
                   aria-label="Search"
+                  value={this.state.search}
+                  onChange={this.handleChange}
                 />
                 <select
-                  className="custom-select mb-2 ml-sm-4 mr-sm-4 mb-sm-0"
+                  className="custom-select mb-2  mr-sm-4 mb-sm-0"
                   style={{ width: 250, fontFamily: '"kaushan script"' }}
                   id="inlineFormCustomSelect"
+                  name="sort"
+                  value={this.state.sort}
+                  onChange={this.handleChange}
                 >
-                  <option selected>Sort By...</option>
-                  <option value={1}>Most Upvotes</option>
-                  <option value={2}>Most Favorited</option>
+                  <option>Sort By...</option>
+                  <option value="upvotes">Most Upvotes</option>
+                  <option value="favorites">Most Favorited</option>
                 </select>
-                <select className="custom-select mb-2 ml-sm-4 mr-sm-4 mb-sm-0" style={{ width: 250, fontFamily: '"kaushan script"' }} id="inlineFormCustomSelect">
-                  <option selected>Recipes per page</option>
-                  <option value={1}>3</option>
-                  <option value={2}>6</option>
-                  <option value={3}>9</option>
+                <select
+                  className="custom-select mb-2  mr-sm-4 mb-sm-0"
+                  style={{ width: 250, fontFamily: '"kaushan script"' }}
+                  id="inlineFormCustomSelect"
+                  value={this.state.limit}
+                  name="limit"
+                  onChange={this.handleChange}
+                >
+                  <option>Recipes per page</option>
+                  <option value={3}>3</option>
+                  <option value={6}>6</option>
+                  <option value={9}>9</option>
                 </select>
                 <button
                   style={{ width: 150 }}
                   type="submit"
-                  className="btn btn-default"
+                  className="btn btn-default ml-sm-4"
                 >Search
                 </button>
               </form>

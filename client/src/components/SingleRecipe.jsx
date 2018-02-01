@@ -11,7 +11,7 @@ const SingleRecipe = ({ recipe }) => ((
     <figure className="figure">
       <Link to={`view-recipe/${recipe.id}`}>
         <img
-          style={{ height: '362.66px', width: '539px' }}
+          style={{}}
           src={recipe.recipeImage}
           alt="Search Result"
           className="figure-img img-thumbnail mx-auto"
