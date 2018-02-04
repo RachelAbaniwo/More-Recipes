@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../models';
-import { checkname, checkUsername, checkPassword } from '../helpers/checkInput';
+
 
 dotenv.config();
 const jwtSecret = process.env.JWT_SECRET;
@@ -20,42 +20,18 @@ export default class UserController {
    * @returns {json} returns created user object
    */
   userSignUp(req, res) {
-    const errors = [];
-    if ((!req.body.Firstname) || (!checkname(req.body.Firstname))) {
-      errors.push('First name is Required!');
-    }
-    if ((!req.body.Lastname) || (!checkname(req.body.Lastname))) {
-      errors.push('Last name is Required!');
-    }
-    if ((!req.body.Username) || (!checkUsername(req.body.Username))) {
-      errors.push('Choose your User Name.');
-    }
-    if (!req.body.Email) {
-      errors.push('Email Address is Required!');
-    }
-    if ((!req.body.Password) || (!checkPassword(req.body.Password))) {
-      errors.push('Choose a Password');
-    }
-
-    if (errors.length > 0) {
-      return res.status(400).json({
-        errors,
-        message: 'Please fix the validation errors'
-      });
-    }
-
     User.create({
-      Firstname: req.body.Firstname,
-      Lastname: req.body.Lastname,
-      Username: req.body.Username,
-      Email: req.body.Email,
-      Password: bcrypt.hashSync(req.body.Password, process.env.NODE_ENV === 'test' ? 1 : 10)
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      username: req.body.username,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, process.env.NODE_ENV === 'test' ? 1 : 10)
     }).then((user) => {
       const createdUser = {
-        firstname: user.Firstname,
-        lastname: user.Lastname,
-        username: user.Username,
-        email: user.Email,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        username: user.username,
+        email: user.email,
         id: user.id
       };
       const token = jwt.sign({ id: user.id }, jwtSecret, {
@@ -79,27 +55,16 @@ export default class UserController {
    * @returns {json} message
    */
   userSignIn(req, res) {
-    const errors = [];
-
-    if ((!req.body.Username) || (!checkUsername(req.body.Username))) {
-      errors.push('Username is required! ');
-    }
-    if (!req.body.Password) {
-      errors.push('Password is required!');
-    }
-    if (errors.length > 0) {
-      return res.status(400).json({ errors, message: 'Please fix the validation errors' });
-    }
-    return User.findOne({ where: { Username: req.body.Username } }).then((user) => {
+    return User.findOne({ where: { email: req.body.email } }).then((user) => {
       if (!user) {
         return res.status(404).json({ message: 'Wrong credentials' });
       }
-      if (bcrypt.compareSync(req.body.Password, user.Password)) {
+      if (bcrypt.compareSync(req.body.password, user.password)) {
         const existingUser = {
-          firstname: user.Firstname,
-          lastname: user.Lastname,
-          username: user.Username,
-          email: user.Email,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          username: user.username,
+          email: user.email,
           id: user.id
         };
         const token = jwt.sign({ id: user.id }, jwtSecret, {
@@ -125,22 +90,23 @@ export default class UserController {
     User.findOne({ where: { id: req.params.userId } }).then((user) => {
       if (!user) {
         return res.status(404).json({
-          message: 'User not Found'
+          message: 'User not found'
         });
       }
       const foundUser = {
-        Firstname: user.Firstname,
-        Lastname: user.Lastname,
-        Username: user.Username,
-        Email: user.Email,
-        id: user.id
+        firstname: user.firstname,
+        lastname: user.lastname,
+        username: user.username,
+        email: user.email,
+        id: user.id,
+        aboutMe: user.aboutMe
       };
       res.status(200).json({
-        foundUser
+        user: foundUser
       });
     }).catch(() =>
       res.status(400).json({
-        message: 'Invalid Request'
+        message: 'Invalid request'
       }));
   }
   /**
@@ -152,11 +118,11 @@ export default class UserController {
   getMyRecipes(req, res) {
     Recipe.findAll({
       where: { userId: req.AuthUser.id },
-      include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+      include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
     }).then((recipes) => {
       if (recipes.length < 1) {
         return res.status(404).json({
-          message: 'You have no Recipes'
+          message: 'You have no recipes'
         });
       } res.status(200).json({
         recipes
@@ -176,16 +142,16 @@ export default class UserController {
     User.findOne({ where: { id: req.params.userId } }).then((user) => {
       if (!user) {
         return res.status(404).json({
-          message: 'User not Found'
+          message: 'User not found'
         });
       }
       Recipe.findAll({
         where: { userId: req.params.userId },
-        include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+        include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
       }).then((recipes) => {
         if (recipes.length < 1) {
           return res.status(404).json({
-            message: 'User has no Recipes'
+            message: 'User has no recipes'
           });
         }
         res.status(200).json({
@@ -193,11 +159,11 @@ export default class UserController {
         });
       }).catch(() =>
         res.status(400).json({
-          message: 'Invalid Request'
+          message: 'Invalid request'
         }));
     }).catch(() =>
       res.status(400).json({
-        message: 'Invalid Request'
+        message: 'Invalid request'
       }));
   }
 }

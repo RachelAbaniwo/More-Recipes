@@ -1,17 +1,20 @@
 
 import React, { Fragment } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actions from './../store/actions';
 import Notification from './../components/Notification';
-
+/**
+ * Add a recipe image component
+ * @class
+ *
+ * @returns {object} jsx object
+ */
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+/**
+ * Display notifications
+ *
+ * @returns {jsx} jsx
+ */
   render() {
-
-    return (
+  return (
       <Fragment>
         <Notification />
         {this.props.children}
@@ -20,20 +23,4 @@ class App extends React.Component {
   }
 }
 
-
-
-/**
- * 
- * @param {obj} state 
- */
-function mapStateToProps(state) {
-  return state;
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch)
-}
-
-const Main = connect(mapStateToProps, mapDispatchToProps)(App);
-
-export default Main;
+export default App;

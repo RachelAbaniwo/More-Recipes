@@ -90,7 +90,7 @@ describe('REVIEW CONTROLLER', () => {
       .send({ review: '  ' })
       .end((error, response) => {
         expect(response).to.have.status(201);
-        const review = response.body.updatedReview;
+        const review = response.body.review;
         expect(review.id).to.equal(1);
         expect(review.review).to.equal('This is Awesome');
         expect(response.body.message).to.equal('Successfully updated your review');

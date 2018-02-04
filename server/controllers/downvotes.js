@@ -1,6 +1,6 @@
 import db from '../models';
 
-const { Downvote } = db;
+const { Recipe, Downvote } = db;
 
 
 /**
@@ -14,24 +14,25 @@ export default class DownvotesController {
  * @returns {json} - success message returned to User
  */
   async addDownvote(req, res) {
+    const recipe = await Recipe.findById(req.params.recipeId);
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
     const downvote = await Downvote.findOne(query);
 
     if (downvote) {
       await downvote.destroy();
+      await recipe.decrement('downvotes');
       return res.status(200).json({
-        message: 'Successfully removed Downvote from this recipe'
+        recipe, message: 'Successfully removed downvote from this recipe'
       });
     }
-
     await Downvote.create({
       userId: req.AuthUser.id,
       recipeId: req.params.recipeId
     });
-
+    await recipe.increment('downvotes');
 
     return res.status(201).json({
-      message: 'Recipe Downvoted successfully'
+      recipe, message: 'Recipe downvoted successfully'
     });
   }
 }

@@ -1,11 +1,13 @@
-/* eslint-disable no-underscore-dangle,no-undef */
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 
 const defaultState = {
   authUser: null,
-  recipes: [],
+  recipes: {
+    rows: [],
+    pageData: {}
+  },
   imageUpload: {
     imageFile: null
   },

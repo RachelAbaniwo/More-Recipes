@@ -1,26 +1,36 @@
 import React from 'react';
 import Noty from 'noty';
-import toastr from 'toastr';
 import { connect } from 'react-redux';
-
+/**
+ * Displays notification component
+ * @class
+ * @returns {object} jsx for component
+ */
 class Notification extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+/**
+ * renders appropriate notification
+ *
+ * @returns {jsx} jsx which adds a new review
+ */
   render() {
-    if (this.props.notification && this.props.notification.level === 'SUCCESS') {
+    if (this.props.notification) {
       console.log(this.props.notification);
       new Noty({
         text: this.props.notification.message,
-        type: 'success',
+        type: this.props.notification.level,
         theme: 'bootstrap-v4',
         timeout: 3000
       }).show();
     }
-    return <div></div>
+    return <div />;
   }
 }
-
+/**
+ * Map state to props
+ * @param {object} state
+ *
+ * @returns {object} object to be passed as props to component
+ */
 const mapStateToProps = state => ({ notification: state.notification });
 
 const NotificationContainer = connect(mapStateToProps, null)(Notification);

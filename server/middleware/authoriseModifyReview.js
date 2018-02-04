@@ -9,9 +9,9 @@ export default (req, res, next) => {
     }
 
     if (review.userId !== req.AuthUser.id) {
-      return res.status(401).json({ message: 'Unauthorized USER' });
+      return res.status(401).json({ message: 'Unauthorized' });
     }
 
     next();
-  }).catch(() => res.status(400).json({ message: 'Invalid Request' }));
+  }).catch(() => res.status(400).json({ message: 'Invalid request' }));
 };

@@ -7,7 +7,7 @@ import data from '../mockData'
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
 
-const { signinUser1, signinUser2, signinUser3, wrongCharacterSignUp, wrongUsernameSignIn, 
+const { signinUser1, signinUser2, signinUser3, wrongCharacterSignUp, wrongEmailSignIn, 
        wrongPasswordSignIn, signupUser, emailInUseSignUp,
        usernameInUseSignUp, wrongEmailFormat } = data;
 
@@ -126,7 +126,7 @@ describe('USER CONTROLLER', () => {
       it('should return correct error if User name of the User Signing In is not found', (done) => {
         chai.request(app)
         .post('/api/v1/users/signin')
-        .send(wrongUsernameSignIn)
+        .send(wrongEmailSignIn)
         .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body.message).to.equal('Wrong credentials');

@@ -9,7 +9,7 @@ export default (req, res, next) => {
   const { token } = req.headers;
   return jwt.verify(token, jwtSecret, (error, user) => {
     if (error) {
-      return res.status(401).json({ message: 'Unauthenticated USER.' });
+      return res.status(401).json({ message: 'Unauthenticated' });
     }
 
     req.AuthUser = user;

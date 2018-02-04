@@ -4,6 +4,7 @@ module.exports = {
       recipeImage: {
         type: Sequelize.STRING,
         allowNull: true,
+        defaultValue: ''
       },
       id: {
         autoIncrement: true,
@@ -31,6 +32,22 @@ module.exports = {
       },
       method: {
         type: Sequelize.TEXT
+      },
+      upvotes: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      downvotes: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      favorites: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      views: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       createdAt: {
         type: Sequelize.DATE

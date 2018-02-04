@@ -17,8 +17,10 @@ export default class FavoritesController {
 
     if (favorite) {
       await favorite.destroy();
+      const recipe = req.FavoriteRecipe;
+      await recipe.decrement('favorites');
       return res.status(200).json({
-        message: 'Successfully removed this recipe from Favorites'
+        recipe, message: 'Successfully removed this recipe from favorites'
       });
     }
 
@@ -27,8 +29,9 @@ export default class FavoritesController {
       recipeId: req.params.recipeId
     });
     const recipe = req.FavoriteRecipe;
+    await recipe.increment('favorites');
     return res.status(201).json({
-      recipe, message: 'Recipe successfully added to Favorites!'
+      recipe, message: 'Recipe successfully added to favorites!'
     });
   }
   /**
@@ -50,7 +53,7 @@ export default class FavoritesController {
       const recipeIds = favorites.map(favorite => favorite.recipeId);
       const nextQuery = {
         where: { id: { [db.Sequelize.Op.in]: recipeIds } },
-        include: [{ all: true, attributes: { exclude: ['Password'] }, nested: true }]
+        include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
       };
       const recipes = await Recipe.findAll(nextQuery);
       return res.status(200).json({
