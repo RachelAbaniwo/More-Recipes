@@ -31,7 +31,7 @@ nav ul li {
 }
 h1, h2, h3, h4, h5,button, p, a, figcaption.fig-caption, input, label, li {
 	 font-family: Candara;
-	 color:#fff;
+	 color:rgba(126, 63, 5, 0.8);
 }
 a.dropdown-item:hover {
 	  background-color: lightgrey

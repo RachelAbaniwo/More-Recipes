@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Navbar from '../components/Navbar';
 import food9 from '../../assets/image/food-9.jpg';
 import food20 from '../../assets/image/food-20.jpg';
 import food23 from '../../assets/image/food-23.jpg';
@@ -16,7 +15,24 @@ import '../../assets/css/style.css';
  */
 const Home = () => ((
   <div style={{ backgroundColor: '#eee' }}>
-    <Navbar />
+    <div className="col-md-12 hover-slide float-right">
+      <div
+        style={{ paddingBottom: 20 }}
+      >
+        <Link
+          to="/signup"
+          className="button btn btn-default link-button ml-2 float-right"
+          style={{ width: 150, marginTop: 10 }}
+        >REGISTER
+        </Link>
+        <Link
+          to="/signin"
+          className="button btn btn-default link-button mr-2 float-right"
+          style={{ width: 150, marginTop: 10 }}
+        >LOGIN
+        </Link>
+      </div>
+    </div>
     <section id="slider">
       <div
         id="carouselExampleIndicators"
@@ -27,63 +43,61 @@ const Home = () => ((
         <div className="carousel-inner fullHeight">
           <div className="carousel-item active">
             <img className="d-block w-100" src={food9} alt="First slide" />
-            <div className="carousel-caption d-none d-md-block" >
-              <h3 style={{ color: 'white' }}>Check Out Our All Time Favorites</h3>
-              <p style={{ color: 'white' }}>from around the world</p>
-            </div>
           </div>
           <div className="carousel-item">
             <img className="d-block w-100" src={food20} alt="Third slide" />
-            <div className="carousel-caption d-none d-md-block">
-              <h3 style={{ color: 'white' }}>Amazing Desserts</h3>
-            </div>
           </div>
           <div className="carousel-item">
             <img className="d-block w-100" src={food23} alt="Third slide" />
-            <div className="carousel-caption d-none d-md-block">
-              <h3 style={{ color: 'white' }}>Breakfast Recipes</h3>
-              <p style={{ color: 'white' }}>to help you start your day</p>
-            </div>
           </div>
         </div>
-        <div
-          className="container"
-          style={{
-            position: 'absolute',
-            top: 250,
-            left: 0,
-            right: 0,
-            margin: '0 auto',
-            width: '40%',
-            minWidth: 250
-          }}
-        >
-          <form className="navbar-form" role="search">
-            <div className="input-group add-on">
+        <div className="justify-content-center">
+          <div
+            className="container justify-content-center"
+            style={{
+              backgroundColor: 'rgba(73, 67, 67, 0.679)',
+              position: 'absolute',
+              paddingTop: 50,
+              paddingBottom: 50,
+              top: 80,
+              left: 0,
+              right: 0,
+              margin: '0 auto',
+              minWidth: 'auto',
+              boxShadow: '0px 2px 2px rgba(27, 255, 164, 0.967)'
+            }}
+          >
+            <h1
+              className="text-center"
+              style={{
+                fontFamily: 'Berkshire Swash',
+                color: 'lightGrey',
+                fontSize: 90
+              }}
+            >
+              More Recipes
+            </h1>
+            <h3
+              className="text-center"
+              style={{ paddingTop: 20, color: 'rgba(241, 235, 178, 0.8)' }}
+            >
+              Enjoy the very best kitchen experiences from around the world and share yours too!!!
+            </h3>
+            <form className="form-inline justify-content-center" style={{ paddingTop: 80 }}>
               <input
-                className="form-control"
+                style={{ width: 400 }}
+                className="form-control mr-sm-2"
+                type="search"
                 placeholder="Search Recipes"
-                name="srch-term"
-                id="srch-term"
-                type="text"
+                aria-label="Search"
               />
-
-            </div>
-          </form>
-          <div className="container text-center">
-            <Link
-              to="/signin"
-              className="button btn btn-default link-button mr-2"
-              style={{ width: 150, marginTop: 10 }}
-            >LOGIN
-            </Link>
-            <Link
-              to="/signup"
-              className="button btn btn-default link-button mr-2"
-              style={{ width: 150, marginTop: 10 }}
-            >REGISTER
-            </Link>
+            </form>
           </div>
+          <a href="#popular">
+            <div>
+              <div className="arrow bounce" />
+            </div>
+          </a>
         </div>
         <a
           className="carousel-control-prev"
@@ -110,9 +124,9 @@ const Home = () => ((
       id="popular"
       style={{ backgroundColor: '#eee', marginTop: 50, marginBottom: 50 }}
     >
-      <div className="card card-1 col-sm-12 col-md-5 card my-3" >
+      <div className="card card-1 col-sm-12 col-md-5 card my-3 " style={{ margin: '30px' }} data-aos="zoom-in-down" >
         <div className="card-body">
-          <h2 className="card-subtitle text-muted">TOP FAVORITES</h2>
+          <h2 className="card-subtitle text-muted" >Top Favorites</h2>
         </div>
         <img
           className="img-fluid mx-auto"
@@ -121,13 +135,13 @@ const Home = () => ((
         />
         <p
           className="card-text text-center"
-          style={{ color: 'rgba(73, 67, 67, 0.9)' }}
+          style={{ color: 'rgba(73, 67, 67, 0.9' }}
         >Take a survey of our all time favorite recipes.
         </p>
       </div>
-      <div className="card card-1 col-sm-12 col-md-5 card my-3">
+      <div className="card card-1 col-sm-12 col-md-5 card my-3" style={{ margin: '30px' }} data-aos="zoom-in-down">
         <div className="card-body">
-          <h2 className="card-subtitle text-muted">TOP VOTED</h2>
+          <h2 className="card-subtitle text-muted" >Top Voted</h2>
         </div>
         <img className="img-fluid mx-auto" src={image5} alt="sunset" />
         <p
@@ -139,22 +153,23 @@ const Home = () => ((
     </section>
     <footer
       style={{
-      marginBottom: '0px',
-      backgroundColor: 'rgba(73, 67, 67, 0.9)',
-      maxWidth: '100%',
-      height: 30
-    }}
+        bottom: '0',
+        marginBottom: '0px',
+        backgroundColor: 'rgba(73, 67, 67, 0.9)',
+        maxWidth: '100%',
+        height: 30
+      }}
     >
       <p
         className="text-center"
         style={{
-            marginBottom: 5,
-            paddingTop: 5,
-            color: '#fff',
-            fontSize: 12
-          }}
+          marginBottom: 5,
+          paddingTop: 5,
+          color: '#fff',
+          fontSize: 12
+        }}
       >
-            © 2017 More-Recipes
+        © 2017 More-Recipes
       </p>
     </footer>
   </div>
