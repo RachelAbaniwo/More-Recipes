@@ -146,9 +146,9 @@ class RegisterScreen extends React.Component {
           <small
             className="mb-3"
             style={{
-            color: 'red',
-            fontFamily: 'kaushan script',
-            fontWeight: 'bold'
+            color: 'orange',
+            fontFamily: 'Advent Pro',
+            fontWeight: '900'
           }}
           >{error}
           </small>
@@ -167,7 +167,7 @@ class RegisterScreen extends React.Component {
               to ="/home"
               className="moreRecipes"
               href="#"
-            >MORE RECIPES
+            >More Recipes
             </Link>
             <button
               className="navbar-toggler"
@@ -220,8 +220,8 @@ class RegisterScreen extends React.Component {
             <div className="col-sm-12 col-md-8">
               <div className="card card-container " id="register-card">
                 <h1
-                  className="card-header text-center"
-                  style={{ fontFamily: 'kaushan script' }}
+                  className="card-header text-center title"
+                  style={{ fontFamily: 'Advent Pro' }}
                 >CREATE NEW ACCOUNT
                 </h1><br />
                 {errorHolder}
@@ -268,9 +268,9 @@ class RegisterScreen extends React.Component {
                     <input
                       type="submit"
                       name="register"
-                      className="register-card-submit"
+                      className="register-card-submit title"
                       onClick={(event) => { this.handleRegister(); }}
-                      style={{ fontFamily: 'kaushan script' }}
+                      style={{ fontFamily: 'Advent Pro' }}
                       defaultValue="SIGN UP"
                     />
                   </div>
@@ -281,7 +281,7 @@ class RegisterScreen extends React.Component {
                       href="#"
                       style={{
                         color: 'white',
-                        fontFamily: 'kaushan script'
+                        fontFamily: 'Advent Pro'
                         }}
                     >ALREADY REGISTERED?  SIGN IN
                     </Link>

@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
 import Footer from './Footer';
 import { getAllRecipes } from '../store/actions/recipes';
-
 import SingleRecipe from './SingleRecipe';
 
 /**
@@ -75,7 +73,7 @@ class AllRecipeScreen extends React.Component {
             <Link
               to="/home"
               className="moreRecipes"
-            > MORE RECIPES
+            > More Recipes
             </Link>
             <button
               className="navbar-toggler"
@@ -132,15 +130,19 @@ class AllRecipeScreen extends React.Component {
         >
           <div className="row">
             <section className="col-sm-12" style={{ marginTop: 30 }}>
-              <h1>
-                Recipes
+              <h1 className="title">
+                RECIPES
               </h1>
             </section>
             <div className="row">
-              <form className="form-inline col-lg-12 justify-content-center" style={{ marginBottom: 30, marginTop: 50 }} onSubmit={this.handleSubmit}>
+              <form
+                className="form-inline col-lg-12 justify-content-center"
+                style={{ marginBottom: 30, marginTop: 50 }}
+                onSubmit={this.handleSubmit}
+              >
                 <input
                   className="form-control ml-sm-4 mr-sm-4"
-                  style={{ width: 250, fontFamily: '"kaushan script"' }}
+                  style={{ width: 250, fontFamily: '"Advent Pro"' }}
                   type="search"
                   name="search"
                   placeholder="Search Recipes"
@@ -150,7 +152,7 @@ class AllRecipeScreen extends React.Component {
                 />
                 <select
                   className="custom-select mb-2  mr-sm-4 mb-sm-0"
-                  style={{ width: 250, fontFamily: '"kaushan script"' }}
+                  style={{ width: 250, fontFamily: '"Advent Pro"' }}
                   id="inlineFormCustomSelect"
                   name="sort"
                   value={this.state.sort}
@@ -162,7 +164,7 @@ class AllRecipeScreen extends React.Component {
                 </select>
                 <select
                   className="custom-select mb-2  mr-sm-4 mb-sm-0"
-                  style={{ width: 250, fontFamily: '"kaushan script"' }}
+                  style={{ width: 250, fontFamily: '"Advent Pro"' }}
                   id="inlineFormCustomSelect"
                   value={this.state.limit}
                   name="limit"
@@ -174,15 +176,13 @@ class AllRecipeScreen extends React.Component {
                   <option value={9}>9</option>
                 </select>
                 <button
-                  style={{ width: 150 }}
+                  style={{ width: 150, fontWeight: 'bold' }}
                   type="submit"
                   className="btn btn-default ml-sm-4"
-                >Search
+                >SEARCH
                 </button>
               </form>
             </div>
-
-
             <div className="row" style={{ padding: '10px' }}>
               {recipes.map(recipe => <SingleRecipe key={recipe.id} recipe={recipe} />)}
             </div>

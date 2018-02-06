@@ -54,7 +54,7 @@ class ViewRecipeScreen extends React.Component {
                 to='/home'
                 className="moreRecipes"
                 href="#"
-              >MORE RECIPES
+              >More Recipes
               </Link>
               <button
                 className="navbar-toggler"
@@ -111,7 +111,7 @@ class ViewRecipeScreen extends React.Component {
           >
             <div className="row">
               <div className="col-sm-12">
-                <h2 className="text-center">{recipe.name}</h2>
+                <h2 className="text-center title">{recipe.name}</h2>
               </div>
             </div>
             <div className="row justify-content-center">
@@ -135,7 +135,7 @@ class ViewRecipeScreen extends React.Component {
                         className="fa fa-user-circle-o"
                         aria-hidden="true"
                       />
-                      &nbsp;{recipe.User.username}
+                      &nbsp;<span className="title">{recipe.User.username}</span>
                     </p>
                     <p style={{ fontSize: '18px' }}>
                       <Upvotes
@@ -152,6 +152,7 @@ class ViewRecipeScreen extends React.Component {
                       />&nbsp;&nbsp;
                     </p><br /><br />
                     <p
+                      className="title"
                       style={{ fontSize: '18px', color: 'green' }}
                     >CATEGORY:
                     </p>
@@ -161,6 +162,7 @@ class ViewRecipeScreen extends React.Component {
                     </p>
                     <br />
                     <p
+                      className="title"
                       style={{ fontSize: '18px', color: 'green' }}
                     >DESCRIPTION:
                     </p>
@@ -169,16 +171,18 @@ class ViewRecipeScreen extends React.Component {
                 </figure>
                 <article>
                   <h3
+                    className="title"
                     style={{
                     borderBottom: '1px solid lightgrey',
                     marginBottom: 20,
-                    color: 'green'
-                  }}
+                    color: 'green',
+                    }}
                   >INGREDIENTS
                   </h3>
                   <IngredientList ingredients={recipe.ingredients} />
                 </article>
                 <h3
+                  className="title"
                   style={{
                   borderBottom: '1px solid lightgrey',
                   marginBottom: 20,
@@ -192,6 +196,7 @@ class ViewRecipeScreen extends React.Component {
             <div className="row">
               <section className="col-sm-12 text-center">
                 <h3
+                  className="title"
                   style={{
                   borderBottom: '1px solid lightgrey',
                   marginBottom: 20,
@@ -207,7 +212,7 @@ class ViewRecipeScreen extends React.Component {
             >
               <ReviewList reviews={recipe.Reviews} />
             </section>
-            <div className="row justify-content-center">
+            <div className="row justify-content-center title">
               <AddReview recipeId={recipe.id} />
             </div>
           </section>

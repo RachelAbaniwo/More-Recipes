@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { LandingTopButtons, CreateRecipeButton } from '../components/LandingPageButtons';
 import food9 from '../../assets/image/food-9.jpg';
 import food20 from '../../assets/image/food-20.jpg';
 import food23 from '../../assets/image/food-23.jpg';
@@ -13,26 +15,18 @@ import '../../assets/css/style.css';
  *
  * @returns {object} jsx object
  */
-const Home = () => ((
+class Home extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ''
+    };
+  }
+  render() {
+  return (
   <div style={{ backgroundColor: '#eee' }}>
-    <div className="col-md-12 hover-slide float-right">
-      <div
-        style={{ paddingBottom: 20 }}
-      >
-        <Link
-          to="/signup"
-          className="button btn btn-default link-button ml-2 float-right"
-          style={{ width: 150, marginTop: 10 }}
-        >REGISTER
-        </Link>
-        <Link
-          to="/signin"
-          className="button btn btn-default link-button mr-2 float-right"
-          style={{ width: 150, marginTop: 10 }}
-        >LOGIN
-        </Link>
-      </div>
-    </div>
+   <LandingTopButtons authUser={this.props.authUser}/>
     <section id="slider">
       <div
         id="carouselExampleIndicators"
@@ -53,7 +47,7 @@ const Home = () => ((
         </div>
         <div className="justify-content-center">
           <div
-            className="container justify-content-center"
+            className="container justify-content-center text-center"
             style={{
               backgroundColor: 'rgba(73, 67, 67, 0.679)',
               position: 'absolute',
@@ -79,11 +73,12 @@ const Home = () => ((
             </h1>
             <h3
               className="text-center"
-              style={{ paddingTop: 20, color: 'rgba(241, 235, 178, 0.8)' }}
+              style={{ fontFamily: 'kaushan script',paddingTop: 20, color: 'rgba(241, 235, 178, 0.8)' }}
             >
               Enjoy the very best kitchen experiences from around the world and share yours too!!!
             </h3>
-            <form className="form-inline justify-content-center" style={{ paddingTop: 80 }}>
+            <CreateRecipeButton authUser={this.props.authUser}/>
+           <form className="form-inline justify-content-center" style={{ paddingTop: 30 }}>
               <input
                 style={{ width: 400 }}
                 className="form-control mr-sm-2"
@@ -93,7 +88,7 @@ const Home = () => ((
               />
             </form>
           </div>
-          <a href="#popular">
+         <a href="#popular">
             <div>
               <div className="arrow bounce" />
             </div>
@@ -173,6 +168,10 @@ const Home = () => ((
       </p>
     </footer>
   </div>
-));
+      
+ );
+ }
+};
 
-export default Home;
+const mapStateToProps = state => ({ authUser: state.authUser });
+export default connect(mapStateToProps, null)(Home);

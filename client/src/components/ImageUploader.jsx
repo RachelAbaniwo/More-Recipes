@@ -37,6 +37,7 @@ class ImageFile extends React.Component {
   */
   handleDrop(files) {
     this.props.setImageUrl(files[0]);
+    console.log(this.props.setImageUrl(files[0]));
   }
   /**
    * Displays appropriate message alongside image
@@ -44,7 +45,7 @@ class ImageFile extends React.Component {
    *
    * @param {null} null
    *
-   * @returns {jsx} imgMag jsx that displays message
+   * @returns {jsx} imgMsg jsx that displays message
   */
   buildImageMessage() {
     let imgMsg = null;
@@ -94,7 +95,11 @@ class ImageFile extends React.Component {
 }
 ImageFile.propTypes = {
   setImageUrl: PropTypes.func.isRequired,
-  imageFile: PropTypes.func.isRequired,
+  imageFile: PropTypes.func
+};
+
+ImageFile.defaultProps = {
+  imageFile: null
 };
 /**
  * Map state to props

@@ -119,9 +119,9 @@ class LoginScreen extends React.Component {
           <small
             className="mb-3"
             style={{
-              color: 'red',
-              fontFamily: 'kaushan script',
-              fontWeight: 'bold'
+              color: 'orange',
+              fontFamily: 'Advent Pro',
+              fontWeight: '900'
           }}
           >{error}
           </small>
@@ -140,7 +140,7 @@ class LoginScreen extends React.Component {
               to="/home"
               className="moreRecipes" 
               href="#"
-              >MORE RECIPES
+              >More Recipes
             </Link>
             <button
               className="navbar-toggler"
@@ -190,8 +190,8 @@ class LoginScreen extends React.Component {
             <div className="col-sm-12 col-md-8">
               <div className="card card-container" id="login-card">
                 <h1
-                  className="card-header text-center"
-                  style={{ fontFamily: 'kaushan script' }}
+                  className="card-header text-center title"
+                  style={{ fontFamily: 'Advent Pro' }}
                 >SIGN IN
                 </h1><br />
                 {errorHolder}
@@ -216,11 +216,11 @@ class LoginScreen extends React.Component {
                       name="login"
                       className="login login-card-submit"
                       onClick={(event) => { this.handleSignIn(); }}
-                      style={{ fontFamily: 'kaushan script' }}
+                      style={{ fontFamily: 'Advent Pro' }}
                       defaultValue="SIGN IN"
                     />
                   </div>
-                  <div className="login-help" style={{ color: 'white', fontFamily: 'kaushan script' }}>
+                  <div className="login-help" style={{ color: 'white', fontFamily: 'Advent Pro' }}>
                     <Link
                       to="signup"
                       className="register-link mr-1"

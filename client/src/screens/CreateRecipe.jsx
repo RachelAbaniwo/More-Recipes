@@ -177,7 +177,7 @@ class CreateRecipeScreen extends React.Component {
           <nav
             className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom"
           >
-            <Link to='/home'className="moreRecipes" href="#">MORE RECIPES</Link>
+            <Link to='/home'className="moreRecipes" href="#">More Recipes</Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -244,7 +244,7 @@ class CreateRecipeScreen extends React.Component {
           <section className="row justify-content-center py-5">
             <section className="col-md-8">
               <div className="card" style={{ backgroundColor: 'rgba(233, 231, 231, 0.863)' }}>
-                <h4 className="card-header text-center">CREATE RECIPE</h4><br />
+                <h4 className="card-header text-center title">CREATE RECIPE</h4><br />
                 {errorHolder}
                 <div className="card-body">
                   <form>
@@ -305,7 +305,7 @@ class CreateRecipeScreen extends React.Component {
                       type="button"
                       onClick={this.handleSubmit}
                       className="btn btn-default"
-                      style={{ marginLeft: 10, marginTop: 20, marginBottom: 20 }}
+                      style={{ marginLeft: 10, marginTop: 20, marginBottom: 20, fontWeight: 900 }}
                     >ADD RECIPE
                     </button>
                   </form>
@@ -322,8 +322,11 @@ class CreateRecipeScreen extends React.Component {
 }
 
 CreateRecipeScreen.propTypes = {
-  imageFile: PropTypes.string.isRequired,
+  imageFile: PropTypes.string,
   createRecipe: PropTypes.func.isRequired
+};
+CreateRecipeScreen.defaultProps = {
+  imageFile: null
 };
 /**
  * Map state to props

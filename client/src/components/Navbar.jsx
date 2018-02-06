@@ -9,7 +9,7 @@ import React from 'react';
 const Navbar = () => ((
   <section id="nav">
     <nav className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
-      <a className="moreRecipes" href="/">MORE RECIPES</a>
+      <a className="moreRecipes" href="/">More Recipes</a>
       <button
         className="navbar-toggler"
         type="button"

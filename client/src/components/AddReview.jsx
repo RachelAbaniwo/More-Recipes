@@ -73,10 +73,10 @@ class AddReview extends React.Component {
           placeholder="Add review ..."
         />
         <button
-          className="btn btn-default"
+          className="btn btn-default title"
           disabled={this.state.review.length < 8}
           onClick={this.createReview}
-        >Add Review
+        >ADD REVIEW
         </button>
       </div>
     );

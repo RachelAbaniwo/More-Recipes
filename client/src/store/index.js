@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 
 const defaultState = {
-  authUser: null,
+  authUser: JSON.parse(localStorage.getItem('authUser')),
   recipes: {
     rows: [],
     pageData: {}

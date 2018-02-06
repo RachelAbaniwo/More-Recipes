@@ -25,8 +25,8 @@ ReactDom.render(
       <Route path="/" component={Main}>
         <IndexRoute component={Home}></IndexRoute>
         <Route path="/home" component={Home}></Route>
-        <Route path="/signup" component={Register} onEnter={ifAuthenticated}></Route>
-        <Route path="/signin" component={Login} onEnter={ifAuthenticated}></Route>
+        <Route path="/signup" component={Register}></Route>
+        <Route path="/signin" component={Login}></Route>
         <Route path="/recipes/create" component={CreateRecipe}></Route>
         <Route path="/recipes" component={AllRecipesScreen} />
         <Route path="/view-recipe/:recipeId" component={ViewRecipe}></Route>

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
  * Displays list of reviews
  *
@@ -17,7 +17,7 @@ const ReviewList = (props) => {
       <p >{review.review}</p>
       <p>
         <i className="fa fa-user-circle-o" aria-hidden="true" />
-        &nbsp;{review.User.username}
+        &nbsp;<span className="title">{review.User.username}</span>
       </p>
     </div>));
   return (
