@@ -57,7 +57,7 @@ export default class FavoritesController {
       };
       const recipes = await Recipe.findAll(nextQuery);
       return res.status(200).json({
-        recipes
+        favoriteRecipes: recipes
       });
     } catch (error) {
       return res.status(500).json({

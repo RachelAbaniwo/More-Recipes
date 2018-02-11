@@ -11,12 +11,14 @@ module.exports = {
       },
       recipeId: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
           model: 'Recipes', key: 'id'
         }
       },
       userId: {
         type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
         references: {
           model: 'Users', key: 'id'
         }

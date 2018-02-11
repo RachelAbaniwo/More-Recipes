@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import { signInUser } from '../store/actions/user';
 import { checkEmail } from '../../../server/helpers/checkInput';
 import '../../assets/css/style.css';
+
 /**
  * Create Login component
  * @class
@@ -36,6 +37,7 @@ class LoginScreen extends React.Component {
     this.handleValidation = this.handleValidation.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
   }
+
   /**
    * handles field change
    * @function
@@ -49,6 +51,7 @@ class LoginScreen extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
+
   /**
    * handles validation of field input
    * @function
@@ -58,7 +61,7 @@ class LoginScreen extends React.Component {
    * @returns {object} with errors if errors exist
    */
   async handleValidation() {
-    let errors = [];
+    const errors = [];
 
     if ((this.state.email.length < 1) || (!checkEmail(this.state.email))) {
       errors.push('Email is required');
@@ -70,6 +73,7 @@ class LoginScreen extends React.Component {
 
     this.setState({ errors });
   }
+
   /**
    * handles form submission
    * @function
@@ -107,6 +111,7 @@ class LoginScreen extends React.Component {
       }
     }
   }
+
   /**
  * Renders login component
  *
@@ -138,9 +143,8 @@ class LoginScreen extends React.Component {
           >
             <Link
               to="/home"
-              className="moreRecipes" 
-              href="#"
-              >More Recipes
+              className="moreRecipes"
+            >More Recipes
             </Link>
             <button
               className="navbar-toggler"
@@ -160,7 +164,6 @@ class LoginScreen extends React.Component {
                     to="/signup"
                     className="navbar-register"
                     style={{ marginRight: 20 }}
-                    href="#"
                   >REGISTER
                   </Link>
                 </li>
@@ -215,7 +218,7 @@ class LoginScreen extends React.Component {
                       type="submit"
                       name="login"
                       className="login login-card-submit"
-                      onClick={(event) => { this.handleSignIn(); }}
+                      onClick={() => { this.handleSignIn(); }}
                       style={{ fontFamily: 'Advent Pro' }}
                       defaultValue="SIGN IN"
                     />
@@ -224,13 +227,11 @@ class LoginScreen extends React.Component {
                     <Link
                       to="signup"
                       className="register-link mr-1"
-                      href="#" 
                       style={{ color: 'white' }}
                     >REGISTER NEW ACCOUNT
                     </Link>
                     <a
                       className="forgot-link" 
-                      href="#" 
                       style={{ color: 'white' }}
                     >FORGOT PASSWORD?
                     </a>
@@ -251,6 +252,7 @@ LoginScreen.propTypes = {
     push: PropTypes.func.isRequired
   }).isRequired
 };
+
 /**
  * Map state to props
  * @param {object} state
@@ -260,6 +262,7 @@ LoginScreen.propTypes = {
 const mapStateToProps = (state) => {
   return {};
 };
+
 /**
  * Map dispatch to props
  * @param {object} dispatch

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleFavorite } from './../store/actions/votes';
+
 /**
  * Add favorites component
  * @param {object} favorites
@@ -24,13 +25,15 @@ Favorites.propTypes = {
   toggleFavorite: PropTypes.func.isRequired,
   recipeId: PropTypes.number.isRequired
 };
+
 /**
  * Map dispatch to component props
  * @param {function} dispatch
  *
  * @returns {object} object to be passed as props to component
  */
-const mapDispatchToProps = dispatch => bindActionCreators({ toggleFavorite }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ toggleFavorite }, dispatch);
 
 const FavoritesConnected = connect(null, mapDispatchToProps)(Favorites);
 

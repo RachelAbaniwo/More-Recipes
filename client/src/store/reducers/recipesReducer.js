@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, NEW_RECIPE_ADDED, ADD_RECIPE_REVIEW } from '../actions/recipes';
+import { GET_ALL_RECIPES, NEW_RECIPE_ADDED, ADD_RECIPE_REVIEW, UPDATE_RECIPE, DELETE_RECIPE } from '../actions/recipes';
 import { TOGGLE_VOTE, TOGGLE_FAVORITES } from '../actions/votes';
 
 /**
@@ -20,6 +20,16 @@ export default function recipesReducer(state = {
           action.payload
         ]
       };
+    case UPDATE_RECIPE:
+      return {
+        ...state,
+        rows: state.rows.filter(recipe => recipe.id !== action.payload.id)
+      };
+    case DELETE_RECIPE:
+      return {
+        ...state,
+        rows: state.rows.filter(recipe => recipe.id !== action.payload)
+      };
     case ADD_RECIPE_REVIEW:
       return {
         ...state,
@@ -27,7 +37,6 @@ export default function recipesReducer(state = {
           if (recipe.id !== action.payload.recipeId) {
             return recipe;
           }
-
           return {
             ...recipe,
             Reviews: [

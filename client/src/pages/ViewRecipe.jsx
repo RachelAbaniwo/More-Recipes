@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button, Modal, ModalBody } from 'reactstrap';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,13 +8,14 @@ import IngredientList from '../components/IngredientList';
 import MethodList from '../components/MethodList';
 import ReviewList from '../components/ReviewList';
 import Footer from '../components/Footer';
-import { getRecipe } from '../store/actions/recipes';
+import { getRecipe, deleteRecipe } from '../store/actions/recipes';
 import AddReview from './../components/AddReview';
 import '../../assets/css/style.css';
 
 import Upvotes from '../components/Upvotes';
 import Downvotes from '../components/Downvotes';
 import Favorites from '../components/Favorites';
+
 /**
  * Displays recipes component
  * @class
@@ -22,14 +24,56 @@ import Favorites from '../components/Favorites';
  */
 class ViewRecipeScreen extends React.Component {
   /**
-   * Execute before component mounts
-   * @returns {null} null
+   * Adds new recipe
+   * @constructor
+   *
+   * @param {null} null
+   *
+   * @returns {object} jsx
+   */
+  constructor() {
+    super();
+    this.deleteRecipe = this.deleteRecipe.bind(this);
+    this.state = {
+      modal: false
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  /**
+   * Execute when component will mount
+   * @return {object} object
    */
   componentWillMount() {
     if (!this.props.recipe) {
       this.props.getRecipe(this.props.params.recipeId);
     }
   }
+
+  /**
+   * Execute when component will mount
+   * @return {object} sets state
+   */
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
+  /**
+   * handles recipe deletion
+   * @function
+   *
+   * @param {null} null
+   *
+   * @returns {object} redirects to view all recipes page
+   */
+  async deleteRecipe() {
+    await this.props.deleteRecipe(this.props.recipe.id);
+    return this.props.router.push('/recipes');
+  }
+
   /**
    * Renders recipe
    *
@@ -38,12 +82,54 @@ class ViewRecipeScreen extends React.Component {
   render() {
     const { recipe } = this.props;
     let recipeCard;
+    let updateRecipeButton;
 
     if (!recipe) {
       recipeCard = (
         <h1>Loading the recipe...</h1>
       );
     } else {
+      if (this.props.authUser &&
+        this.props.authUser.user.id ===
+        this.props.recipe.User.id) {
+        updateRecipeButton =
+    (
+      <span>
+        <Link
+          className="button btn btn-default update-button"
+          to={`/update-recipe/${recipe.id}`}
+        > UPDATE
+        </Link>
+        &nbsp;&nbsp;
+        <Button
+          className="button btn btn-default update-button"
+          onClick={this.toggle}
+        >DELETE
+        </Button>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+        >
+          <ModalBody
+            toggle={this.toggle}
+          >
+            <h4>CONFIRM</h4>
+            <h5>Are you sure you want to delete this recipe?</h5>
+            <Button
+              className="button btn btn-default update-button pull-right"
+              onClick={this.deleteRecipe}
+            >DELETE
+            </Button>
+            <Button
+              className="button btn btn-default update-button pull-right mr-2"
+              onClick={this.toggle}
+            >CANCEL
+            </Button>
+          </ModalBody>
+        </Modal>
+      </span>
+    );
+      }
       recipeCard = (
         <div>
           <section id="nav">
@@ -51,9 +137,8 @@ class ViewRecipeScreen extends React.Component {
               className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom"
             >
               <Link
-                to='/home'
+                to="/home"
                 className="moreRecipes"
-                href="#"
               >More Recipes
               </Link>
               <button
@@ -114,6 +199,11 @@ class ViewRecipeScreen extends React.Component {
                 <h2 className="text-center title">{recipe.name}</h2>
               </div>
             </div>
+            <div className="row">
+              <div className="col-sm-12">
+                {updateRecipeButton}
+              </div>
+            </div>
             <div className="row justify-content-center">
               <section className="col-sm-12">
                 <figure
@@ -135,7 +225,8 @@ class ViewRecipeScreen extends React.Component {
                         className="fa fa-user-circle-o"
                         aria-hidden="true"
                       />
-                      &nbsp;<span className="title">{recipe.User.username}</span>
+                      &nbsp;
+                      <span className="title">{recipe.User.username}</span>
                     </p>
                     <p style={{ fontSize: '18px' }}>
                       <Upvotes
@@ -173,9 +264,9 @@ class ViewRecipeScreen extends React.Component {
                   <h3
                     className="title"
                     style={{
-                    borderBottom: '1px solid lightgrey',
-                    marginBottom: 20,
-                    color: 'green',
+                      borderBottom: '1px solid lightgrey',
+                      marginBottom: 20,
+                      color: 'green',
                     }}
                   >INGREDIENTS
                   </h3>
@@ -184,9 +275,9 @@ class ViewRecipeScreen extends React.Component {
                 <h3
                   className="title"
                   style={{
-                  borderBottom: '1px solid lightgrey',
-                  marginBottom: 20,
-                  color: 'green'
+                    borderBottom: '1px solid lightgrey',
+                    marginBottom: 20,
+                    color: 'green'
                   }}
                 >DIRECTIONS
                 </h3>
@@ -198,9 +289,9 @@ class ViewRecipeScreen extends React.Component {
                 <h3
                   className="title"
                   style={{
-                  borderBottom: '1px solid lightgrey',
-                  marginBottom: 20,
-                  color: 'green'
+                    borderBottom: '1px solid lightgrey',
+                    marginBottom: 20,
+                    color: 'green'
                   }}
                 >REVIEWS
                 </h3>
@@ -230,6 +321,10 @@ class ViewRecipeScreen extends React.Component {
 
 ViewRecipeScreen.propTypes = {
   recipe: PropTypes.shape({
+    User: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired
+    }),
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -240,11 +335,25 @@ ViewRecipeScreen.propTypes = {
   params: PropTypes.shape({
     recipeId: PropTypes.string.isRequired
   }).isRequired,
-  getRecipe: PropTypes.func.isRequired
+  getRecipe: PropTypes.func.isRequired,
+  deleteRecipe: PropTypes.func.isRequired,
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      aboutMe: PropTypes.string.isRequired,
+      profilePicture: PropTypes.string.isRequired,
+    })
+  }),
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
 };
 
 ViewRecipeScreen.defaultProps = {
-  recipe: {}
+  recipe: {},
+  authUser: null
 };
 
 /**
@@ -254,6 +363,7 @@ ViewRecipeScreen.defaultProps = {
  * @returns {object} props
  */
 const mapStateToProps = (state, ownProps) => ({
+  authUser: state.authUser,
   recipe: state.recipes.rows.find(recipe =>
     recipe.id === parseInt(ownProps.params.recipeId, 10)) || null
 });
@@ -264,7 +374,8 @@ const mapStateToProps = (state, ownProps) => ({
  * @param {object} ownProps
  * @returns {object} props
  */
-const mapDispatchToProps = dispatch => bindActionCreators({ getRecipe }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ getRecipe, deleteRecipe }, dispatch);
 
 const ViewRecipe = connect(mapStateToProps, mapDispatchToProps)(ViewRecipeScreen);
 

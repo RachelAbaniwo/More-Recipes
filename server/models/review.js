@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     review: DataTypes.TEXT,
     recipeId: {
       type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
       references: {
         model: 'Recipes', key: 'id'
       }
@@ -14,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
   });
-  
-  Review.associate = models => {
+
+  Review.associate = (models) => {
     Review.belongsTo(models.Recipe, {
       foreignKey: 'recipeId'
     });

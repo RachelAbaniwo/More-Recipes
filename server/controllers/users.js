@@ -65,7 +65,9 @@ export default class UserController {
           lastname: user.lastname,
           username: user.username,
           email: user.email,
-          id: user.id
+          id: user.id,
+          aboutMe: user.aboutMe,
+          profilePicture: user.profilePicture
         };
         const token = jwt.sign({ id: user.id }, jwtSecret, {
           expiresIn: 60 * 60 * 24
@@ -125,7 +127,7 @@ export default class UserController {
           message: 'You have no recipes'
         });
       } res.status(200).json({
-        recipes
+        myRecipes: recipes
       });
     }).catch(error =>
       res.status(500).json({

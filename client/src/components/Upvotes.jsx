@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleVote } from './../store/actions/votes';
+
 /**
  * Displays upvotes
  * @param {object} upvotes
@@ -22,13 +23,15 @@ Upvotes.propTypes = {
   toggleVote: PropTypes.func.isRequired,
   recipeId: PropTypes.number.isRequired
 };
+
 /**
  * Map dispatch to component props
  *
  * @param {function} dispatch
  * @returns {object} object
  */
-const mapDispatchToProps = dispatch => bindActionCreators({ toggleVote }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ toggleVote }, dispatch);
 
 const UpvotesConnected = connect(null, mapDispatchToProps)(Upvotes);
 

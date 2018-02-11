@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
-import { bindActionCreators } from 'redux';
-import { setImageUrl } from '../store/actions/recipes';
 import '../../assets/css/hover.css';
 
 /**
@@ -27,6 +24,7 @@ class ImageFile extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
     this.buildImageMessage = this.buildImageMessage.bind(this);
   }
+
   /**
    * sets image url
    * @function
@@ -37,8 +35,8 @@ class ImageFile extends React.Component {
   */
   handleDrop(files) {
     this.props.setImageUrl(files[0]);
-    console.log(this.props.setImageUrl(files[0]));
   }
+
   /**
    * Displays appropriate message alongside image
    * @function
@@ -49,7 +47,7 @@ class ImageFile extends React.Component {
   */
   buildImageMessage() {
     let imgMsg = null;
-    if (!this.props.imageFile) {
+    if (!this.props.imageFile && !this.props.imageUrl) {
       imgMsg = (
         <div
           className="justify-content-center"
@@ -57,7 +55,7 @@ class ImageFile extends React.Component {
         >
           <h5
             className="justify-content-center"
-          >Click to select your Recipe Image
+          >Click to select Image
           </h5>
         </div>
       );
@@ -68,11 +66,11 @@ class ImageFile extends React.Component {
             <img
               className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
               style={{ maxWidth: 700, maxHeight: 500 }}
-              src={this.props.imageFile.preview}
+              src={this.props.imageFile ? this.props.imageFile.preview : this.props.imageUrl}
               alt=""
             />
             <div className="overlay">
-              <h2>Click to upload another image</h2>
+              <h2>Click to select another image</h2>
             </div>
           </div>
         </div>
@@ -80,6 +78,7 @@ class ImageFile extends React.Component {
     }
     return imgMsg;
   }
+
   /**
    * Displays preview of recipe image
    *
@@ -95,31 +94,15 @@ class ImageFile extends React.Component {
 }
 ImageFile.propTypes = {
   setImageUrl: PropTypes.func.isRequired,
-  imageFile: PropTypes.func
+  imageFile: PropTypes.shape({
+    preview: PropTypes.string.isRequired
+  }),
+  imageUrl: PropTypes.string
 };
 
 ImageFile.defaultProps = {
-  imageFile: null
+  imageFile: null,
+  imageUrl: null
 };
-/**
- * Map state to props
- * @param {object} state
- *
- * @returns {object} object of state to props
- */
-const mapStateToProps = state => ({
-  imageFile: state.imageUpload.imageFile
-});
-/**
- * Map dispatch to props
- * @param {function} dispatch
- *
- * @returns {object} object to be passed as props to component
- */
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ setImageUrl }, dispatch);
 
-
-const ImageUrlContainer = connect(mapStateToProps, mapDispatchToProps)(ImageFile);
-
-export default ImageUrlContainer;
+export default ImageFile;

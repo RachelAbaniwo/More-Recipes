@@ -1,4 +1,5 @@
 import { SIGN_IN_USER, SIGN_OUT_USER } from '../actions/user';
+import { UPDATE_USER_PROFILE } from '../actions/userProfile';
 /**
  * The authentication reducer
  * @param {object} state default authUser state
@@ -11,6 +12,10 @@ export default function authenticationReducer(state = {}, action) {
       return {
         ...action.authUser
       };
+    case UPDATE_USER_PROFILE:
+      return {
+        ...action.authUser
+        }
     case SIGN_OUT_USER:
       let newState = state;
       newState = null;

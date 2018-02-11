@@ -11,7 +11,8 @@ const defaultState = {
   imageUpload: {
     imageFile: null
   },
-  notification: null
+  notification: null,
+  search: { query: '' }
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import Footer from './Footer';
-import { getAllRecipes } from '../store/actions/recipes';
-import SingleRecipe from './SingleRecipe';
+import Footer from '../components/Footer';
+import { getAllRecipes, updateSearchQuery } from '../store/actions/recipes';
+import SingleRecipe from '../components/SingleRecipe';
 
 /**
  * Displays all recipes
@@ -30,15 +30,17 @@ class AllRecipeScreen extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   /**
    * Execute before component mounts
    * @returns {null} null
    */
   componentWillMount() {
-    this.props.getAllRecipes();
+    this.props.getAllRecipes(this.state);
   }
+
   /**
-   *Handle inpuit change
+   *Handle input change
    * @param {object} event
    * @returns {null} null
    */
@@ -47,8 +49,9 @@ class AllRecipeScreen extends React.Component {
       [event.target.name]: event.target.value
     });
   }
+
   /**
-   *Handle inpuit change
+   *Handle input change
    * @param {object} event
    * @returns {null} null
    */
@@ -57,6 +60,7 @@ class AllRecipeScreen extends React.Component {
     this.props.getAllRecipes(this.state);
     // send the data to the server
   }
+
   /**
    * Display recipes
    *
@@ -147,8 +151,8 @@ class AllRecipeScreen extends React.Component {
                   name="search"
                   placeholder="Search Recipes"
                   aria-label="Search"
-                  value={this.state.search}
-                  onChange={this.handleChange}
+                  value={this.props.searchQuery}
+                  onChange={(event) => { this.props.updateSearchQuery(event.target.value); }}
                 />
                 <select
                   className="custom-select mb-2  mr-sm-4 mb-sm-0"
@@ -211,6 +215,8 @@ AllRecipeScreen.propTypes = {
     createdAt: PropTypes.string.isRequired,
     updatedAt: PropTypes.string.isRequired,
   })),
+  searchQuery: PropTypes.string.isRequired,
+  updateSearchQuery: PropTypes.func.isRequired,
   getAllRecipes: PropTypes.func.isRequired
 };
 
@@ -224,7 +230,8 @@ AllRecipeScreen.defaultProps = {
  *
  * @returns {object} object of recipes passed as props
  */
-const mapStateToProps = state => ({ recipes: state.recipes.rows });
+const mapStateToProps = state =>
+  ({ recipes: state.recipes.rows, searchQuery: state.search.query });
 
 /**
  * Map dispatch to props
@@ -232,7 +239,8 @@ const mapStateToProps = state => ({ recipes: state.recipes.rows });
  *
  * @returns {object} object to be passed as props to component
  */
-const mapDispatchToProps = dispatch => bindActionCreators({ getAllRecipes }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ getAllRecipes, updateSearchQuery }, dispatch);
 
 const AllRecipeScreenContainer = connect(mapStateToProps, mapDispatchToProps)(AllRecipeScreen);
 

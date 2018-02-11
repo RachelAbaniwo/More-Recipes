@@ -1,4 +1,4 @@
-import SET_IMAGE_FILE from '../actions/recipes';
+import { SET_IMAGE_FILE, CLEAR_IMAGE_FILE } from '../actions/recipes';
 /**
  * The set image upload reducer
  * @param {object} state default image upload state
@@ -11,6 +11,8 @@ export default function (state = {}, action) {
       return {
         imageFile: action.payload
       };
+    case CLEAR_IMAGE_FILE:
+      return {};
     default:
       return state;
   }

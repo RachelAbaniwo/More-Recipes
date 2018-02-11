@@ -1,5 +1,6 @@
 
 import React from 'react';
+
 /**
  * Display footer component
  * @param {null} null

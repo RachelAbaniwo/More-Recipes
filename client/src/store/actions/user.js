@@ -42,11 +42,11 @@ export function signInUser({ email, password }) {
  */
 export function signOutUser() {
   return async (dispatch) => {
-    localStorage.removeItem(authUser);
+    localStorage.removeItem('authUser');
     dispatch({
       type: SIGN_OUT_USER
     });
-
+    dispatch(setNotification('success', 'Successfully logged out.'));
     return Promise.resolve();
   };
 }

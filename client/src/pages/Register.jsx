@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import { signUpUser } from '../store/actions/user';
 import { checkEmail, checkUsername, checkname, checkPassword } from '../helpers';
 import '../../assets/css/style.css';
+
 /**
  * Displays Sign up component
  * @class
@@ -39,6 +40,7 @@ class RegisterScreen extends React.Component {
     this.handleValidation = this.handleValidation.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
   }
+
   /**
    * handles field change
    * @function
@@ -52,6 +54,7 @@ class RegisterScreen extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
+
   /**
    * handles form submission
    * @function
@@ -99,6 +102,7 @@ class RegisterScreen extends React.Component {
       return Promise.resolve();
     });
   }
+
   /**
    * handles form submission
    * @function
@@ -134,6 +138,7 @@ class RegisterScreen extends React.Component {
       }
     }
   }
+
   /**
  * Renders sign up component
  *
@@ -164,9 +169,8 @@ class RegisterScreen extends React.Component {
             className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom"
           >
             <Link
-              to ="/home"
+              to="/home"
               className="moreRecipes"
-              href="#"
             >More Recipes
             </Link>
             <button
@@ -189,8 +193,7 @@ class RegisterScreen extends React.Component {
                   <Link
                     to="/signin"
                     className="navbar-register"
-                    style={{marginRight: 20}}
-                    href="#"
+                    style={{ marginRight: 20 }}
                   >SIGN IN
                   </Link>
                 </li>
@@ -269,7 +272,7 @@ class RegisterScreen extends React.Component {
                       type="submit"
                       name="register"
                       className="register-card-submit title"
-                      onClick={(event) => { this.handleRegister(); }}
+                      onClick={() => { this.handleRegister(); }}
                       style={{ fontFamily: 'Advent Pro' }}
                       defaultValue="SIGN UP"
                     />
@@ -278,7 +281,6 @@ class RegisterScreen extends React.Component {
                     <Link
                       to="/signin"
                       className="register-link"
-                      href="#"
                       style={{
                         color: 'white',
                         fontFamily: 'Advent Pro'
@@ -302,6 +304,7 @@ RegisterScreen.propTypes = {
     push: PropTypes.func.isRequired
   }).isRequired
 };
+
 /**
  * Map state to props
  * @param {object} state
@@ -311,6 +314,7 @@ RegisterScreen.propTypes = {
 const mapStateToProps = (state) => {
   return {};
 };
+
 /**
  * Map dispatch to props
  * @param {object} dispatch

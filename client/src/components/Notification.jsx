@@ -1,6 +1,7 @@
 import React from 'react';
 import Noty from 'noty';
 import { connect } from 'react-redux';
+
 /**
  * Displays notification component
  * @class
@@ -14,7 +15,6 @@ class Notification extends React.Component {
  */
   render() {
     if (this.props.notification) {
-      console.log(this.props.notification);
       new Noty({
         text: this.props.notification.message,
         type: this.props.notification.level,

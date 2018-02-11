@@ -9,7 +9,7 @@ import { Link } from 'react-router';
  * @returns {object} jsx
  *
  */
-export const LandingTopButtons = ({ authUser }) => {
+export const LandingTopButtons = ({ authUser, signOutUser }) => {
   if (authUser === null || authUser === undefined) {
     return (
       <div className="col-md-12 hover-slide float-right">
@@ -43,7 +43,7 @@ export const LandingTopButtons = ({ authUser }) => {
           style={{ paddingBottom: 20 }}
         >
           <button
-            
+            onClick={signOutUser}
             className="button btn btn-default link-button ml-2 float-right title"
             style={{
               width: 150, marginTop: 10, fontFamily: 'Advent Pro'
@@ -51,18 +51,19 @@ export const LandingTopButtons = ({ authUser }) => {
           >LOG OUT
           </button>
           <Link
-            to="/recipes/create"
+            to="/dashboard"
             className="button btn btn-default link-button ml-2 float-right title"
             style={{
               width: 150, marginTop: 10, fontFamily: 'Advent Pro'
             }}
-          >MANAGE RECIPES
+          >MY PROFILE
           </Link>
         </div>
       </div>
     );
   }
 };
+
 /**
  * Landing page create recipe buttons component
  * @function
@@ -77,14 +78,23 @@ export const CreateRecipeButton = ({ authUser }) => {
   }
   if (authUser !== null && authUser !== undefined) {
     return (
-      <div className="justify-content-center" style={{ marginTop: 30 }} >
+      <div className="justify-content-center">
         <Link
           to="/recipes/create"
-          className="button btn btn-default link-button justify-content-center title"
+          className="button btn btn-default link-button justify-content-center title mr-2"
           style={{
-        width: 180, fontFamily: 'Advent Pro', fontSize: '20px'
+        width: 180, fontFamily: 'Advent Pro', fontSize: '20px', marginTop: 10
       }}
         >CREATE A RECIPE
+        </Link>
+
+        <Link
+          to="/dashboard"
+          className="button btn btn-default link-button justify-content-center title mr-2"
+          style={{
+        width: 180, fontFamily: 'Advent Pro', fontSize: '20px', marginTop: 10
+      }}
+        >MANAGE RECIPES
         </Link>
       </div>
     );

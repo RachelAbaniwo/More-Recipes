@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 /**
  * Displays list of reviews
  *
@@ -9,10 +10,14 @@ import PropTypes from 'prop-types';
  */
 const ReviewList = (props) => {
   const ReviewsArray = props.reviews;
-  const ReviewsList = ReviewsArray.map((review, index) => (
+  const ReviewsList = ReviewsArray.map(review => (
     <div
-      key={index}
-      style={{ fontSize: '18px', borderBottom: '1px solid lightgrey', marginBottom: 20 }}
+      key={review}
+      style={{
+        fontSize: '18px',
+        borderBottom: '1px solid lightgrey',
+        marginBottom: 20
+      }}
     >
       <p >{review.review}</p>
       <p>

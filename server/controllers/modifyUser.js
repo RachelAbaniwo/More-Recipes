@@ -1,7 +1,11 @@
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import db from '../models';
 import { returnName, returnUsername, returnParameter, returnEmail } from '../helpers/checkInput';
 
 const { User } = db;
+dotenv.config();
+const jwtSecret = process.env.JWT_SECRET;
 /**
  * Controls the user endpoints
  */
@@ -20,7 +24,8 @@ export default class ModifyUserController {
         username: returnUsername(req.body.username) || user.username,
         email: returnEmail(req.body.email) || user.email,
         id: user.id,
-        aboutMe: returnParameter(req.body.aboutMe) || user.aboutMe
+        aboutMe: returnParameter(req.body.aboutMe) || user.aboutMe,
+        profilePicture: req.body.imageUrl || user.profilePicture
       }, {
         where: { id: req.params.userId },
         returning: true,
@@ -33,7 +38,8 @@ export default class ModifyUserController {
             username: newUser[1].username,
             email: newUser[1].email,
             id: newUser[1].id,
-            aboutMe: newUser[1].aboutMe
+            aboutMe: newUser[1].aboutMe,
+            profilePicture: newUser[1].profilePicture
           };
           res.status(201).json({
             user: updatedUser, message: 'Successfully updated profile'

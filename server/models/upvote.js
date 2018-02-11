@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     recipeId: {
       type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
       references: {
         model: 'Recipes', key: 'id'
       },
@@ -15,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       /**
-   * declares associations
-   * @param {object} models
-   * @returns {integer} foreign key declared
-   */
+     * declares associations
+     * @param {object} models
+     * @returns {integer} foreign key declared
+     */
       associate(models) {
         Upvote.belongsTo(models.User, {
           foreignKey: 'userId'
