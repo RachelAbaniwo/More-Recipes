@@ -1,7 +1,13 @@
+/**
+   * Checks input and returns false if email is invalid
+   *
+   * @param {string} email
+   * @returns {boolean} returned to client
+   */
 export function checkEmail(email) {
   const check = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return check.test(email);
-};
+}
 /**
    * Checks input and returns false if non alphanumeric characters are inputed
    * Number of Characters must be from 3 To 5
@@ -81,12 +87,25 @@ export function returnUsername(name) {
     return name;
   } return null;
 }
+/**
+   * Checks input and returns false if email is invalid
+   *
+   * @param {string} email
+   * @returns {boolean}  returned to client
+   */
 export function returnEmail(email) {
   const check = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   if (check.test(email)) {
     return email;
   } return null;
 }
+/**
+   * Checks input and returns false if characters beside
+   * alphanumeric characters, _ and - are inputed
+   * Number of Characters must be from 6 To 15
+   * @param {string} password
+   * @returns {boolean} returned to client
+   */
 export function returnPassword(password) {
   const check = /^[.A-Za-z0-9_-]{6,15}$/;
   if (check.test(password)) {

@@ -2,11 +2,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import data from '../mockData'
+import mockData from '../mockData'
 
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
-const { signinUser1, signinUser2, signinUser3, review1 } = data;
+const { signinUser1, signinUser2, signinUser3, review1 } = mockData;
 
 chai.use(chaiHttp);
 
@@ -39,7 +39,7 @@ describe('REVIEW CONTROLLER', () => {
       });
     });
     
-    it('should add a review to the recipe with Id is specified by a Signed in User', (done) => {
+    it('should add a review to the recipe with Id is specified by a signed in user', (done) => {
        chai.request(app)
       .post('/api/v1/reviews/1')
       .set('token', user1Token)
@@ -51,13 +51,13 @@ describe('REVIEW CONTROLLER', () => {
         done();
       });
     });
-    it('should return an error if User adding a review is not Signed in', (done) => {
+    it('should return an error if User adding a review is not signed in', (done) => {
       chai.request(app)
       .post('/api/v1/reviews/1')
       .send(review1)
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -79,11 +79,11 @@ describe('REVIEW CONTROLLER', () => {
       .send(review1)
       .end((error, response) => {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
-    it('should return an error if the Review field is empty', (done) => {
+    it('should return an error if the review field is empty', (done) => {
       chai.request(app)
       .post('/api/v1/reviews/1')
       .set('token', user2Token)
@@ -114,7 +114,7 @@ describe('REVIEW CONTROLLER', () => {
        .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Recipe not Found');
+        expect(response.body.message).to.equal('Recipe not found');
         done();
       });
     });
@@ -124,7 +124,7 @@ describe('REVIEW CONTROLLER', () => {
        .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Recipe has no Reviews');
+        expect(response.body.message).to.equal('Recipe has no reviews');
         done();
       });
     });

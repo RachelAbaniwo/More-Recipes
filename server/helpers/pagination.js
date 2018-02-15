@@ -1,3 +1,17 @@
+/**
+   * Calculates page data
+   * @function
+   *
+   * @param {number} count
+   * @param {number} limit
+   * @param {number} offset
+   *
+   * @returns {number} totalCount
+   * @returns {number} page
+   * @returns {number} pageCount
+   * @returns {number} pageSize
+   *
+   */
 const pagination = (count, limit, offset) => ({
   totalCount: count,
   pageCount: Math.ceil(count / limit),

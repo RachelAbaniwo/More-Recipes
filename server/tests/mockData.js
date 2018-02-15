@@ -33,6 +33,10 @@ export default {
     email: 'abaniwo@test.com',
     password: process.env.PASSWORD
   },
+  wrongEmailFormatSignIn: {
+    email: 'racheltest.com',
+    password: process.env.PASSWORD
+  },
   wrongPasswordSignIn: {
     email: 'inene.abaniwo@test.com',
     password: 'rach'
@@ -102,6 +106,10 @@ export default {
     ingredients: 'Chicken, Chilli Pepper, Veggies',
     description: 'Sauce to be served along side pasta',
     method: 'add Chicken, then add Chilli Pepper'
+  },
+  wrongUpdateRecipe: {
+    name: ' ',
+    category: '',
   },
 };
 

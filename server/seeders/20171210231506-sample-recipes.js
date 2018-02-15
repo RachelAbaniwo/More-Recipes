@@ -69,7 +69,7 @@ module.exports = {
       upvotes: 0,
       downvotes: 0,
       views: 0,
-      favorites: 0,
+      favorites: 3,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {

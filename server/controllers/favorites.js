@@ -47,7 +47,7 @@ export default class FavoritesController {
 
       if (favorites.length < 1) {
         return res.status(404).json({
-          message: 'You have no Favorite Recipes'
+          message: 'You have no favorite recipes'
         });
       }
       const recipeIds = favorites.map(favorite => favorite.recipeId);

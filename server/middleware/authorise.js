@@ -14,5 +14,5 @@ export default (req, res, next) => {
     }
 
     next();
-  }).catch(() => res.status(400).json({ message: 'Invalid Request' }));
+  }).catch(() => res.status(400).json({ message: 'Invalid request' }));
 };

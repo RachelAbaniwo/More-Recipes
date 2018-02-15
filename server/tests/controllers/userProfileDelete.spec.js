@@ -2,12 +2,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import data from '../mockData'
+import mockData from '../mockData'
 
 const expect = chai.expect;
 let user1Token, user5Token, user1, user5;
 
-const { signinUser1, signinUser5 } = data;
+const { signinUser1, signinUser5 } = mockData;
 
 chai.use(chaiHttp);
 
@@ -38,7 +38,7 @@ describe('DELETE USER CONTROLLER', () => {
       .delete('/api/v1/users/5')
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -48,7 +48,7 @@ describe('DELETE USER CONTROLLER', () => {
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
@@ -68,7 +68,7 @@ describe('DELETE USER CONTROLLER', () => {
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });

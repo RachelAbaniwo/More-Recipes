@@ -2,11 +2,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import data from '../mockData'
+import mockData from '../mockData'
 
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
-const { signinUser1, signinUser2, signinUser3, recipe1, updateRecipe } = data;
+const { signinUser1, signinUser2, signinUser3, recipe1, updateRecipe } = mockData;
 
 chai.use(chaiHttp);
 
@@ -27,7 +27,7 @@ describe('RECIPE CONTROLLER', () => {
     
   describe('Retrieve Recipes', () => {
       
-    it('should return a list of all recipes when User requests for all recipes ', (done) => {
+    it('should return a list of all recipes when user requests for all recipes ', (done) => {
       chai.request(app)
       .get('/api/v1/recipes')
       .end((error, response) => {
@@ -39,7 +39,31 @@ describe('RECIPE CONTROLLER', () => {
           done();
       });
     });
-    it('should return the recipe with recipe ID requested by the User', (done) => {
+    it('should return all recipes sorted according to the property indicated by the user', (done) => {
+      chai.request(app)
+      .get('/api/v1/recipes?sort=favorites')
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an('object');
+        expect(response.body.recipes[0].name).to.equal('Nigerian Doughnut');
+        expect(response.body.recipes[0].id).to.equal(5);
+        expect(response.body.recipes[0].userId).to.equal(2);
+        done();
+      });
+    });
+    it('should search for the recipes using the keywords inputed by the user', (done) => {
+      chai.request(app)
+      .get('/api/v1/recipes?search=Chicken Sauce')
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an('object');
+        expect(response.body.recipes[0].name).to.equal('Chicken Sauce');
+        expect(response.body.recipes[0].id).to.equal(4);
+        expect(response.body.recipes[0].userId).to.equal(1);
+        done();
+      });
+    });
+    it('should return the recipe with recipe ID requested by the user', (done) => {
       chai.request(app)
       .get('/api/v1/recipes/1')
       .end((error, response) => {
@@ -51,7 +75,7 @@ describe('RECIPE CONTROLLER', () => {
         done();
       });
     });
-    it('should return an error if the recipe requested by the User doesn\'t exist', (done) => {``
+    it('should return an error if the recipe requested by the user doesn\'t exist', (done) => {``
       chai.request(app)
       .get('/api/v1/recipes/10')
       .end((error, response) => {
@@ -62,13 +86,13 @@ describe('RECIPE CONTROLLER', () => {
         done();
       });
     });
-    it('should return an error if the id of the recipe requested by the User is not an Integer', (done) => {
+    it('should return an error if the id of the recipe requested by the user is not an integer', (done) => {
       chai.request(app)
       .get('/api/v1/recipes/Rachel')
       .end((error, response) => {
         expect(response).to.have.status(400);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
@@ -82,26 +106,26 @@ describe('RECIPE CONTROLLER', () => {
       .send(signinUser1)
       .end((error, response) => {
         user1Token = response.body.token;
-        user1 = response.body.existingUser;
+        user1 = response.body.user;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
       .send(signinUser2)
       .end((error, response) => {
         user2Token = response.body.token;
-        user2 = response.body.existingUser;
+        user2 = response.body.user;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
       .send(signinUser3)
       .end((error, response) => {
         user3Token = response.body.token;
-        user3 = response.body.existingUser;
+        user3 = response.body.user;
         done();
       });
     });
     
-    it('should add a new recipe when called by Signed in User', (done) => {
+    it('should add a new recipe when called by signed in user', (done) => {
       chai.request(app)
       .post('/api/v1/recipes')
       .set('token', user1Token)
@@ -118,14 +142,14 @@ describe('RECIPE CONTROLLER', () => {
         done();
       });
     });
-    it('it should return an error if User creating Recipe is not Signed In', (done) => {
+    it('it should return an error if user creating recipe is not signed in', (done) => {
       chai.request(app)
       .post('/api/v1/recipes')
       .send(recipe1)
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -142,7 +166,7 @@ describe('RECIPE CONTROLLER', () => {
         expect(errors).to.include('Recipe Ingredients are required.');
         expect(errors).to.include('Recipe Description is required.');
         expect(errors).to.include('Method required.');
-        expect(response.body.message).to.equal('Please fill all Fields');
+        expect(response.body.message).to.equal('Please fill all fields');
         done();
       });
     });

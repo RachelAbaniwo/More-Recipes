@@ -2,12 +2,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import data from '../mockData'
+import mockData from '../mockData'
 
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
 
-const { signinUser1, signinUser2, signinUser3, review1, review2 } = data;
+const { signinUser1, signinUser2, signinUser3, review1, review2 } = mockData;
 
 chai.use(chaiHttp);
 
@@ -42,12 +42,12 @@ describe('REVIEW CONTROLLER', () => {
       });
     });
     
-    it('should return an error if User trying to delete a review is not Signed in', (done) => {
+    it('should return an error if User trying to delete a review is not signed in', (done) => {
       chai.request(app)
       .delete('/api/v1/reviews/3')
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -61,13 +61,13 @@ describe('REVIEW CONTROLLER', () => {
         done();
       });
     });
-    it('should return an error if the review to be deleted is not a review made by the Signed in User', (done) => {
+    it('should return an error if the review to be deleted is not a review made by the signed in user', (done) => {
       chai.request(app)
       .delete('/api/v1/reviews/1')
       .set('token', user2Token)
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
@@ -77,11 +77,11 @@ describe('REVIEW CONTROLLER', () => {
       .set('token', user3Token)
       .end((error, response) => {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
-    it('should delete only reviews created by a Signed in User', (done) => {
+    it('should delete only reviews created by a signed in user', (done) => {
       chai.request(app)
       .delete('/api/v1/reviews/2')
       .set('token', user2Token)

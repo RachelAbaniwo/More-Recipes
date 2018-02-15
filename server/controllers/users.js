@@ -57,7 +57,7 @@ export default class UserController {
   userSignIn(req, res) {
     return User.findOne({ where: { email: req.body.email } }).then((user) => {
       if (!user) {
-        return res.status(404).json({ message: 'Wrong credentials' });
+        return res.status(422).json({ message: 'Wrong credentials' });
       }
       if (bcrypt.compareSync(req.body.password, user.password)) {
         const existingUser = {
@@ -75,7 +75,7 @@ export default class UserController {
         return res.status(200).json({ user: existingUser, token, message: 'Successfully signed in.' });
       }
 
-      return res.status(404).json({ message: 'Wrong credentials' });
+      return res.status(422).json({ message: 'Wrong credentials' });
     }).catch((error) => {
       res.status(500).json({
         message: error.message

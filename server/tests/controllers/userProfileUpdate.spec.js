@@ -2,12 +2,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import data from '../mockData'
+import mockData from '../mockData'
 
 const expect = chai.expect;
 let user1Token, user4Token, user5Token, user1, user4, user5;
 
-const { signinUser1, signinUser4, signinUser5, updateUser1, wrongUpdateUser} = data;
+const { signinUser1, signinUser4, signinUser5, updateUser1, wrongUpdateUser} = mockData;
 
 chai.use(chaiHttp);
 
@@ -45,7 +45,7 @@ describe('MODIFY USER CONTROLLER', () => {
       .put('/api/v1/users/4')
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -56,7 +56,7 @@ describe('MODIFY USER CONTROLLER', () => {
       .send(updateUser1)
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
@@ -78,7 +78,7 @@ describe('MODIFY USER CONTROLLER', () => {
       .send(updateUser1)
       .end((error, response) => {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });

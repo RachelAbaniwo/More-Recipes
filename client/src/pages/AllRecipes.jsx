@@ -58,7 +58,6 @@ class AllRecipeScreen extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.getAllRecipes(this.state);
-    // send the data to the server
   }
 
   /**

@@ -2,12 +2,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import data from '../mockData'
+import mockData from '../mockData'
 
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
 
-const { signinUser1, signinUser2, signinUser3, review1, review2 } = data;
+const { signinUser1, signinUser2, signinUser3, review1, review2 } = mockData;
 
 chai.use(chaiHttp);
 
@@ -46,7 +46,7 @@ describe('REVIEW CONTROLLER', () => {
       .send(review2)
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -61,14 +61,14 @@ describe('REVIEW CONTROLLER', () => {
         done();
       });
     });
-    it('should return an error if the review to be updated is not a review made by the Signed in User', (done) => {
+    it('should return an error if the review to be updated is not a review made by the signed in user', (done) => {
       chai.request(app)
       .put('/api/v1/reviews/1')
       .set('token', user2Token)
       .send(review2)
       .end((error, response) => {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
@@ -79,7 +79,7 @@ describe('REVIEW CONTROLLER', () => {
       .send(review2)
       .end((error, response) => {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
@@ -97,7 +97,7 @@ describe('REVIEW CONTROLLER', () => {
         done();
       });
     });
-    it('should update only reviews created by a Signed in User', (done) => {
+    it('should update only reviews created by a signed in user', (done) => {
       chai.request(app)
       .put('/api/v1/reviews/1')
       .set('token', user1Token)

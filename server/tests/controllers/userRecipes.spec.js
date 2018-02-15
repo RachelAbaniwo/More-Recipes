@@ -2,14 +2,14 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import data from '../mockData'
+import mockData from '../mockData'
 
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
 
 const { signinUser1, signinUser2, signinUser3, wrongUsernameSignIn, 
        wrongPasswordSignIn, signupUser, emailInUseSignUp,
-       usernameInUseSignUp, wrongEmailFormat } = data;
+       usernameInUseSignUp, wrongEmailFormat } = mockData;
 
 chai.use(chaiHttp);
 
@@ -42,40 +42,40 @@ describe('USER CONTROLLER', () => {
       });
     });
   
-    it('should return all recipes created by a User when called by that User', (done) => {
+    it('should return all recipes created by a user when called by that user', (done) => {
       chai.request(app)
       .get('/api/v1/users/myrecipes')
       .set('token', user1Token)
       .end((error, response) => {
         console.log(error);
         expect(response).to.have.status(200);
-        expect(response.body.recipes[0].name).to.equal('Fried Noodles');
-        expect(response.body.recipes[0].userId).to.equal(user1.id);
+        expect(response.body.myRecipes[0].name).to.equal('Fried Noodles');
+        expect(response.body.myRecipes[0].userId).to.equal(user1.id);
         done();
       });
     });
-    it('should return an error if User is not Signed In', (done) => {
+    it('should return an error if user is not signed in', (done) => {
       chai.request(app)
       .get('/api/v1/users/myrecipes')
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
-    it('should return an error if Signed in User has no Recipes', (done) => {
+    it('should return an error if signed in user has no recipes', (done) => {
       chai.request(app)
       .get('/api/v1/users/myrecipes')
       .set('token', user3Token)
       .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('You have no Recipes')
+        expect(response.body.message).to.equal('You have no recipes')
         done();
       });
     });
-    it('should return all recipes created by a User when requested by another Signed in User', (done) => {
+    it('should return all recipes created by a user when requested by another signed in user', (done) => {
       chai.request(app)
       .get('/api/v1/users/1/recipes')
       .set('token', user3Token)
@@ -92,40 +92,40 @@ describe('USER CONTROLLER', () => {
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
-    it('should return an error if the id of the User requested does not exist', (done) => {
+    it('should return an error if the id of the user requested does not exist', (done) => {
       chai.request(app)
       .get('/api/v1/users/10/recipes')
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('User not Found');
+        expect(response.body.message).to.equal('User not found');
         done();
       });
     });
-    it('should return an error if the User being requested has no Recipes', (done) => {
+    it('should return an error if the user being requested has no recipes', (done) => {
       chai.request(app)
       .get('/api/v1/users/3/recipes')
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('User has no Recipes');
+        expect(response.body.message).to.equal('User has no recipes');
         done();
       });
     });
-    it('should return an error if the id of the User requested is not an Integer', (done) => {
+    it('should return an error if the id of the user requested is not an integer', (done) => {
       chai.request(app)
       .get('/api/v1/users/Rachel/recipes')
       .set('token', user1Token)
       .end((error, response) => {
         expect(response).to.have.status(400);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
