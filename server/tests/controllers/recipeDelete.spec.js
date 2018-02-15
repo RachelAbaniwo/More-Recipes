@@ -86,10 +86,8 @@ describe('RECIPE CONTROLLER', () => {
         .delete('/api/v1/recipes/3')
         .set('token', user1Token)
         .end((error, response) => {
-
           expect(response).to.have.status(200);
           expect(response.body.message).to.equal('Successfully deleted recipe');
-
           Recipe.findById(3).then(recipe => {
             expect(recipe).to.be.null;
             done();
