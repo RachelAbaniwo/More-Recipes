@@ -10,7 +10,7 @@ const router = express.Router();
 const userController = new UserController();
 
 
-// GET /api/v1/users/signup - Registers a new User
+// POST /api/v1/users/signup - Registers a new User
 
 router.route('/signup')
 
