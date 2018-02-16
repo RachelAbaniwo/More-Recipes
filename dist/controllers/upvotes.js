@@ -12,8 +12,6 @@ var _models2 = _interopRequireDefault(_models);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Recipe = _models2.default.Recipe,
@@ -39,72 +37,28 @@ var UpvotesController = function () {
     * 
     * @returns {json} - success message returned to User
     */
-    value: function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
-        var recipe, query, upvote;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return Recipe.findById(req.params.recipeId);
+    value: async function addUpvote(req, res) {
+      var recipe = await Recipe.findById(req.params.recipeId);
+      var query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
+      var upvote = await Upvote.findOne(query);
 
-              case 2:
-                recipe = _context.sent;
-                query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
-                _context.next = 6;
-                return Upvote.findOne(query);
-
-              case 6:
-                upvote = _context.sent;
-
-                if (!upvote) {
-                  _context.next = 13;
-                  break;
-                }
-
-                _context.next = 10;
-                return upvote.destroy();
-
-              case 10:
-                _context.next = 12;
-                return recipe.decrement('upvotes');
-
-              case 12:
-                return _context.abrupt('return', res.status(200).json({
-                  recipe: recipe, message: 'Successfully removed upvote from this recipe'
-                }));
-
-              case 13:
-                _context.next = 15;
-                return Upvote.create({
-                  userId: req.AuthUser.id,
-                  recipeId: req.params.recipeId
-                });
-
-              case 15:
-                _context.next = 17;
-                return recipe.increment('upvotes');
-
-              case 17:
-                return _context.abrupt('return', res.status(201).json({
-                  recipe: recipe, message: 'Recipe upvoted successfully'
-                }));
-
-              case 18:
-              case 'end':
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function addUpvote(_x, _x2) {
-        return _ref.apply(this, arguments);
+      if (upvote) {
+        await upvote.destroy();
+        await recipe.decrement('upvotes');
+        return res.status(200).json({
+          recipe: recipe, message: 'Successfully removed upvote from this recipe'
+        });
       }
+      await Upvote.create({
+        userId: req.AuthUser.id,
+        recipeId: req.params.recipeId
+      });
+      await recipe.increment('upvotes');
 
-      return addUpvote;
-    }()
+      return res.status(201).json({
+        recipe: recipe, message: 'Recipe upvoted successfully'
+      });
+    }
   }]);
 
   return UpvotesController;

@@ -111,15 +111,12 @@ button{
 button.btn.btn-default:disabled {
   cursor: not-allowed;
 }
-input, textarea{
+input, textarea {
  font-family: 'Advent Pro';
  color:black;
-
 }
 label{
  font-family: 'Advent Pro';
- 
-
 }
  
 .card-1, .profile-card {
@@ -194,6 +191,7 @@ label{
    display:block;
    margin-bottom: 10px;
    position: relative;
+   letter-spacing: '3px';
   }
  
  .card-container input[type=text], input[type=password] {
@@ -209,6 +207,7 @@ label{
    padding: 0 8px;
    box-sizing: border-box;
    -moz-box-sizing: border-box;
+   letter-spacing: '3px';
  }
  
  .card-container input[type=text]:hover, input[type=password]:hover {

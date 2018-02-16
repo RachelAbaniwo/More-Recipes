@@ -14,7 +14,7 @@ const Favorites = ({ favorites, toggleFavorite: toggleFavoritesFunc, recipeId })
   <Fragment>
     <i
       className="fa fa-heart"
-      style={{ color: 'yellow' }}
+      style={{ color: 'orange' }}
       onClick={() => { toggleFavoritesFunc(recipeId); }}
       aria-hidden="true"
     />{favorites}&nbsp;

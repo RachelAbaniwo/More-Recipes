@@ -1,30 +1,35 @@
 import React from 'react';
 import Noty from 'noty';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 /**
  * Displays notification component
- * @class
- * @returns {object} jsx for component
+ * @function
+ * @param {object} props
+ * @returns {object} jsx which displays notifications
  */
-class Notification extends React.Component {
-/**
- * renders appropriate notification
- *
- * @returns {jsx} jsx which adds a new review
- */
-  render() {
-    if (this.props.notification) {
-      new Noty({
-        text: this.props.notification.message,
-        type: this.props.notification.level,
-        theme: 'bootstrap-v4',
-        timeout: 3000
-      }).show();
-    }
-    return <div />;
+const Notification = (props) => {
+  if (props.notification) {
+    new Noty({
+      text: props.notification.message,
+      type: props.notification.level,
+      theme: 'bootstrap-v4',
+      timeout: 2000
+    }).show();
   }
-}
+  return <div />;
+};
+
+Notification.propTypes = {
+  notification: PropTypes.shape({
+    level: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired
+  }),
+};
+Notification.defaultProps = {
+  notification: null
+};
 /**
  * Map state to props
  * @param {object} state

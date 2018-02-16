@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1', routes);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'server', 'public/index.html'));
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.

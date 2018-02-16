@@ -17,13 +17,13 @@ Object.defineProperty(exports, "__esModule", {
    * @returns {number} pageSize
    *
    */
-const pagination = function pagination(count, limit, offset) {
-  return {
-    totalCount: count,
-    pageCount: Math.ceil(count / limit),
-    page: Math.floor(offset / limit) + 1,
-    pageSize: limit
-  };
+var pagination = function pagination(count, limit, offset) {
+   return {
+      totalCount: count,
+      pageCount: Math.ceil(count / limit),
+      page: Math.floor(offset / limit) + 1,
+      pageSize: limit
+   };
 };
 
 exports.default = pagination;

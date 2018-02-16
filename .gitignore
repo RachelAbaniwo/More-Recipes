@@ -6,4 +6,4 @@ coverage
 .coverdata/
 .coverrun
 npm-debug.log
-/dist
+dist/

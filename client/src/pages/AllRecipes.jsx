@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { signOutUser } from '../store/actions/user';
 import { getAllRecipes, updateSearchQuery } from '../store/actions/recipes';
 import SingleRecipe from '../components/SingleRecipe';
 
@@ -69,59 +71,11 @@ class AllRecipeScreen extends React.Component {
     const { recipes } = this.props;
     return (
       <div>
-        <section id="nav">
-          <nav
-            className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom"
-          >
-            <Link
-              to="/home"
-              className="moreRecipes"
-            > More Recipes
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link
-                    to="/signup"
-                    className="navbar-register"
-                    style={{ marginRight: 20 }}
-                  >REGISTER
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    to="/signin"
-                    className="navbar-register"
-                    style={{ marginRight: 20 }}
-                  >SIGN IN
-                  </Link>
-                </li>
-              </ul>
-              <form className="form-inline my-2 my-lg-0">
-                <input
-                  className="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Find a Recipe"
-                  aria-label="Search"
-                />
-              </form>
-            </div>
-          </nav>
-        </section>
+        <Navbar
+          authUser={this.props.authUser}
+          signOutUser={this.props.signOutUser}
+          router={this.props.router}
+        />
         <section
           className="container text-center mx auto view-recipe-container"
           style={{
@@ -214,13 +168,26 @@ AllRecipeScreen.propTypes = {
     createdAt: PropTypes.string.isRequired,
     updatedAt: PropTypes.string.isRequired,
   })),
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      aboutMe: PropTypes.string.isRequired
+    })
+  }),
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
   searchQuery: PropTypes.string.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
-  getAllRecipes: PropTypes.func.isRequired
+  getAllRecipes: PropTypes.func.isRequired,
+  signOutUser: PropTypes.func.isRequired
 };
 
 AllRecipeScreen.defaultProps = {
-  recipes: []
+  recipes: [],
+  authUser: null
 };
 
 /**
@@ -230,7 +197,11 @@ AllRecipeScreen.defaultProps = {
  * @returns {object} object of recipes passed as props
  */
 const mapStateToProps = state =>
-  ({ recipes: state.recipes.rows, searchQuery: state.search.query });
+  ({
+    authUser: state.authUser,
+    recipes: state.recipes.rows,
+    searchQuery: state.search.query
+  });
 
 /**
  * Map dispatch to props
@@ -239,7 +210,7 @@ const mapStateToProps = state =>
  * @returns {object} object to be passed as props to component
  */
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ getAllRecipes, updateSearchQuery }, dispatch);
+  bindActionCreators({ signOutUser, getAllRecipes, updateSearchQuery }, dispatch);
 
 const AllRecipeScreenContainer = connect(mapStateToProps, mapDispatchToProps)(AllRecipeScreen);
 

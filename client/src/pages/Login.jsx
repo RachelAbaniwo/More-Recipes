@@ -3,8 +3,9 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { signInUser } from '../store/actions/user';
+import { signInUser, signOutUser } from '../store/actions/user';
 import { checkEmail } from '../../../server/helpers/checkInput';
 import '../../assets/css/style.css';
 
@@ -100,7 +101,7 @@ class LoginScreen extends React.Component {
         this.setState({
           errors: [error.response.data.errors]
         });
-      } else if (error.response.status === 404) {
+      } else if (error.response.status === 422) {
         this.setState({
           errors: [error.response.data.message]
         });
@@ -137,48 +138,11 @@ class LoginScreen extends React.Component {
 
     return (
       <div >
-        <section id="nav">
-          <nav
-            className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom"
-          >
-            <Link
-              to="/home"
-              className="moreRecipes"
-            >More Recipes
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link
-                    to="/signup"
-                    className="navbar-register"
-                    style={{ marginRight: 20 }}
-                  >REGISTER
-                  </Link>
-                </li>
-              </ul>
-              <form className="form-inline my-2 my-lg-0">
-                <input
-                  className="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Find a Recipe"
-                  aria-label="Search"
-                />
-              </form>
-            </div>
-          </nav>
-        </section>
+        <Navbar
+          authUser={this.props.authUser}
+          signOutUser={this.props.signOutUser}
+          router={this.props.router}
+        />
         <div
           className="container"
           style={{
@@ -230,11 +194,6 @@ class LoginScreen extends React.Component {
                       style={{ color: 'white' }}
                     >REGISTER NEW ACCOUNT
                     </Link>
-                    <a
-                      className="forgot-link" 
-                      style={{ color: 'white' }}
-                    >FORGOT PASSWORD?
-                    </a>
                   </div>
                 </div>
               </div>
@@ -250,7 +209,19 @@ LoginScreen.propTypes = {
   signInUser: PropTypes.func.isRequired,
   router: PropTypes.shape({
     push: PropTypes.func.isRequired
-  }).isRequired
+  }).isRequired,
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      aboutMe: PropTypes.string.isRequired
+    })
+  }),
+  signOutUser: PropTypes.func.isRequired
+};
+LoginScreen.defaultProps = {
+  authUser: null
 };
 
 /**
@@ -259,9 +230,9 @@ LoginScreen.propTypes = {
  *
  * @returns {object} empty object
  */
-const mapStateToProps = (state) => {
-  return {};
-};
+const mapStateToProps = state =>
+  ({ authUser: state.authUser });
+
 
 /**
  * Map dispatch to props
@@ -270,6 +241,7 @@ const mapStateToProps = (state) => {
  * @returns {object} object to be passed as props to component
 */
 const mapDispatchToProps = dispatch => bindActionCreators({
+  signOutUser,
   signInUser
 }, dispatch);
 
