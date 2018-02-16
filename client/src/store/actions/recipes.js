@@ -109,14 +109,14 @@ export function deleteRecipe(recipeId) {
       dispatch({
         type: DELETE_RECIPE,
         payload: recipeId
-      })
+      });
 
       dispatch(setNotification('success', 'Successfully deleted recipe'));
       return Promise.resolve();
     } catch (error) {
       return Promise.reject(error);
     }
-  }
+  };
 }
 /**
  * @function

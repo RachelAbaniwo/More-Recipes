@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 describe('UNKNOWN ROUTES', () => {
   it('should return an error when called', (done) => {
     chai.request(app)
-    .get('/api/v1/recipes/users/favorite')
+    .post('/api/v1/recipes/users/favorite')
     .end((error, response) => {
       
       expect(response.body).to.equal('UNKNOWN REQUEST.');

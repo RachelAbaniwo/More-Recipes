@@ -2,8 +2,10 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import mockData from '../mockData'
+import mockData from '../mockData';
+import db from '../../models';
 
+const { Review } = db;
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user1, user2, user3;
 
@@ -88,7 +90,10 @@ describe('REVIEW CONTROLLER', () => {
       .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body.message).to.equal('Successfully deleted your review');
-        done();
+        Review.findById(2).then(recipe => {
+          expect(recipe).to.be.null;
+          done();
+        });
       });
     });
   });

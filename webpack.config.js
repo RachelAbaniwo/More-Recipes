@@ -11,10 +11,10 @@ const paths = {
 
 // Webpack configuration
 module.exports = {
-  entry: path.join(paths.JS, 'app.js'),
+  entry: ['babel-polyfill', path.join(paths.JS, 'app.js')],
   output: {
     path: paths.DIST,
-    filename: 'app.bundle.js',
+    filename: 'app.[hash].js',
     publicPath: '/'
   },
   devServer: {
@@ -25,7 +25,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, '../index.html'),
     }),
-    new ExtractTextPlugin('style.bundle.css'),
+    new ExtractTextPlugin('style.[hash].css'),
   ],
   module: {
     rules: [

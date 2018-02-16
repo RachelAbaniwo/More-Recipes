@@ -4,7 +4,9 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { signOutUser } from '../store/actions/user';
 import ImageFile from '../components/ImageUploader';
 import { setImageUrl } from '../store/actions/recipes';
 import { updateUserProfile } from '../store/actions/userProfile';
@@ -178,62 +180,11 @@ class UpdateUserScreen extends React.Component {
     }
     return (
       <div>
-        <section id="nav">
-          <nav
-            className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom"
-          >
-            <Link to="/home" className="moreRecipes">More Recipes</Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav ml-auto">
-                <form className="form-inline my-2 my-lg-0">
-                  <input
-                    className="form-control mr-sm-2"
-                    type="search"
-                    placeholder="Find a Recipe"
-                    aria-label="Search"
-                  />
-                </form>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    style={{ marginRight: 50 }}
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                  Hi Rachel!
-                  </a>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    <a
-                      className="dropdown-item"
-                      style={{ fontSize: 15 }}
-                    >PROFILE
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      style={{ fontSize: 15 }}
-                    >LOG OUT
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </section>
+        <Navbar
+          authUser={this.props.authUser}
+          signOutUser={this.props.signOutUser}
+          router={this.props.router}
+        />
         <section
           className="container text-center mx auto create-recipe-container"
           style={{
@@ -338,6 +289,7 @@ UpdateUserScreen.propTypes = {
   }).isRequired,
   setImageUrl: PropTypes.func.isRequired,
   updateUserProfile: PropTypes.func.isRequired,
+  signOutUser: PropTypes.func.isRequired
 };
 UpdateUserScreen.defaultProps = {
   imageFile: null,
@@ -362,6 +314,7 @@ const mapStateToProps = state => ({
  * @returns {object} object to be passed as props to component
 */
 const mapDispatchToProps = dispatch => bindActionCreators({
+  signOutUser,
   setImageUrl,
   updateUserProfile
 }, dispatch);

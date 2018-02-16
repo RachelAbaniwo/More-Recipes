@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getMyRecipes, getMyFavorites } from '../store/actions/userProfile';
+import Navbar from '../components/Navbar';
 import MySingleRecipe from '../components/MySingleRecipe';
+import { signOutUser } from '../store/actions/user';
 import Footer from '../components/Footer';
 import MyProfile from '../components/MyProfile';
 
@@ -33,67 +35,11 @@ class ViewDashboard extends React.Component {
     const { myRecipes, favoriteRecipes } = this.props;
     return (
       <div>
-        <section id="nav">
-          <nav
-            className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom"
-          >
-            <Link to="/home" className="moreRecipes">More Recipes</Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav ml-auto">
-                <form className="form-inline my-2 my-lg-0">
-                  <input
-                    className="form-control mr-sm-2"
-                    type="search"
-                    placeholder="Find a Recipe"
-                    aria-label="Search"
-                  />
-                </form>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    style={{ marginRight: 50 }}
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Hi Rachel!
-                  </a>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    <a
-                      className="dropdown-item"
-                      href="topFavorites.html"
-                      style={{ fontSize: 15 }}
-                    >PROFILE
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      href="topFavorites.html"
-                      style={{ fontSize: 15 }}
-                    >LOG OUT
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </section>
+        <Navbar
+          authUser={this.props.authUser}
+          signOutUser={this.props.signOutUser}
+          router={this.props.router}
+        />
         <section
           className="text-center mx auto view-profile-container"
           style={{ marginTop: 30, marginBottom: 30, padding: 50 }}
@@ -211,8 +157,12 @@ ViewDashboard.propTypes = {
     method: PropTypes.string.isRequired,
     recipeImage: PropTypes.string.isRequired
   })),
+  router: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
   getMyFavorites: PropTypes.func.isRequired,
-  getMyRecipes: PropTypes.func.isRequired
+  getMyRecipes: PropTypes.func.isRequired,
+  signOutUser: PropTypes.func.isRequired
 };
 
 ViewDashboard.defaultProps = {
@@ -241,6 +191,7 @@ const mapStateToProps = state => ({
 */
 const mapDispatchToProps = dispatch => bindActionCreators(
   {
+    signOutUser,
     getMyRecipes,
     getMyFavorites
   },

@@ -46,12 +46,13 @@ describe('REVIEW CONTROLLER', () => {
       .send(review1)
       .end((error, response) => {
         expect(response).to.have.status(201);
+        expect(response.body.review.recipeId).to.equal(1);
         expect(response.body.review.review).to.equal('Awesome Stuff');
         expect(response.body.message).to.equal('Review successfully added!');
         done();
       });
     });
-    it('should return an error if User adding a review is not signed in', (done) => {
+    it('should return an error if user adding a review is not signed in', (done) => {
       chai.request(app)
       .post('/api/v1/reviews/1')
       .send(review1)
@@ -104,6 +105,7 @@ describe('REVIEW CONTROLLER', () => {
        .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
+        expect(response.body.reviews[0].review).to.equal('Awesome Stuff');
         expect(response.body.reviews[0].recipeId).to.equal(1);
         done();
       });

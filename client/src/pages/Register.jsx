@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { signUpUser } from '../store/actions/user';
+import { signUpUser, signOutUser } from '../store/actions/user';
 import { checkEmail, checkUsername, checkname, checkPassword } from '../helpers';
 import '../../assets/css/style.css';
 
@@ -164,51 +165,11 @@ class RegisterScreen extends React.Component {
 
     return (
       <div>
-        <section id="nav">
-          <nav
-            className="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom"
-          >
-            <Link
-              to="/home"
-              className="moreRecipes"
-            >More Recipes
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link
-                    to="/signin"
-                    className="navbar-register"
-                    style={{ marginRight: 20 }}
-                  >SIGN IN
-                  </Link>
-                </li>
-              </ul>
-              <form className="form-inline my-2 my-lg-0">
-                <input
-                  className="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Find a Recipe"
-                  aria-label="Search"
-                />
-              </form>
-            </div>
-          </nav>
-        </section>
+        <Navbar
+          authUser={this.props.authUser}
+          signOutUser={this.props.signOutUser}
+          router={this.props.router}
+        />
         <div
           className="container"
           style={{
@@ -302,7 +263,20 @@ RegisterScreen.propTypes = {
   signUpUser: PropTypes.func.isRequired,
   router: PropTypes.shape({
     push: PropTypes.func.isRequired
-  }).isRequired
+  }).isRequired,
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      aboutMe: PropTypes.string.isRequired
+    })
+  }),
+  signOutUser: PropTypes.func.isRequired
+};
+
+RegisterScreen.defaultProps = {
+  authUser: null
 };
 
 /**
@@ -311,9 +285,8 @@ RegisterScreen.propTypes = {
  *
  * @returns {object} empty object
  */
-const mapStateToProps = (state) => {
-  return {};
-};
+const mapStateToProps = state =>
+  ({ authUser: state.authUser });
 
 /**
  * Map dispatch to props
@@ -323,6 +296,7 @@ const mapStateToProps = (state) => {
 */
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
+    signOutUser,
     signUpUser
   }, dispatch);
 

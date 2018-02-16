@@ -35,7 +35,7 @@ const SingleRecipe = ({ recipe }) => ((
           <i
             className="fa fa-heart"
             aria-hidden="true"
-            style={{ color: 'yellow' }}
+            style={{ color: 'orange' }}
           />{recipe.favorites}
           <br />
           <i

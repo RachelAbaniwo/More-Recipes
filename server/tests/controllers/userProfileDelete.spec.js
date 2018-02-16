@@ -2,8 +2,10 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import mockData from '../mockData'
+import mockData from '../mockData';
+import db from '../../models';
 
+const { User } = db;
 const expect = chai.expect;
 let user1Token, user5Token, user1, user5;
 
@@ -79,7 +81,10 @@ describe('DELETE USER CONTROLLER', () => {
       .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body.message).to.equal('Successfully deleted user');
-        done();
+        User.findById(5).then(user => {
+          expect(user).to.be.null;
+          done();
+        });
       });
     })
   });

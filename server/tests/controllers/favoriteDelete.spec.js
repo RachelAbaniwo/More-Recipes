@@ -2,8 +2,10 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
-import mockData from '../mockData'
+import mockData from '../mockData';
+import db from '../../models';
 
+const { Favorite } = db;
 const expect = chai.expect;
 let user1Token, user2Token, user3Token, user4Token, user1, user2, user3, user4;
 const { signinUser1, signinUser2, signinUser3, signinUser4  } = mockData;
@@ -92,7 +94,10 @@ describe('FAVORITE CONTROLLER', () => {
         .end((error, response) => {
           expect(response).to.have.status(200);
           expect(response.body.message).to.equal('Successfully deleted this recipe from your favorites');
-          done();
+          Favorite.findById(2).then(recipe => {
+            expect(recipe).to.be.null;
+            done();
+          });
         });
       });
     });

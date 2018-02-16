@@ -104,6 +104,7 @@ describe('REVIEW CONTROLLER', () => {
       .send(review2)
       .end((error, response) => {
         expect(response).to.have.status(201);
+        expect(response.body.review.review).to.equal('Nice!');
         expect(response.body.message).to.equal('Successfully updated your review');
         done();
       });
