@@ -105,6 +105,7 @@ describe('REVIEW CONTROLLER', () => {
        .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
+        expect(response.body.reviews[0].review).to.equal('Awesome Stuff');
         expect(response.body.reviews[0].recipeId).to.equal(1);
         done();
       });
