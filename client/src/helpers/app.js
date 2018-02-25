@@ -1,20 +1,22 @@
 import axios from 'axios';
 /**
+ * sets axios
  * @function
  *
  * @param {null} null
  *
  * @returns {null} null
  */
-export function setAxios() {
+export const setAxios = () => {
   const authUser = localStorage.getItem('authUser');
   if (authUser) {
     axios.defaults.headers.common['token'] = JSON.parse(authUser).token;
   }
-}
+};
 
 setAxios();
 /**
+ * executes when user is authenticated
  * @function
  *
  * @param {object} nextState
@@ -22,15 +24,16 @@ setAxios();
  *
  * @returns {null} null
  */
-export function ifAuthenticated(nextState, replace) {
+export const ifAuthenticated = (nextState, replace) => {
   const authUser = localStorage.getItem('authUser');
   if (authUser) {
     replace({
       pathname: '/'
     });
   }
-}
+};
 /**
+ * executes when user isn't authenticated
  * @function
  *
  * @param {object} nextState
@@ -38,11 +41,11 @@ export function ifAuthenticated(nextState, replace) {
  *
  * @returns {null} null
  */
-export function ifNotAuthenticated(nextState, replace) {
+export const ifNotAuthenticated = (nextState, replace) => {
   const authUser = localStorage.getItem('authUser');
   if (!authUser) {
     replace({
       pathname: '/signin'
     });
   }
-}
+};

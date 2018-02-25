@@ -4,17 +4,18 @@ import setNotification from './notification';
 
 export const TOGGLE_VOTE = 'TOGGLE_VOTE';
 export const TOGGLE_FAVORITES = 'TOGGLE_FAVORITES';
+
 /**
+ * toggles vote
  * @function
  *
  * @param {number} recipeId
  * @param {string} voteType
  *
  * @returns {object} dispatch
- * @returns {object} getState
  */
 export function toggleVote(recipeId, voteType) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.post(`${config.apiUrl}/recipes/${recipeId}/${voteType}`);
       const { recipe, message } = response.data;
@@ -34,16 +35,17 @@ export function toggleVote(recipeId, voteType) {
     }
   };
 }
+
 /**
+ * toggles favorites
  * @function
  *
  * @param {number} recipeId
  *
  * @returns {object} dispatch
- * @returns {object} getState
  */
 export function toggleFavorite(recipeId) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.post(`${config.apiUrl}/favorites/${recipeId}`);
       const { recipe, message } = response.data;

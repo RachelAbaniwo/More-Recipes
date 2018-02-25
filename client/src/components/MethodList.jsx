@@ -15,10 +15,10 @@ const MethodList = ({ method }) => {
     method = method.substr(0, method.length - 1);
   }
   const methodArray = method.split('.');
-  const methodList = methodArray.map((eachMethod, index) => (
+  const methodList = methodArray.map(eachMethod => (
     <li
       style={{ fontSize: '18px' }}
-      key={index}
+      key={method}
     >
       {eachMethod}.
     </li>));

@@ -33,7 +33,6 @@ class RegisterScreen extends React.Component {
       username: '',
       email: '',
       password: '',
-      error: null,
       errors: []
     };
 
@@ -65,43 +64,55 @@ class RegisterScreen extends React.Component {
    * @returns {object} user object or errors if errors exist
    */
   async handleValidation() {
-    let errors = [];
+    const errors = [];
 
-    if ((this.state.firstname.length < 1) || (!checkname(this.state.firstname))) {
-      errors.push('First name is required');
+    if (this.state.firstname.length < 1) {
+      errors.push('First name is required!');
     }
-
-    if ((this.state.lastname.length < 1) || (!checkname(this.state.lastname))) {
-      errors.push('Last name is required');
+    if (this.state.firstname.length > 1 && this.state.firstname.length < 3) {
+      errors.push('Your first name should have a minimum of 3 characters');
     }
-
+    if ((this.state.firstname.length > 1) && (this.state.firstname.length >= 3)
+    && (!checkname(this.state.firstname))) {
+      errors.push('First name should include letters only');
+    }
+    if (this.state.lastname.length < 1) {
+      errors.push('Last name is required!');
+    }
+    if (this.state.lastname.length > 1 && this.state.lastname.length < 3) {
+      errors.push('Your last name should have a minimum of 3 characters');
+    }
+    if ((this.state.lastname.length > 1) && (this.state.lastname.length >= 3) &&
+    (!checkname(this.state.lastname))) {
+      errors.push('Last name should include letters only');
+    }
+    if (this.state.username.length < 1) {
+      errors.push('Choose a user name!');
+    }
+    if (this.state.username.length > 1 && this.state.username.length < 3) {
+      errors.push('Your user name should have a minimum of 3 characters');
+    }
+    if ((this.state.username.length > 1) && (this.state.username.length >= 3) &&
+    (!checkUsername(this.state.username))) {
+      errors.push('Username should include only ( letters, numbers, - and _ )');
+    }
     if (this.state.email.length < 1) {
-      errors.push('Email address is required');
+      errors.push('Email Address is required!');
     }
-
-    if (this.state.email.length > 1 && (!checkEmail(this.state.email))) {
-      errors.push('Please enter a valid email address');
+    if ((this.state.email.length > 1) && (!checkEmail(this.state.email))) {
+      errors.push('Email format is wrong, enter valid email address');
     }
-
-    if ((this.state.username.length < 1) || (!checkUsername(this.state.username))) {
-      errors.push('Choose a preferred username');
-    }
-
     if (this.state.password.length < 1) {
       errors.push('Choose a password');
     }
-
-    if (this.state.password.length < 6) {
+    if ((this.state.password.length > 1) && (this.state.password.length < 6)) {
       errors.push('Your password should have a minimum of 6 characters');
     }
-    if (this.state.password.length >= 6 && (!checkPassword(this.state.password))) {
-      errors.push('Password should only include (a-z, 0-9, -, _, .)');
+    if ((this.state.password.length > 1) && (this.state.password.length >= 6) &&
+     (!checkPassword(this.state.password))) {
+      errors.push('Password should only include ( letters, numbers, -, _, and . )');
     }
-
-
-    this.setState({ errors }, () => {
-      return Promise.resolve();
-    });
+    this.setState({ errors }, () => Promise.resolve());
   }
 
   /**
@@ -119,7 +130,7 @@ class RegisterScreen extends React.Component {
     }
 
     try {
-      const response = await this.props.signUpUser({
+      await this.props.signUpUser({
         firstname: this.state.firstname,
         lastname: this.state.lastname,
         email: this.state.email,
@@ -134,7 +145,6 @@ class RegisterScreen extends React.Component {
         });
       } else {
         this.setState({
-          error: 'Try again after some time.'
         });
       }
     }
@@ -146,22 +156,20 @@ class RegisterScreen extends React.Component {
  * @returns {jsx} jsx which displays sign up component
  */
   render() {
-    const errorHolder = this.state.errors.map((error, index) => {
-      return (
-        <span key={index}>
-          <small
-            className="mb-3"
-            style={{
-            color: 'orange',
-            fontFamily: 'Advent Pro',
-            fontWeight: '900'
-          }}
-          >{error}
-          </small>
-          <br />
-        </span>
-      );
-    });
+    const errorHolder = this.state.errors.map(error => (
+      <span key={error}>
+        <small
+          className="mb-3"
+          style={{
+          color: 'orange',
+          fontFamily: 'Advent Pro',
+          fontWeight: '900'
+        }}
+        >{error}
+        </small>
+        <br />
+      </span>
+    ));
 
     return (
       <div>

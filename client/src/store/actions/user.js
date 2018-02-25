@@ -4,17 +4,18 @@ import setNotification from './notification';
 
 export const SIGN_IN_USER = 'SIGN_IN_USER';
 export const SIGN_OUT_USER = 'SIGN_OUT_USER';
+
 /**
+ * signs in user
  * @function
  *
  * @param {string} email
  * @param {string} password
  *
  * @returns {object} dispatch
- * @returns {object} getState
  */
 export function signInUser({ email, password }) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.post(`${config.apiUrl}/users/signin`, {
         email, password
@@ -32,13 +33,14 @@ export function signInUser({ email, password }) {
     }
   };
 }
+
 /**
+ * signs out user
  * @function
  *
  * @param {null} null
  *
  * @returns {object} dispatch
- * @returns {object} getState
  */
 export function signOutUser() {
   return async (dispatch) => {
@@ -50,7 +52,10 @@ export function signOutUser() {
     return Promise.resolve();
   };
 }
+
 /**
+ *
+ * registers new user
  * @function
  *
  * @param {string} firstname
@@ -60,12 +65,11 @@ export function signOutUser() {
  * @param {string} password
  *
  * @returns {object} dispatch
- * @returns {object} getState
  */
 export function signUpUser({
   firstname, lastname, email, username, password
 }) {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.post(`${config.apiUrl}/users/signup`, {
         firstname, lastname, email, username, password

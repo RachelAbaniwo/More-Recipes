@@ -6,7 +6,9 @@ import { clearImageUrl } from '../actions/recipes';
 export const GET_MY_RECIPES = 'GET_MY_RECIPES';
 export const GET_MY_FAVORITES = 'GET_MY_FAVORITES';
 export const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';
+
 /**
+ * gets a user's recipes
  * @function
  *
  * @param {object} queryParams params
@@ -15,7 +17,7 @@ export const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';
  * @returns {object} dispatch
  */
 export function getMyRecipes() {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.get(`${config.apiUrl}/users/myrecipes`);
       const { myRecipes } = response.data;
@@ -32,15 +34,13 @@ export function getMyRecipes() {
   };
 }
 /**
+ * gets a user's favorite recipes
  * @function
- *
- * @param {object} queryParams params
- * @param {object} getState getState
  *
  * @returns {object} dispatch
  */
 export function getMyFavorites() {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
       const response = await axios.get(`${config.apiUrl}/favorites`);
       const { favoriteRecipes } = response.data;
@@ -58,9 +58,11 @@ export function getMyFavorites() {
 }
 
 /**
- * Update user profile
+ * Updates a user's profile
+ *
  * @param {object} user
  * @param {number} userId
+ *
  * @return {promise} promise
  */
 export function updateUserProfile(user, userId) {
@@ -82,7 +84,6 @@ export function updateUserProfile(user, userId) {
     } catch (error) {
       return Promise.reject(error);
     }
-
-  }
+  };
 }
 

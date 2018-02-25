@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
+import InfiniteScrollComponent from 'react-infinite-scroll-component';
 import { connect } from 'react-redux';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { signOutUser } from '../store/actions/user';
-import { getAllRecipes, updateSearchQuery } from '../store/actions/recipes';
+import { getAllRecipes, getMoreRecipes, updateSearchQuery, updateSortQuery } from '../store/actions/recipes';
 import SingleRecipe from '../components/SingleRecipe';
-
+import loader from '../../assets/image/loader.gif';
 /**
  * Displays all recipes
  * @class
@@ -26,8 +26,12 @@ class AllRecipeScreen extends React.Component {
       search: '',
       sort: '',
       order: 'DESC',
-      limit: 6
+      limit: 4,
+      offset: 0,
+      page: 1
     };
+
+    this.getMoreRecipes = this.getMoreRecipes.bind(this);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,11 +42,26 @@ class AllRecipeScreen extends React.Component {
    * @returns {null} null
    */
   componentWillMount() {
+    this.setState({ page: 1 }, () => {
     this.props.getAllRecipes(this.state);
+  })
+}
+
+  /**
+   * Get more recipes
+   * @function
+   *
+   * @param {null} null
+   * @returns {object} all recipes
+   */
+  getMoreRecipes() {
+    this.setState({ page: this.state.page + 1 }, () => {
+      this.props.getMoreRecipes(this.state);
+    });
   }
 
   /**
-   *Handle input change
+   * Handle input change
    * @param {object} event
    * @returns {null} null
    */
@@ -113,7 +132,7 @@ class AllRecipeScreen extends React.Component {
                   id="inlineFormCustomSelect"
                   name="sort"
                   value={this.state.sort}
-                  onChange={this.handleChange}
+                  onChange={(event) => { this.props.updateSortQuery(event.target.value); }}
                 >
                   <option>Sort By...</option>
                   <option value="upvotes">Most Upvotes</option>
@@ -140,9 +159,26 @@ class AllRecipeScreen extends React.Component {
                 </button>
               </form>
             </div>
-            <div className="row" style={{ padding: '10px' }}>
-              {recipes.map(recipe => <SingleRecipe key={recipe.id} recipe={recipe} />)}
-            </div>
+            <InfiniteScrollComponent
+              next={this.getMoreRecipes}
+              hasMore={this.props.pageData.page !==
+                this.props.pageData.pageCount}
+              loader={
+                <div
+                  style={{ clear: 'both' }}
+                  key={0}
+                ><img
+                  style={{ width: '100px' }}
+                  src={loader}
+                  alt="loader"
+                />
+                </div>}
+            >
+              <div className="row" style={{ padding: '10px' }}>
+                {recipes.map(recipe =>
+                  <SingleRecipe key={recipe.id} recipe={recipe} />)}
+              </div>
+            </InfiniteScrollComponent>
           </div>
         </section>
         <Footer />
@@ -181,8 +217,14 @@ AllRecipeScreen.propTypes = {
   }).isRequired,
   searchQuery: PropTypes.string.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
+  updateSortQuery: PropTypes.func.isRequired,
   getAllRecipes: PropTypes.func.isRequired,
-  signOutUser: PropTypes.func.isRequired
+  getMoreRecipes: PropTypes.func.isRequired,
+  signOutUser: PropTypes.func.isRequired,
+  pageData: PropTypes.shape({
+    page: PropTypes.number,
+    pageCount: PropTypes.number
+  }).isRequired
 };
 
 AllRecipeScreen.defaultProps = {
@@ -200,7 +242,10 @@ const mapStateToProps = state =>
   ({
     authUser: state.authUser,
     recipes: state.recipes.rows,
-    searchQuery: state.search.query
+    searchQuery: state.search.query,
+    pageData: state.recipes.pageData,
+    sort: state.sort,
+    page: state.recipes.pageData.page
   });
 
 /**
@@ -210,7 +255,13 @@ const mapStateToProps = state =>
  * @returns {object} object to be passed as props to component
  */
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ signOutUser, getAllRecipes, updateSearchQuery }, dispatch);
+  bindActionCreators({
+    signOutUser,
+    getAllRecipes,
+    getMoreRecipes,
+    updateSearchQuery,
+    updateSortQuery
+  }, dispatch);
 
 const AllRecipeScreenContainer = connect(mapStateToProps, mapDispatchToProps)(AllRecipeScreen);
 

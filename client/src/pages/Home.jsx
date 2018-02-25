@@ -1,9 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { updateSearchQuery } from './../store/actions/recipes';
+import { updateSearchQuery, updateSortQuery } from './../store/actions/recipes';
 import { LandingTopButtons, CreateRecipeButton } from '../components/LandingPageButtons';
 import { signOutUser } from '../store/actions/user';
 import food9 from '../../assets/image/food-9.jpg';
@@ -31,11 +30,12 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSortUpvotesClick = this.handleSortUpvotesClick.bind(this);
+    this.handleSortFavoritesClick = this.handleSortFavoritesClick.bind(this);
   }
 
   /**
@@ -49,6 +49,31 @@ class Home extends React.Component {
   handleChange(event) {
     this.props.updateSearchQuery(event.target.value);
   }
+  /**
+   * handles sort by upvotes
+   * @function
+   *
+   * @param {object} event
+   *
+   * @returns {object} sets state of sort to upvotes and  redirects page
+   */
+  async handleSortUpvotesClick() {
+    await this.props.updateSortQuery('upvotes');
+    this.props.router.push('/recipes');
+  }
+  /**
+   * handles sort by favorites
+   * @function
+   *
+   * @param {object} event
+   *
+   * @returns {object} sets state of sort to upvotes and  redirects page
+   */
+  async handleSortFavoritesClick() {
+    await this.props.updateSortQuery('favorites');
+    this.props.router.push('/recipes');
+  }
+
 
   /**
    * handles form submission
@@ -128,7 +153,7 @@ class Home extends React.Component {
                     color: 'rgba(241, 235, 178, 0.8)'
                   }}
                 >
-                  Enjoy the very best kitchen experiences from around the world and share yours too!!!
+                  Enjoy the very best culinary experiences from around the world and share yours too!!!
                 </h3>
                 <CreateRecipeButton authUser={this.props.authUser} />
                 <form
@@ -165,34 +190,44 @@ class Home extends React.Component {
             style={{ margin: '30px' }}
             data-aos="zoom-in-down"
           >
-            <div className="card-body">
-              <h2 className="card-subtitle text-muted" >Top Favorites</h2>
-            </div>
-            <img
-              className="img-fluid mx-auto"
-              src={image10}
-              alt="sunset"
-            />
-            <p
-              className="card-text text-center"
-              style={{ color: 'rgba(73, 67, 67, 0.9' }}
-            >Take a survey of our all time favorite recipes.
-            </p>
+            <a
+              href="#recipes"
+              onClick={this.handleSortFavoritesClick}
+            >
+              <div className="card-body">
+                <h2 className="card-subtitle text-muted" >Top Favorites</h2>
+              </div>
+              <img
+                className="img-fluid mx-auto"
+                src={image10}
+                alt="sunset"
+              />
+              <p
+                className="card-text text-center"
+                style={{ color: 'rgba(73, 67, 67, 0.9' }}
+              >Take a survey of our all time favorite recipes.
+              </p>
+            </a>
           </div>
           <div
             className="card card-1 col-sm-12 col-md-5 card my-3"
             style={{ margin: '30px' }}
             data-aos="zoom-in-down"
           >
-            <div className="card-body">
-              <h2 className="card-subtitle text-muted" >Top Voted</h2>
-            </div>
-            <img className="img-fluid mx-auto" src={image5} alt="sunset" />
-            <p
-              className="card-text text-center"
-              style={{ color: 'rgba(73, 67, 67, 0.9)' }}
-            >Checkout the recipes with the most upvotes.
-            </p>
+            <a
+              href="#recipes"
+              onClick={this.handleSortUpvotesClick}
+            >
+              <div className="card-body">
+                <h2 className="card-subtitle text-muted" >Top Voted</h2>
+              </div>
+              <img className="img-fluid mx-auto" src={image5} alt="sunset" />
+              <p
+                className="card-text text-center"
+                style={{ color: 'rgba(73, 67, 67, 0.9)' }}
+              >Checkout the recipes with the most upvotes.
+              </p>
+            </a>
           </div>
         </section>
         <footer
@@ -236,7 +271,8 @@ Home.propTypes = {
     push: PropTypes.func.isRequired
   }).isRequired,
   signOutUser: PropTypes.func.isRequired,
-  updateSearchQuery: PropTypes.func.isRequired,
+  updateSortQuery: PropTypes.func.isRequired,
+  updateSearchQuery: PropTypes.func.isRequired
 };
 
 Home.defaultProps = {
@@ -260,6 +296,9 @@ const mapStateToProps = state =>
  * @returns {object} object to be passed as props to component
 */
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ signOutUser, updateSearchQuery }, dispatch);
+  bindActionCreators(
+    { signOutUser, updateSearchQuery, updateSortQuery },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

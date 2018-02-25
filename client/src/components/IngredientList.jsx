@@ -15,10 +15,10 @@ const IngredientList = ({ ingredients }) => {
     ingredients = ingredients.substr(0, ingredients.length - 1);
   }
   const ingredientsArray = ingredients.split(',');
-  const ingredientsList = ingredientsArray.map((ingredient, index) => (
+  const ingredientsList = ingredientsArray.map(ingredient => (
     <li
       style={{ fontSize: '18px' }}
-      key={index}
+      key={ingredient}
     >
       {ingredient}
     </li>));
