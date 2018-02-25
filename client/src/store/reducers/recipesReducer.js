@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, NEW_RECIPE_ADDED, ADD_RECIPE_REVIEW, UPDATE_RECIPE, DELETE_RECIPE } from '../actions/recipes';
+import { GET_ALL_RECIPES, GET_RECIPES, NEW_RECIPE_ADDED, ADD_RECIPE_REVIEW, UPDATE_RECIPE, DELETE_RECIPE } from '../actions/recipes';
 import { TOGGLE_VOTE, TOGGLE_FAVORITES } from '../actions/votes';
 
 /**
