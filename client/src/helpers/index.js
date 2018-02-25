@@ -94,3 +94,17 @@ export const returnUsername = (name) => {
     return name;
   } return null;
 };
+
+/**
+  *Slugifies input text
+  * @param {string} text
+  *
+  * @returns {string} returned to client
+*/
+export const slugify = text =>
+  text.toString().toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');

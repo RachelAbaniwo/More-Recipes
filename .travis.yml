@@ -5,10 +5,12 @@ services:
   - postgresql
 install:
   - npm install
+  - npm i -g codecov
 before_script:
   - psql -c 'drop database if exists travis;' -U postgres
   - psql -c 'create database travis;' -U postgres
 
 script:
-  - npm run test    
+  - npm run test
+  - codecov  
 after_success: npm run coveralls

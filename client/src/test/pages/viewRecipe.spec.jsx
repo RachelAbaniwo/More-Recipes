@@ -49,6 +49,14 @@ describe('The ViewRecipe Page', () => {
     }
   };
 
+  const propsWithNoRecipeFavorites = {
+    ...props,
+    recipe: {
+      ...props.recipe,
+      Favorites: null
+    }
+  };
+
   const propsWithNoRecipes = {
     ...props,
     recipe: null
@@ -130,6 +138,11 @@ describe('The ViewRecipe Page', () => {
     });
     it('should return false if user is not authenticated', () => {
       const wrapper = shallow(<ViewRecipeScreen {...propsWithNoAuthUser} />);
+
+      expect(wrapper.instance().hasFavorited()).toBe(false);
+    });
+    it('should return false if reciep has no favorites', () => {
+      const wrapper = shallow(<ViewRecipeScreen {...propsWithNoRecipeFavorites} />);
 
       expect(wrapper.instance().hasFavorited()).toBe(false);
     });

@@ -57,7 +57,7 @@ export class ViewRecipeScreen extends React.Component {
    * @returns {object} jsx
    */
   hasFavorited() {
-    const favorites = this.props.recipe.Favorites;
+    const favorites = this.props.recipe.Favorites || [];
 
     if (!this.props.authUser) {
       return false;
