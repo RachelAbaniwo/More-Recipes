@@ -4,10 +4,10 @@
   *
   * @returns {boolean} returned to client
 */
-export function checkEmail(email) {
+export const checkEmail = (email) => {
   const check = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return check.test(email);
-}
+};
 /**
   * Checks input and returns false if non alphanumeric characters are inputed
   * Number of Characters must be from 3 To 5
@@ -15,10 +15,10 @@ export function checkEmail(email) {
   *
   * @returns {boolean} returned to client
 */
-export function checkname(name) {
+export const checkname = (name) => {
   const check = /^[A-Za-z0-9]{3,15}$/;
   return check.test(name);
-}
+};
 /**
   * Checks input and returns false if characters beside
   * alphanumeric characters, _ and - are inputed
@@ -27,10 +27,10 @@ export function checkname(name) {
   *
   * @returns {boolean} returned to client
 */
-export function checkUsername(name) {
+export const checkUsername = (name) => {
   const check = /^[A-Za-z0-9_-]{3,15}$/;
   return check.test(name);
-}
+};
 /**
   * Checks input and returns false if characters beside
   * alphanumeric characters, _ and - are inputed
@@ -39,10 +39,10 @@ export function checkUsername(name) {
   *
   * @returns {boolean} returned to client
 */
-export function checkPassword(text) {
+export const checkPassword = (text) => {
   const check = /^[.A-Za-z0-9_-]{6,15}$/;
   return check.test(text);
-}
+};
 /**
   * Checks input and returns true if characters
   * include blank spaces
@@ -50,23 +50,23 @@ export function checkPassword(text) {
   *
   * @returns {boolean} returned to client
 */
-export function checkField(text) {
+export const checkField = (text) => {
   const check = /[^\S\r\n]{1,}$/;
   return check.test(text);
-}
+};
 /**
   * Checks input and returns null if characters
   * include blank spaces
-  * @param {text} params
+  * @param {text} text
   *
   * @returns {text} returned to client
 */
-export function returnParameter(params) {
+export const returnParameter = (text) => {
   const check = /[^\S\r\n]{1,}$/;
-  if (!check.test(params)) {
-    return params;
+  if (!check.test(text)) {
+    return text;
   } return null;
-}
+};
 /**
   * Checks input and returns nullif non alphanumeric characters are inputed
   * Number of Characters must be from 3 To 5
@@ -74,23 +74,23 @@ export function returnParameter(params) {
   *
   * @returns {string} returned to client
 */
-export function returnName(name) {
+export const returnName = (name) => {
   const check = /^[A-Za-z0-9]{3,15}$/;
   if (check.test(name)) {
     return name;
   } return null;
-}
+};
 /**
-  *Checks input and returns null if characters beside
+  *Checks input and returns null if characters that are not
   * alphanumeric characters, _ and - are inputed
-  * Number of Characters must be from 3 To 5
+  * number of Characters must be from 3 To 5
   * @param {string} name
   *
   * @returns {string} returned to client
 */
-export function returnUsername(name) {
+export const returnUsername = (name) => {
   const check = /^[A-Za-z0-9_-]{3,15}$/;
   if (check.test(name)) {
     return name;
   } return null;
-}
+};

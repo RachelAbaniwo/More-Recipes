@@ -44,7 +44,7 @@ class ViewRecipeScreen extends React.Component {
   }
 
   /**
-   * Execute when component will mount
+   * Executes when component is to be mounted
    * @return {object} object
    */
   componentWillMount() {
@@ -54,7 +54,7 @@ class ViewRecipeScreen extends React.Component {
   }
 
   /**
-   * Execute when component will mount
+   * toggles modal
    * @return {object} sets state
    */
   toggle() {
@@ -326,7 +326,6 @@ const mapStateToProps = (state, ownProps) => ({
 /**
  * Map state to props
  * @param {func} dispatch
- * @param {object} ownProps
  * @returns {object} props
  */
 const mapDispatchToProps = dispatch =>

@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { signOutUser } from '../store/actions/user';
-import ImageFile from '../components/ImageUploader';
+import ImageFile from '../components/ImageFile';
 import { createRecipe, setImageUrl, updateRecipe } from '../store/actions/recipes';
 import { checkField } from '../helpers';
 import '../../assets/css/style.css';
@@ -223,15 +223,15 @@ class CreateRecipeScreen extends React.Component {
    * @returns {jsx} jsx which adds a new recipe or errors if errors exist
    */
   render() {
-    const errorHolder = this.state.errors.map((error, index) => (
-      <span key={index}>
+    const errorHolder = this.state.errors.map(error => (
+      <span key={error}>
         <small
           className="mb-3"
           style={{
-            color: 'red',
-            fontFamily: 'kaushan script',
-            fontWeight: 'bold'
-          }}
+            color: 'orange',
+            fontFamily: 'Advent Pro',
+            fontWeight: '900'
+        }}
         >{error}
         </small>
         <br />

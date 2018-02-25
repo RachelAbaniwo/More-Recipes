@@ -13,35 +13,43 @@ import { updateSearchQuery } from './../store/actions/recipes';
  * @returns {object} jsx search bar
  */
 const Search = (props) => {
-  return (
-    <form
-      className="form-inline my-2 my-lg-0"
-      onSubmit={
-        (event) => {
-          event.preventDefault();
-          props.router.push('/recipes');
-        }
-      }
-    >
-      <input
-        onChange={
+  if (props.router.location.pathname !== '/recipes') {
+    return (
+      <form
+        className="form-inline my-2 my-lg-0"
+        onSubmit={
           (event) => {
-            props.updateSearchQuery(event.target.value);
+            event.preventDefault();
+            props.router.push('/recipes');
           }
         }
-        value={props.searchQuery}
-        className="form-control mr-sm-2"
-        type="search"
-        placeholder="Find a Recipe"
-        aria-label="Search"
-      />
-    </form>
+      >
+        <input
+          onChange={
+            (event) => {
+              props.updateSearchQuery(event.target.value);
+            }
+          }
+          value={props.searchQuery}
+          className="form-control mr-sm-2"
+          type="search"
+          placeholder="Find a Recipe"
+          aria-label="Search"
+        />
+      </form>
+    );
+  }
+  return (
+    <div />
   );
 };
 
 Search.propTypes = {
   searchQuery: PropTypes.string.isRequired,
   router: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired
+    }).isRequired,
     push: PropTypes.func.isRequired
   }).isRequired,
   updateSearchQuery: PropTypes.func.isRequired,

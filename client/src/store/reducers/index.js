@@ -6,6 +6,7 @@ import notificationsReducer from './notificationsReducer';
 import imageUploadReducer from './imageUploadReducer';
 import authenticationReducer from './authenticationReducer';
 import userProfileReducer from './userProfileReducer';
+import sortReducer from './sortReducer';
 
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   routing: routerReducer,
   imageUpload: imageUploadReducer,
   notification: notificationsReducer,
-  search: searchReducer
+  search: searchReducer,
+  sort: sortReducer
 });

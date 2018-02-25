@@ -28,7 +28,6 @@ class LoginScreen extends React.Component {
     super(props);
 
     this.state = {
-      error: null,
       email: '',
       password: '',
       errors: []
@@ -64,10 +63,12 @@ class LoginScreen extends React.Component {
   async handleValidation() {
     const errors = [];
 
-    if ((this.state.email.length < 1) || (!checkEmail(this.state.email))) {
+    if (this.state.email.length < 1) {
       errors.push('Email is required');
     }
-
+    if ((this.state.email.length > 1) && (!checkEmail(this.state.email))) {
+      errors.push('Email format is wrong, enter valid email address');
+    }
     if (this.state.password.length < 1) {
       errors.push('Password is required');
     }
@@ -90,7 +91,7 @@ class LoginScreen extends React.Component {
     }
 
     try {
-      const user = await this.props.signInUser({
+      await this.props.signInUser({
         email: this.state.email,
         password: this.state.password
       });
@@ -107,7 +108,6 @@ class LoginScreen extends React.Component {
         });
       } else {
         this.setState({
-          error: 'Please try again after some time.'
         });
       }
     }
@@ -119,22 +119,20 @@ class LoginScreen extends React.Component {
  * @returns {jsx} jsx which displays login component
  */
   render() {
-    const errorHolder = this.state.errors.map((error, index) => {
-      return (
-        <span key={index}>
-          <small
-            className="mb-3"
-            style={{
-              color: 'orange',
-              fontFamily: 'Advent Pro',
-              fontWeight: '900'
-          }}
-          >{error}
-          </small>
-          <br />
-        </span>
-      );
-    });
+    const errorHolder = this.state.errors.map(error => (
+      <span key={error}>
+        <small
+          className="mb-3"
+          style={{
+            color: 'orange',
+            fontFamily: 'Advent Pro',
+            fontWeight: '900'
+        }}
+        >{error}
+        </small>
+        <br />
+      </span>
+    ));
 
     return (
       <div >
@@ -187,7 +185,10 @@ class LoginScreen extends React.Component {
                       defaultValue="SIGN IN"
                     />
                   </div>
-                  <div className="login-help" style={{ color: 'white', fontFamily: 'Advent Pro' }}>
+                  <div
+                    className="login-help"
+                    style={{ color: 'white', fontFamily: 'Advent Pro' }}
+                  >
                     <Link
                       to="signup"
                       className="register-link mr-1"

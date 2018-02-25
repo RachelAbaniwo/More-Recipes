@@ -24,6 +24,7 @@ export default class RecipesController {
       return Recipe.findAndCountAll({
         limit,
         offset,
+        distinct: true,
         group: ['Recipe.id', 'User.id'],
         order: db.sequelize.literal(`max(${req.query.sort}) DESC`),
         include: [{ model: User, attributes: { exclude: ['password'] } }],
@@ -58,6 +59,7 @@ export default class RecipesController {
       return Recipe.findAndCountAll({
         limit,
         offset,
+        distinct: true,
         group: ['Recipe.id', 'User.id'],
         order: db.sequelize.literal(`max(${req.query.sort}) DESC`),
         include: [{ model: User, attributes: { exclude: ['password'] } }],
@@ -110,6 +112,7 @@ export default class RecipesController {
     return Recipe.findAndCountAll({
       limit,
       offset,
+      distinct: true,
       include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
     }).then(({ rows: recipes, count }) => {
       res.status(200).json({

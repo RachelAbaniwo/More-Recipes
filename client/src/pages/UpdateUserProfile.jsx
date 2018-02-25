@@ -1,13 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { signOutUser } from '../store/actions/user';
-import ImageFile from '../components/ImageUploader';
+import ImageFile from '../components/ImageFile';
 import { setImageUrl } from '../store/actions/recipes';
 import { updateUserProfile } from '../store/actions/userProfile';
 import { checkField, checkEmail, checkUsername } from '../helpers';
@@ -85,9 +84,7 @@ class UpdateUserScreen extends React.Component {
       errors.push('fill in valid characters in the about-me field');
     }
 
-    this.setState({ errors }, () => {
-      return Promise.resolve();
-    });
+    this.setState({ errors }, () => Promise.resolve());
   }
 
   /**
@@ -158,8 +155,8 @@ class UpdateUserScreen extends React.Component {
    * @returns {jsx} jsx which adds a new recipe or errors if errors exist
    */
   render() {
-    const errorHolder = this.state.errors.map((error, index) => (
-      <span key={index}>
+    const errorHolder = this.state.errors.map(error => (
+      <span key={error}>
         <small
           className="mb-3"
           style={{

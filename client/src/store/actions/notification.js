@@ -1,5 +1,6 @@
 export const NOTIFICATION = 'NOTIFICATION';
 /**
+ * sets notifications
  * @function
  *
  * @param {*} level
@@ -15,3 +16,4 @@ const setNotification = (level, message) => ({
 });
 
 export default setNotification;
+
