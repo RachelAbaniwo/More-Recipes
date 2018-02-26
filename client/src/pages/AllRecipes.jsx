@@ -244,12 +244,8 @@ const mapStateToProps = state =>
     recipes: state.recipes.rows,
     searchQuery: state.search.query,
     pageData: state.recipes.pageData,
-<<<<<<< HEAD
     sort: state.sort,
     page: state.recipes.pageData.page
-=======
-    sort: state.sort
->>>>>>>  feature(implement-pagination): implement pagination
   });
 
 /**
