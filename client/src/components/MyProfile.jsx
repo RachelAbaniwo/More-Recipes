@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import image0 from '../../assets/image/profile-pic.jpeg';
 
@@ -9,9 +10,10 @@ import image0 from '../../assets/image/profile-pic.jpeg';
  *
  * @returns {object} jsx for recipe
  */
-const MyProfile = ({ authUser }) => {
-  if (authUser !== null && authUser !== undefined) {
-    return (
+const MyProfile = ({ authUser }) => ((
+  <div>
+    {
+      authUser &&
       <figure
         className="figure profile-card"
         style={{
@@ -32,7 +34,7 @@ const MyProfile = ({ authUser }) => {
             className="text-center"
           >
             <strong>
-            DISPLAY NAME
+              DISPLAY NAME
             </strong>
             <br />
             {authUser.user.username}
@@ -41,7 +43,7 @@ const MyProfile = ({ authUser }) => {
             className="text-center"
           >
             <strong>
-            EMAIL
+              EMAIL
             </strong>
             <br />
             {authUser.user.email}
@@ -57,12 +59,26 @@ const MyProfile = ({ authUser }) => {
             href="edit-profile.html"
             role="button"
           >
-          EDIT PROFILE
+            EDIT PROFILE
           </Link>
         </figcaption>
       </figure>
-    );
-  }
+    }
+  </div>
+));
+
+MyProfile.propTypes = {
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      aboutMe: PropTypes.string.isRequired
+    }).isRequired
+  })
+};
+MyProfile.defaultProps = {
+  authUser: null
 };
 
 export default MyProfile;

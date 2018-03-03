@@ -13,7 +13,7 @@ import { toggleVote } from './../store/actions/votes';
 const Downvotes = ({ downvotes, toggleVote: toggleVoteFunc, recipeId }) => ((
   <Fragment>
     <i
-      className="fa fa-thumbs-down text-danger"
+      className="fa fa-thumbs-down text-danger click-add"
       onClick={() => { toggleVoteFunc(recipeId, 'downvote'); }}
       aria-hidden="true"
     />{downvotes}&nbsp;

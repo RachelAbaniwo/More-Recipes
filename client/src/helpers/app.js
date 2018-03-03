@@ -10,11 +10,22 @@ import axios from 'axios';
 export const setAxios = () => {
   const authUser = localStorage.getItem('authUser');
   if (authUser) {
-    axios.defaults.headers.common['token'] = JSON.parse(authUser).token;
+    axios.defaults.headers.common.token = JSON.parse(authUser).token;
   }
 };
 
-setAxios();
+/**
+ * unsets axios
+ * @function
+ *
+ * @param {null} null
+ *
+ * @returns {null} null
+ */
+export const unsetAxios = () => {
+  delete axios.defaults.headers.common.token;
+};
+
 /**
  * executes when user is authenticated
  * @function

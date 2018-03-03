@@ -15,10 +15,11 @@ const MethodList = ({ method }) => {
     method = method.substr(0, method.length - 1);
   }
   const methodArray = method.split('.');
-  const methodList = methodArray.map(eachMethod => (
+  const methodList = methodArray.map((eachMethod, index) => (
     <li
       style={{ fontSize: '18px' }}
-      key={method}
+      //   eslint-disable-next-line
+      key={index}
     >
       {eachMethod}.
     </li>));

@@ -5,12 +5,12 @@ const { Favorite, Recipe } = db;
  * Controls the favorites endpoints
  */
 export default class FavoritesController {
-/**
- * Adds a Recipe to a User's list Favorite recipes
- * @param {object} req - request id of recipe to be added to Favorites
- * @param {object} res - success message indicating recipe added or removed from favorites
- * @returns {json} - success message returned
- */
+  /**
+   * Adds a Recipe to a User's list Favorite recipes
+   * @param {object} req - request id of recipe to be added to Favorites
+   * @param {object} res - success message indicating recipe added or removed from favorites
+   * @returns {json} - success message returned
+   */
   async addFavorite(req, res) {
     const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
     const favorite = await Favorite.findOne(query);
@@ -24,14 +24,14 @@ export default class FavoritesController {
       });
     }
 
-    await Favorite.create({
+    const newFavorite = await Favorite.create({
       userId: req.AuthUser.id,
       recipeId: req.params.recipeId
     });
     const recipe = req.FavoriteRecipe;
     await recipe.increment('favorites');
     return res.status(201).json({
-      recipe, message: 'Recipe successfully added to favorites!'
+      recipe, favorite: newFavorite, message: 'Recipe successfully added to favorites!'
     });
   }
   /**

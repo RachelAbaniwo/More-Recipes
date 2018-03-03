@@ -1,10 +1,13 @@
 {
     "root": true,
-    "extends": ["airbnb"],
+    "extends": [
+        "airbnb"
+    ],
     "env": {
         "node": true,
         "es6": true,
-        "mocha": true
+        "mocha": true,
+        "browser": true
     },
     "rules": {
         "one-var": 0,
@@ -14,31 +17,62 @@
         "no-param-reassign": 0,
         "comma-dangle": 0,
         "no-console": 0,
-        "curly": ["error", "multi-line"],
-        "import/no-unresolved": [2, { "commonjs": true }],
+        "curly": [
+            "error",
+            "multi-line"
+        ],
+        "import/no-unresolved": [
+            2,
+            {
+                "commonjs": true
+            }
+        ],
         "import/no-dynamic-require": 0,
-        "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
+        "no-shadow": [
+            "error",
+            {
+                "allow": [
+                    "req",
+                    "res",
+                    "err"
+                ]
+            }
+        ],
         "linebreak-style": 0,
         "class-methods-use-this": 0,
-        "valid-jsdoc": ["error", {
-            "requireReturn": true,
-            "requireReturnType": true,
-            "requireParamDescription": false,
-            "requireReturnDescription": true
-        }],
-        "jsx-a11y/anchor-is-valid": [ "error", {
-            "components": [ "a", "Link" ],
-            "aspects": ["invalidHref", "preferButton" ]
-        }],
-        "require-jsdoc": ["error", {
-            "require": {
-                "FunctionDeclaration": true,
-                "MethodDefinition": true,
-                "ClassDeclaration": true,
-                "ArrowFunctionExpression": true,
-                "FunctionExpression": true
+        "valid-jsdoc": [
+            "error",
+            {
+                "requireReturn": true,
+                "requireReturnType": true,
+                "requireParamDescription": false,
+                "requireReturnDescription": true
             }
-        }]
+        ],
+        "jsx-a11y/anchor-is-valid": [
+            "error",
+            {
+                "components": [
+                    "a",
+                    "Link"
+                ],
+                "aspects": [
+                    "invalidHref",
+                    "preferButton"
+                ]
+            }
+        ],
+        "require-jsdoc": [
+            "error",
+            {
+                "require": {
+                    "FunctionDeclaration": true,
+                    "MethodDefinition": true,
+                    "ClassDeclaration": true,
+                    "ArrowFunctionExpression": true,
+                    "FunctionExpression": true
+                }
+            }
+        ]
     }
-  }
-  
+}

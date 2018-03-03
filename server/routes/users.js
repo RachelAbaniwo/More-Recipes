@@ -23,7 +23,6 @@ router.route('/signin')
 
   .post(userSigninValidator, userController.userSignIn);
 
-
 // GET /api/v1/users/myrecipes - Gets a Registered User's recipes
 
 router.route('/myrecipes')

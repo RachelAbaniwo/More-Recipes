@@ -17,7 +17,7 @@ export default class RecipesController {
   getRecipes(req, res) {
     const limit = req.query.limit || 6;
     const offset = req.query.offset || 0;
-    const op = db.Sequelize.Op;
+    const operator = db.Sequelize.Op;
     const { search } = req.query;
     const searchQuery = search ? search.trim() : '';
     if (req.query.sort && req.query.search) {
@@ -29,15 +29,15 @@ export default class RecipesController {
         order: db.sequelize.literal(`max(${req.query.sort}) DESC`),
         include: [{ model: User, attributes: { exclude: ['password'] } }],
         where: {
-          [op.or]: {
+          [operator.or]: {
             name: {
-              [op.iLike]: `%${searchQuery}%`
+              [operator.iLike]: `%${searchQuery}%`
             },
             description: {
-              [op.iLike]: `%${searchQuery}%`
+              [operator.iLike]: `%${searchQuery}%`
             },
             ingredients: {
-              [op.iLike]: `%${searchQuery}%`
+              [operator.iLike]: `%${searchQuery}%`
             }
           }
         }
@@ -83,15 +83,15 @@ export default class RecipesController {
         distinct: true,
         include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }],
         where: {
-          [op.or]: {
+          [operator.or]: {
             name: {
-              [op.iLike]: `%${searchQuery}%`
+              [operator.iLike]: `%${searchQuery}%`
             },
             description: {
-              [op.iLike]: `%${searchQuery}%`
+              [operator.iLike]: `%${searchQuery}%`
             },
             ingredients: {
-              [op.iLike]: `%${searchQuery}%`
+              [operator.iLike]: `%${searchQuery}%`
             }
           }
         }

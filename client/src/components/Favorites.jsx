@@ -10,20 +10,33 @@ import { toggleFavorite } from './../store/actions/votes';
  *
  * @returns {object} jsx for component
  */
-const Favorites = ({ favorites, toggleFavorite: toggleFavoritesFunc, recipeId }) => ((
+const Favorites = ({
+  toggleFavorite: toggleFavoritesFunc, recipeId, authUser, hasFavorited
+}) => ((
   <Fragment>
     <i
-      className="fa fa-heart"
-      style={{ color: 'orange' }}
+      className={`fa fa-heart click-add ${authUser && hasFavorited ? 'orange' : 'grey'}`}
       onClick={() => { toggleFavoritesFunc(recipeId); }}
       aria-hidden="true"
-    />{favorites}&nbsp;
+    />&nbsp;
   </Fragment>
 ));
+
 Favorites.propTypes = {
-  favorites: PropTypes.number.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
-  recipeId: PropTypes.number.isRequired
+  recipeId: PropTypes.number.isRequired,
+  hasFavorited: PropTypes.bool.isRequired,
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      aboutMe: PropTypes.string.isRequired
+    })
+  }),
+};
+Favorites.defaultProps = {
+  authUser: null
 };
 
 /**

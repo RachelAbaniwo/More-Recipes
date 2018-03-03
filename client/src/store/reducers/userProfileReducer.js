@@ -1,4 +1,5 @@
 import { GET_MY_RECIPES, GET_MY_FAVORITES } from '../actions/userProfile';
+import { SIGN_OUT_USER } from '../actions/user';
 
 const initialState = {
   myRecipes: {
@@ -38,6 +39,8 @@ export default function userProfileReducer(state = initialState, action) {
           pageData: {}
         }
       };
+    case SIGN_OUT_USER:
+      return initialState;
     default:
       return state;
   }

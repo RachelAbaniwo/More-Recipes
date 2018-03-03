@@ -41,6 +41,7 @@ class ViewRecipeScreen extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
+    this.hasFavorited = this.hasFavorited.bind(this);
   }
 
   /**
@@ -51,6 +52,33 @@ class ViewRecipeScreen extends React.Component {
     if (!this.props.recipe) {
       this.props.getRecipe(this.props.params.recipeId);
     }
+  }
+
+  /**
+   * Adds new recipe
+   * @constructor
+   *
+   * @returns {object} jsx
+   */
+  hasFavorited() {
+    const favorites = this.props.recipe.Favorites;
+
+    if (!this.props.authUser) {
+      return false;
+    }
+
+    // favorites is a list of all people that have favorited.
+
+    // go through that array, and find one object where the auth user id is the userId
+
+    const authUserFavorite = favorites
+      .find(favorite => favorite.userId === this.props.authUser.user.id);
+
+    if (authUserFavorite) {
+      return true;
+    }
+
+    return false;
   }
 
   /**
@@ -73,7 +101,7 @@ class ViewRecipeScreen extends React.Component {
    */
   async deleteRecipe() {
     await this.props.deleteRecipe(this.props.recipe.id);
-    return this.props.router.push('/recipes');
+    return this.props.router.push('/dashboard');
   }
 
   /**
@@ -95,42 +123,40 @@ class ViewRecipeScreen extends React.Component {
         this.props.authUser.user.id ===
         this.props.recipe.User.id) {
         updateRecipeButton =
-    (
-      <span>
-        <Link
-          className="button btn btn-default update-button"
-          to={`/update-recipe/${recipe.id}`}
-        > UPDATE
-        </Link>
-        &nbsp;&nbsp;
-        <Button
-          className="button btn btn-default update-button"
-          onClick={this.toggle}
-        >DELETE
-        </Button>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-        >
-          <ModalBody
-            toggle={this.toggle}
-          >
-            <h4>CONFIRM</h4>
-            <h5>Are you sure you want to delete this recipe?</h5>
-            <Button
-              className="button btn btn-default update-button pull-right"
-              onClick={this.deleteRecipe}
-            >DELETE
-            </Button>
-            <Button
-              className="button btn btn-default update-button pull-right mr-2"
-              onClick={this.toggle}
-            >CANCEL
-            </Button>
-          </ModalBody>
-        </Modal>
-      </span>
-    );
+          (
+            <span>
+              <Link
+                className="button btn btn-default update-button"
+                to={`/update-recipe/${recipe.id}`}
+              > UPDATE
+              </Link>
+              &nbsp;&nbsp;
+              <Button
+                className="button btn btn-default update-button"
+                onClick={this.toggle}
+              >DELETE
+              </Button>
+              <Modal
+                isOpen={this.state.modal}
+                toggle={this.toggle}
+              >
+                <ModalBody>
+                  <h4>CONFIRM</h4>
+                  <h5>Are you sure you want to delete this recipe?</h5>
+                  <Button
+                    className="button btn btn-default update-button pull-right"
+                    onClick={this.deleteRecipe}
+                  >DELETE
+                  </Button>
+                  <Button
+                    className="button btn btn-default update-button pull-right mr-2"
+                    onClick={this.toggle}
+                  >CANCEL
+                  </Button>
+                </ModalBody>
+              </Modal>
+            </span>
+          );
       }
       recipeCard = (
         <div>
@@ -162,11 +188,12 @@ class ViewRecipeScreen extends React.Component {
               <section className="col-sm-12">
                 <figure
                   className="figure"
-                  style={{ padding: 10, marginBottom: 50 }}
+                  style={{ padding: 10, marginBottom: 30 }}
                 >
                   <img
                     src={recipe.recipeImage}
                     alt="first"
+                    // eslint-disable-next-line
                     className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
                     style={{ maxWidth: 900, maxHeight: 700 }}
                   />
@@ -174,44 +201,61 @@ class ViewRecipeScreen extends React.Component {
                     className="figure-caption"
                     style={{ textAlign: 'left' }}
                   >
-                    <p style={{ fontSize: '18px' }}>
-                      <i
-                        className="fa fa-user-circle-o"
-                        aria-hidden="true"
-                      />
-                      &nbsp;
-                      <span className="title">{recipe.User.username}</span>
-                    </p>
-                    <p style={{ fontSize: '18px' }}>
-                      <Upvotes
-                        recipeId={recipe.id}
-                        upvotes={recipe.upvotes}
-                      />&nbsp;&nbsp;
-                      <Downvotes
-                        recipeId={recipe.id}
-                        downvotes={recipe.downvotes}
-                      />&nbsp;&nbsp;
-                      <Favorites
-                        recipeId={recipe.id}
-                        favorites={recipe.favorites}
-                      />&nbsp;&nbsp;
-                    </p><br /><br />
-                    <p
-                      className="title"
-                      style={{ fontSize: '18px', color: 'green' }}
-                    >CATEGORY:
-                    </p>
-                    <p
-                      style={{ fontSize: '18px' }}
-                    >{recipe.category}
-                    </p>
-                    <br />
-                    <p
-                      className="title"
-                      style={{ fontSize: '18px', color: 'green' }}
-                    >DESCRIPTION:
-                    </p>
-                    <p style={{ fontSize: '18px' }}>{recipe.description}</p>
+
+                    <div className="container">
+                      <div className="row justify-content-center pt-3">
+                        <div className="col-md-3">
+                          <p style={{ fontSize: '18px' }}>
+                            <i
+                              className="fa fa-user-circle-o"
+                              aria-hidden="true"
+                            />
+                            &nbsp;
+                            <span className="title">{recipe.User.username}</span>
+                          </p>
+                          <p style={{ fontSize: '18px' }}>
+                            <Upvotes
+                              recipeId={recipe.id}
+                              upvotes={recipe.upvotes}
+                            />&nbsp;&nbsp;
+                            <Downvotes
+                              recipeId={recipe.id}
+                              downvotes={recipe.downvotes}
+                            />&nbsp;&nbsp;
+                            {
+                              this.props.authUser &&
+                              this.props.authUser.user.id !== this.props.recipe.userId &&
+                              <Favorites
+                                recipeId={recipe.id}
+                                authUser={this.props.authUser}
+                                hasFavorited={this.hasFavorited()}
+                              />
+                            }
+                            &nbsp;&nbsp;
+                          </p>
+                        </div>
+                        <div className="col-md-3">
+                          <p
+                            className="title"
+                            style={{ fontSize: '18px', color: 'green' }}
+                          >CATEGORY:
+                          </p>
+
+                          <p
+                            style={{ fontSize: '18px' }}
+                          >{recipe.category}
+                          </p>
+                        </div>
+                        <div className="col-md-3">
+                          <p
+                            className="title"
+                            style={{ fontSize: '18px', color: 'green' }}
+                          >DESCRIPTION:
+                          </p>
+                          <p style={{ fontSize: '18px' }}>{recipe.description}</p>
+                        </div>
+                      </div>
+                    </div>
                   </figcaption>
                 </figure>
                 <article>
@@ -220,6 +264,7 @@ class ViewRecipeScreen extends React.Component {
                     style={{
                       borderBottom: '1px solid lightgrey',
                       marginBottom: 20,
+                      paddingBottom: 9,
                       color: 'green',
                     }}
                   >INGREDIENTS
@@ -231,6 +276,7 @@ class ViewRecipeScreen extends React.Component {
                   style={{
                     borderBottom: '1px solid lightgrey',
                     marginBottom: 20,
+                    paddingBottom: 9,
                     color: 'green'
                   }}
                 >DIRECTIONS
@@ -245,6 +291,7 @@ class ViewRecipeScreen extends React.Component {
                   style={{
                     borderBottom: '1px solid lightgrey',
                     marginBottom: 20,
+                    paddingBottom: 9,
                     color: 'green'
                   }}
                 >REVIEWS
@@ -279,7 +326,12 @@ ViewRecipeScreen.propTypes = {
       id: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired
     }),
+    Favorites: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      userId: PropTypes.number.isRequired
+    })),
     id: PropTypes.number.isRequired,
+    userId: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     ingredients: PropTypes.string.isRequired,

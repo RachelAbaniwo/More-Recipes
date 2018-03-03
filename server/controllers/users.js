@@ -13,12 +13,12 @@ const { Recipe } = db;
  * Controls the user endpoints
  */
 export default class UserController {
-/**
-   * adds a new user to database
-   * @param {object} req request object from user
-   * @param {object} res created user
-   * @returns {json} returns created user object
-   */
+  /**
+     * adds a new user to database
+     * @param {object} req request object from user
+     * @param {object} res created user
+     * @returns {json} returns created user object
+     */
   userSignUp(req, res) {
     User.create({
       firstname: req.body.firstname,

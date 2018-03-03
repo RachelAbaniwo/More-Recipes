@@ -101,23 +101,19 @@ class UpdateUserScreen extends React.Component {
     formData.append('file', this.props.imageFile);
     formData.append('upload_preset', 'jj8czdds');
 
-    try {
-      delete axios.defaults.headers.common.token;
+    delete axios.defaults.headers.common.token;
 
-      const response =
+    const response =
       await
-        axios.post(
-          'https://api.cloudinary.com/v1_1/rachelabaniwo/image/upload',
-          formData
-        );
+      axios.post(
+        'https://api.cloudinary.com/v1_1/rachelabaniwo/image/upload',
+        formData
+      );
 
-      axios.defaults.headers.common.token =
-        JSON.parse(localStorage.getItem('authUser')).token;
+    axios.defaults.headers.common.token =
+      JSON.parse(localStorage.getItem('authUser')).token;
 
-      return Promise.resolve(response.data.secure_url);
-    } catch (errors) {
-      console.log(errors);
-    }
+    return Promise.resolve(response.data.secure_url);
   }
   /**
    * handles update user form submission
@@ -140,8 +136,7 @@ class UpdateUserScreen extends React.Component {
       const updateUserData = this.state;
       updateUserData.imageUrl = secureUrl;
 
-      await
-      this.props.updateUserProfile(updateUserData, this.props.authUser.user.id);
+      await this.props.updateUserProfile(updateUserData, this.props.authUser.user.id);
       return this.props.router.push('/dashboard');
     }
 
@@ -191,76 +186,79 @@ class UpdateUserScreen extends React.Component {
             marginBottom: 50
           }}
         >
-          <section className="row justify-content-center py-5">
-            <section className="col-md-8">
-              <div
-                className="card"
-                style={{
-                  backgroundColor: 'rgba(233, 231, 231, 0.863)'
-                }}
-              >
-                <h4
-                  className="card-header text-center title"
-                >UPDATE PROFILE
-                </h4><br />
-                {errorHolder}
-                <div className="card-body">
-                  <form>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="username"
-                        value={this.state.username}
-                        placeholder="Display Name"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        onChange={this.handleChange}
-                        className="form-control"
-                        name="email"
-                        placeholder="Email"
-                        value={this.state.email}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <textarea
-                        type="text"
-                        onChange={this.handleChange}
-                        className="form-control"
-                        name="aboutMe"
-                        placeholder="About Me"
-                        value={this.state.aboutMe}
-                      />
-                    </div>
-                    <div className="form-group p-0 m-0">
-                      <ImageFile
-                        setImageUrl={this.props.setImageUrl}
-                        imageFile={this.props.imageFile}
-                        imageUrl={this.props.authUser.user.profilePicture}
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={this.updateUserProfile}
-                      className="btn btn-default"
-                      disabled={this.state.isLoading}
-                      style={{
-                        marginLeft: 10,
-                        marginTop: 20,
-                        marginBottom: 20,
-                        fontWeight: 900
-                      }}
-                    >{buttonText}
-                    </button>
-                  </form>
+          {
+            this.props.authUser &&
+            <section className="row justify-content-center py-5">
+              <section className="col-md-8">
+                <div
+                  className="card"
+                  style={{
+                    backgroundColor: 'rgba(233, 231, 231, 0.863)'
+                  }}
+                >
+                  <h4
+                    className="card-header text-center title"
+                  >UPDATE PROFILE
+                  </h4><br />
+                  {errorHolder}
+                  <div className="card-body">
+                    <form>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          value={this.state.username}
+                          placeholder="Display Name"
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          onChange={this.handleChange}
+                          className="form-control"
+                          name="email"
+                          placeholder="Email"
+                          value={this.state.email}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <textarea
+                          type="text"
+                          onChange={this.handleChange}
+                          className="form-control"
+                          name="aboutMe"
+                          placeholder="About Me"
+                          value={this.state.aboutMe}
+                        />
+                      </div>
+                      <div className="form-group p-0 m-0">
+                        <ImageFile
+                          setImageUrl={this.props.setImageUrl}
+                          imageFile={this.props.imageFile}
+                          imageUrl={this.props.authUser.user.profilePicture}
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={this.updateUserProfile}
+                        className="btn btn-default"
+                        disabled={this.state.isLoading}
+                        style={{
+                          marginLeft: 10,
+                          marginTop: 20,
+                          marginBottom: 20,
+                          fontWeight: 900
+                        }}
+                      >{buttonText}
+                      </button>
+                    </form>
+                  </div>
                 </div>
-              </div>
+              </section>
             </section>
-          </section>
+          }
         </section>
         <Footer />
       </div>
@@ -280,7 +278,7 @@ UpdateUserScreen.propTypes = {
       aboutMe: PropTypes.string.isRequired,
       profilePicture: PropTypes.string.isRequired,
     })
-  }).isRequired,
+  }),
   router: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
@@ -290,6 +288,7 @@ UpdateUserScreen.propTypes = {
 };
 UpdateUserScreen.defaultProps = {
   imageFile: null,
+  authUser: null
 };
 
 /**

@@ -52,12 +52,11 @@ export default function recipesReducer(state = {
           ...action.payload.recipes
         ],
         pageData: action.payload.pageData,
-        
+
       };
     case GET_RECIPES:
       return {
         rows: [
-          ...state.rows,
           ...action.payload.recipes
         ],
         pageData: action.payload.pageData
@@ -86,7 +85,11 @@ export default function recipesReducer(state = {
 
           return {
             ...recipe,
-            favorites: action.payload.favorites
+            favorites: action.payload.favorites,
+            Favorites: action.payload.newFavorite ? [
+              ...recipe.Favorites,
+              action.payload.newFavorite
+            ] : recipe.Favorites.filter(favorite => favorite.userId !== action.payload.userId)
           };
         })
       };

@@ -32,11 +32,6 @@ const SingleRecipe = ({ recipe }) => ((
             className="fa fa-thumbs-down text-danger"
             aria-hidden="true"
           />{recipe.downvotes} &nbsp;
-          <i
-            className="fa fa-heart"
-            aria-hidden="true"
-            style={{ color: 'orange' }}
-          />{recipe.favorites}
           <br />
           <i
             className="fa fa-user-circle-o"

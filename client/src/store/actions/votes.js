@@ -28,9 +28,9 @@ export function toggleVote(recipeId, voteType) {
       dispatch(setNotification('success', message));
     } catch (error) {
       if (error.response.data.message === 'Unauthenticated') {
-        dispatch(setNotification('error', `Please signin to ${voteType} this recipe.`)); 
+        dispatch(setNotification('error', `Please signin to ${voteType} this recipe.`));
       } else {
-        dispatch(setNotification('error', `You can't ${voteType} a recipe you created.`)); 
+        dispatch(setNotification('error', `You can't ${voteType} a recipe you created.`));
       }
     }
   };
@@ -45,14 +45,19 @@ export function toggleVote(recipeId, voteType) {
  * @returns {object} dispatch
  */
 export function toggleFavorite(recipeId) {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
       const response = await axios.post(`${config.apiUrl}/favorites/${recipeId}`);
       const { recipe, message } = response.data;
 
       dispatch({
         type: TOGGLE_FAVORITES,
-        payload: { favorites: recipe.favorites, recipeId: recipe.id }
+        payload: {
+          favorites: recipe.favorites,
+          userId: getState().authUser.user.id,
+          newFavorite: response.data.favorite,
+          recipeId: recipe.id
+        }
       });
       dispatch(setNotification('success', message));
     } catch (error) {

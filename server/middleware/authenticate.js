@@ -9,6 +9,10 @@ export default (req, res, next) => {
   const { token } = req.headers;
   return jwt.verify(token, jwtSecret, (error, user) => {
     if (error) {
+      if (error.name === 'TokenExpiredError') {
+        return res.status(401).json({ message: 'Token Expired.' });
+      }
+
       return res.status(401).json({ message: 'Unauthenticated' });
     }
 

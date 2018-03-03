@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import InfiniteScrollComponent from 'react-infinite-scroll-component';
+import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -26,9 +26,10 @@ class AllRecipeScreen extends React.Component {
       search: '',
       sort: '',
       order: 'DESC',
-      limit: 4,
+      limit: 2,
       offset: 0,
-      page: 1
+      page: 0,
+      loading: true
     };
 
     this.getMoreRecipes = this.getMoreRecipes.bind(this);
@@ -42,21 +43,23 @@ class AllRecipeScreen extends React.Component {
    * @returns {null} null
    */
   componentWillMount() {
-    this.setState({ page: 1 }, () => {
-    this.props.getAllRecipes(this.state);
-  })
-}
+    this.props.getAllRecipes(this.state).then(() => this.setState({ loading: false }));
+  }
 
   /**
    * Get more recipes
    * @function
    *
-   * @param {null} null
+   * @param {object} page null
    * @returns {object} all recipes
    */
-  getMoreRecipes() {
-    this.setState({ page: this.state.page + 1 }, () => {
-      this.props.getMoreRecipes(this.state);
+  getMoreRecipes(page) {
+    this.setState({ page: page.selected, loading: true }, () => {
+      this.props.getAllRecipes(this.state).then(() => {
+        setTimeout(() => {
+          this.setState({ loading: false });
+        }, 500);
+      });
     });
   }
 
@@ -88,6 +91,17 @@ class AllRecipeScreen extends React.Component {
    */
   render() {
     const { recipes } = this.props;
+
+    const loadingRecipes = (
+      <div
+        style={{ clear: 'both' }}
+        key={0}
+      ><img
+        style={{ width: '100px' }}
+        src={loader}
+        alt="loader"
+      />
+      </div>);
     return (
       <div>
         <Navbar
@@ -147,9 +161,9 @@ class AllRecipeScreen extends React.Component {
                   onChange={this.handleChange}
                 >
                   <option>Recipes per page</option>
-                  <option value={3}>3</option>
+                  <option value={2}>2</option>
+                  <option value={4}>4</option>
                   <option value={6}>6</option>
-                  <option value={9}>9</option>
                 </select>
                 <button
                   style={{ width: 150, fontWeight: 'bold' }}
@@ -159,7 +173,7 @@ class AllRecipeScreen extends React.Component {
                 </button>
               </form>
             </div>
-            <InfiniteScrollComponent
+            {/* <InfiniteScrollComponent
               next={this.getMoreRecipes}
               hasMore={this.props.pageData.page !==
                 this.props.pageData.pageCount}
@@ -168,18 +182,49 @@ class AllRecipeScreen extends React.Component {
                   style={{ clear: 'both' }}
                   key={0}
                 ><img
-                  style={{ width: '100px' }}
-                  src={loader}
-                  alt="loader"
-                />
+                    style={{ width: '100px' }}
+                    src={loader}
+                    alt="loader"
+                  />
                 </div>}
             >
+            </InfiniteScrollComponent> */}
+            {
+              !this.state.loading &&
+
               <div className="row" style={{ padding: '10px' }}>
                 {recipes.map(recipe =>
                   <SingleRecipe key={recipe.id} recipe={recipe} />)}
-              </div>
-            </InfiniteScrollComponent>
+              </div>}
           </div>
+
+          {
+            this.state.loading &&
+            <div className="row justify-content-center">
+              {loadingRecipes}
+            </div>
+          }
+
+          <nav className="row pt-3 justify-content-center">
+            <ReactPaginate
+              previousLabel="Previous"
+              nextLabel="Next"
+              breakLabel={<a>...</a>}
+              breakClassName="page-link"
+              pageCount={this.props.pageData.pageCount}
+              //  forcePage={Number(this.props.location.query.page - 1) || 0}
+              onPageChange={this.getMoreRecipes}
+              containerClassName="pagination pagination-lg"
+              pageLinkClassName="page-link"
+              nextLinkClassName="page-link"
+              previousLinkClassName="page-link"
+              disabledClassName="disabled"
+              pageClassName="page-item"
+              previousClassName="page-item"
+              nextClassName="page-item"
+              activeClassName="active"
+            />
+          </nav>
         </section>
         <Footer />
 
@@ -219,7 +264,6 @@ AllRecipeScreen.propTypes = {
   updateSearchQuery: PropTypes.func.isRequired,
   updateSortQuery: PropTypes.func.isRequired,
   getAllRecipes: PropTypes.func.isRequired,
-  getMoreRecipes: PropTypes.func.isRequired,
   signOutUser: PropTypes.func.isRequired,
   pageData: PropTypes.shape({
     page: PropTypes.number,

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import ReactDom from 'react-dom';
-import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import CreateRecipe from './pages/CreateRecipe';
@@ -22,16 +22,32 @@ ReactDom.render(
   <Provider store={store}>
     <Router history={syncHistoryWithStore(browserHistory, store)}>
       <Route path="/" component={Main}>
-        <IndexRoute component={Home}></IndexRoute>
-        <Route path="/home" component={Home}></Route>
-        <Route path="/signup" component={Register} onEnter={ifAuthenticated}/>
+        <IndexRoute component={Home} />
+        <Route path="/home" component={Home} />
+        <Route path="/signup" component={Register} onEnter={ifAuthenticated} />
         <Route path="/signin" component={Login} onEnter={ifAuthenticated} />
-        <Route path="/recipes/create" component={CreateRecipe} onEnter={ifNotAuthenticated} />
+        <Route
+          path="/recipes/create"
+          component={CreateRecipe}
+          onEnter={ifNotAuthenticated}
+        />
         <Route path="/recipes" component={AllRecipesScreen} />
         <Route path="/view-recipe/:recipeId" component={ViewRecipe} />
-        <Route path="/update-recipe/:recipeId" component={CreateRecipe} onEnter={ifNotAuthenticated} />
-        <Route path="/dashboard" component={ViewDashboard} onEnter={ifNotAuthenticated} />
-        <Route path="/update-profile" component={UpdateUserProfile} onEnter={ifNotAuthenticated} />
+        <Route
+          path="/update-recipe/:recipeId"
+          component={CreateRecipe}
+          onEnter={ifNotAuthenticated}
+        />
+        <Route
+          path="/dashboard"
+          component={ViewDashboard}
+          onEnter={ifNotAuthenticated}
+        />
+        <Route
+          path="/update-profile"
+          component={UpdateUserProfile}
+          onEnter={ifNotAuthenticated}
+        />
       </Route>
     </Router>
   </Provider>

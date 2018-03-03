@@ -139,7 +139,7 @@ ViewDashboard.propTypes = {
       aboutMe: PropTypes.string,
       profilePicture: PropTypes.string,
     })
-  }).isRequired,
+  }),
   myRecipes: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -166,7 +166,8 @@ ViewDashboard.propTypes = {
 
 ViewDashboard.defaultProps = {
   myRecipes: {},
-  favoriteRecipes: {}
+  favoriteRecipes: {},
+  authUser: null
 };
 
 /**

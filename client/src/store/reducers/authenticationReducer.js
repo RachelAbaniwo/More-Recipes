@@ -15,11 +15,9 @@ export default function authenticationReducer(state = {}, action) {
     case UPDATE_USER_PROFILE:
       return {
         ...action.authUser
-        }
+      };
     case SIGN_OUT_USER:
-      let newState = state;
-      newState = null;
-      return newState;
+      return null;
     default:
       return state;
   }

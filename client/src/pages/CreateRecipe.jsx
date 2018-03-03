@@ -137,17 +137,13 @@ class CreateRecipeScreen extends React.Component {
     formData.append('file', this.props.imageFile);
     formData.append('upload_preset', 'jj8czdds');
 
-    try {
-      delete axios.defaults.headers.common.token;
+    delete axios.defaults.headers.common.token;
 
-      const response = await axios.post('https://api.cloudinary.com/v1_1/rachelabaniwo/image/upload', formData);
+    const response = await axios.post('https://api.cloudinary.com/v1_1/rachelabaniwo/image/upload', formData);
 
-      axios.defaults.headers.common.token = JSON.parse(localStorage.getItem('authUser')).token;
+    axios.defaults.headers.common.token = JSON.parse(localStorage.getItem('authUser')).token;
 
-      return Promise.resolve(response.data.secure_url);
-    } catch (errors) {
-      console.log(errors);
-    }
+    return Promise.resolve(response.data.secure_url);
   }
 
   /**

@@ -311,3 +311,30 @@ label{
  .bounce {
    animation: bounce 2s infinite;
  }
+ .click-add {
+   cursor: pointer;
+ }
+ .orange {
+   color: orange;
+ }
+ .grey {
+   color: grey;
+ }
+
+
+.pagination > li > a {
+  color:rgba(55, 143, 106, 0.967);
+  cursor: pointer;
+}
+
+.pagination > li > a:hover {
+  color: rgba(36, 99, 72, 0.967);
+  cursor: pointer;  
+}
+
+.pagination > li.active .page-link{
+  /**background-color: #8bad00;*/
+  background-color:rgba(55, 143, 106, 0.967);
+  border-color: rgba(55, 143, 106, 0.967);
+  cursor: pointer;  
+}

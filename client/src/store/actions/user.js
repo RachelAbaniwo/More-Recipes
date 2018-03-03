@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { push } from 'react-router-redux';
+import { setAxios, unsetAxios } from '../../helpers/app';
 import config from './../../config';
 import setNotification from './notification';
 
@@ -21,6 +23,7 @@ export function signInUser({ email, password }) {
         email, password
       });
       localStorage.setItem('authUser', JSON.stringify(response.data));
+      setAxios();
       const { user } = response.data;
 
       dispatch({
@@ -45,10 +48,32 @@ export function signInUser({ email, password }) {
 export function signOutUser() {
   return async (dispatch) => {
     localStorage.removeItem('authUser');
+    unsetAxios();
     dispatch({
       type: SIGN_OUT_USER
     });
     dispatch(setNotification('success', 'Successfully logged out.'));
+    return Promise.resolve();
+  };
+}
+
+/**
+ * signs out user with expired token
+ * @function
+ *
+ * @param {null} null
+ *
+ * @returns {object} dispatch
+ */
+export function signOutUserWithExpiredSession() {
+  return async (dispatch) => {
+    localStorage.removeItem('authUser');
+    unsetAxios();
+    dispatch({
+      type: SIGN_OUT_USER
+    });
+    dispatch(setNotification('error', 'Session expired. Please sign in again.'));
+    dispatch(push('/signin'));
     return Promise.resolve();
   };
 }
@@ -75,7 +100,7 @@ export function signUpUser({
         firstname, lastname, email, username, password
       });
       localStorage.setItem('authUser', JSON.stringify(response.data));
-
+      setAxios();
       dispatch({
         type: SIGN_IN_USER,
         authUser: response.data

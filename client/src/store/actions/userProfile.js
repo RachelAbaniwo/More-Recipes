@@ -3,6 +3,8 @@ import config from './../../config';
 import setNotification from './notification';
 import { clearImageUrl } from '../actions/recipes';
 
+import { signOutUserWithExpiredSession } from './user';
+
 export const GET_MY_RECIPES = 'GET_MY_RECIPES';
 export const GET_MY_FAVORITES = 'GET_MY_FAVORITES';
 export const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';
@@ -26,10 +28,10 @@ export function getMyRecipes() {
         payload: { myRecipes }
       });
     } catch (error) {
-      if (error.response.data.message === 'You have no recipes') {
-        dispatch(setNotification('error', 'You have no recipes'));
-        return Promise.reject();
+      if (error.response.data.message === 'Token Expired.') {
+        dispatch(signOutUserWithExpiredSession());
       }
+      return Promise.reject();
     }
   };
 }
@@ -49,10 +51,10 @@ export function getMyFavorites() {
         payload: { favoriteRecipes }
       });
     } catch (error) {
-      if (error.response.data.message === 'You have no Favorite Recipes') {
-        dispatch(setNotification('error', 'You have no Favorite Recipes'));
-        return Promise.reject();
+      if (error.response.data.message === 'Token Expired.') {
+        dispatch(signOutUserWithExpiredSession());
       }
+      return Promise.reject();
     }
   };
 }
@@ -82,6 +84,9 @@ export function updateUserProfile(user, userId) {
       dispatch(setNotification('success', 'Successfully updated your profile'));
       return Promise.resolve();
     } catch (error) {
+      if (error.response.data.message === 'Token Expired.') {
+        dispatch(signOutUserWithExpiredSession());
+      }
       return Promise.reject(error);
     }
   };

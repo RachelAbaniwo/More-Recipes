@@ -2,6 +2,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 import config from './../../config';
 import setNotification from './notification';
+import { signOutUserWithExpiredSession } from './user';
 
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
 export const GET_RECIPES = 'GET_RECIPES';
@@ -25,7 +26,8 @@ export const UPDATE_SORT_QUERY = 'UPDATE_SORT_QUERY';
 export function getAllRecipes(queryParams) {
   return async (dispatch, getState) => {
     try {
-      queryParams.offset = 0;
+      //  queryParams.offset = 0;
+      queryParams.offset = parseInt(queryParams.limit, 10) * (queryParams.page);
       queryParams.search = getState().search.query;
       queryParams.sort = getState().sort.sort;
       const response = await axios.get(`${config.apiUrl}/recipes?${queryString.stringify(queryParams)}`);
@@ -34,9 +36,11 @@ export function getAllRecipes(queryParams) {
         type: GET_ALL_RECIPES,
         payload: { recipes, pageData }
       });
+
+      return Promise.resolve();
     } catch (error) {
       if (error.response.data.message === 'Recipe not found') {
-        dispatch(setNotification('error', 'Recipe not found'));
+        //  dispatch(setNotification('error', 'Recipe not found'));
         return Promise.reject();
       }
     }
@@ -54,7 +58,7 @@ export function getAllRecipes(queryParams) {
 export function getMoreRecipes(queryParams) {
   return async (dispatch, getState) => {
     try {
-      queryParams.offset = parseInt(queryParams.limit, 10) * getState().recipes.pageData.page;
+      queryParams.offset = parseInt(queryParams.limit, 10) * (queryParams.page);
       queryParams.search = getState().search.query;
       queryParams.sort = getState().sort.sort;
       const response = await axios.get(`${config.apiUrl}/recipes?${queryString.stringify(queryParams)}`);
@@ -122,7 +126,10 @@ export function createRecipe(recipe) {
       dispatch(clearImageUrl());
       return Promise.resolve(response.data.recipe);
     } catch (error) {
-      return Promise.reject();
+      if (error.response.data.message === 'Token Expired.') {
+        dispatch(signOutUserWithExpiredSession());
+      }
+      return Promise.reject(error);
     }
   };
 }
@@ -148,6 +155,9 @@ export function updateRecipe(recipe, recipeId) {
       dispatch(setNotification('success', 'Successfully updated recipe'));
       return Promise.resolve();
     } catch (error) {
+      if (error.response.data.message === 'Token Expired.') {
+        dispatch(signOutUserWithExpiredSession());
+      }
       return Promise.reject(error);
     }
   };
@@ -173,6 +183,9 @@ export function deleteRecipe(recipeId) {
       dispatch(setNotification('success', 'Successfully deleted recipe'));
       return Promise.resolve();
     } catch (error) {
+      if (error.response.data.message === 'Token Expired.') {
+        dispatch(signOutUserWithExpiredSession());
+      }
       return Promise.reject(error);
     }
   };
