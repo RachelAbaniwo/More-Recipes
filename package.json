@@ -15,7 +15,7 @@
     "coveralls": "nyc npm test&& nyc report --reporter=text-lcov | coveralls",
     "heroku-postbuild": "npm run build:client && npm run build",
     "start:client": "./node_modules/.bin/webpack-dev-server",
-    "test:client": "./node_modules/.bin/jest --watch",
+    "test:client": "./node_modules/.bin/jest --watch --coverage",
     "build:client": "webpack -p"
   },
   "repository": {

@@ -26,7 +26,6 @@ export const UPDATE_SORT_QUERY = 'UPDATE_SORT_QUERY';
 export function getAllRecipes(queryParams) {
   return async (dispatch, getState) => {
     try {
-      //  queryParams.offset = 0;
       queryParams.offset = parseInt(queryParams.limit, 10) * (queryParams.page);
       queryParams.search = getState().search.query;
       queryParams.sort = getState().sort.sort;

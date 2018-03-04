@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import IngredientList from './../components/IngredientList';
+import IngredientList from './../../components/IngredientList';
 
 describe('The ingredients list component', () => {
   it('should render without crashing', () => {
