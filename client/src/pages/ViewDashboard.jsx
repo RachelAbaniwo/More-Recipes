@@ -6,7 +6,6 @@ import { getMyRecipes, getMyFavorites } from '../store/actions/userProfile';
 import Navbar from '../components/Navbar';
 import MySingleRecipe from '../components/MySingleRecipe';
 import { signOutUser } from '../store/actions/user';
-import Footer from '../components/Footer';
 import MyProfile from '../components/MyProfile';
 
 
@@ -34,11 +33,6 @@ class ViewDashboard extends React.Component {
     const { myRecipes, favoriteRecipes } = this.props;
     return (
       <div>
-        <Navbar
-          authUser={this.props.authUser}
-          signOutUser={this.props.signOutUser}
-          router={this.props.router}
-        />
         <section
           className="text-center mx auto view-profile-container"
           style={{ marginTop: 30, marginBottom: 30, padding: 50 }}
@@ -124,7 +118,6 @@ class ViewDashboard extends React.Component {
             </section>
           </div>
         </section>
-        <Footer />
       </div>
     );
   }

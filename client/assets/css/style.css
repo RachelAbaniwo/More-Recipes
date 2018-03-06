@@ -338,3 +338,9 @@ label{
   border-color: rgba(55, 143, 106, 0.967);
   cursor: pointer;  
 }
+
+.sm-error {
+  color: orange;
+  font-family: 'Advent Pro';
+  font-weight: 900;
+}

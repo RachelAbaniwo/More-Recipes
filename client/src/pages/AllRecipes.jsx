@@ -104,11 +104,6 @@ class AllRecipeScreen extends React.Component {
       </div>);
     return (
       <div>
-        <Navbar
-          authUser={this.props.authUser}
-          signOutUser={this.props.signOutUser}
-          router={this.props.router}
-        />
         <section
           className="container text-center mx auto view-recipe-container"
           style={{
@@ -226,8 +221,6 @@ class AllRecipeScreen extends React.Component {
             />
           </nav>
         </section>
-        <Footer />
-
       </div>
     );
   }

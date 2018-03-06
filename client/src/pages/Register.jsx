@@ -173,11 +173,6 @@ class RegisterScreen extends React.Component {
 
     return (
       <div>
-        <Navbar
-          authUser={this.props.authUser}
-          signOutUser={this.props.signOutUser}
-          router={this.props.router}
-        />
         <div
           className="container"
           style={{
@@ -262,7 +257,6 @@ class RegisterScreen extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }

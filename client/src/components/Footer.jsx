@@ -1,5 +1,6 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Display footer component
@@ -8,9 +9,9 @@ import React from 'react';
  * @returns {object} jsx for footer
  *
  */
-const Footer = () => ((
+const Footer = ({ isHomeScreen }) => ((
   <footer
-    className="fixed-bottom"
+    className={`${isHomeScreen ? '' : 'fixed-bottom'}`}
     style={{
       backgroundColor: 'rgba(73, 67, 67, 0.9)',
       maxWidth: '100%',
@@ -30,5 +31,13 @@ const Footer = () => ((
     </p>
   </footer>
 ));
+
+Footer.propTypes = {
+  isHomeScreen: PropTypes.bool
+};
+
+Footer.defaultProps = {
+  isHomeScreen: false
+};
 
 export default Footer;

@@ -3,10 +3,17 @@ import { UPDATE_USER_PROFILE } from '../../store/actions/userProfile';
 import authenticationReducer from '../../store/reducers/authenticationReducer';
 
 describe('authenticationReducer', () => {
-  it('should return default state if none of the actions are handled by reducer', () => {
+  it('should maintain state if none of the actions are handled by reducer', () => {
     const action = { type: 'UNDEFINED_ACTION' };
     const state = { authUser: { user: { id: 1 } } };
     const result = authenticationReducer(state, action);
+
+    expect(result).toEqual(state);
+  });
+  it('should return default state when initialized by redux', () => {
+    const action = { type: 'UNDEFINED_ACTION' };
+    const state = {};
+    const result = authenticationReducer(undefined, action);
 
     expect(result).toEqual(state);
   });

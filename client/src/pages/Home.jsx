@@ -153,7 +153,8 @@ class Home extends React.Component {
                     color: 'rgba(241, 235, 178, 0.8)'
                   }}
                 >
-                  Enjoy the very best culinary experiences from around the world and share yours too!!!
+                  Enjoy the very best culinary
+                  experiences from around the world and share yours too!!!
                 </h3>
                 <CreateRecipeButton authUser={this.props.authUser} />
                 <form
@@ -230,27 +231,6 @@ class Home extends React.Component {
             </a>
           </div>
         </section>
-        <footer
-          style={{
-            bottom: '0',
-            marginBottom: '0px',
-            backgroundColor: 'rgba(73, 67, 67, 0.9)',
-            maxWidth: '100%',
-            height: 30
-          }}
-        >
-          <p
-            className="text-center"
-            style={{
-              marginBottom: 5,
-              paddingTop: 5,
-              color: '#fff',
-              fontSize: 12
-            }}
-          >
-            © 2017 More-Recipes
-          </p>
-        </footer>
       </div>
 
     );

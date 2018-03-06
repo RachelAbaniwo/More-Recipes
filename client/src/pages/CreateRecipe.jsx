@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -246,11 +245,6 @@ class CreateRecipeScreen extends React.Component {
 
     return (
       <div>
-        <Navbar
-          authUser={this.props.authUser}
-          signOutUser={this.props.signOutUser}
-          router={this.props.router}
-        />
         <section
           className="container text-center mx auto create-recipe-container"
           style={{
@@ -340,7 +334,6 @@ class CreateRecipeScreen extends React.Component {
             </section>
           </section>
         </section>
-        <Footer />
       </div>
 
     );

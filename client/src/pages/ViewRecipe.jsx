@@ -8,7 +8,6 @@ import IngredientList from '../components/IngredientList';
 import MethodList from '../components/MethodList';
 import ReviewList from '../components/ReviewList';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import { signOutUser } from '../store/actions/user';
 import { getRecipe, deleteRecipe } from '../store/actions/recipes';
 import AddReview from './../components/AddReview';
@@ -160,11 +159,6 @@ class ViewRecipeScreen extends React.Component {
       }
       recipeCard = (
         <div>
-          <Navbar
-            authUser={this.props.authUser}
-            signOutUser={this.props.signOutUser}
-            router={this.props.router}
-          />
           <section
             className="container text-center mx auto view-recipe-container"
             style={{
@@ -308,7 +302,6 @@ class ViewRecipeScreen extends React.Component {
               <AddReview recipeId={recipe.id} />
             </div>
           </section>
-          <Footer />
         </div>
       );
     }

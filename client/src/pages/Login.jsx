@@ -3,11 +3,9 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import { signInUser, signOutUser } from '../store/actions/user';
 import { checkEmail } from '../../../server/helpers/checkInput';
-import '../../assets/css/style.css';
+//  import '../../assets/css/style.css';
 
 /**
  * Create Login component
@@ -15,7 +13,7 @@ import '../../assets/css/style.css';
  *
  * @returns {object} jsx object
  */
-class LoginScreen extends React.Component {
+export class LoginScreen extends React.Component {
   /**
    * Adds new recipe
    * @constructor
@@ -37,7 +35,6 @@ class LoginScreen extends React.Component {
     this.handleValidation = this.handleValidation.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
   }
-
   /**
    * handles field change
    * @function
@@ -89,7 +86,6 @@ class LoginScreen extends React.Component {
     if (this.state.errors.length > 0) {
       return;
     }
-
     try {
       await this.props.signInUser({
         email: this.state.email,
@@ -105,9 +101,12 @@ class LoginScreen extends React.Component {
       } else if (error.response.status === 422) {
         this.setState({
           errors: [error.response.data.message]
+        }, () => {
+          console.log('@@@ state from component: ', this.state);
         });
       } else {
         this.setState({
+          errors: ['Something went wrong. Please try again later.']
         });
       }
     }
@@ -121,26 +120,13 @@ class LoginScreen extends React.Component {
   render() {
     const errorHolder = this.state.errors.map(error => (
       <span key={error}>
-        <small
-          className="mb-3"
-          style={{
-            color: 'orange',
-            fontFamily: 'Advent Pro',
-            fontWeight: '900'
-        }}
-        >{error}
-        </small>
+        <small className="mb-3 sm-error">{error}</small>
         <br />
       </span>
     ));
 
     return (
       <div >
-        <Navbar
-          authUser={this.props.authUser}
-          signOutUser={this.props.signOutUser}
-          router={this.props.router}
-        />
         <div
           className="container"
           style={{
@@ -201,7 +187,6 @@ class LoginScreen extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
@@ -210,21 +195,8 @@ LoginScreen.propTypes = {
   signInUser: PropTypes.func.isRequired,
   router: PropTypes.shape({
     push: PropTypes.func.isRequired
-  }).isRequired,
-  authUser: PropTypes.shape({
-    user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      username: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      aboutMe: PropTypes.string.isRequired
-    })
-  }),
-  signOutUser: PropTypes.func.isRequired
+  }).isRequired
 };
-LoginScreen.defaultProps = {
-  authUser: null
-};
-
 /**
  * Map state to props
  * @param {object} state

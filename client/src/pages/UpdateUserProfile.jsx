@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import { signOutUser } from '../store/actions/user';
 import ImageFile from '../components/ImageFile';
 import { setImageUrl } from '../store/actions/recipes';
@@ -172,11 +171,6 @@ class UpdateUserScreen extends React.Component {
     }
     return (
       <div>
-        <Navbar
-          authUser={this.props.authUser}
-          signOutUser={this.props.signOutUser}
-          router={this.props.router}
-        />
         <section
           className="container text-center mx auto create-recipe-container"
           style={{
@@ -260,7 +254,6 @@ class UpdateUserScreen extends React.Component {
             </section>
           }
         </section>
-        <Footer />
       </div>
     );
   }
