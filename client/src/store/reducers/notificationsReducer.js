@@ -5,7 +5,7 @@ import { NOTIFICATION } from '../actions/notification';
  * @param {object} action action to be reduced
  * @returns {object} new state
  */
-export default (state = {}, action) => {
+export default (state = { notification: null }, action) => {
   switch (action.type) {
     case NOTIFICATION:
       return action.payload;

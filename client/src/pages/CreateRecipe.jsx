@@ -3,8 +3,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
 import { signOutUser } from '../store/actions/user';
 import ImageFile from '../components/ImageFile';
 import { createRecipe, setImageUrl, updateRecipe } from '../store/actions/recipes';
@@ -349,14 +347,6 @@ CreateRecipeScreen.propTypes = {
     method: PropTypes.string,
     recipeImage: PropTypes.string
   }),
-  authUser: PropTypes.shape({
-    user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      username: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      aboutMe: PropTypes.string.isRequired
-    })
-  }),
   router: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
@@ -368,14 +358,12 @@ CreateRecipeScreen.propTypes = {
   }),
   createRecipe: PropTypes.func.isRequired,
   setImageUrl: PropTypes.func.isRequired,
-  updateRecipe: PropTypes.func.isRequired,
-  signOutUser: PropTypes.func.isRequired
+  updateRecipe: PropTypes.func.isRequired
 };
 CreateRecipeScreen.defaultProps = {
   recipe: {},
   imageFile: null,
-  routeParams: {},
-  authUser: null
+  routeParams: {}
 };
 
 /**
@@ -401,6 +389,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   signOutUser, createRecipe, setImageUrl, updateRecipe
 }, dispatch);
+
+// { createRecipe: dispatch(createRecipe()) }
 
 const CreateRecipe = connect(mapStateToProps, mapDispatchToProps)(CreateRecipeScreen);
 

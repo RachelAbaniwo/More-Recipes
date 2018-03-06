@@ -5,7 +5,7 @@ import { SET_IMAGE_FILE, CLEAR_IMAGE_FILE } from '../actions/recipes';
  * @param {object} action action to be reduced
  * @returns {object} new state
  */
-export default function (state = {}, action) {
+export default function (state = { imageUpload: { imageFile: null } }, action) {
   switch (action.type) {
     case SET_IMAGE_FILE:
       return {

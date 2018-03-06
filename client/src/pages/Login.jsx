@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { signInUser, signOutUser } from '../store/actions/user';
-import { checkEmail } from '../../../server/helpers/checkInput';
+import { checkEmail } from '../helpers';
 //  import '../../assets/css/style.css';
 
 /**
@@ -101,8 +101,6 @@ export class LoginScreen extends React.Component {
       } else if (error.response.status === 422) {
         this.setState({
           errors: [error.response.data.message]
-        }, () => {
-          console.log('@@@ state from component: ', this.state);
         });
       } else {
         this.setState({
@@ -166,7 +164,7 @@ export class LoginScreen extends React.Component {
                       type="submit"
                       name="login"
                       className="login login-card-submit"
-                      onClick={() => { this.handleSignIn(); }}
+                      onClick={this.handleSignIn}
                       style={{ fontFamily: 'Advent Pro' }}
                       defaultValue="SIGN IN"
                     />
@@ -203,9 +201,8 @@ LoginScreen.propTypes = {
  *
  * @returns {object} empty object
  */
-const mapStateToProps = state =>
+export const mapStateToProps = state =>
   ({ authUser: state.authUser });
-
 
 /**
  * Map dispatch to props
