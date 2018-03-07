@@ -29,9 +29,10 @@ export function toggleVote(recipeId, voteType) {
     } catch (error) {
       if (error.response.data.message === 'Unauthenticated') {
         dispatch(setNotification('error', `Please signin to ${voteType} this recipe.`));
-      } else {
-        dispatch(setNotification('error', `You can't ${voteType} a recipe you created.`));
+        return Promise.reject();
       }
+      dispatch(setNotification('error', `You can't ${voteType} a recipe you created.`));
+      return Promise.reject();
     }
   };
 }
@@ -63,9 +64,10 @@ export function toggleFavorite(recipeId) {
     } catch (error) {
       if (error.response.data.message === 'Unauthenticated') {
         dispatch(setNotification('error', 'Please signin to favorite this recipe.'));
-      } else {
-        dispatch(setNotification('error', 'You can\'t favorite a recipe you created.'));
+        return Promise.reject();
       }
+      dispatch(setNotification('error', 'You can\'t favorite a recipe you created.'));
+      return Promise.reject();
     }
   };
 }

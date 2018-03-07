@@ -50,6 +50,7 @@ export function getMyFavorites() {
         type: GET_MY_FAVORITES,
         payload: { favoriteRecipes }
       });
+      return Promise.resolve();
     } catch (error) {
       if (error.response.data.message === 'Token Expired.') {
         dispatch(signOutUserWithExpiredSession());
@@ -71,9 +72,7 @@ export function updateUserProfile(user, userId) {
   return async (dispatch) => {
     try {
       const response = await axios.put(`${config.apiUrl}/users/${userId}`, user);
-
       const localUserData = JSON.parse(localStorage.getItem('authUser'));
-
       localUserData.user = response.data.user;
       localStorage.setItem('authUser', JSON.stringify(localUserData));
       dispatch({

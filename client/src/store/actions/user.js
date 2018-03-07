@@ -31,6 +31,7 @@ export function signInUser({ email, password }) {
         authUser: response.data
       });
       dispatch(setNotification('success', `Welcome back ${user.username}.`));
+      return Promise.resolve();
     } catch (error) {
       return Promise.reject(error);
     }

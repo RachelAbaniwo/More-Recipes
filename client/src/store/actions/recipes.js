@@ -35,46 +35,16 @@ export function getAllRecipes(queryParams) {
         type: GET_ALL_RECIPES,
         payload: { recipes, pageData }
       });
-
       return Promise.resolve();
-    } catch (error) {
-      if (error.response.data.message === 'Recipe not found') {
-        //  dispatch(setNotification('error', 'Recipe not found'));
-        return Promise.reject();
-      }
-    }
-  };
-}
-
-/**
- * gets more recipes on scroll event
- * @function
- *
- * @param {object} queryParams params
- *
- * @returns {object} dispatch
- */
-export function getMoreRecipes(queryParams) {
-  return async (dispatch, getState) => {
-    try {
-      queryParams.offset = parseInt(queryParams.limit, 10) * (queryParams.page);
-      queryParams.search = getState().search.query;
-      queryParams.sort = getState().sort.sort;
-      const response = await axios.get(`${config.apiUrl}/recipes?${queryString.stringify(queryParams)}`);
-      const { pageData, recipes } = response.data;
-      dispatch({
-        type: GET_RECIPES,
-        payload: { recipes, pageData }
-      });
     } catch (error) {
       if (error.response.data.message === 'Recipe not found') {
         dispatch(setNotification('error', 'Recipe not found'));
         return Promise.reject();
       }
+      return Promise.reject();
     }
   };
 }
-
 
 /**
  * sets image url
@@ -90,6 +60,7 @@ export function setImageUrl(imageFile) {
       type: SET_IMAGE_FILE,
       payload: imageFile
     });
+    return Promise.resolve();
   };
 }
 
@@ -97,7 +68,7 @@ export function setImageUrl(imageFile) {
  * clears the image url
  * @function
  *
- * @param {object} imageFile
+ * @param {null} null
  *
  * @returns {object} dispatch
  */
@@ -106,6 +77,7 @@ export function clearImageUrl() {
     dispatch({
       type: CLEAR_IMAGE_FILE
     });
+    return Promise.resolve();
   };
 }
 
@@ -236,6 +208,7 @@ export function createReview(review, recipeId) {
         dispatch(setNotification('error', 'Please signin to review this recipe'));
         return Promise.reject();
       }
+      return Promise.reject();
     }
   };
 }
@@ -254,6 +227,7 @@ export function updateSearchQuery(query) {
       type: UPDATE_SEARCH_STRING,
       payload: query
     });
+    return Promise.resolve();
   };
 }
 
@@ -271,5 +245,6 @@ export function updateSortQuery(query) {
       type: UPDATE_SORT_QUERY,
       payload: query
     });
+    return Promise.resolve();
   };
 }

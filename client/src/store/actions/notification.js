@@ -3,8 +3,8 @@ export const NOTIFICATION = 'NOTIFICATION';
  * sets notifications
  * @function
  *
- * @param {*} level
- * @param {*} message
+ * @param {string} level
+ * @param {string} message
  *
  * @returns {object} action
  */

@@ -1,13 +1,11 @@
 import React from 'react';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme, { shallow, mount } from 'enzyme';
-import { LoginScreen } from '../../pages/Login';
-
-Enzyme.configure({ adapter: new Adapter() });
+import { setTimeout } from 'timers';
+import { shallow, mount } from 'enzyme';
+import { LoginScreen, mapStateToProps } from '../../pages/Login';
 
 describe('The login component ', () => {
   const props = {
-    signInUser() { },
+    signInUser() {},
     signOutUser() { },
     router: { push() { }, location: { pathname: '/signin' } }
   };
@@ -25,7 +23,7 @@ describe('The login component ', () => {
     wrapper.find('input[name="password"]').simulate('change', { target: { value: 'rachel', name: 'password' } });
     expect(wrapper.state().password).toBe('rachel');
   });
-  it('should display validation errors if there are any', () => {
+  it('should display validation errors if email and password fields are empty', () => {
     const wrapper = shallow(<LoginScreen {...props} />);
     wrapper.find('input[type="submit"]').simulate('click');
     expect(wrapper.state().errors).toEqual(['Email is required', 'Password is required']);
@@ -39,16 +37,35 @@ describe('The login component ', () => {
   it('should sign a user in if correct credentials are filled into email and password fields', () => {
     const wrapper = shallow(<LoginScreen {...props} />);
     const spy = jest.spyOn(wrapper.instance(), 'handleSignIn');
-    wrapper.find('input[name="email"]')
-      .simulate('change', { target: { value: 'test@user.com', name: 'email' } });
-    wrapper.find('input[name="password"]')
-      .simulate('change', { target: { value: 'rachel', name: 'password' } });
+
+    wrapper.setState({
+      email: 'test@user.com',
+      password: 'rachel'
+    });
 
     wrapper.find('input[type="submit"]').simulate('click');
 
     expect(spy).toHaveBeenCalled();
   });
-  it('Should set (and display )server error messages on state if sign in is unsuccessful', () => {
+  it('should display validation errors if wrong email format is filled', () => {
+    const wrapper = shallow(<LoginScreen {...props} />);
+    wrapper.setState({
+      email: 'test@user',
+      password: 'rachel'
+    });
+    wrapper.find('input[type="submit"]').simulate('click');
+    expect(wrapper.state().errors).toEqual(['Email format is wrong, enter valid email address']);
+    const error =
+      (
+        <small className="mb-3 sm-error">
+        Email format is wrong, enter valid email address
+        </small>
+      );
+    expect(wrapper
+      .contains(error))
+      .toBe(true);
+  });
+  it('Should set (and display) error messages from client-side on state if sign in is unsuccessful', () => {
     const failedSignedInProps = {
       ...props,
       /**
@@ -74,8 +91,83 @@ describe('The login component ', () => {
     });
 
     wrapper.find('input[type="submit"]').simulate('click');
-    wrapper.update();
-    console.log('@@@ state from wrapper: ', wrapper.state());
+
+    setTimeout(() => {
+      expect(wrapper.state().errors).toEqual(['Wrong credentials.']);
+    }, 50);
+  });
+  it('Should set (and display) error messages from server-side on state if sign in is unsuccessful', () => {
+    const failedSignedInProps = {
+      ...props,
+      /**
+       * Sign in user mock
+       * @returns {promise} promise
+       */
+      signInUser() {
+        const error = new Error();
+        error.response = {
+          status: 400,
+          data: { errors: 'Wrong email format' }
+        };
+
+        throw error;
+      }
+    };
+
+    const wrapper = mount(<LoginScreen {...failedSignedInProps} />);
+
+    wrapper.setState({
+      email: 'test@user.com',
+      password: 'rachel'
+    });
+
+    wrapper.find('input[type="submit"]').simulate('click');
+    // TODO: FIND OUT WHY TIMEOUT HAS TO BE USED, AND IF YES, WHY IMPORTED.
+    setTimeout(() => {
+      expect(wrapper.state().errors).toEqual(['Wrong email format']);
+    }, 50);
+  });
+
+  it('Should set (and display) error messages from server-side on state if sign in is unsuccessful', () => {
+    const failedSignedInProps = {
+      ...props,
+      /**
+       * Sign in user mock
+       * @returns {promise} promise
+       */
+      signInUser() {
+        const error = new Error();
+        error.response = {
+          status: 500
+        };
+
+        throw error;
+      }
+    };
+
+    const wrapper = mount(<LoginScreen {...failedSignedInProps} />);
+
+    wrapper.setState({
+      email: 'test@user.com',
+      password: 'rachel'
+    });
+
+    wrapper.find('input[type="submit"]').simulate('click');
+    setTimeout(() => {
+      expect(wrapper.state().errors).toEqual(['Something went wrong. Please try again later.']);
+    }, 50);
+  });
+});
+
+describe('The login component mapStateToProps', () => {
+  it('should return auth user object', () => {
+    const state = {
+      recipes: [],
+      authUser: { user: {}, token: '' }
+    };
+
+    const componentProps = mapStateToProps(state);
+    expect(componentProps).toEqual({ authUser: { user: {}, token: '' } });
   });
 });
 

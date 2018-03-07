@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import { signOutUser } from '../store/actions/user';
-import { getAllRecipes, getMoreRecipes, updateSearchQuery, updateSortQuery } from '../store/actions/recipes';
+import { getAllRecipes, updateSearchQuery, updateSortQuery } from '../store/actions/recipes';
 import SingleRecipe from '../components/SingleRecipe';
 import loader from '../../assets/image/loader.gif';
 /**
@@ -168,22 +166,6 @@ class AllRecipeScreen extends React.Component {
                 </button>
               </form>
             </div>
-            {/* <InfiniteScrollComponent
-              next={this.getMoreRecipes}
-              hasMore={this.props.pageData.page !==
-                this.props.pageData.pageCount}
-              loader={
-                <div
-                  style={{ clear: 'both' }}
-                  key={0}
-                ><img
-                    style={{ width: '100px' }}
-                    src={loader}
-                    alt="loader"
-                  />
-                </div>}
-            >
-            </InfiniteScrollComponent> */}
             {
               !this.state.loading &&
 
@@ -207,7 +189,6 @@ class AllRecipeScreen extends React.Component {
               breakLabel={<a>...</a>}
               breakClassName="page-link"
               pageCount={this.props.pageData.pageCount}
-              //  forcePage={Number(this.props.location.query.page - 1) || 0}
               onPageChange={this.getMoreRecipes}
               containerClassName="pagination pagination-lg"
               pageLinkClassName="page-link"
@@ -242,22 +223,10 @@ AllRecipeScreen.propTypes = {
     createdAt: PropTypes.string.isRequired,
     updatedAt: PropTypes.string.isRequired,
   })),
-  authUser: PropTypes.shape({
-    user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      username: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      aboutMe: PropTypes.string.isRequired
-    })
-  }),
-  router: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired,
   searchQuery: PropTypes.string.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
   updateSortQuery: PropTypes.func.isRequired,
   getAllRecipes: PropTypes.func.isRequired,
-  signOutUser: PropTypes.func.isRequired,
   pageData: PropTypes.shape({
     page: PropTypes.number,
     pageCount: PropTypes.number
@@ -265,8 +234,7 @@ AllRecipeScreen.propTypes = {
 };
 
 AllRecipeScreen.defaultProps = {
-  recipes: [],
-  authUser: null
+  recipes: []
 };
 
 /**
@@ -295,7 +263,6 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({
     signOutUser,
     getAllRecipes,
-    getMoreRecipes,
     updateSearchQuery,
     updateSortQuery
   }, dispatch);
