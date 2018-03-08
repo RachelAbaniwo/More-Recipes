@@ -3,6 +3,9 @@ import path from 'path';
 import cors from 'cors';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './../api-docs/swagger.json';
+
 import db from './models';
 import routes from './routes/routes';
 
@@ -24,6 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 // mount all routes on /api routes
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/v1', routes);
 

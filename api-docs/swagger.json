@@ -1,0 +1,1128 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "More-Recipes",
+    "description": "More-Recipes is a Recipe Web Application, it could be thought of as an online meet-up for everyone who enjoys cooking and sharing recipes, or for those who are probably just interested in finding out how amazing cuisines are put together.",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://nene-more-recipes.herokuapp.com/api/v1",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/recipes": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "GET ALL RECIPES",
+        "description": "Get recipes",
+        "operationId": "GetAllRecipes",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search for a recipe by title, description or ingredients",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "https://nene-more-recipes.herokuapp.com/api/v1?search=chicken"
+            },
+            "example": "chicken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "CREATE A RECIPE",
+        "description": "",
+        "operationId": "CreateARecipe",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{cynthia_token}}"
+            },
+            "example": "{{cynthia_token}}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "name",
+                  "category",
+                  "ingredients",
+                  "description",
+                  "method",
+                  "imageUrl"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Rice"
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "Main"
+                  },
+                  "ingredients": {
+                    "type": "string",
+                    "example": "beans,  pepper, crayfish"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Beans is rich in protein"
+                  },
+                  "method": {
+                    "type": "string",
+                    "example": "boil rice"
+                  },
+                  "imageUrl": {
+                    "type": "string",
+                    "example": "http://res.cloudinary.com/rachelabaniwo/image/upload/v1520070718/Screen_Shot_2018-02-21_at_11.35.34_AM_eadlto.png"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/recipes/1": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "GET ONE RECIPE",
+        "description": "GET ONE RECIPE",
+        "operationId": "GetOneRecipe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/recipes/18": {
+      "put": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "UPDATE A RECIPE",
+        "description": "UPDATE RECIPE",
+        "operationId": "UpdateARecipe",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "name",
+                  "category",
+                  "ingredients"
+                ],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Rice updated"
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "Main updated"
+                  },
+                  "ingredients": {
+                    "type": "string",
+                    "example": "beans,  pepper, crayfish, updated"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/recipes/19": {
+      "delete": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "DELETE A RECIPE",
+        "description": "DELETE A RECIPE",
+        "operationId": "DeleteARecipe",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/favorites": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "GET MY FAVORITES",
+        "description": "GET MY FAVORITES",
+        "operationId": "GetMyFavorites",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/favorites/20": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "ADD RECIPE TO MY FAVORITES",
+        "description": "ADD RECIPE TO FAVORITES",
+        "operationId": "AddRecipeToMyFavorites",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/reviews/20": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "GET A RECIPE'S REVIEWS",
+        "description": "",
+        "operationId": "GetARecipe'sReviews",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "ADD A REVIEW",
+        "description": "ADD REVIEW",
+        "operationId": "AddAReview",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "review"
+                ],
+                "type": "object",
+                "properties": {
+                  "review": {
+                    "type": "string",
+                    "example": "this is a new review"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users/signup": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "REGISTER A NEW USER",
+        "description": "REGISTER A NEW USER",
+        "operationId": "RegisterANewUser",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "firstname",
+                  "lastname",
+                  "username",
+                  "email",
+                  "password"
+                ],
+                "type": "object",
+                "properties": {
+                  "firstname": {
+                    "type": "string",
+                    "example": "Cynthia"
+                  },
+                  "lastname": {
+                    "type": "string",
+                    "example": "Dyna"
+                  },
+                  "username": {
+                    "type": "string",
+                    "example": "CynthiaDyna"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "cynthia.dyna@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "cynthia"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users/signin": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "SIGN USER IN",
+        "description": "",
+        "operationId": "SignUserIn",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "nene.rae@test.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "rachel"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users/myrecipes": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "GET MY RECIPES",
+        "description": "",
+        "operationId": "GetMyRecipes",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users/12/recipes": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "GET ANOTHER USER'S RECIPE LIST",
+        "description": "",
+        "operationId": "GetAnotherUser'sRecipeList",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/recipes/20/upvote": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "ADD UPVOTE",
+        "description": "",
+        "operationId": "AddUpvote",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/recipes/20/downvote": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "ADD DOWNVOTE",
+        "description": "",
+        "operationId": "AddDownvote",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users/1": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "FIND A USER",
+        "description": "",
+        "operationId": "FindAUser",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiRmlyc3RuYW1lIjoiQ3ludGhpYSIsIkxhc3RuYW1lIjoiRHluYSIsIlVzZXJuYW1lIjoiQ3ludGhpYUR5bmEiLCJFbWFpbCI6ImN5bnRoaWEuZHluYUBnbWFpbC5jb20iLCJQYXNzd29yZCI6IiQyYSQxMCRtUlUwN095dlNTYmdybElaNTZaY3l1eDZaTm1kQWo2QldEOFl4d1dWUElPelM3UWRFN2hJVyIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMDJUMTY6NTI6MTkuMzcxWiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMDJUMTY6NTI6MTkuMzcxWiIsImlhdCI6MTUwOTY0MTU5NH0.ROsyXLT1zxrMDQcwmlDap4YBNRZgZzeg2RHKupKI7TQ"
+            },
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiRmlyc3RuYW1lIjoiQ3ludGhpYSIsIkxhc3RuYW1lIjoiRHluYSIsIlVzZXJuYW1lIjoiQ3ludGhpYUR5bmEiLCJFbWFpbCI6ImN5bnRoaWEuZHluYUBnbWFpbC5jb20iLCJQYXNzd29yZCI6IiQyYSQxMCRtUlUwN095dlNTYmdybElaNTZaY3l1eDZaTm1kQWo2QldEOFl4d1dWUElPelM3UWRFN2hJVyIsImNyZWF0ZWRBdCI6IjIwMTctMTEtMDJUMTY6NTI6MTkuMzcxWiIsInVwZGF0ZWRBdCI6IjIwMTctMTEtMDJUMTY6NTI6MTkuMzcxWiIsImlhdCI6MTUwOTY0MTU5NH0.ROsyXLT1zxrMDQcwmlDap4YBNRZgZzeg2RHKupKI7TQ"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "put": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "UPDATE PROFILE",
+        "description": "",
+        "operationId": "UpdateProfile",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "firstname"
+                ],
+                "type": "object",
+                "properties": {
+                  "firstname": {
+                    "type": "string",
+                    "example": "Nene Rach"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users/2": {
+      "delete": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "DELETE A USER",
+        "description": "",
+        "operationId": "DeleteAUser",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTEzMjQ3MDQ2LCJleHAiOjE1MTMzMzM0NDZ9.PGyP2o3ZeVYGsIPz7Z2BgrrxssloreU5UygCCiW5giE"
+            },
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTEzMjQ3MDQ2LCJleHAiOjE1MTMzMzM0NDZ9.PGyP2o3ZeVYGsIPz7Z2BgrrxssloreU5UygCCiW5giE"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "Firstname"
+                ],
+                "type": "object",
+                "properties": {
+                  "Firstname": {
+                    "type": "string",
+                    "example": "Rach"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/reviews/13": {
+      "put": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "UPDATE A REVIEW",
+        "description": "",
+        "operationId": "UpdateAReview",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "review"
+                ],
+                "type": "object",
+                "properties": {
+                  "review": {
+                    "type": "string",
+                    "example": "Awesome"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/reviews/12": {
+      "delete": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "DELETE A REVIEW",
+        "description": "",
+        "operationId": "DeleteAReview",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "application/x-www-form-urlencoded"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "review"
+                ],
+                "type": "object",
+                "properties": {
+                  "review": {
+                    "type": "string",
+                    "example": "Awesome"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/favorites/15": {
+      "delete": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "DELETE A RECIPE FROM FAVORITES",
+        "description": "",
+        "operationId": "DeleteARecipeFromFavorites",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    }
+  }
+}
