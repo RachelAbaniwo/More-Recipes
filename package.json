@@ -102,6 +102,7 @@
     "run": "^1.4.0",
     "sequelize": "^4.27.0",
     "sequelize-cli": "^3.2.0",
+    "swagger-ui-express": "^2.0.15",
     "toastr": "^2.1.4",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.4"
