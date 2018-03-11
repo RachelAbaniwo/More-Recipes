@@ -3,7 +3,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Navbar from '../components/Navbar';
 import { signOutUser } from '../store/actions/user';
 import ImageFile from '../components/ImageFile';
 import { setImageUrl } from '../store/actions/recipes';
@@ -276,8 +275,7 @@ UpdateUserScreen.propTypes = {
     push: PropTypes.func.isRequired
   }).isRequired,
   setImageUrl: PropTypes.func.isRequired,
-  updateUserProfile: PropTypes.func.isRequired,
-  signOutUser: PropTypes.func.isRequired
+  updateUserProfile: PropTypes.func.isRequired
 };
 UpdateUserScreen.defaultProps = {
   imageFile: null,

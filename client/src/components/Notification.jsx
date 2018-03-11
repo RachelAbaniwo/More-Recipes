@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
  * @param {object} props
  * @returns {object} jsx which displays notifications
  */
-const Notification = (props) => {
+export const Notification = (props) => {
   if (props.notification) {
     new Noty({
       text: props.notification.message,
@@ -36,7 +36,7 @@ Notification.defaultProps = {
  *
  * @returns {object} object to be passed as props to component
  */
-const mapStateToProps = state => ({ notification: state.notification });
+export const mapStateToProps = state => ({ notification: state.notification });
 
 const NotificationContainer = connect(mapStateToProps, null)(Notification);
 

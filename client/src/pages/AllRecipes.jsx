@@ -13,7 +13,7 @@ import loader from '../../assets/image/loader.gif';
  *
  * @returns {object} jsx object
  */
-class AllRecipeScreen extends React.Component {
+export class AllRecipeScreen extends React.Component {
   /**
    * Initialize component
    * @param {obj} props
@@ -41,7 +41,8 @@ class AllRecipeScreen extends React.Component {
    * @returns {null} null
    */
   componentWillMount() {
-    this.props.getAllRecipes(this.state).then(() => this.setState({ loading: false }));
+    this.props.getAllRecipes(this.state)
+      .then(() => this.setState({ loading: false }));
   }
 
   /**
@@ -192,7 +193,7 @@ class AllRecipeScreen extends React.Component {
               onPageChange={this.getMoreRecipes}
               containerClassName="pagination pagination-lg"
               pageLinkClassName="page-link"
-              nextLinkClassName="page-link"
+              nextLinkClassName="next-link page-link"
               previousLinkClassName="page-link"
               disabledClassName="disabled"
               pageClassName="page-item"
@@ -219,9 +220,7 @@ AllRecipeScreen.propTypes = {
     views: PropTypes.number.isRequired,
     favorites: PropTypes.number.isRequired,
     upvotes: PropTypes.number.isRequired,
-    downvotes: PropTypes.number.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
+    downvotes: PropTypes.number.isRequired
   })),
   searchQuery: PropTypes.string.isRequired,
   updateSearchQuery: PropTypes.func.isRequired,
@@ -243,7 +242,7 @@ AllRecipeScreen.defaultProps = {
  *
  * @returns {object} object of recipes passed as props
  */
-const mapStateToProps = state =>
+export const mapStateToProps = state =>
   ({
     authUser: state.authUser,
     recipes: state.recipes.rows,
@@ -259,7 +258,7 @@ const mapStateToProps = state =>
  *
  * @returns {object} object to be passed as props to component
  */
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators({
     signOutUser,
     getAllRecipes,

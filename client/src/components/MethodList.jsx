@@ -9,7 +9,7 @@ import React from 'react';
  *
  * @returns {object} jsx for component
  */
-const MethodList = ({ method }) => {
+export const MethodList = ({ method }) => {
   method = method.trim();
   if (method[method.length - 1] === '.') {
     method = method.substr(0, method.length - 1);

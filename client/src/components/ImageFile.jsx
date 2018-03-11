@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
-import '../../assets/css/hover.css';
 
 /**
  * Add a recipe image component
@@ -9,7 +8,7 @@ import '../../assets/css/hover.css';
  *
  * @returns {object} jsx object
  */
-class ImageFile extends React.Component {
+export class ImageFile extends React.Component {
   /**
    * Adds recipe image
    * @constructor

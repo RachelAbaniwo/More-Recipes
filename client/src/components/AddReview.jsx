@@ -11,7 +11,7 @@ import { createReview } from '../store/actions/recipes';
  *
  * @returns {object} jsx object
  */
-class AddReview extends React.Component {
+export class AddReview extends React.Component {
   /**
    * Adds review
    * @constructor
@@ -92,7 +92,6 @@ AddReview.propTypes = {
  *
  * @returns {object} object to be passed as props to component
  */
-const mapDispatchToProps = dispatch => bindActionCreators({ createReview }, dispatch);
-const AddReviewContainer = connect(null, mapDispatchToProps)(AddReview);
+export const mapDispatchToProps = dispatch => bindActionCreators({ createReview }, dispatch);
+export default connect(null, mapDispatchToProps)(AddReview);
 
-export default AddReviewContainer;

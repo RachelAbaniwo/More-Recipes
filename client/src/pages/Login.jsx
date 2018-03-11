@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { signInUser, signOutUser } from '../store/actions/user';
+import { signInUser } from '../store/actions/user';
 import { checkEmail } from '../helpers';
 //  import '../../assets/css/style.css';
 
@@ -210,8 +210,7 @@ export const mapStateToProps = state =>
  *
  * @returns {object} object to be passed as props to component
 */
-const mapDispatchToProps = dispatch => bindActionCreators({
-  signOutUser,
+export const mapDispatchToProps = dispatch => bindActionCreators({
   signInUser
 }, dispatch);
 

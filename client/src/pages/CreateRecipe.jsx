@@ -7,7 +7,6 @@ import { signOutUser } from '../store/actions/user';
 import ImageFile from '../components/ImageFile';
 import { createRecipe, setImageUrl, updateRecipe } from '../store/actions/recipes';
 import { checkField } from '../helpers';
-import '../../assets/css/style.css';
 
 /**
  * Create recipe component
@@ -15,7 +14,7 @@ import '../../assets/css/style.css';
  *
  * @returns {object} jsx object
  */
-class CreateRecipeScreen extends React.Component {
+export class CreateRecipeScreen extends React.Component {
   /**
    * Adds new recipe or updates existing one
    * @constructor
@@ -175,7 +174,9 @@ class CreateRecipeScreen extends React.Component {
           errors: error.response.data.errors
         });
       } else {
-        // notify user swr
+        this.setState({
+          errors: ['Something went wrong, try again after some time']
+        });
       }
     }
   }
@@ -361,7 +362,7 @@ CreateRecipeScreen.propTypes = {
   updateRecipe: PropTypes.func.isRequired
 };
 CreateRecipeScreen.defaultProps = {
-  recipe: {},
+  recipe: null,
   imageFile: null,
   routeParams: {}
 };
@@ -373,7 +374,7 @@ CreateRecipeScreen.defaultProps = {
  *
  * @returns {object} object of recipes passed as props
  */
-const mapStateToProps = (state, ownProps) => ({
+export const mapStateToProps = (state, ownProps) => ({
   authUser: state.authUser,
   imageFile: state.imageUpload.imageFile,
   recipe: state.recipes.rows.filter(recipe =>
@@ -386,7 +387,7 @@ const mapStateToProps = (state, ownProps) => ({
  *
  * @returns {object} object to be passed as props to component
 */
-const mapDispatchToProps = dispatch => bindActionCreators({
+export const mapDispatchToProps = dispatch => bindActionCreators({
   signOutUser, createRecipe, setImageUrl, updateRecipe
 }, dispatch);
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 
 /**
  * Landing page top buttons component
@@ -10,33 +11,7 @@ import { Link } from 'react-router';
  *
  */
 export const LandingTopButtons = ({ authUser, signOutUser }) => {
-  if (authUser === null || authUser === undefined) {
-    return (
-      <div className="col-md-12 hover-slide float-right">
-        <div
-          style={{ paddingBottom: 20 }}
-        >
-          <Link
-            to="/signup"
-            className="button btn btn-default link-button ml-2 float-right title"
-            style={{
-              width: 150, marginTop: 10, fontFamily: 'Advent Pro'
-            }}
-          >REGISTER
-          </Link>
-          <Link
-            to="/signin"
-            className="button btn btn-default link-button mr-2 float-right title"
-            style={{
-              width: 150, marginTop: 10, fontFamily: 'Advent Pro'
-            }}
-          >LOGIN
-          </Link>
-        </div>
-      </div>
-    );
-  }
-  if (authUser !== null && authUser !== undefined) {
+  if (authUser) {
     return (
       <div className="col-md-12 hover-slide float-right">
         <div
@@ -62,6 +37,30 @@ export const LandingTopButtons = ({ authUser, signOutUser }) => {
       </div>
     );
   }
+  return (
+    <div className="col-md-12 hover-slide float-right">
+      <div
+        style={{ paddingBottom: 20 }}
+      >
+        <Link
+          to="/signup"
+          className="button btn btn-default link-button ml-2 float-right title"
+          style={{
+            width: 150, marginTop: 10, fontFamily: 'Advent Pro'
+          }}
+        >REGISTER
+        </Link>
+        <Link
+          to="/signin"
+          className="button btn btn-default link-button mr-2 float-right title"
+          style={{
+            width: 150, marginTop: 10, fontFamily: 'Advent Pro'
+          }}
+        >LOGIN
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 /**
@@ -73,10 +72,7 @@ export const LandingTopButtons = ({ authUser, signOutUser }) => {
  *
  */
 export const CreateRecipeButton = ({ authUser }) => {
-  if (authUser === null || authUser === undefined) {
-    return (<div style={{ marginTop: 50 }} />);
-  }
-  if (authUser !== null && authUser !== undefined) {
+  if (authUser) {
     return (
       <div className="justify-content-center">
         <Link
@@ -99,5 +95,39 @@ export const CreateRecipeButton = ({ authUser }) => {
       </div>
     );
   }
+  return (<div style={{ marginTop: 50 }} />);
 };
 
+LandingTopButtons.propTypes = {
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      aboutMe: PropTypes.string,
+      profilePicture: PropTypes.string,
+    }).isRequired
+  }),
+  signOutUser: PropTypes.func
+};
+
+LandingTopButtons.defaultProps = {
+  authUser: null,
+  signOutUser: null
+};
+
+CreateRecipeButton.propTypes = {
+  authUser: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      username: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      aboutMe: PropTypes.string,
+      profilePicture: PropTypes.string,
+    }).isRequired
+  })
+};
+
+CreateRecipeButton.defaultProps = {
+  authUser: null
+};

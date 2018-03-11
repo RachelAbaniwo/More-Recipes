@@ -12,7 +12,7 @@ const ReviewList = (props) => {
   const ReviewsArray = props.reviews;
   const ReviewsList = ReviewsArray.map(review => (
     <div
-      key={review}
+      key={review.id}
       style={{
         fontSize: '18px',
         borderBottom: '1px solid lightgrey',
