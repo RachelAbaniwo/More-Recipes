@@ -219,7 +219,7 @@ describe('UserProfile Actions', () => {
     it(
       'should dispatch UPDATE_USER_PROFILE, clearImageUrl and setNotification',
       (done) => {
-        localStorage.setItem('authUser', defaultState.authUser);
+        localStorage.setItem('authUser', JSON.stringify(defaultState.authUser));
         moxios.wait(() => {
           const request = moxios.requests.mostRecent();
           request.respondWith({

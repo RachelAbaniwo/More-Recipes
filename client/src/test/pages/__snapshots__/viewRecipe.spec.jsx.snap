@@ -1,0 +1,4673 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ViewRecipe Page should mount without crashing when supplied props 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <ViewRecipeScreen
+    authUser={
+      Object {
+        "user": Object {
+          "aboutMe": "about me",
+          "email": "user@signedin.com",
+          "id": 3,
+          "profilePicture": "profile.jpg",
+          "username": "signed in user",
+        },
+      }
+    }
+    deleteRecipe={[MockFunction]}
+    getRecipe={[MockFunction]}
+    params={
+      Object {
+        "recipeId": "1",
+      }
+    }
+    recipe={
+      Object {
+        "Favorites": Array [
+          Object {
+            "id": 1,
+            "userId": 2,
+          },
+        ],
+        "User": Object {
+          "id": 1,
+          "username": "username",
+        },
+        "description": "recipe description",
+        "id": 1,
+        "ingredients": "recipe ingredients",
+        "method": "recipe method",
+        "name": "recipe name",
+        "recipeImage": "recipe.jpg",
+        "userId": 1,
+      }
+    }
+    router={
+      Object {
+        "location": Object {
+          "pathname": "/signin",
+        },
+        "push": [MockFunction],
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <div>
+        <section
+          className="container text-center mx auto view-recipe-container"
+          style={
+            Object {
+              "border": "1px solid lightgrey",
+              "marginBottom": 50,
+              "marginTop": 90,
+              "padding": 30,
+            }
+          }
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-sm-12"
+            >
+              <h2
+                className="text-center title"
+              >
+                recipe name
+              </h2>
+            </div>
+          </div>
+          <div
+            className="row"
+          >
+            <div
+              className="col-sm-12"
+            />
+          </div>
+          <div
+            className="row justify-content-center"
+          >
+            <section
+              className="col-sm-12"
+            >
+              <figure
+                className="figure"
+                style={
+                  Object {
+                    "marginBottom": 30,
+                    "padding": 10,
+                  }
+                }
+              >
+                <img
+                  alt="first"
+                  className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                  src="recipe.jpg"
+                  style={
+                    Object {
+                      "maxHeight": 700,
+                      "maxWidth": 900,
+                    }
+                  }
+                />
+                <figcaption
+                  className="figure-caption"
+                  style={
+                    Object {
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                  <div
+                    className="container"
+                  >
+                    <div
+                      className="row justify-content-center pt-3"
+                    >
+                      <div
+                        className="col-md-3"
+                      >
+                        <p
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="fa fa-user-circle-o"
+                          />
+                           
+                          <span
+                            className="title"
+                          >
+                            username
+                          </span>
+                        </p>
+                        <p
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          <Connect(Upvotes)
+                            recipeId={1}
+                            upvotes={undefined}
+                          />
+                            
+                          <Connect(Downvotes)
+                            downvotes={undefined}
+                            recipeId={1}
+                          />
+                            
+                          <Connect(Favorites)
+                            authUser={
+                              Object {
+                                "user": Object {
+                                  "aboutMe": "about me",
+                                  "email": "user@signedin.com",
+                                  "id": 3,
+                                  "profilePicture": "profile.jpg",
+                                  "username": "signed in user",
+                                },
+                              }
+                            }
+                            hasFavorited={false}
+                            recipeId={1}
+                          />
+                            
+                        </p>
+                      </div>
+                      <div
+                        className="col-md-3"
+                      >
+                        <p
+                          className="title"
+                          style={
+                            Object {
+                              "color": "green",
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          CATEGORY:
+                        </p>
+                        <p
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                        />
+                      </div>
+                      <div
+                        className="col-md-3"
+                      >
+                        <p
+                          className="title"
+                          style={
+                            Object {
+                              "color": "green",
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          DESCRIPTION:
+                        </p>
+                        <p
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          recipe description
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+              <article>
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  INGREDIENTS
+                </h3>
+                <IngredientList
+                  ingredients="recipe ingredients"
+                />
+              </article>
+              <h3
+                className="title"
+                style={
+                  Object {
+                    "borderBottom": "1px solid lightgrey",
+                    "color": "green",
+                    "marginBottom": 20,
+                    "paddingBottom": 9,
+                  }
+                }
+              >
+                DIRECTIONS
+              </h3>
+              <MethodList
+                method="recipe method"
+              />
+            </section>
+          </div>
+          <div
+            className="row"
+          >
+            <section
+              className="col-sm-12 text-center"
+            >
+              <h3
+                className="title"
+                style={
+                  Object {
+                    "borderBottom": "1px solid lightgrey",
+                    "color": "green",
+                    "marginBottom": 20,
+                    "paddingBottom": 9,
+                  }
+                }
+              >
+                REVIEWS
+              </h3>
+            </section>
+          </div>
+          <section
+            className="text-justify"
+            style={
+              Object {
+                "paddingLeft": 50,
+                "paddingRight": 50,
+              }
+            }
+          >
+            <ReviewList
+              reviews={Array []}
+            />
+          </section>
+          <div
+            className="row justify-content-center title"
+          >
+            <Connect(AddReview)
+              recipeId={1}
+            />
+          </div>
+        </section>
+      </div>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <section
+          className="container text-center mx auto view-recipe-container"
+          style={
+            Object {
+              "border": "1px solid lightgrey",
+              "marginBottom": 50,
+              "marginTop": 90,
+              "padding": 30,
+            }
+          }
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="col-sm-12"
+            >
+              <h2
+                className="text-center title"
+              >
+                recipe name
+              </h2>
+            </div>
+          </div>
+          <div
+            className="row"
+          >
+            <div
+              className="col-sm-12"
+            />
+          </div>
+          <div
+            className="row justify-content-center"
+          >
+            <section
+              className="col-sm-12"
+            >
+              <figure
+                className="figure"
+                style={
+                  Object {
+                    "marginBottom": 30,
+                    "padding": 10,
+                  }
+                }
+              >
+                <img
+                  alt="first"
+                  className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                  src="recipe.jpg"
+                  style={
+                    Object {
+                      "maxHeight": 700,
+                      "maxWidth": 900,
+                    }
+                  }
+                />
+                <figcaption
+                  className="figure-caption"
+                  style={
+                    Object {
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                  <div
+                    className="container"
+                  >
+                    <div
+                      className="row justify-content-center pt-3"
+                    >
+                      <div
+                        className="col-md-3"
+                      >
+                        <p
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="fa fa-user-circle-o"
+                          />
+                           
+                          <span
+                            className="title"
+                          >
+                            username
+                          </span>
+                        </p>
+                        <p
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          <Connect(Upvotes)
+                            recipeId={1}
+                            upvotes={undefined}
+                          />
+                            
+                          <Connect(Downvotes)
+                            downvotes={undefined}
+                            recipeId={1}
+                          />
+                            
+                          <Connect(Favorites)
+                            authUser={
+                              Object {
+                                "user": Object {
+                                  "aboutMe": "about me",
+                                  "email": "user@signedin.com",
+                                  "id": 3,
+                                  "profilePicture": "profile.jpg",
+                                  "username": "signed in user",
+                                },
+                              }
+                            }
+                            hasFavorited={false}
+                            recipeId={1}
+                          />
+                            
+                        </p>
+                      </div>
+                      <div
+                        className="col-md-3"
+                      >
+                        <p
+                          className="title"
+                          style={
+                            Object {
+                              "color": "green",
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          CATEGORY:
+                        </p>
+                        <p
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                        />
+                      </div>
+                      <div
+                        className="col-md-3"
+                      >
+                        <p
+                          className="title"
+                          style={
+                            Object {
+                              "color": "green",
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          DESCRIPTION:
+                        </p>
+                        <p
+                          style={
+                            Object {
+                              "fontSize": "18px",
+                            }
+                          }
+                        >
+                          recipe description
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+              <article>
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  INGREDIENTS
+                </h3>
+                <IngredientList
+                  ingredients="recipe ingredients"
+                />
+              </article>
+              <h3
+                className="title"
+                style={
+                  Object {
+                    "borderBottom": "1px solid lightgrey",
+                    "color": "green",
+                    "marginBottom": 20,
+                    "paddingBottom": 9,
+                  }
+                }
+              >
+                DIRECTIONS
+              </h3>
+              <MethodList
+                method="recipe method"
+              />
+            </section>
+          </div>
+          <div
+            className="row"
+          >
+            <section
+              className="col-sm-12 text-center"
+            >
+              <h3
+                className="title"
+                style={
+                  Object {
+                    "borderBottom": "1px solid lightgrey",
+                    "color": "green",
+                    "marginBottom": 20,
+                    "paddingBottom": 9,
+                  }
+                }
+              >
+                REVIEWS
+              </h3>
+            </section>
+          </div>
+          <section
+            className="text-justify"
+            style={
+              Object {
+                "paddingLeft": 50,
+                "paddingRight": 50,
+              }
+            }
+          >
+            <ReviewList
+              reviews={Array []}
+            />
+          </section>
+          <div
+            className="row justify-content-center title"
+          >
+            <Connect(AddReview)
+              recipeId={1}
+            />
+          </div>
+        </section>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-12"
+              >
+                <h2
+                  className="text-center title"
+                >
+                  recipe name
+                </h2>
+              </div>
+            </div>,
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-12"
+              />
+            </div>,
+            <div
+              className="row justify-content-center"
+            >
+              <section
+                className="col-sm-12"
+              >
+                <figure
+                  className="figure"
+                  style={
+                    Object {
+                      "marginBottom": 30,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <img
+                    alt="first"
+                    className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                    src="recipe.jpg"
+                    style={
+                      Object {
+                        "maxHeight": 700,
+                        "maxWidth": 900,
+                      }
+                    }
+                  />
+                  <figcaption
+                    className="figure-caption"
+                    style={
+                      Object {
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    <div
+                      className="container"
+                    >
+                      <div
+                        className="row justify-content-center pt-3"
+                      >
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="fa fa-user-circle-o"
+                            />
+                             
+                            <span
+                              className="title"
+                            >
+                              username
+                            </span>
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            <Connect(Upvotes)
+                              recipeId={1}
+                              upvotes={undefined}
+                            />
+                              
+                            <Connect(Downvotes)
+                              downvotes={undefined}
+                              recipeId={1}
+                            />
+                              
+                            <Connect(Favorites)
+                              authUser={
+                                Object {
+                                  "user": Object {
+                                    "aboutMe": "about me",
+                                    "email": "user@signedin.com",
+                                    "id": 3,
+                                    "profilePicture": "profile.jpg",
+                                    "username": "signed in user",
+                                  },
+                                }
+                              }
+                              hasFavorited={false}
+                              recipeId={1}
+                            />
+                              
+                          </p>
+                        </div>
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            className="title"
+                            style={
+                              Object {
+                                "color": "green",
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            CATEGORY:
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          />
+                        </div>
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            className="title"
+                            style={
+                              Object {
+                                "color": "green",
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            DESCRIPTION:
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            recipe description
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+                <article>
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    INGREDIENTS
+                  </h3>
+                  <IngredientList
+                    ingredients="recipe ingredients"
+                  />
+                </article>
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  DIRECTIONS
+                </h3>
+                <MethodList
+                  method="recipe method"
+                />
+              </section>
+            </div>,
+            <div
+              className="row"
+            >
+              <section
+                className="col-sm-12 text-center"
+              >
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  REVIEWS
+                </h3>
+              </section>
+            </div>,
+            <section
+              className="text-justify"
+              style={
+                Object {
+                  "paddingLeft": 50,
+                  "paddingRight": 50,
+                }
+              }
+            >
+              <ReviewList
+                reviews={Array []}
+              />
+            </section>,
+            <div
+              className="row justify-content-center title"
+            >
+              <Connect(AddReview)
+                recipeId={1}
+              />
+            </div>,
+          ],
+          "className": "container text-center mx auto view-recipe-container",
+          "style": Object {
+            "border": "1px solid lightgrey",
+            "marginBottom": 50,
+            "marginTop": 90,
+            "padding": 30,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="col-sm-12"
+              >
+                <h2
+                  className="text-center title"
+                >
+                  recipe name
+                </h2>
+              </div>,
+              "className": "row",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <h2
+                  className="text-center title"
+                >
+                  recipe name
+                </h2>,
+                "className": "col-sm-12",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "recipe name",
+                  "className": "text-center title",
+                },
+                "ref": null,
+                "rendered": "recipe name",
+                "type": "h2",
+              },
+              "type": "div",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="col-sm-12"
+              />,
+              "className": "row",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": undefined,
+                "className": "col-sm-12",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <section
+                className="col-sm-12"
+              >
+                <figure
+                  className="figure"
+                  style={
+                    Object {
+                      "marginBottom": 30,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <img
+                    alt="first"
+                    className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                    src="recipe.jpg"
+                    style={
+                      Object {
+                        "maxHeight": 700,
+                        "maxWidth": 900,
+                      }
+                    }
+                  />
+                  <figcaption
+                    className="figure-caption"
+                    style={
+                      Object {
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    <div
+                      className="container"
+                    >
+                      <div
+                        className="row justify-content-center pt-3"
+                      >
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="fa fa-user-circle-o"
+                            />
+                             
+                            <span
+                              className="title"
+                            >
+                              username
+                            </span>
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            <Connect(Upvotes)
+                              recipeId={1}
+                              upvotes={undefined}
+                            />
+                              
+                            <Connect(Downvotes)
+                              downvotes={undefined}
+                              recipeId={1}
+                            />
+                              
+                            <Connect(Favorites)
+                              authUser={
+                                Object {
+                                  "user": Object {
+                                    "aboutMe": "about me",
+                                    "email": "user@signedin.com",
+                                    "id": 3,
+                                    "profilePicture": "profile.jpg",
+                                    "username": "signed in user",
+                                  },
+                                }
+                              }
+                              hasFavorited={false}
+                              recipeId={1}
+                            />
+                              
+                          </p>
+                        </div>
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            className="title"
+                            style={
+                              Object {
+                                "color": "green",
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            CATEGORY:
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          />
+                        </div>
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            className="title"
+                            style={
+                              Object {
+                                "color": "green",
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            DESCRIPTION:
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            recipe description
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+                <article>
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    INGREDIENTS
+                  </h3>
+                  <IngredientList
+                    ingredients="recipe ingredients"
+                  />
+                </article>
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  DIRECTIONS
+                </h3>
+                <MethodList
+                  method="recipe method"
+                />
+              </section>,
+              "className": "row justify-content-center",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <figure
+                    className="figure"
+                    style={
+                      Object {
+                        "marginBottom": 30,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <img
+                      alt="first"
+                      className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                      src="recipe.jpg"
+                      style={
+                        Object {
+                          "maxHeight": 700,
+                          "maxWidth": 900,
+                        }
+                      }
+                    />
+                    <figcaption
+                      className="figure-caption"
+                      style={
+                        Object {
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      <div
+                        className="container"
+                      >
+                        <div
+                          className="row justify-content-center pt-3"
+                        >
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="fa fa-user-circle-o"
+                              />
+                               
+                              <span
+                                className="title"
+                              >
+                                username
+                              </span>
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              <Connect(Upvotes)
+                                recipeId={1}
+                                upvotes={undefined}
+                              />
+                                
+                              <Connect(Downvotes)
+                                downvotes={undefined}
+                                recipeId={1}
+                              />
+                                
+                              <Connect(Favorites)
+                                authUser={
+                                  Object {
+                                    "user": Object {
+                                      "aboutMe": "about me",
+                                      "email": "user@signedin.com",
+                                      "id": 3,
+                                      "profilePicture": "profile.jpg",
+                                      "username": "signed in user",
+                                    },
+                                  }
+                                }
+                                hasFavorited={false}
+                                recipeId={1}
+                              />
+                                
+                            </p>
+                          </div>
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              className="title"
+                              style={
+                                Object {
+                                  "color": "green",
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              CATEGORY:
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            />
+                          </div>
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              className="title"
+                              style={
+                                Object {
+                                  "color": "green",
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              DESCRIPTION:
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              recipe description
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </figcaption>
+                  </figure>,
+                  <article>
+                    <h3
+                      className="title"
+                      style={
+                        Object {
+                          "borderBottom": "1px solid lightgrey",
+                          "color": "green",
+                          "marginBottom": 20,
+                          "paddingBottom": 9,
+                        }
+                      }
+                    >
+                      INGREDIENTS
+                    </h3>
+                    <IngredientList
+                      ingredients="recipe ingredients"
+                    />
+                  </article>,
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    DIRECTIONS
+                  </h3>,
+                  <MethodList
+                    method="recipe method"
+                  />,
+                ],
+                "className": "col-sm-12",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <img
+                        alt="first"
+                        className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                        src="recipe.jpg"
+                        style={
+                          Object {
+                            "maxHeight": 700,
+                            "maxWidth": 900,
+                          }
+                        }
+                      />,
+                      <figcaption
+                        className="figure-caption"
+                        style={
+                          Object {
+                            "textAlign": "left",
+                          }
+                        }
+                      >
+                        <div
+                          className="container"
+                        >
+                          <div
+                            className="row justify-content-center pt-3"
+                          >
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                <i
+                                  aria-hidden="true"
+                                  className="fa fa-user-circle-o"
+                                />
+                                 
+                                <span
+                                  className="title"
+                                >
+                                  username
+                                </span>
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                <Connect(Upvotes)
+                                  recipeId={1}
+                                  upvotes={undefined}
+                                />
+                                  
+                                <Connect(Downvotes)
+                                  downvotes={undefined}
+                                  recipeId={1}
+                                />
+                                  
+                                <Connect(Favorites)
+                                  authUser={
+                                    Object {
+                                      "user": Object {
+                                        "aboutMe": "about me",
+                                        "email": "user@signedin.com",
+                                        "id": 3,
+                                        "profilePicture": "profile.jpg",
+                                        "username": "signed in user",
+                                      },
+                                    }
+                                  }
+                                  hasFavorited={false}
+                                  recipeId={1}
+                                />
+                                  
+                              </p>
+                            </div>
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                className="title"
+                                style={
+                                  Object {
+                                    "color": "green",
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                CATEGORY:
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              />
+                            </div>
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                className="title"
+                                style={
+                                  Object {
+                                    "color": "green",
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                DESCRIPTION:
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                recipe description
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </figcaption>,
+                    ],
+                    "className": "figure",
+                    "style": Object {
+                      "marginBottom": 30,
+                      "padding": 10,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "first",
+                        "className": "img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto",
+                        "src": "recipe.jpg",
+                        "style": Object {
+                          "maxHeight": 700,
+                          "maxWidth": 900,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <div
+                          className="container"
+                        >
+                          <div
+                            className="row justify-content-center pt-3"
+                          >
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                <i
+                                  aria-hidden="true"
+                                  className="fa fa-user-circle-o"
+                                />
+                                 
+                                <span
+                                  className="title"
+                                >
+                                  username
+                                </span>
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                <Connect(Upvotes)
+                                  recipeId={1}
+                                  upvotes={undefined}
+                                />
+                                  
+                                <Connect(Downvotes)
+                                  downvotes={undefined}
+                                  recipeId={1}
+                                />
+                                  
+                                <Connect(Favorites)
+                                  authUser={
+                                    Object {
+                                      "user": Object {
+                                        "aboutMe": "about me",
+                                        "email": "user@signedin.com",
+                                        "id": 3,
+                                        "profilePicture": "profile.jpg",
+                                        "username": "signed in user",
+                                      },
+                                    }
+                                  }
+                                  hasFavorited={false}
+                                  recipeId={1}
+                                />
+                                  
+                              </p>
+                            </div>
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                className="title"
+                                style={
+                                  Object {
+                                    "color": "green",
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                CATEGORY:
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              />
+                            </div>
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                className="title"
+                                style={
+                                  Object {
+                                    "color": "green",
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                DESCRIPTION:
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                recipe description
+                              </p>
+                            </div>
+                          </div>
+                        </div>,
+                        "className": "figure-caption",
+                        "style": Object {
+                          "textAlign": "left",
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <div
+                            className="row justify-content-center pt-3"
+                          >
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                <i
+                                  aria-hidden="true"
+                                  className="fa fa-user-circle-o"
+                                />
+                                 
+                                <span
+                                  className="title"
+                                >
+                                  username
+                                </span>
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                <Connect(Upvotes)
+                                  recipeId={1}
+                                  upvotes={undefined}
+                                />
+                                  
+                                <Connect(Downvotes)
+                                  downvotes={undefined}
+                                  recipeId={1}
+                                />
+                                  
+                                <Connect(Favorites)
+                                  authUser={
+                                    Object {
+                                      "user": Object {
+                                        "aboutMe": "about me",
+                                        "email": "user@signedin.com",
+                                        "id": 3,
+                                        "profilePicture": "profile.jpg",
+                                        "username": "signed in user",
+                                      },
+                                    }
+                                  }
+                                  hasFavorited={false}
+                                  recipeId={1}
+                                />
+                                  
+                              </p>
+                            </div>
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                className="title"
+                                style={
+                                  Object {
+                                    "color": "green",
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                CATEGORY:
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              />
+                            </div>
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                className="title"
+                                style={
+                                  Object {
+                                    "color": "green",
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                DESCRIPTION:
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                recipe description
+                              </p>
+                            </div>
+                          </div>,
+                          "className": "container",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  <i
+                                    aria-hidden="true"
+                                    className="fa fa-user-circle-o"
+                                  />
+                                   
+                                  <span
+                                    className="title"
+                                  >
+                                    username
+                                  </span>
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  <Connect(Upvotes)
+                                    recipeId={1}
+                                    upvotes={undefined}
+                                  />
+                                    
+                                  <Connect(Downvotes)
+                                    downvotes={undefined}
+                                    recipeId={1}
+                                  />
+                                    
+                                  <Connect(Favorites)
+                                    authUser={
+                                      Object {
+                                        "user": Object {
+                                          "aboutMe": "about me",
+                                          "email": "user@signedin.com",
+                                          "id": 3,
+                                          "profilePicture": "profile.jpg",
+                                          "username": "signed in user",
+                                        },
+                                      }
+                                    }
+                                    hasFavorited={false}
+                                    recipeId={1}
+                                  />
+                                    
+                                </p>
+                              </div>,
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  className="title"
+                                  style={
+                                    Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  CATEGORY:
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                />
+                              </div>,
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  className="title"
+                                  style={
+                                    Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  DESCRIPTION:
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  recipe description
+                                </p>
+                              </div>,
+                            ],
+                            "className": "row justify-content-center pt-3",
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": Array [
+                                  <p
+                                    style={
+                                      Object {
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      className="fa fa-user-circle-o"
+                                    />
+                                     
+                                    <span
+                                      className="title"
+                                    >
+                                      username
+                                    </span>
+                                  </p>,
+                                  <p
+                                    style={
+                                      Object {
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    <Connect(Upvotes)
+                                      recipeId={1}
+                                      upvotes={undefined}
+                                    />
+                                      
+                                    <Connect(Downvotes)
+                                      downvotes={undefined}
+                                      recipeId={1}
+                                    />
+                                      
+                                    <Connect(Favorites)
+                                      authUser={
+                                        Object {
+                                          "user": Object {
+                                            "aboutMe": "about me",
+                                            "email": "user@signedin.com",
+                                            "id": 3,
+                                            "profilePicture": "profile.jpg",
+                                            "username": "signed in user",
+                                          },
+                                        }
+                                      }
+                                      hasFavorited={false}
+                                      recipeId={1}
+                                    />
+                                      
+                                  </p>,
+                                ],
+                                "className": "col-md-3",
+                              },
+                              "ref": null,
+                              "rendered": Array [
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": Array [
+                                      <i
+                                        aria-hidden="true"
+                                        className="fa fa-user-circle-o"
+                                      />,
+                                      " ",
+                                      <span
+                                        className="title"
+                                      >
+                                        username
+                                      </span>,
+                                    ],
+                                    "style": Object {
+                                      "fontSize": "18px",
+                                    },
+                                  },
+                                  "ref": null,
+                                  "rendered": Array [
+                                    Object {
+                                      "instance": null,
+                                      "key": undefined,
+                                      "nodeType": "host",
+                                      "props": Object {
+                                        "aria-hidden": "true",
+                                        "className": "fa fa-user-circle-o",
+                                      },
+                                      "ref": null,
+                                      "rendered": null,
+                                      "type": "i",
+                                    },
+                                    " ",
+                                    Object {
+                                      "instance": null,
+                                      "key": undefined,
+                                      "nodeType": "host",
+                                      "props": Object {
+                                        "children": "username",
+                                        "className": "title",
+                                      },
+                                      "ref": null,
+                                      "rendered": "username",
+                                      "type": "span",
+                                    },
+                                  ],
+                                  "type": "p",
+                                },
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": Array [
+                                      <Connect(Upvotes)
+                                        recipeId={1}
+                                        upvotes={undefined}
+                                      />,
+                                      "  ",
+                                      <Connect(Downvotes)
+                                        downvotes={undefined}
+                                        recipeId={1}
+                                      />,
+                                      "  ",
+                                      <Connect(Favorites)
+                                        authUser={
+                                          Object {
+                                            "user": Object {
+                                              "aboutMe": "about me",
+                                              "email": "user@signedin.com",
+                                              "id": 3,
+                                              "profilePicture": "profile.jpg",
+                                              "username": "signed in user",
+                                            },
+                                          }
+                                        }
+                                        hasFavorited={false}
+                                        recipeId={1}
+                                      />,
+                                      "  ",
+                                    ],
+                                    "style": Object {
+                                      "fontSize": "18px",
+                                    },
+                                  },
+                                  "ref": null,
+                                  "rendered": Array [
+                                    Object {
+                                      "instance": null,
+                                      "key": undefined,
+                                      "nodeType": "class",
+                                      "props": Object {
+                                        "recipeId": 1,
+                                        "upvotes": undefined,
+                                      },
+                                      "ref": null,
+                                      "rendered": null,
+                                      "type": [Function],
+                                    },
+                                    "  ",
+                                    Object {
+                                      "instance": null,
+                                      "key": undefined,
+                                      "nodeType": "class",
+                                      "props": Object {
+                                        "downvotes": undefined,
+                                        "recipeId": 1,
+                                      },
+                                      "ref": null,
+                                      "rendered": null,
+                                      "type": [Function],
+                                    },
+                                    "  ",
+                                    Object {
+                                      "instance": null,
+                                      "key": undefined,
+                                      "nodeType": "class",
+                                      "props": Object {
+                                        "authUser": Object {
+                                          "user": Object {
+                                            "aboutMe": "about me",
+                                            "email": "user@signedin.com",
+                                            "id": 3,
+                                            "profilePicture": "profile.jpg",
+                                            "username": "signed in user",
+                                          },
+                                        },
+                                        "hasFavorited": false,
+                                        "recipeId": 1,
+                                      },
+                                      "ref": null,
+                                      "rendered": null,
+                                      "type": [Function],
+                                    },
+                                    "  ",
+                                  ],
+                                  "type": "p",
+                                },
+                              ],
+                              "type": "div",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": Array [
+                                  <p
+                                    className="title"
+                                    style={
+                                      Object {
+                                        "color": "green",
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    CATEGORY:
+                                  </p>,
+                                  <p
+                                    style={
+                                      Object {
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  />,
+                                ],
+                                "className": "col-md-3",
+                              },
+                              "ref": null,
+                              "rendered": Array [
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "CATEGORY:",
+                                    "className": "title",
+                                    "style": Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    },
+                                  },
+                                  "ref": null,
+                                  "rendered": "CATEGORY:",
+                                  "type": "p",
+                                },
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": undefined,
+                                    "style": Object {
+                                      "fontSize": "18px",
+                                    },
+                                  },
+                                  "ref": null,
+                                  "rendered": null,
+                                  "type": "p",
+                                },
+                              ],
+                              "type": "div",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": Array [
+                                  <p
+                                    className="title"
+                                    style={
+                                      Object {
+                                        "color": "green",
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    DESCRIPTION:
+                                  </p>,
+                                  <p
+                                    style={
+                                      Object {
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    recipe description
+                                  </p>,
+                                ],
+                                "className": "col-md-3",
+                              },
+                              "ref": null,
+                              "rendered": Array [
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "DESCRIPTION:",
+                                    "className": "title",
+                                    "style": Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    },
+                                  },
+                                  "ref": null,
+                                  "rendered": "DESCRIPTION:",
+                                  "type": "p",
+                                },
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "recipe description",
+                                    "style": Object {
+                                      "fontSize": "18px",
+                                    },
+                                  },
+                                  "ref": null,
+                                  "rendered": "recipe description",
+                                  "type": "p",
+                                },
+                              ],
+                              "type": "div",
+                            },
+                          ],
+                          "type": "div",
+                        },
+                        "type": "div",
+                      },
+                      "type": "figcaption",
+                    },
+                  ],
+                  "type": "figure",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <h3
+                        className="title"
+                        style={
+                          Object {
+                            "borderBottom": "1px solid lightgrey",
+                            "color": "green",
+                            "marginBottom": 20,
+                            "paddingBottom": 9,
+                          }
+                        }
+                      >
+                        INGREDIENTS
+                      </h3>,
+                      <IngredientList
+                        ingredients="recipe ingredients"
+                      />,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "INGREDIENTS",
+                        "className": "title",
+                        "style": Object {
+                          "borderBottom": "1px solid lightgrey",
+                          "color": "green",
+                          "marginBottom": 20,
+                          "paddingBottom": 9,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "INGREDIENTS",
+                      "type": "h3",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "ingredients": "recipe ingredients",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "article",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "DIRECTIONS",
+                    "className": "title",
+                    "style": Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "DIRECTIONS",
+                  "type": "h3",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "method": "recipe method",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": "section",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <section
+                className="col-sm-12 text-center"
+              >
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  REVIEWS
+                </h3>
+              </section>,
+              "className": "row",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  REVIEWS
+                </h3>,
+                "className": "col-sm-12 text-center",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "REVIEWS",
+                  "className": "title",
+                  "style": Object {
+                    "borderBottom": "1px solid lightgrey",
+                    "color": "green",
+                    "marginBottom": 20,
+                    "paddingBottom": 9,
+                  },
+                },
+                "ref": null,
+                "rendered": "REVIEWS",
+                "type": "h3",
+              },
+              "type": "section",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <ReviewList
+                reviews={Array []}
+              />,
+              "className": "text-justify",
+              "style": Object {
+                "paddingLeft": 50,
+                "paddingRight": 50,
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "reviews": Array [],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "section",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Connect(AddReview)
+                recipeId={1}
+              />,
+              "className": "row justify-content-center title",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "recipeId": 1,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+        ],
+        "type": "section",
+      },
+      "type": "div",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div>
+          <section
+            className="container text-center mx auto view-recipe-container"
+            style={
+              Object {
+                "border": "1px solid lightgrey",
+                "marginBottom": 50,
+                "marginTop": 90,
+                "padding": 30,
+              }
+            }
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-12"
+              >
+                <h2
+                  className="text-center title"
+                >
+                  recipe name
+                </h2>
+              </div>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-12"
+              />
+            </div>
+            <div
+              className="row justify-content-center"
+            >
+              <section
+                className="col-sm-12"
+              >
+                <figure
+                  className="figure"
+                  style={
+                    Object {
+                      "marginBottom": 30,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <img
+                    alt="first"
+                    className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                    src="recipe.jpg"
+                    style={
+                      Object {
+                        "maxHeight": 700,
+                        "maxWidth": 900,
+                      }
+                    }
+                  />
+                  <figcaption
+                    className="figure-caption"
+                    style={
+                      Object {
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    <div
+                      className="container"
+                    >
+                      <div
+                        className="row justify-content-center pt-3"
+                      >
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="fa fa-user-circle-o"
+                            />
+                             
+                            <span
+                              className="title"
+                            >
+                              username
+                            </span>
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            <Connect(Upvotes)
+                              recipeId={1}
+                              upvotes={undefined}
+                            />
+                              
+                            <Connect(Downvotes)
+                              downvotes={undefined}
+                              recipeId={1}
+                            />
+                              
+                            <Connect(Favorites)
+                              authUser={
+                                Object {
+                                  "user": Object {
+                                    "aboutMe": "about me",
+                                    "email": "user@signedin.com",
+                                    "id": 3,
+                                    "profilePicture": "profile.jpg",
+                                    "username": "signed in user",
+                                  },
+                                }
+                              }
+                              hasFavorited={false}
+                              recipeId={1}
+                            />
+                              
+                          </p>
+                        </div>
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            className="title"
+                            style={
+                              Object {
+                                "color": "green",
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            CATEGORY:
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          />
+                        </div>
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            className="title"
+                            style={
+                              Object {
+                                "color": "green",
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            DESCRIPTION:
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            recipe description
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+                <article>
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    INGREDIENTS
+                  </h3>
+                  <IngredientList
+                    ingredients="recipe ingredients"
+                  />
+                </article>
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  DIRECTIONS
+                </h3>
+                <MethodList
+                  method="recipe method"
+                />
+              </section>
+            </div>
+            <div
+              className="row"
+            >
+              <section
+                className="col-sm-12 text-center"
+              >
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  REVIEWS
+                </h3>
+              </section>
+            </div>
+            <section
+              className="text-justify"
+              style={
+                Object {
+                  "paddingLeft": 50,
+                  "paddingRight": 50,
+                }
+              }
+            >
+              <ReviewList
+                reviews={Array []}
+              />
+            </section>
+            <div
+              className="row justify-content-center title"
+            >
+              <Connect(AddReview)
+                recipeId={1}
+              />
+            </div>
+          </section>
+        </div>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <section
+            className="container text-center mx auto view-recipe-container"
+            style={
+              Object {
+                "border": "1px solid lightgrey",
+                "marginBottom": 50,
+                "marginTop": 90,
+                "padding": 30,
+              }
+            }
+          >
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-12"
+              >
+                <h2
+                  className="text-center title"
+                >
+                  recipe name
+                </h2>
+              </div>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="col-sm-12"
+              />
+            </div>
+            <div
+              className="row justify-content-center"
+            >
+              <section
+                className="col-sm-12"
+              >
+                <figure
+                  className="figure"
+                  style={
+                    Object {
+                      "marginBottom": 30,
+                      "padding": 10,
+                    }
+                  }
+                >
+                  <img
+                    alt="first"
+                    className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                    src="recipe.jpg"
+                    style={
+                      Object {
+                        "maxHeight": 700,
+                        "maxWidth": 900,
+                      }
+                    }
+                  />
+                  <figcaption
+                    className="figure-caption"
+                    style={
+                      Object {
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    <div
+                      className="container"
+                    >
+                      <div
+                        className="row justify-content-center pt-3"
+                      >
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            <i
+                              aria-hidden="true"
+                              className="fa fa-user-circle-o"
+                            />
+                             
+                            <span
+                              className="title"
+                            >
+                              username
+                            </span>
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            <Connect(Upvotes)
+                              recipeId={1}
+                              upvotes={undefined}
+                            />
+                              
+                            <Connect(Downvotes)
+                              downvotes={undefined}
+                              recipeId={1}
+                            />
+                              
+                            <Connect(Favorites)
+                              authUser={
+                                Object {
+                                  "user": Object {
+                                    "aboutMe": "about me",
+                                    "email": "user@signedin.com",
+                                    "id": 3,
+                                    "profilePicture": "profile.jpg",
+                                    "username": "signed in user",
+                                  },
+                                }
+                              }
+                              hasFavorited={false}
+                              recipeId={1}
+                            />
+                              
+                          </p>
+                        </div>
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            className="title"
+                            style={
+                              Object {
+                                "color": "green",
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            CATEGORY:
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          />
+                        </div>
+                        <div
+                          className="col-md-3"
+                        >
+                          <p
+                            className="title"
+                            style={
+                              Object {
+                                "color": "green",
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            DESCRIPTION:
+                          </p>
+                          <p
+                            style={
+                              Object {
+                                "fontSize": "18px",
+                              }
+                            }
+                          >
+                            recipe description
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+                <article>
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    INGREDIENTS
+                  </h3>
+                  <IngredientList
+                    ingredients="recipe ingredients"
+                  />
+                </article>
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  DIRECTIONS
+                </h3>
+                <MethodList
+                  method="recipe method"
+                />
+              </section>
+            </div>
+            <div
+              className="row"
+            >
+              <section
+                className="col-sm-12 text-center"
+              >
+                <h3
+                  className="title"
+                  style={
+                    Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    }
+                  }
+                >
+                  REVIEWS
+                </h3>
+              </section>
+            </div>
+            <section
+              className="text-justify"
+              style={
+                Object {
+                  "paddingLeft": 50,
+                  "paddingRight": 50,
+                }
+              }
+            >
+              <ReviewList
+                reviews={Array []}
+              />
+            </section>
+            <div
+              className="row justify-content-center title"
+            >
+              <Connect(AddReview)
+                recipeId={1}
+              />
+            </div>
+          </section>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="row"
+              >
+                <div
+                  className="col-sm-12"
+                >
+                  <h2
+                    className="text-center title"
+                  >
+                    recipe name
+                  </h2>
+                </div>
+              </div>,
+              <div
+                className="row"
+              >
+                <div
+                  className="col-sm-12"
+                />
+              </div>,
+              <div
+                className="row justify-content-center"
+              >
+                <section
+                  className="col-sm-12"
+                >
+                  <figure
+                    className="figure"
+                    style={
+                      Object {
+                        "marginBottom": 30,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <img
+                      alt="first"
+                      className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                      src="recipe.jpg"
+                      style={
+                        Object {
+                          "maxHeight": 700,
+                          "maxWidth": 900,
+                        }
+                      }
+                    />
+                    <figcaption
+                      className="figure-caption"
+                      style={
+                        Object {
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      <div
+                        className="container"
+                      >
+                        <div
+                          className="row justify-content-center pt-3"
+                        >
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="fa fa-user-circle-o"
+                              />
+                               
+                              <span
+                                className="title"
+                              >
+                                username
+                              </span>
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              <Connect(Upvotes)
+                                recipeId={1}
+                                upvotes={undefined}
+                              />
+                                
+                              <Connect(Downvotes)
+                                downvotes={undefined}
+                                recipeId={1}
+                              />
+                                
+                              <Connect(Favorites)
+                                authUser={
+                                  Object {
+                                    "user": Object {
+                                      "aboutMe": "about me",
+                                      "email": "user@signedin.com",
+                                      "id": 3,
+                                      "profilePicture": "profile.jpg",
+                                      "username": "signed in user",
+                                    },
+                                  }
+                                }
+                                hasFavorited={false}
+                                recipeId={1}
+                              />
+                                
+                            </p>
+                          </div>
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              className="title"
+                              style={
+                                Object {
+                                  "color": "green",
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              CATEGORY:
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            />
+                          </div>
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              className="title"
+                              style={
+                                Object {
+                                  "color": "green",
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              DESCRIPTION:
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              recipe description
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </figcaption>
+                  </figure>
+                  <article>
+                    <h3
+                      className="title"
+                      style={
+                        Object {
+                          "borderBottom": "1px solid lightgrey",
+                          "color": "green",
+                          "marginBottom": 20,
+                          "paddingBottom": 9,
+                        }
+                      }
+                    >
+                      INGREDIENTS
+                    </h3>
+                    <IngredientList
+                      ingredients="recipe ingredients"
+                    />
+                  </article>
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    DIRECTIONS
+                  </h3>
+                  <MethodList
+                    method="recipe method"
+                  />
+                </section>
+              </div>,
+              <div
+                className="row"
+              >
+                <section
+                  className="col-sm-12 text-center"
+                >
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    REVIEWS
+                  </h3>
+                </section>
+              </div>,
+              <section
+                className="text-justify"
+                style={
+                  Object {
+                    "paddingLeft": 50,
+                    "paddingRight": 50,
+                  }
+                }
+              >
+                <ReviewList
+                  reviews={Array []}
+                />
+              </section>,
+              <div
+                className="row justify-content-center title"
+              >
+                <Connect(AddReview)
+                  recipeId={1}
+                />
+              </div>,
+            ],
+            "className": "container text-center mx auto view-recipe-container",
+            "style": Object {
+              "border": "1px solid lightgrey",
+              "marginBottom": 50,
+              "marginTop": 90,
+              "padding": 30,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <div
+                  className="col-sm-12"
+                >
+                  <h2
+                    className="text-center title"
+                  >
+                    recipe name
+                  </h2>
+                </div>,
+                "className": "row",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <h2
+                    className="text-center title"
+                  >
+                    recipe name
+                  </h2>,
+                  "className": "col-sm-12",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "recipe name",
+                    "className": "text-center title",
+                  },
+                  "ref": null,
+                  "rendered": "recipe name",
+                  "type": "h2",
+                },
+                "type": "div",
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <div
+                  className="col-sm-12"
+                />,
+                "className": "row",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": undefined,
+                  "className": "col-sm-12",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <section
+                  className="col-sm-12"
+                >
+                  <figure
+                    className="figure"
+                    style={
+                      Object {
+                        "marginBottom": 30,
+                        "padding": 10,
+                      }
+                    }
+                  >
+                    <img
+                      alt="first"
+                      className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                      src="recipe.jpg"
+                      style={
+                        Object {
+                          "maxHeight": 700,
+                          "maxWidth": 900,
+                        }
+                      }
+                    />
+                    <figcaption
+                      className="figure-caption"
+                      style={
+                        Object {
+                          "textAlign": "left",
+                        }
+                      }
+                    >
+                      <div
+                        className="container"
+                      >
+                        <div
+                          className="row justify-content-center pt-3"
+                        >
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              <i
+                                aria-hidden="true"
+                                className="fa fa-user-circle-o"
+                              />
+                               
+                              <span
+                                className="title"
+                              >
+                                username
+                              </span>
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              <Connect(Upvotes)
+                                recipeId={1}
+                                upvotes={undefined}
+                              />
+                                
+                              <Connect(Downvotes)
+                                downvotes={undefined}
+                                recipeId={1}
+                              />
+                                
+                              <Connect(Favorites)
+                                authUser={
+                                  Object {
+                                    "user": Object {
+                                      "aboutMe": "about me",
+                                      "email": "user@signedin.com",
+                                      "id": 3,
+                                      "profilePicture": "profile.jpg",
+                                      "username": "signed in user",
+                                    },
+                                  }
+                                }
+                                hasFavorited={false}
+                                recipeId={1}
+                              />
+                                
+                            </p>
+                          </div>
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              className="title"
+                              style={
+                                Object {
+                                  "color": "green",
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              CATEGORY:
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            />
+                          </div>
+                          <div
+                            className="col-md-3"
+                          >
+                            <p
+                              className="title"
+                              style={
+                                Object {
+                                  "color": "green",
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              DESCRIPTION:
+                            </p>
+                            <p
+                              style={
+                                Object {
+                                  "fontSize": "18px",
+                                }
+                              }
+                            >
+                              recipe description
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </figcaption>
+                  </figure>
+                  <article>
+                    <h3
+                      className="title"
+                      style={
+                        Object {
+                          "borderBottom": "1px solid lightgrey",
+                          "color": "green",
+                          "marginBottom": 20,
+                          "paddingBottom": 9,
+                        }
+                      }
+                    >
+                      INGREDIENTS
+                    </h3>
+                    <IngredientList
+                      ingredients="recipe ingredients"
+                    />
+                  </article>
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    DIRECTIONS
+                  </h3>
+                  <MethodList
+                    method="recipe method"
+                  />
+                </section>,
+                "className": "row justify-content-center",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <figure
+                      className="figure"
+                      style={
+                        Object {
+                          "marginBottom": 30,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <img
+                        alt="first"
+                        className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                        src="recipe.jpg"
+                        style={
+                          Object {
+                            "maxHeight": 700,
+                            "maxWidth": 900,
+                          }
+                        }
+                      />
+                      <figcaption
+                        className="figure-caption"
+                        style={
+                          Object {
+                            "textAlign": "left",
+                          }
+                        }
+                      >
+                        <div
+                          className="container"
+                        >
+                          <div
+                            className="row justify-content-center pt-3"
+                          >
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                <i
+                                  aria-hidden="true"
+                                  className="fa fa-user-circle-o"
+                                />
+                                 
+                                <span
+                                  className="title"
+                                >
+                                  username
+                                </span>
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                <Connect(Upvotes)
+                                  recipeId={1}
+                                  upvotes={undefined}
+                                />
+                                  
+                                <Connect(Downvotes)
+                                  downvotes={undefined}
+                                  recipeId={1}
+                                />
+                                  
+                                <Connect(Favorites)
+                                  authUser={
+                                    Object {
+                                      "user": Object {
+                                        "aboutMe": "about me",
+                                        "email": "user@signedin.com",
+                                        "id": 3,
+                                        "profilePicture": "profile.jpg",
+                                        "username": "signed in user",
+                                      },
+                                    }
+                                  }
+                                  hasFavorited={false}
+                                  recipeId={1}
+                                />
+                                  
+                              </p>
+                            </div>
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                className="title"
+                                style={
+                                  Object {
+                                    "color": "green",
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                CATEGORY:
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              />
+                            </div>
+                            <div
+                              className="col-md-3"
+                            >
+                              <p
+                                className="title"
+                                style={
+                                  Object {
+                                    "color": "green",
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                DESCRIPTION:
+                              </p>
+                              <p
+                                style={
+                                  Object {
+                                    "fontSize": "18px",
+                                  }
+                                }
+                              >
+                                recipe description
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </figcaption>
+                    </figure>,
+                    <article>
+                      <h3
+                        className="title"
+                        style={
+                          Object {
+                            "borderBottom": "1px solid lightgrey",
+                            "color": "green",
+                            "marginBottom": 20,
+                            "paddingBottom": 9,
+                          }
+                        }
+                      >
+                        INGREDIENTS
+                      </h3>
+                      <IngredientList
+                        ingredients="recipe ingredients"
+                      />
+                    </article>,
+                    <h3
+                      className="title"
+                      style={
+                        Object {
+                          "borderBottom": "1px solid lightgrey",
+                          "color": "green",
+                          "marginBottom": 20,
+                          "paddingBottom": 9,
+                        }
+                      }
+                    >
+                      DIRECTIONS
+                    </h3>,
+                    <MethodList
+                      method="recipe method"
+                    />,
+                  ],
+                  "className": "col-sm-12",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <img
+                          alt="first"
+                          className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
+                          src="recipe.jpg"
+                          style={
+                            Object {
+                              "maxHeight": 700,
+                              "maxWidth": 900,
+                            }
+                          }
+                        />,
+                        <figcaption
+                          className="figure-caption"
+                          style={
+                            Object {
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          <div
+                            className="container"
+                          >
+                            <div
+                              className="row justify-content-center pt-3"
+                            >
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  <i
+                                    aria-hidden="true"
+                                    className="fa fa-user-circle-o"
+                                  />
+                                   
+                                  <span
+                                    className="title"
+                                  >
+                                    username
+                                  </span>
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  <Connect(Upvotes)
+                                    recipeId={1}
+                                    upvotes={undefined}
+                                  />
+                                    
+                                  <Connect(Downvotes)
+                                    downvotes={undefined}
+                                    recipeId={1}
+                                  />
+                                    
+                                  <Connect(Favorites)
+                                    authUser={
+                                      Object {
+                                        "user": Object {
+                                          "aboutMe": "about me",
+                                          "email": "user@signedin.com",
+                                          "id": 3,
+                                          "profilePicture": "profile.jpg",
+                                          "username": "signed in user",
+                                        },
+                                      }
+                                    }
+                                    hasFavorited={false}
+                                    recipeId={1}
+                                  />
+                                    
+                                </p>
+                              </div>
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  className="title"
+                                  style={
+                                    Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  CATEGORY:
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                />
+                              </div>
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  className="title"
+                                  style={
+                                    Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  DESCRIPTION:
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  recipe description
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </figcaption>,
+                      ],
+                      "className": "figure",
+                      "style": Object {
+                        "marginBottom": 30,
+                        "padding": 10,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "alt": "first",
+                          "className": "img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto",
+                          "src": "recipe.jpg",
+                          "style": Object {
+                            "maxHeight": 700,
+                            "maxWidth": 900,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <div
+                            className="container"
+                          >
+                            <div
+                              className="row justify-content-center pt-3"
+                            >
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  <i
+                                    aria-hidden="true"
+                                    className="fa fa-user-circle-o"
+                                  />
+                                   
+                                  <span
+                                    className="title"
+                                  >
+                                    username
+                                  </span>
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  <Connect(Upvotes)
+                                    recipeId={1}
+                                    upvotes={undefined}
+                                  />
+                                    
+                                  <Connect(Downvotes)
+                                    downvotes={undefined}
+                                    recipeId={1}
+                                  />
+                                    
+                                  <Connect(Favorites)
+                                    authUser={
+                                      Object {
+                                        "user": Object {
+                                          "aboutMe": "about me",
+                                          "email": "user@signedin.com",
+                                          "id": 3,
+                                          "profilePicture": "profile.jpg",
+                                          "username": "signed in user",
+                                        },
+                                      }
+                                    }
+                                    hasFavorited={false}
+                                    recipeId={1}
+                                  />
+                                    
+                                </p>
+                              </div>
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  className="title"
+                                  style={
+                                    Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  CATEGORY:
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                />
+                              </div>
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  className="title"
+                                  style={
+                                    Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  DESCRIPTION:
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  recipe description
+                                </p>
+                              </div>
+                            </div>
+                          </div>,
+                          "className": "figure-caption",
+                          "style": Object {
+                            "textAlign": "left",
+                          },
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <div
+                              className="row justify-content-center pt-3"
+                            >
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  <i
+                                    aria-hidden="true"
+                                    className="fa fa-user-circle-o"
+                                  />
+                                   
+                                  <span
+                                    className="title"
+                                  >
+                                    username
+                                  </span>
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  <Connect(Upvotes)
+                                    recipeId={1}
+                                    upvotes={undefined}
+                                  />
+                                    
+                                  <Connect(Downvotes)
+                                    downvotes={undefined}
+                                    recipeId={1}
+                                  />
+                                    
+                                  <Connect(Favorites)
+                                    authUser={
+                                      Object {
+                                        "user": Object {
+                                          "aboutMe": "about me",
+                                          "email": "user@signedin.com",
+                                          "id": 3,
+                                          "profilePicture": "profile.jpg",
+                                          "username": "signed in user",
+                                        },
+                                      }
+                                    }
+                                    hasFavorited={false}
+                                    recipeId={1}
+                                  />
+                                    
+                                </p>
+                              </div>
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  className="title"
+                                  style={
+                                    Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  CATEGORY:
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                />
+                              </div>
+                              <div
+                                className="col-md-3"
+                              >
+                                <p
+                                  className="title"
+                                  style={
+                                    Object {
+                                      "color": "green",
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  DESCRIPTION:
+                                </p>
+                                <p
+                                  style={
+                                    Object {
+                                      "fontSize": "18px",
+                                    }
+                                  }
+                                >
+                                  recipe description
+                                </p>
+                              </div>
+                            </div>,
+                            "className": "container",
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": Array [
+                                <div
+                                  className="col-md-3"
+                                >
+                                  <p
+                                    style={
+                                      Object {
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    <i
+                                      aria-hidden="true"
+                                      className="fa fa-user-circle-o"
+                                    />
+                                     
+                                    <span
+                                      className="title"
+                                    >
+                                      username
+                                    </span>
+                                  </p>
+                                  <p
+                                    style={
+                                      Object {
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    <Connect(Upvotes)
+                                      recipeId={1}
+                                      upvotes={undefined}
+                                    />
+                                      
+                                    <Connect(Downvotes)
+                                      downvotes={undefined}
+                                      recipeId={1}
+                                    />
+                                      
+                                    <Connect(Favorites)
+                                      authUser={
+                                        Object {
+                                          "user": Object {
+                                            "aboutMe": "about me",
+                                            "email": "user@signedin.com",
+                                            "id": 3,
+                                            "profilePicture": "profile.jpg",
+                                            "username": "signed in user",
+                                          },
+                                        }
+                                      }
+                                      hasFavorited={false}
+                                      recipeId={1}
+                                    />
+                                      
+                                  </p>
+                                </div>,
+                                <div
+                                  className="col-md-3"
+                                >
+                                  <p
+                                    className="title"
+                                    style={
+                                      Object {
+                                        "color": "green",
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    CATEGORY:
+                                  </p>
+                                  <p
+                                    style={
+                                      Object {
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  />
+                                </div>,
+                                <div
+                                  className="col-md-3"
+                                >
+                                  <p
+                                    className="title"
+                                    style={
+                                      Object {
+                                        "color": "green",
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    DESCRIPTION:
+                                  </p>
+                                  <p
+                                    style={
+                                      Object {
+                                        "fontSize": "18px",
+                                      }
+                                    }
+                                  >
+                                    recipe description
+                                  </p>
+                                </div>,
+                              ],
+                              "className": "row justify-content-center pt-3",
+                            },
+                            "ref": null,
+                            "rendered": Array [
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": Array [
+                                    <p
+                                      style={
+                                        Object {
+                                          "fontSize": "18px",
+                                        }
+                                      }
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        className="fa fa-user-circle-o"
+                                      />
+                                       
+                                      <span
+                                        className="title"
+                                      >
+                                        username
+                                      </span>
+                                    </p>,
+                                    <p
+                                      style={
+                                        Object {
+                                          "fontSize": "18px",
+                                        }
+                                      }
+                                    >
+                                      <Connect(Upvotes)
+                                        recipeId={1}
+                                        upvotes={undefined}
+                                      />
+                                        
+                                      <Connect(Downvotes)
+                                        downvotes={undefined}
+                                        recipeId={1}
+                                      />
+                                        
+                                      <Connect(Favorites)
+                                        authUser={
+                                          Object {
+                                            "user": Object {
+                                              "aboutMe": "about me",
+                                              "email": "user@signedin.com",
+                                              "id": 3,
+                                              "profilePicture": "profile.jpg",
+                                              "username": "signed in user",
+                                            },
+                                          }
+                                        }
+                                        hasFavorited={false}
+                                        recipeId={1}
+                                      />
+                                        
+                                    </p>,
+                                  ],
+                                  "className": "col-md-3",
+                                },
+                                "ref": null,
+                                "rendered": Array [
+                                  Object {
+                                    "instance": null,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "children": Array [
+                                        <i
+                                          aria-hidden="true"
+                                          className="fa fa-user-circle-o"
+                                        />,
+                                        " ",
+                                        <span
+                                          className="title"
+                                        >
+                                          username
+                                        </span>,
+                                      ],
+                                      "style": Object {
+                                        "fontSize": "18px",
+                                      },
+                                    },
+                                    "ref": null,
+                                    "rendered": Array [
+                                      Object {
+                                        "instance": null,
+                                        "key": undefined,
+                                        "nodeType": "host",
+                                        "props": Object {
+                                          "aria-hidden": "true",
+                                          "className": "fa fa-user-circle-o",
+                                        },
+                                        "ref": null,
+                                        "rendered": null,
+                                        "type": "i",
+                                      },
+                                      " ",
+                                      Object {
+                                        "instance": null,
+                                        "key": undefined,
+                                        "nodeType": "host",
+                                        "props": Object {
+                                          "children": "username",
+                                          "className": "title",
+                                        },
+                                        "ref": null,
+                                        "rendered": "username",
+                                        "type": "span",
+                                      },
+                                    ],
+                                    "type": "p",
+                                  },
+                                  Object {
+                                    "instance": null,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "children": Array [
+                                        <Connect(Upvotes)
+                                          recipeId={1}
+                                          upvotes={undefined}
+                                        />,
+                                        "  ",
+                                        <Connect(Downvotes)
+                                          downvotes={undefined}
+                                          recipeId={1}
+                                        />,
+                                        "  ",
+                                        <Connect(Favorites)
+                                          authUser={
+                                            Object {
+                                              "user": Object {
+                                                "aboutMe": "about me",
+                                                "email": "user@signedin.com",
+                                                "id": 3,
+                                                "profilePicture": "profile.jpg",
+                                                "username": "signed in user",
+                                              },
+                                            }
+                                          }
+                                          hasFavorited={false}
+                                          recipeId={1}
+                                        />,
+                                        "  ",
+                                      ],
+                                      "style": Object {
+                                        "fontSize": "18px",
+                                      },
+                                    },
+                                    "ref": null,
+                                    "rendered": Array [
+                                      Object {
+                                        "instance": null,
+                                        "key": undefined,
+                                        "nodeType": "class",
+                                        "props": Object {
+                                          "recipeId": 1,
+                                          "upvotes": undefined,
+                                        },
+                                        "ref": null,
+                                        "rendered": null,
+                                        "type": [Function],
+                                      },
+                                      "  ",
+                                      Object {
+                                        "instance": null,
+                                        "key": undefined,
+                                        "nodeType": "class",
+                                        "props": Object {
+                                          "downvotes": undefined,
+                                          "recipeId": 1,
+                                        },
+                                        "ref": null,
+                                        "rendered": null,
+                                        "type": [Function],
+                                      },
+                                      "  ",
+                                      Object {
+                                        "instance": null,
+                                        "key": undefined,
+                                        "nodeType": "class",
+                                        "props": Object {
+                                          "authUser": Object {
+                                            "user": Object {
+                                              "aboutMe": "about me",
+                                              "email": "user@signedin.com",
+                                              "id": 3,
+                                              "profilePicture": "profile.jpg",
+                                              "username": "signed in user",
+                                            },
+                                          },
+                                          "hasFavorited": false,
+                                          "recipeId": 1,
+                                        },
+                                        "ref": null,
+                                        "rendered": null,
+                                        "type": [Function],
+                                      },
+                                      "  ",
+                                    ],
+                                    "type": "p",
+                                  },
+                                ],
+                                "type": "div",
+                              },
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": Array [
+                                    <p
+                                      className="title"
+                                      style={
+                                        Object {
+                                          "color": "green",
+                                          "fontSize": "18px",
+                                        }
+                                      }
+                                    >
+                                      CATEGORY:
+                                    </p>,
+                                    <p
+                                      style={
+                                        Object {
+                                          "fontSize": "18px",
+                                        }
+                                      }
+                                    />,
+                                  ],
+                                  "className": "col-md-3",
+                                },
+                                "ref": null,
+                                "rendered": Array [
+                                  Object {
+                                    "instance": null,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "children": "CATEGORY:",
+                                      "className": "title",
+                                      "style": Object {
+                                        "color": "green",
+                                        "fontSize": "18px",
+                                      },
+                                    },
+                                    "ref": null,
+                                    "rendered": "CATEGORY:",
+                                    "type": "p",
+                                  },
+                                  Object {
+                                    "instance": null,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "children": undefined,
+                                      "style": Object {
+                                        "fontSize": "18px",
+                                      },
+                                    },
+                                    "ref": null,
+                                    "rendered": null,
+                                    "type": "p",
+                                  },
+                                ],
+                                "type": "div",
+                              },
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": Array [
+                                    <p
+                                      className="title"
+                                      style={
+                                        Object {
+                                          "color": "green",
+                                          "fontSize": "18px",
+                                        }
+                                      }
+                                    >
+                                      DESCRIPTION:
+                                    </p>,
+                                    <p
+                                      style={
+                                        Object {
+                                          "fontSize": "18px",
+                                        }
+                                      }
+                                    >
+                                      recipe description
+                                    </p>,
+                                  ],
+                                  "className": "col-md-3",
+                                },
+                                "ref": null,
+                                "rendered": Array [
+                                  Object {
+                                    "instance": null,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "children": "DESCRIPTION:",
+                                      "className": "title",
+                                      "style": Object {
+                                        "color": "green",
+                                        "fontSize": "18px",
+                                      },
+                                    },
+                                    "ref": null,
+                                    "rendered": "DESCRIPTION:",
+                                    "type": "p",
+                                  },
+                                  Object {
+                                    "instance": null,
+                                    "key": undefined,
+                                    "nodeType": "host",
+                                    "props": Object {
+                                      "children": "recipe description",
+                                      "style": Object {
+                                        "fontSize": "18px",
+                                      },
+                                    },
+                                    "ref": null,
+                                    "rendered": "recipe description",
+                                    "type": "p",
+                                  },
+                                ],
+                                "type": "div",
+                              },
+                            ],
+                            "type": "div",
+                          },
+                          "type": "div",
+                        },
+                        "type": "figcaption",
+                      },
+                    ],
+                    "type": "figure",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <h3
+                          className="title"
+                          style={
+                            Object {
+                              "borderBottom": "1px solid lightgrey",
+                              "color": "green",
+                              "marginBottom": 20,
+                              "paddingBottom": 9,
+                            }
+                          }
+                        >
+                          INGREDIENTS
+                        </h3>,
+                        <IngredientList
+                          ingredients="recipe ingredients"
+                        />,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "INGREDIENTS",
+                          "className": "title",
+                          "style": Object {
+                            "borderBottom": "1px solid lightgrey",
+                            "color": "green",
+                            "marginBottom": 20,
+                            "paddingBottom": 9,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": "INGREDIENTS",
+                        "type": "h3",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "ingredients": "recipe ingredients",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                    ],
+                    "type": "article",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "DIRECTIONS",
+                      "className": "title",
+                      "style": Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "DIRECTIONS",
+                    "type": "h3",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "method": "recipe method",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": "section",
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <section
+                  className="col-sm-12 text-center"
+                >
+                  <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    REVIEWS
+                  </h3>
+                </section>,
+                "className": "row",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <h3
+                    className="title"
+                    style={
+                      Object {
+                        "borderBottom": "1px solid lightgrey",
+                        "color": "green",
+                        "marginBottom": 20,
+                        "paddingBottom": 9,
+                      }
+                    }
+                  >
+                    REVIEWS
+                  </h3>,
+                  "className": "col-sm-12 text-center",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "REVIEWS",
+                    "className": "title",
+                    "style": Object {
+                      "borderBottom": "1px solid lightgrey",
+                      "color": "green",
+                      "marginBottom": 20,
+                      "paddingBottom": 9,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "REVIEWS",
+                  "type": "h3",
+                },
+                "type": "section",
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <ReviewList
+                  reviews={Array []}
+                />,
+                "className": "text-justify",
+                "style": Object {
+                  "paddingLeft": 50,
+                  "paddingRight": 50,
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "reviews": Array [],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "section",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <Connect(AddReview)
+                  recipeId={1}
+                />,
+                "className": "row justify-content-center title",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "recipeId": 1,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": "section",
+        },
+        "type": "div",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

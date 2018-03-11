@@ -7,12 +7,9 @@ import { connect } from 'react-redux';
 import IngredientList from '../components/IngredientList';
 import MethodList from '../components/MethodList';
 import ReviewList from '../components/ReviewList';
-import Navbar from '../components/Navbar';
 import { signOutUser } from '../store/actions/user';
 import { getRecipe, deleteRecipe } from '../store/actions/recipes';
 import AddReview from './../components/AddReview';
-import '../../assets/css/style.css';
-
 import Upvotes from '../components/Upvotes';
 import Downvotes from '../components/Downvotes';
 import Favorites from '../components/Favorites';
@@ -23,7 +20,7 @@ import Favorites from '../components/Favorites';
  *
  * @returns {object} jsx object
  */
-class ViewRecipeScreen extends React.Component {
+export class ViewRecipeScreen extends React.Component {
   /**
    * Adds new recipe
    * @constructor
@@ -131,7 +128,7 @@ class ViewRecipeScreen extends React.Component {
               </Link>
               &nbsp;&nbsp;
               <Button
-                className="button btn btn-default update-button"
+                className="button btn btn-default toggle-modal update-button"
                 onClick={this.toggle}
               >DELETE
               </Button>
@@ -143,12 +140,12 @@ class ViewRecipeScreen extends React.Component {
                   <h4>CONFIRM</h4>
                   <h5>Are you sure you want to delete this recipe?</h5>
                   <Button
-                    className="button btn btn-default update-button pull-right"
+                    className="button btn btn-default delete-recipe update-button pull-right"
                     onClick={this.deleteRecipe}
                   >DELETE
                   </Button>
                   <Button
-                    className="button btn btn-default update-button pull-right mr-2"
+                    className="button btn btn-default close-modal update-button pull-right mr-2"
                     onClick={this.toggle}
                   >CANCEL
                   </Button>
@@ -336,7 +333,6 @@ ViewRecipeScreen.propTypes = {
   }).isRequired,
   getRecipe: PropTypes.func.isRequired,
   deleteRecipe: PropTypes.func.isRequired,
-  signOutUser: PropTypes.func.isRequired,
   authUser: PropTypes.shape({
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -362,7 +358,7 @@ ViewRecipeScreen.defaultProps = {
  * @param {object} ownProps
  * @returns {object} props
  */
-const mapStateToProps = (state, ownProps) => ({
+export const mapStateToProps = (state, ownProps) => ({
   authUser: state.authUser,
   recipe: state.recipes.rows.find(recipe =>
     recipe.id === parseInt(ownProps.params.recipeId, 10)) || null
@@ -373,7 +369,7 @@ const mapStateToProps = (state, ownProps) => ({
  * @param {func} dispatch
  * @returns {object} props
  */
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators({ signOutUser, getRecipe, deleteRecipe }, dispatch);
 
 const ViewRecipe = connect(mapStateToProps, mapDispatchToProps)(ViewRecipeScreen);

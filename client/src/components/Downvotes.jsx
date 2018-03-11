@@ -10,7 +10,7 @@ import { toggleVote } from './../store/actions/votes';
  *
  * @returns {object} jsx for component
  */
-const Downvotes = ({ downvotes, toggleVote: toggleVoteFunc, recipeId }) => ((
+export const Downvotes = ({ downvotes, toggleVote: toggleVoteFunc, recipeId }) => ((
   <Fragment>
     <i
       className="fa fa-thumbs-down text-danger click-add"
@@ -31,7 +31,7 @@ Downvotes.propTypes = {
  *
  * @returns {object} object to be passed as props to component
  */
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators({ toggleVote }, dispatch);
 
 const DownvotesConnected = connect(null, mapDispatchToProps)(Downvotes);

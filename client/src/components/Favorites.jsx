@@ -10,7 +10,7 @@ import { toggleFavorite } from './../store/actions/votes';
  *
  * @returns {object} jsx for component
  */
-const Favorites = ({
+export const Favorites = ({
   toggleFavorite: toggleFavoritesFunc, recipeId, authUser, hasFavorited
 }) => ((
   <Fragment>
@@ -45,7 +45,7 @@ Favorites.defaultProps = {
  *
  * @returns {object} object to be passed as props to component
  */
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators({ toggleFavorite }, dispatch);
 
 const FavoritesConnected = connect(null, mapDispatchToProps)(Favorites);

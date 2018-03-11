@@ -73,7 +73,7 @@ MyProfile.propTypes = {
       id: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired,
-      aboutMe: PropTypes.string.isRequired
+      aboutMe: PropTypes.string
     }).isRequired
   })
 };

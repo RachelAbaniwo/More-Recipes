@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getMyRecipes, getMyFavorites } from '../store/actions/userProfile';
-import Navbar from '../components/Navbar';
-import MySingleRecipe from '../components/MySingleRecipe';
-import { signOutUser } from '../store/actions/user';
 import MyProfile from '../components/MyProfile';
+import MySingleRecipe from '../components/MySingleRecipe';
+import { getMyRecipes, getMyFavorites } from '../store/actions/userProfile';
 
 
 /**
@@ -15,7 +13,7 @@ import MyProfile from '../components/MyProfile';
  *
  * @returns {object} jsx object
  */
-class ViewDashboard extends React.Component {
+export class ViewDashboard extends React.Component {
   /**
    * Execute when component will mount
    * @return {object} object
@@ -149,12 +147,8 @@ ViewDashboard.propTypes = {
     method: PropTypes.string.isRequired,
     recipeImage: PropTypes.string.isRequired
   })),
-  router: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired,
   getMyFavorites: PropTypes.func.isRequired,
-  getMyRecipes: PropTypes.func.isRequired,
-  signOutUser: PropTypes.func.isRequired
+  getMyRecipes: PropTypes.func.isRequired
 };
 
 ViewDashboard.defaultProps = {
@@ -170,7 +164,7 @@ ViewDashboard.defaultProps = {
  *
  * @returns {object} object of recipes passed as props
  */
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   authUser: state.authUser,
   myRecipes: state.userProfile.myRecipes.rows,
   favoriteRecipes: state.userProfile.favoriteRecipes.rows
@@ -182,9 +176,8 @@ const mapStateToProps = state => ({
  *
  * @returns {object} object to be passed as props to component
 */
-const mapDispatchToProps = dispatch => bindActionCreators(
+export const mapDispatchToProps = dispatch => bindActionCreators(
   {
-    signOutUser,
     getMyRecipes,
     getMyFavorites
   },

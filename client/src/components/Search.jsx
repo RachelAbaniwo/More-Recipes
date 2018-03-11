@@ -12,7 +12,7 @@ import { updateSearchQuery } from './../store/actions/recipes';
  * @param {object} props
  * @returns {object} jsx search bar
  */
-const Search = (props) => {
+export const Search = (props) => {
   if (props.router.location.pathname !== '/recipes') {
     return (
       <form
@@ -60,7 +60,7 @@ Search.propTypes = {
  *
  * @returns {object} search query passed as props
  */
-const mapStateToProps = state =>
+export const mapStateToProps = state =>
   ({ searchQuery: state.search.query });
 
 /**
@@ -69,7 +69,7 @@ const mapStateToProps = state =>
 *
 * @returns {object} object to be passed as props to component
 */
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators({ updateSearchQuery }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

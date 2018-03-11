@@ -1,0 +1,852 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ReviewsList component should display a list of reviews passed to it 1`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <ReviewList
+    reviews={
+      Array [
+        Object {
+          "User": Object {
+            "id": 1,
+            "username": "test_user",
+          },
+          "id": 1,
+          "review": "some review",
+          "userId": 1,
+        },
+        Object {
+          "User": Object {
+            "id": 1,
+            "username": "test_user",
+          },
+          "id": 2,
+          "review": "",
+          "userId": 1,
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "reviews": Array [
+        Object {
+          "User": Object {
+            "id": 1,
+            "username": "test_user",
+          },
+          "id": 1,
+          "review": "some review",
+          "userId": 1,
+        },
+        Object {
+          "User": Object {
+            "id": 1,
+            "username": "test_user",
+          },
+          "id": 2,
+          "review": "",
+          "userId": 1,
+        },
+      ],
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": <article
+        style="padding-bottom: 30px;"
+      >
+        <div
+          style="font-size: 18px; margin-bottom: 20px;"
+        >
+          <p>
+            some review
+          </p>
+          <p>
+            <i
+              aria-hidden="true"
+              class="fa fa-user-circle-o"
+            />
+             
+            <span
+              class="title"
+            >
+              test_user
+            </span>
+          </p>
+        </div>
+        <div
+          style="font-size: 18px; margin-bottom: 20px;"
+        >
+          <p />
+          <p>
+            <i
+              aria-hidden="true"
+              class="fa fa-user-circle-o"
+            />
+             
+            <span
+              class="title"
+            >
+              test_user
+            </span>
+          </p>
+        </div>
+      </article>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            style={
+              Object {
+                "borderBottom": "1px solid lightgrey",
+                "fontSize": "18px",
+                "marginBottom": 20,
+              }
+            }
+          >
+            <p>
+              some review
+            </p>
+            <p>
+              <i
+                aria-hidden="true"
+                className="fa fa-user-circle-o"
+              />
+               
+              <span
+                className="title"
+              >
+                test_user
+              </span>
+            </p>
+          </div>,
+          <div
+            style={
+              Object {
+                "borderBottom": "1px solid lightgrey",
+                "fontSize": "18px",
+                "marginBottom": 20,
+              }
+            }
+          >
+            <p>
+              
+            </p>
+            <p>
+              <i
+                aria-hidden="true"
+                className="fa fa-user-circle-o"
+              />
+               
+              <span
+                className="title"
+              >
+                test_user
+              </span>
+            </p>
+          </div>,
+        ],
+        "style": Object {
+          "paddingBottom": 30,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": <div
+            style="font-size: 18px; margin-bottom: 20px;"
+          >
+            <p>
+              some review
+            </p>
+            <p>
+              <i
+                aria-hidden="true"
+                class="fa fa-user-circle-o"
+              />
+               
+              <span
+                class="title"
+              >
+                test_user
+              </span>
+            </p>
+          </div>,
+          "key": "1",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <p>
+                some review
+              </p>,
+              <p>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user-circle-o"
+                />
+                 
+                <span
+                  className="title"
+                >
+                  test_user
+                </span>
+              </p>,
+            ],
+            "style": Object {
+              "borderBottom": "1px solid lightgrey",
+              "fontSize": "18px",
+              "marginBottom": 20,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": <p>
+                some review
+              </p>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "some review",
+              },
+              "ref": null,
+              "rendered": Array [
+                "some review",
+              ],
+              "type": "p",
+            },
+            Object {
+              "instance": <p>
+                <i
+                  aria-hidden="true"
+                  class="fa fa-user-circle-o"
+                />
+                 
+                <span
+                  class="title"
+                >
+                  test_user
+                </span>
+              </p>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-user-circle-o"
+                  />,
+                  " ",
+                  <span
+                    className="title"
+                  >
+                    test_user
+                  </span>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": <i
+                    aria-hidden="true"
+                    class="fa fa-user-circle-o"
+                  />,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "aria-hidden": "true",
+                    "className": "fa fa-user-circle-o",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    undefined,
+                  ],
+                  "type": "i",
+                },
+                " ",
+                Object {
+                  "instance": <span
+                    class="title"
+                  >
+                    test_user
+                  </span>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "test_user",
+                    "className": "title",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "test_user",
+                  ],
+                  "type": "span",
+                },
+              ],
+              "type": "p",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": <div
+            style="font-size: 18px; margin-bottom: 20px;"
+          >
+            <p />
+            <p>
+              <i
+                aria-hidden="true"
+                class="fa fa-user-circle-o"
+              />
+               
+              <span
+                class="title"
+              >
+                test_user
+              </span>
+            </p>
+          </div>,
+          "key": "2",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <p>
+                
+              </p>,
+              <p>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user-circle-o"
+                />
+                 
+                <span
+                  className="title"
+                >
+                  test_user
+                </span>
+              </p>,
+            ],
+            "style": Object {
+              "borderBottom": "1px solid lightgrey",
+              "fontSize": "18px",
+              "marginBottom": 20,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": <p />,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "",
+              },
+              "ref": null,
+              "rendered": Array [
+                "",
+              ],
+              "type": "p",
+            },
+            Object {
+              "instance": <p>
+                <i
+                  aria-hidden="true"
+                  class="fa fa-user-circle-o"
+                />
+                 
+                <span
+                  class="title"
+                >
+                  test_user
+                </span>
+              </p>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-user-circle-o"
+                  />,
+                  " ",
+                  <span
+                    className="title"
+                  >
+                    test_user
+                  </span>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": <i
+                    aria-hidden="true"
+                    class="fa fa-user-circle-o"
+                  />,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "aria-hidden": "true",
+                    "className": "fa fa-user-circle-o",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    undefined,
+                  ],
+                  "type": "i",
+                },
+                " ",
+                Object {
+                  "instance": <span
+                    class="title"
+                  >
+                    test_user
+                  </span>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "test_user",
+                    "className": "title",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "test_user",
+                  ],
+                  "type": "span",
+                },
+              ],
+              "type": "p",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "article",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "reviews": Array [
+          Object {
+            "User": Object {
+              "id": 1,
+              "username": "test_user",
+            },
+            "id": 1,
+            "review": "some review",
+            "userId": 1,
+          },
+          Object {
+            "User": Object {
+              "id": 1,
+              "username": "test_user",
+            },
+            "id": 2,
+            "review": "",
+            "userId": 1,
+          },
+        ],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": <article
+          style="padding-bottom: 30px;"
+        >
+          <div
+            style="font-size: 18px; margin-bottom: 20px;"
+          >
+            <p>
+              some review
+            </p>
+            <p>
+              <i
+                aria-hidden="true"
+                class="fa fa-user-circle-o"
+              />
+               
+              <span
+                class="title"
+              >
+                test_user
+              </span>
+            </p>
+          </div>
+          <div
+            style="font-size: 18px; margin-bottom: 20px;"
+          >
+            <p />
+            <p>
+              <i
+                aria-hidden="true"
+                class="fa fa-user-circle-o"
+              />
+               
+              <span
+                class="title"
+              >
+                test_user
+              </span>
+            </p>
+          </div>
+        </article>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              style={
+                Object {
+                  "borderBottom": "1px solid lightgrey",
+                  "fontSize": "18px",
+                  "marginBottom": 20,
+                }
+              }
+            >
+              <p>
+                some review
+              </p>
+              <p>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user-circle-o"
+                />
+                 
+                <span
+                  className="title"
+                >
+                  test_user
+                </span>
+              </p>
+            </div>,
+            <div
+              style={
+                Object {
+                  "borderBottom": "1px solid lightgrey",
+                  "fontSize": "18px",
+                  "marginBottom": 20,
+                }
+              }
+            >
+              <p>
+                
+              </p>
+              <p>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-user-circle-o"
+                />
+                 
+                <span
+                  className="title"
+                >
+                  test_user
+                </span>
+              </p>
+            </div>,
+          ],
+          "style": Object {
+            "paddingBottom": 30,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": <div
+              style="font-size: 18px; margin-bottom: 20px;"
+            >
+              <p>
+                some review
+              </p>
+              <p>
+                <i
+                  aria-hidden="true"
+                  class="fa fa-user-circle-o"
+                />
+                 
+                <span
+                  class="title"
+                >
+                  test_user
+                </span>
+              </p>
+            </div>,
+            "key": "1",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <p>
+                  some review
+                </p>,
+                <p>
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-user-circle-o"
+                  />
+                   
+                  <span
+                    className="title"
+                  >
+                    test_user
+                  </span>
+                </p>,
+              ],
+              "style": Object {
+                "borderBottom": "1px solid lightgrey",
+                "fontSize": "18px",
+                "marginBottom": 20,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": <p>
+                  some review
+                </p>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "some review",
+                },
+                "ref": null,
+                "rendered": Array [
+                  "some review",
+                ],
+                "type": "p",
+              },
+              Object {
+                "instance": <p>
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-user-circle-o"
+                  />
+                   
+                  <span
+                    class="title"
+                  >
+                    test_user
+                  </span>
+                </p>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-user-circle-o"
+                    />,
+                    " ",
+                    <span
+                      className="title"
+                    >
+                      test_user
+                    </span>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": <i
+                      aria-hidden="true"
+                      class="fa fa-user-circle-o"
+                    />,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "aria-hidden": "true",
+                      "className": "fa fa-user-circle-o",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      undefined,
+                    ],
+                    "type": "i",
+                  },
+                  " ",
+                  Object {
+                    "instance": <span
+                      class="title"
+                    >
+                      test_user
+                    </span>,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "test_user",
+                      "className": "title",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "test_user",
+                    ],
+                    "type": "span",
+                  },
+                ],
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": <div
+              style="font-size: 18px; margin-bottom: 20px;"
+            >
+              <p />
+              <p>
+                <i
+                  aria-hidden="true"
+                  class="fa fa-user-circle-o"
+                />
+                 
+                <span
+                  class="title"
+                >
+                  test_user
+                </span>
+              </p>
+            </div>,
+            "key": "2",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <p>
+                  
+                </p>,
+                <p>
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-user-circle-o"
+                  />
+                   
+                  <span
+                    className="title"
+                  >
+                    test_user
+                  </span>
+                </p>,
+              ],
+              "style": Object {
+                "borderBottom": "1px solid lightgrey",
+                "fontSize": "18px",
+                "marginBottom": 20,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": <p />,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "",
+                },
+                "ref": null,
+                "rendered": Array [
+                  "",
+                ],
+                "type": "p",
+              },
+              Object {
+                "instance": <p>
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-user-circle-o"
+                  />
+                   
+                  <span
+                    class="title"
+                  >
+                    test_user
+                  </span>
+                </p>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-user-circle-o"
+                    />,
+                    " ",
+                    <span
+                      className="title"
+                    >
+                      test_user
+                    </span>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": <i
+                      aria-hidden="true"
+                      class="fa fa-user-circle-o"
+                    />,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "aria-hidden": "true",
+                      "className": "fa fa-user-circle-o",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      undefined,
+                    ],
+                    "type": "i",
+                  },
+                  " ",
+                  Object {
+                    "instance": <span
+                      class="title"
+                    >
+                      test_user
+                    </span>,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "test_user",
+                      "className": "title",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "test_user",
+                    ],
+                    "type": "span",
+                  },
+                ],
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": "article",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
