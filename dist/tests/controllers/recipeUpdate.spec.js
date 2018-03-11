@@ -31,7 +31,8 @@ var signinUser1 = _mockData2.default.signinUser1,
     signinUser2 = _mockData2.default.signinUser2,
     signinUser3 = _mockData2.default.signinUser3,
     recipe1 = _mockData2.default.recipe1,
-    updateRecipe = _mockData2.default.updateRecipe;
+    updateRecipe = _mockData2.default.updateRecipe,
+    wrongUpdateRecipe = _mockData2.default.wrongUpdateRecipe;
 
 
 _chai2.default.use(_chaiHttp2.default);
@@ -56,7 +57,7 @@ describe('RECIPE CONTROLLER', function () {
       });
     });
 
-    it('should update the personal recipe of the Signed in User', function (done) {
+    it('should update the personal recipe of the signed in user', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/recipes/4').set('token', user1Token).send(updateRecipe).end(function (error, response) {
         expect(response).to.have.status(201);
         var recipe = response.body.recipe;
@@ -67,31 +68,42 @@ describe('RECIPE CONTROLLER', function () {
         done();
       });
     });
-    it('should return an error if User is not Signed in', function (done) {
-      _chai2.default.request(_app2.default).put('/api/v1/recipes/1').send(updateRecipe).end(function (error, response) {
-        expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+    it('should return the original field content of the recipe if wrong characters are filled in the fields', function (done) {
+      _chai2.default.request(_app2.default).put('/api/v1/recipes/4').set('token', user1Token).send(wrongUpdateRecipe).end(function (error, response) {
+        expect(response).to.have.status(201);
+        var recipe = response.body.recipe;
+        expect(recipe.id).to.equal(4);
+        expect(recipe.name).to.equal('Chicken Chilli Sauce');
+        expect(recipe.category).to.equal('Stews and Sauce');
+        expect(response.body.message).to.equal('Successfully updated recipe');
         done();
       });
     });
-    it('should return an error if Recipe to be updated is not found', function (done) {
+    it('should return an error if user is not signed in', function (done) {
+      _chai2.default.request(_app2.default).put('/api/v1/recipes/1').send(updateRecipe).end(function (error, response) {
+        expect(response).to.have.status(401);
+        expect(response.body.message).to.equal('Unauthenticated');
+        done();
+      });
+    });
+    it('should return an error if recipe to be updated is not found', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/recipes/10').set('token', user1Token).send(updateRecipe).end(function (error, response) {
         expect(response).to.have.status(404);
         expect(response.body.message).to.equal('Recipe not found');
         done();
       });
     });
-    it('should return an error if recipe to be updated is not personal recipe of the Signed in User', function (done) {
+    it('should return an error if recipe to be updated is not personal recipe of the signed in user', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/recipes/1').set('token', user2Token).send(updateRecipe).end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
     it('should return an error if the recipe id of the recipe to be updated is not an integer', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/recipes/Rachel').set('token', user1Token).send(updateRecipe).end(function (error, response) {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });

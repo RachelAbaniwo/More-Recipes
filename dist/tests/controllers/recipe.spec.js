@@ -37,7 +37,7 @@ _chai2.default.use(_chaiHttp2.default);
 
 describe('UNKNOWN ROUTES', function () {
   it('should return an error when called', function (done) {
-    _chai2.default.request(_app2.default).get('/api/v1/recipes/users/favorite').end(function (error, response) {
+    _chai2.default.request(_app2.default).post('/api/v1/recipes/users/favorite').end(function (error, response) {
 
       expect(response.body).to.equal('UNKNOWN REQUEST.');
       done();
@@ -49,7 +49,7 @@ describe('RECIPE CONTROLLER', function () {
 
   describe('Retrieve Recipes', function () {
 
-    it('should return a list of all recipes when User requests for all recipes ', function (done) {
+    it('should return a list of all recipes when user requests for all recipes ', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/recipes').end(function (error, response) {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
@@ -59,7 +59,27 @@ describe('RECIPE CONTROLLER', function () {
         done();
       });
     });
-    it('should return the recipe with recipe ID requested by the User', function (done) {
+    it('should return all recipes sorted according to the property indicated by the user', function (done) {
+      _chai2.default.request(_app2.default).get('/api/v1/recipes?sort=favorites').end(function (error, response) {
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an('object');
+        expect(response.body.recipes[0].name).to.equal('Nigerian Doughnut');
+        expect(response.body.recipes[0].id).to.equal(5);
+        expect(response.body.recipes[0].userId).to.equal(2);
+        done();
+      });
+    });
+    it('should search for the recipes using the keywords inputed by the user', function (done) {
+      _chai2.default.request(_app2.default).get('/api/v1/recipes?search=Chicken Sauce').end(function (error, response) {
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an('object');
+        expect(response.body.recipes[0].name).to.equal('Chicken Sauce');
+        expect(response.body.recipes[0].id).to.equal(4);
+        expect(response.body.recipes[0].userId).to.equal(1);
+        done();
+      });
+    });
+    it('should return the recipe with recipe ID requested by the user', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/recipes/1').end(function (error, response) {
         var recipe = response.body.recipe;
         expect(response).to.have.status(200);
@@ -69,7 +89,7 @@ describe('RECIPE CONTROLLER', function () {
         done();
       });
     });
-    it('should return an error if the recipe requested by the User doesn\'t exist', function (done) {
+    it('should return an error if the recipe requested by the user doesn\'t exist', function (done) {
       '';
       _chai2.default.request(_app2.default).get('/api/v1/recipes/10').end(function (error, response) {
         var recipe = response.body.recipe;
@@ -79,11 +99,11 @@ describe('RECIPE CONTROLLER', function () {
         done();
       });
     });
-    it('should return an error if the id of the recipe requested by the User is not an Integer', function (done) {
+    it('should return an error if the id of the recipe requested by the user is not an integer', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/recipes/Rachel').end(function (error, response) {
         expect(response).to.have.status(400);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
@@ -94,20 +114,20 @@ describe('RECIPE CONTROLLER', function () {
     before(function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/users/signin').send(signinUser1).end(function (error, response) {
         user1Token = response.body.token;
-        user1 = response.body.existingUser;
+        user1 = response.body.user;
       });
       _chai2.default.request(_app2.default).post('/api/v1/users/signin').send(signinUser2).end(function (error, response) {
         user2Token = response.body.token;
-        user2 = response.body.existingUser;
+        user2 = response.body.user;
       });
       _chai2.default.request(_app2.default).post('/api/v1/users/signin').send(signinUser3).end(function (error, response) {
         user3Token = response.body.token;
-        user3 = response.body.existingUser;
+        user3 = response.body.user;
         done();
       });
     });
 
-    it('should add a new recipe when called by Signed in User', function (done) {
+    it('should add a new recipe when called by signed in user', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/recipes').set('token', user1Token).send(recipe1).end(function (error, response) {
         expect(response).to.have.status(201);
         var recipe = response.body.recipe;
@@ -120,11 +140,11 @@ describe('RECIPE CONTROLLER', function () {
         done();
       });
     });
-    it('it should return an error if User creating Recipe is not Signed In', function (done) {
+    it('it should return an error if user creating recipe is not signed in', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/recipes').send(recipe1).end(function (error, response) {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -137,7 +157,7 @@ describe('RECIPE CONTROLLER', function () {
         expect(errors).to.include('Recipe Ingredients are required.');
         expect(errors).to.include('Recipe Description is required.');
         expect(errors).to.include('Method required.');
-        expect(response.body.message).to.equal('Please fill all Fields');
+        expect(response.body.message).to.equal('Please fill all fields');
         done();
       });
     });

@@ -24,5 +24,12 @@ module.exports = {
     database: process.env.DATABASE,
     host: process.env.HOST,
     dialect: process.env.DIALECT,
+  },
+  e2e: {
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.E2E_DATABASE,
+    host: process.env.HOST,
+    dialect: 'postgres',
   }
 };

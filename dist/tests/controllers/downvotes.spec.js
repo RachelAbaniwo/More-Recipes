@@ -42,22 +42,24 @@ describe('DOWNVOTES CONTROLLER', function () {
     before(function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/users/signin').send(signinUser1).end(function (error, response) {
         user1Token = response.body.token;
-        user1 = response.body.existingUser;
+        user1 = response.body.user;
       });
       _chai2.default.request(_app2.default).post('/api/v1/users/signin').send(signinUser2).end(function (error, response) {
         user2Token = response.body.token;
-        user2 = response.body.existingUser;
+        user2 = response.body.user;
       });
       _chai2.default.request(_app2.default).post('/api/v1/users/signin').send(signinUser3).end(function (error, response) {
         user3Token = response.body.token;
-        user3 = response.body.existingUser;
+        user3 = response.body.user;
         done();
       });
     });
 
-    it('should add a downvote to a recipe when called by a signed in User', function (done) {
+    it('should add a downvote to a recipe when called by a signed in user', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/recipes/4/downvote').set('token', user2Token).end(function (error, response) {
         expect(response).to.have.status(201);
+        expect(response.body.recipe.id).to.equal(4);
+        expect(response.body.recipe.downvotes).to.equal(1);
         expect(response.body.message).to.equal('Recipe downvoted successfully');
         done();
       });
@@ -65,6 +67,9 @@ describe('DOWNVOTES CONTROLLER', function () {
     it('should add a downvote to a recipe and remove upvote if recipe was previously upvoted', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/recipes/1/downvote').set('token', user2Token).end(function (error, response) {
         expect(response).to.have.status(201);
+        expect(response.body.recipe.id).to.equal(1);
+        expect(response.body.recipe.upvotes).to.equal(0);
+        expect(response.body.recipe.downvotes).to.equal(1);
         expect(response.body.message).to.equal('Recipe downvoted successfully');
         done();
       });
@@ -73,6 +78,8 @@ describe('DOWNVOTES CONTROLLER', function () {
       _chai2.default.request(_app2.default).post('/api/v1/recipes/6/downvote').set('token', user2Token).end(function (error, response) {
         _chai2.default.request(_app2.default).post('/api/v1/recipes/6/downvote').set('token', user2Token).end(function (error, response) {
           expect(response).to.have.status(200);
+          expect(response.body.recipe.id).to.equal(6);
+          expect(response.body.recipe.downvotes).to.equal(0);
           expect(response.body.message).to.equal('Successfully removed downvote from this recipe');
           done();
         });
@@ -81,7 +88,7 @@ describe('DOWNVOTES CONTROLLER', function () {
     it('should return an error if user trying to add a downvote isn\'t signed In', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/recipes/4/downvote').end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -95,14 +102,14 @@ describe('DOWNVOTES CONTROLLER', function () {
     it('should return an error if User is trying to downvote a recipe with an ID that isn\'t an integer', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/recipes/Rachel/downvote').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request.');
+        expect(response.body.message).to.equal('Invalid request.');
         done();
       });
     });
     it('should return an error if User is trying to add a downvote to a personal recipe', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/recipes/1/downvote').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized.');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });

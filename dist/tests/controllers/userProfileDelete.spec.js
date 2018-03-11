@@ -16,9 +16,14 @@ var _mockData = require('../mockData');
 
 var _mockData2 = _interopRequireDefault(_mockData);
 
+var _models = require('../../models');
+
+var _models2 = _interopRequireDefault(_models);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable */
+var User = _models2.default.User; /* eslint-disable */
+
 var expect = _chai2.default.expect;
 var user1Token = void 0,
     user5Token = void 0,
@@ -50,14 +55,14 @@ describe('DELETE USER CONTROLLER', function () {
     it('should return an error if user is not signed in', function (done) {
       _chai2.default.request(_app2.default).delete('/api/v1/users/5').end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
     it('should return an error if user profile is to be deleted by another user', function (done) {
       _chai2.default.request(_app2.default).delete('/api/v1/users/5').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
@@ -71,7 +76,7 @@ describe('DELETE USER CONTROLLER', function () {
     it('should return an error if the user ID of user to be deleted specified is not an integer', function (done) {
       _chai2.default.request(_app2.default).delete('/api/v1/users/Rachel').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
@@ -79,7 +84,10 @@ describe('DELETE USER CONTROLLER', function () {
       _chai2.default.request(_app2.default).delete('/api/v1/users/5').set('token', user5Token).end(function (error, response) {
         expect(response).to.have.status(200);
         expect(response.body.message).to.equal('Successfully deleted user');
-        done();
+        User.findById(5).then(function (user) {
+          expect(user).to.be.null;
+          done();
+        });
       });
     });
   });

@@ -51,77 +51,81 @@ describe('FAVORITES CONTROLLER', function () {
     });
   });
 
-  describe('Add to Favorite List of Recipes', function () {
+  describe('Add to favorite list of recipes', function () {
 
-    it('should add a Recipe of a Signed In User\'s choice to that User\'s List of Favorite Recipes', function (done) {
+    it('should add a recipe of a signed in user\'s choice to that user\'s list of favorite recipes', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/favorites/2').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(201);
-        expect(response.body.message).to.equal('Recipe successfully added to Favorites!');
+        expect(response.body.recipe.id).to.equal(2);
+        expect(response.body.recipe.favorites).to.equal(1);
+        expect(response.body.message).to.equal('Recipe successfully added to favorites!');
         done();
       });
     });
-    it('should remove a Recipe from a Signed In User\'s List of Favorite Recipes when called twice for the same Recipe', function (done) {
+    it('should remove a recipe from a signed in user\'s list of favorite recipes when called twice for the same recipe', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/favorites/3').set('token', user2Token).end(function (error, response) {
         _chai2.default.request(_app2.default).post('/api/v1/favorites/3').set('token', user2Token).end(function (error, response) {
           expect(response).to.have.status(200);
-          expect(response.body.message).to.equal('Successfully removed this recipe from Favorites');
+          expect(response.body.recipe.id).to.equal(3);
+          expect(response.body.recipe.favorites).to.equal(0);
+          expect(response.body.message).to.equal('Successfully removed this recipe from favorites');
           done();
         });
       });
     });
-    it('should return an error if User trying to add a recipe to his/her Favorites isn\'t signed in', function (done) {
+    it('should return an error if user trying to add a recipe to his/her favorites isn\'t signed in', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/favorites/3').end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
-    it('should return an error if a User is trying to add a recipe that doesn\'t exist to List of Favorites', function (done) {
+    it('should return an error if a user is trying to add a recipe that doesn\'t exist to list of favorites', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/favorites/10').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(404);
         expect(response.body.message).to.equal('Recipe not found.');
         done();
       });
     });
-    it('should return an error if User is trying to add a recipe with an ID that isn\'t an integer to List of Favorites', function (done) {
+    it('should return an error if user is trying to add a recipe with an ID that isn\'t an integer to list of favorites', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/favorites/Rachel').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request.');
+        expect(response.body.message).to.equal('Invalid request.');
         done();
       });
     });
-    it('should return an error if User is trying to add a Personal recipe to List of Favorites', function (done) {
+    it('should return an error if user is trying to add a personal recipe to list of favorites', function (done) {
       _chai2.default.request(_app2.default).post('/api/v1/favorites/1').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized.');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
   });
 
-  describe('Retrieve User\'s List of Favorites', function () {
+  describe('Retrieve user\'s list of favorites', function () {
 
-    it('should return a User\'s List of Favorites', function (done) {
+    it('should return a user\'s list of favorites', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/favorites').set('token', user2Token).end(function (error, response) {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
-        expect(response.body.recipes[0].userId).to.equal(user1.id);
+        expect(response.body.favoriteRecipes[0].name).to.equal('Fried Noodles');
         done();
       });
     });
-    it('should return an Error if User has no Recipe in List of Favorites', function (done) {
+    it('should return an error if user has no recipe in list of favorites', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/favorites').set('token', user3Token).end(function (error, response) {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('You have no Favorite Recipes');
+        expect(response.body.message).to.equal('You have no favorite recipes');
         done();
       });
     });
-    it('should return an Error if User is not Signed In', function (done) {
+    it('should return an error if user is not signed In', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/favorites').end(function (error, response) {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });

@@ -59,7 +59,7 @@ describe('REVIEW CONTROLLER', function () {
     it('should return an error if User trying to update a review is not Signed in', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/reviews/1').send(review2).end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
@@ -70,17 +70,17 @@ describe('REVIEW CONTROLLER', function () {
         done();
       });
     });
-    it('should return an error if the review to be updated is not a review made by the Signed in User', function (done) {
+    it('should return an error if the review to be updated is not a review made by the signed in user', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/reviews/1').set('token', user2Token).send(review2).end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
     it('should return an error if the review id of the recipe to be updated is not an integer', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/reviews/Rachel').set('token', user3Token).send(review2).end(function (error, response) {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
@@ -94,9 +94,10 @@ describe('REVIEW CONTROLLER', function () {
         done();
       });
     });
-    it('should update only reviews created by a Signed in User', function (done) {
+    it('should update only reviews created by a signed in user', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/reviews/1').set('token', user1Token).send(review2).end(function (error, response) {
         expect(response).to.have.status(201);
+        expect(response.body.review.review).to.equal('Nice!');
         expect(response.body.message).to.equal('Successfully updated your review');
         done();
       });

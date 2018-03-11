@@ -7,6 +7,7 @@
     "babel-node": "babel-node --",
     "start": "cross-env node dist/app.js",
     "start:dev": "nodemon server/app.js --exec babel-node",
+    "start:e2e": "NODE_ENV=e2e nodemon server/app.js --exec babel-node",    
     "start:client": "./node_modules/.bin/webpack-dev-server",
     "build": "./node_modules/.bin/babel server -d dist --copy-files",
     "build:client": "webpack -p",

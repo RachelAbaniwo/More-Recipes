@@ -90,7 +90,7 @@ var UserController = function () {
     value: function userSignIn(req, res) {
       return User.findOne({ where: { email: req.body.email } }).then(function (user) {
         if (!user) {
-          return res.status(404).json({ message: 'Wrong credentials' });
+          return res.status(422).json({ message: 'Wrong credentials' });
         }
         if (_bcrypt2.default.compareSync(req.body.password, user.password)) {
           var existingUser = {
@@ -108,7 +108,7 @@ var UserController = function () {
           return res.status(200).json({ user: existingUser, token: token, message: 'Successfully signed in.' });
         }
 
-        return res.status(404).json({ message: 'Wrong credentials' });
+        return res.status(422).json({ message: 'Wrong credentials' });
       }).catch(function (error) {
         res.status(500).json({
           message: error.message

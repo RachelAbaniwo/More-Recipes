@@ -46,7 +46,7 @@ var RecipesController = function () {
     value: function getRecipes(req, res) {
       var limit = req.query.limit || 6;
       var offset = req.query.offset || 0;
-      var op = _models2.default.Sequelize.Op;
+      var operator = _models2.default.Sequelize.Op;
       var search = req.query.search;
 
       var searchQuery = search ? search.trim() : '';
@@ -54,13 +54,14 @@ var RecipesController = function () {
         return Recipe.findAndCountAll({
           limit: limit,
           offset: offset,
+          distinct: true,
           group: ['Recipe.id', 'User.id'],
           order: _models2.default.sequelize.literal('max(' + req.query.sort + ') DESC'),
           include: [{ model: User, attributes: { exclude: ['password'] } }],
-          where: _defineProperty({}, op.or, {
-            name: _defineProperty({}, op.iLike, '%' + searchQuery + '%'),
-            description: _defineProperty({}, op.iLike, '%' + searchQuery + '%'),
-            ingredients: _defineProperty({}, op.iLike, '%' + searchQuery + '%')
+          where: _defineProperty({}, operator.or, {
+            name: _defineProperty({}, operator.iLike, '%' + searchQuery + '%'),
+            description: _defineProperty({}, operator.iLike, '%' + searchQuery + '%'),
+            ingredients: _defineProperty({}, operator.iLike, '%' + searchQuery + '%')
           })
         }).then(function (_ref) {
           var recipes = _ref.rows,
@@ -85,6 +86,7 @@ var RecipesController = function () {
         return Recipe.findAndCountAll({
           limit: limit,
           offset: offset,
+          distinct: true,
           group: ['Recipe.id', 'User.id'],
           order: _models2.default.sequelize.literal('max(' + req.query.sort + ') DESC'),
           include: [{ model: User, attributes: { exclude: ['password'] } }]
@@ -112,10 +114,10 @@ var RecipesController = function () {
           offset: offset,
           distinct: true,
           include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }],
-          where: _defineProperty({}, op.or, {
-            name: _defineProperty({}, op.iLike, '%' + searchQuery + '%'),
-            description: _defineProperty({}, op.iLike, '%' + searchQuery + '%'),
-            ingredients: _defineProperty({}, op.iLike, '%' + searchQuery + '%')
+          where: _defineProperty({}, operator.or, {
+            name: _defineProperty({}, operator.iLike, '%' + searchQuery + '%'),
+            description: _defineProperty({}, operator.iLike, '%' + searchQuery + '%'),
+            ingredients: _defineProperty({}, operator.iLike, '%' + searchQuery + '%')
           })
         }).then(function (_ref3) {
           var recipes = _ref3.rows,
@@ -139,6 +141,7 @@ var RecipesController = function () {
       return Recipe.findAndCountAll({
         limit: limit,
         offset: offset,
+        distinct: true,
         include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
       }).then(function (_ref4) {
         var recipes = _ref4.rows,

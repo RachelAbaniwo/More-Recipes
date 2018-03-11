@@ -49,14 +49,14 @@ var FavoritesController = function () {
         });
       }
 
-      await Favorite.create({
+      var newFavorite = await Favorite.create({
         userId: req.AuthUser.id,
         recipeId: req.params.recipeId
       });
       var recipe = req.FavoriteRecipe;
       await recipe.increment('favorites');
       return res.status(201).json({
-        recipe: recipe, message: 'Recipe successfully added to favorites!'
+        recipe: recipe, favorite: newFavorite, message: 'Recipe successfully added to favorites!'
       });
     }
     /**
@@ -75,7 +75,7 @@ var FavoritesController = function () {
 
         if (favorites.length < 1) {
           return res.status(404).json({
-            message: 'You have no Favorite Recipes'
+            message: 'You have no favorite recipes'
           });
         }
         var recipeIds = favorites.map(function (favorite) {

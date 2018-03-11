@@ -59,14 +59,14 @@ describe('MODIFY USER CONTROLLER', function () {
     it('should return an error if user is not signed in', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/users/4').end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
     it('should return an error if user profile is updated by another user', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/users/4').set('token', user1Token).send(updateUser1).end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
@@ -80,7 +80,7 @@ describe('MODIFY USER CONTROLLER', function () {
     it('should return an error if the user ID of user to be updated specified is not an integer', function (done) {
       _chai2.default.request(_app2.default).put('/api/v1/users/Rachel').set('token', user1Token).send(updateUser1).end(function (error, response) {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });

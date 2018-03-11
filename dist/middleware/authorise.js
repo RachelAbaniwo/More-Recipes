@@ -24,6 +24,6 @@ exports.default = function (req, res, next) {
 
     next();
   }).catch(function () {
-    return res.status(400).json({ message: 'Invalid Request' });
+    return res.status(400).json({ message: 'Invalid request' });
   });
 };

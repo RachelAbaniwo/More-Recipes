@@ -16,9 +16,14 @@ var _mockData = require('../mockData');
 
 var _mockData2 = _interopRequireDefault(_mockData);
 
+var _models = require('../../models');
+
+var _models2 = _interopRequireDefault(_models);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* eslint-disable */
+var Recipe = _models2.default.Recipe; /* eslint-disable */
+
 var expect = _chai2.default.expect;
 var user1Token = void 0,
     user2Token = void 0,
@@ -56,39 +61,42 @@ describe('RECIPE CONTROLLER', function () {
       });
     });
 
-    it('should return an error if User trying to delete a recipe is not Signed in', function (done) {
+    it('should return an error if user trying to delete a recipe is not signed in', function (done) {
       _chai2.default.request(_app2.default).delete('/api/v1/recipes/3').end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
-    it('should return an error if Recipe to be deleted is not found', function (done) {
+    it('should return an error if recipe to be deleted is not found', function (done) {
       _chai2.default.request(_app2.default).delete('/api/v1/recipes/10').set('token', user2Token).end(function (error, response) {
         expect(response).to.have.status(404);
         expect(response.body.message).to.equal('Recipe not found');
         done();
       });
     });
-    it('should return an error if recipe to be deleted is not personal recipe of the Signed in User', function (done) {
+    it('should return an error if recipe to be deleted is not personal recipe of the signed in user', function (done) {
       _chai2.default.request(_app2.default).delete('/api/v1/recipes/3').set('token', user2Token).end(function (error, response) {
         expect(response).to.have.status(401);
-        expect(response.body.message).to.equal('Unauthorized USER');
+        expect(response.body.message).to.equal('Unauthorized');
         done();
       });
     });
     it('should return an error if the recipe id of the recipe to be deleted is not an integer', function (done) {
       _chai2.default.request(_app2.default).delete('/api/v1/recipes/Rachel').set('token', user3Token).end(function (error, response) {
         expect(response).to.have.status(400);
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });
-    it('should delete only the personal recipe of the Signed in User', function (done) {
+    it('should delete only the personal recipe of the signed in user', function (done) {
       _chai2.default.request(_app2.default).delete('/api/v1/recipes/3').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(200);
         expect(response.body.message).to.equal('Successfully deleted recipe');
-        done();
+        Recipe.findById(3).then(function (recipe) {
+          expect(recipe).to.be.null;
+          done();
+        });
       });
     });
   });

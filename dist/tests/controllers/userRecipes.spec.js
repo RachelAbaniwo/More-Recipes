@@ -60,32 +60,32 @@ describe('USER CONTROLLER', function () {
       });
     });
 
-    it('should return all recipes created by a User when called by that User', function (done) {
+    it('should return all recipes created by a user when called by that user', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/users/myrecipes').set('token', user1Token).end(function (error, response) {
         console.log(error);
         expect(response).to.have.status(200);
-        expect(response.body.recipes[0].name).to.equal('Fried Noodles');
-        expect(response.body.recipes[0].userId).to.equal(user1.id);
+        expect(response.body.myRecipes[0].name).to.equal('Fried Noodles');
+        expect(response.body.myRecipes[0].userId).to.equal(user1.id);
         done();
       });
     });
-    it('should return an error if User is not Signed In', function (done) {
+    it('should return an error if user is not signed in', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/users/myrecipes').end(function (error, response) {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
-    it('should return an error if Signed in User has no Recipes', function (done) {
+    it('should return an error if signed in user has no recipes', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/users/myrecipes').set('token', user3Token).end(function (error, response) {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('You have no Recipes');
+        expect(response.body.message).to.equal('You have no recipes');
         done();
       });
     });
-    it('should return all recipes created by a User when requested by another Signed in User', function (done) {
+    it('should return all recipes created by a user when requested by another signed in user', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/users/1/recipes').set('token', user3Token).end(function (error, response) {
         expect(response).to.have.status(200);
         expect(response.body.recipes[0].name).to.equal('Fried Noodles');
@@ -97,31 +97,31 @@ describe('USER CONTROLLER', function () {
       _chai2.default.request(_app2.default).get('/api/v1/users/1/recipes').end(function (error, response) {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Unauthenticated USER.');
+        expect(response.body.message).to.equal('Unauthenticated');
         done();
       });
     });
-    it('should return an error if the id of the User requested does not exist', function (done) {
+    it('should return an error if the id of the user requested does not exist', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/users/10/recipes').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('User not Found');
+        expect(response.body.message).to.equal('User not found');
         done();
       });
     });
-    it('should return an error if the User being requested has no Recipes', function (done) {
+    it('should return an error if the user being requested has no recipes', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/users/3/recipes').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('User has no Recipes');
+        expect(response.body.message).to.equal('User has no recipes');
         done();
       });
     });
-    it('should return an error if the id of the User requested is not an Integer', function (done) {
+    it('should return an error if the id of the user requested is not an integer', function (done) {
       _chai2.default.request(_app2.default).get('/api/v1/users/Rachel/recipes').set('token', user1Token).end(function (error, response) {
         expect(response).to.have.status(400);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Invalid Request');
+        expect(response.body.message).to.equal('Invalid request');
         done();
       });
     });

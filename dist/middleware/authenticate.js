@@ -22,6 +22,10 @@ exports.default = function (req, res, next) {
 
   return _jsonwebtoken2.default.verify(token, jwtSecret, function (error, user) {
     if (error) {
+      if (error.name === 'TokenExpiredError') {
+        return res.status(401).json({ message: 'Token Expired.' });
+      }
+
       return res.status(401).json({ message: 'Unauthenticated' });
     }
 
