@@ -3,16 +3,16 @@ import db from '../models/index';
 const { Recipe } = db;
 
 
-export default (req, res, next) => {
-  Recipe.findById(req.params.recipeId).then((recipe) => {
+export default (request, response, next) => {
+  Recipe.findById(request.params.recipeId).then((recipe) => {
     if (!recipe) {
-      return res.status(404).json({ message: 'Recipe not found' });
+      return response.status(404).json({ message: 'Recipe not found' });
     }
 
-    if (recipe.userId !== req.AuthUser.id) {
-      return res.status(401).json({ message: 'Unauthorized' });
+    if (recipe.userId !== request.AuthUser.id) {
+      return response.status(401).json({ message: 'Unauthorized' });
     }
 
     next();
-  }).catch(() => res.status(400).json({ message: 'Invalid request' }));
+  }).catch(() => response.status(400).json({ message: 'Invalid request' }));
 };

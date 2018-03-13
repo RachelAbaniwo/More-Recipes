@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 /**
  * Landing page top buttons component
- * @function
+ * @function LandingTopButtons
  *
- * @param {object} authUser
- * @returns {object} jsx
+ * @param {object} props
+ * @returns {object} displays buttons' jsx
  *
  */
 export const LandingTopButtons = ({ authUser, signOutUser }) => {

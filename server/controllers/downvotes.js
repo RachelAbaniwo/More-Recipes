@@ -5,33 +5,38 @@ const { Recipe, Downvote } = db;
 
 /**
  * Controls the Downvote endpoints
+ * @class DownvotesController
  */
 export default class DownvotesController {
 /**
+ *
  * Adds a Downvote to a recipe or Removes the vote if recipe is already Upvoted or Downvoted
- * @param {object} req - Recipe to be voted
- * @param {object} res - success message indicating downvote added or removed
- * @returns {json} - success message returned to User
+ * @function addDownvote
+ *
+ * @param {object} request - Recipe to be voted
+ * @param {object} response - success message indicating downvote added or removed
+ *
+ * @returns {json} - success message returned to user
  */
-  async addDownvote(req, res) {
-    const recipe = await Recipe.findById(req.params.recipeId);
-    const query = { where: { userId: req.AuthUser.id, recipeId: req.params.recipeId } };
+  async addDownvote(request, response) {
+    const recipe = await Recipe.findById(request.params.recipeId);
+    const query = { where: { userId: request.AuthUser.id, recipeId: request.params.recipeId } };
     const downvote = await Downvote.findOne(query);
 
     if (downvote) {
       await downvote.destroy();
       await recipe.decrement('downvotes');
-      return res.status(200).json({
+      return response.status(200).json({
         recipe, message: 'Successfully removed downvote from this recipe'
       });
     }
     await Downvote.create({
-      userId: req.AuthUser.id,
-      recipeId: req.params.recipeId
+      userId: request.AuthUser.id,
+      recipeId: request.params.recipeId
     });
     await recipe.increment('downvotes');
 
-    return res.status(201).json({
+    return response.status(201).json({
       recipe, message: 'Recipe downvoted successfully'
     });
   }

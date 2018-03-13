@@ -1,24 +1,24 @@
 import express from 'express';
-import ModifyUserController from '../controllers/modifyUser';
-import authenticationMiddleware from '../middleware/authenticate';
-import authModifyUserMiddleware from '../middleware/authoriseModifyUser';
+import ModifyUser from '../controllers/modifyUser';
+import authenticate from '../middleware/authenticate';
+import authoriseModifyUser from '../middleware/authoriseModifyUser';
 
 
 const router = express.Router();
 
-const modifyUserController = new ModifyUserController();
+const modifyUserController = new ModifyUser();
 
 // PUT /api/v1/users/:userId - Updates a User's Profile
 
 router.route('/:userId')
 
-  .put(authenticationMiddleware, authModifyUserMiddleware, modifyUserController.updateUser);
+  .put(authenticate, authoriseModifyUser, modifyUserController.updateUser);
 
 // DELETE /api/v1/users/:userId - Deletes a User
 
 router.route('/:userId')
 
-  .delete(authenticationMiddleware, authModifyUserMiddleware, modifyUserController.deleteUser);
+  .delete(authenticate, authoriseModifyUser, modifyUserController.deleteUser);
 
 
 export default router;

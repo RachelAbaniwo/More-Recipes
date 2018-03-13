@@ -6,7 +6,9 @@ import { toggleFavorite } from './../store/actions/votes';
 
 /**
  * Add favorites component
- * @param {object} favorites
+ * @function Favorites
+ *
+ * @param {object} props
  *
  * @returns {object} jsx for component
  */

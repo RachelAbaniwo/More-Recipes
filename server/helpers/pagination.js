@@ -1,6 +1,6 @@
 /**
    * Calculates page data
-   * @function
+   * @function pagination
    *
    * @param {number} count
    * @param {number} limit

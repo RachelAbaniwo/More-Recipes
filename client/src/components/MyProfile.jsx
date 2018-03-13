@@ -4,11 +4,11 @@ import { Link } from 'react-router';
 import image0 from '../../assets/image/profile-pic.jpeg';
 
 /**
- * Display user profile
+ * Displays user profile
  *
- * @function
+ * @function MyProfile
  *
- * @returns {object} jsx for recipe
+ * @returns {jsx} jsx for user profile
  */
 const MyProfile = ({ authUser }) => ((
   <div>

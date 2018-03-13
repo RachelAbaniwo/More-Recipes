@@ -1,12 +1,12 @@
 import express from 'express';
-import RecipesController from '../controllers/recipes';
-import authenticationMiddleware from '../middleware/authenticate';
-import authourisationMiddleware from '../middleware/authorise';
+import Recipes from '../controllers/recipes';
+import authenticate from '../middleware/authenticate';
+import authorise from '../middleware/authorise';
 
 
 const router = express.Router();
 
-const recipesController = new RecipesController();
+const recipesController = new Recipes();
 
 // GET /api/v1/recipes - gets all recipes in database
 
@@ -26,21 +26,21 @@ router.route('/:recipeId')
 
 router.route('/')
 
-  .post(authenticationMiddleware, recipesController.addRecipes);
+  .post(authenticate, recipesController.addRecipes);
 
 
 // PUT api/v1/recipes/:recipeId - updates an existing recipe specified by Id
 
 router.route('/:recipeId')
 
-  .put(authenticationMiddleware, authourisationMiddleware, recipesController.updateRecipe);
+  .put(authenticate, authorise, recipesController.updateRecipe);
 
 
 // DELETE api/v1/recipes/:recipeId - deletes the recipe specified by Id
 
 router.route('/:recipeId')
 
-  .delete(authenticationMiddleware, authourisationMiddleware, recipesController.deleteRecipe);
+  .delete(authenticate, authorise, recipesController.deleteRecipe);
 
 
 export default router;

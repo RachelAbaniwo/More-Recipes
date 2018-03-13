@@ -3,8 +3,12 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 
 /**
- * Display a single recipe
- * @returns {object} jsx for recipe
+ * Displays a single recipe
+ * @function MySingleRecipe
+ *
+ * @param {object} props
+ *
+ * @returns {jsx} jsx for single recipe
  */
 const MySingleRecipe = ({ recipe }) => ((
   <section className="col-sm-3 card-1" style={{ paddingTop: 10 }}>

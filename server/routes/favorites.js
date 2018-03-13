@@ -1,33 +1,33 @@
 import express from 'express';
-import FavoritesController from '../controllers/favorites';
-import canFavoriteMiddleware from '../middleware/canFavorite';
-import authenticationMiddleware from '../middleware/authenticate';
-import authDeleteFavoriteMiddleware from '../middleware/deleteFavorite';
+import Favorites from '../controllers/favorites';
+import canFavorite from '../middleware/canFavorite';
+import authenticate from '../middleware/authenticate';
+import deleteFavorite from '../middleware/deleteFavorite';
 
 
 const router = express.Router();
 
-const favoritesController = new FavoritesController();
+const favoritesController = new Favorites();
 
 // GET /api/v1/favorites - Gets signed in user favorites
 
 router.route('/')
 
-  .get(authenticationMiddleware, favoritesController.getFavorites);
+  .get(authenticate, favoritesController.getFavorites);
 
 
 // POST /api/v1/favorites/:recipeId
 
 router.route('/:recipeId')
 
-  .post(authenticationMiddleware, canFavoriteMiddleware, favoritesController.addFavorite);
+  .post(authenticate, canFavorite, favoritesController.addFavorite);
 
 // DELETE /api/v1/favorites/:favoriteId
 
 router.route('/:favoriteId')
 
   .delete(
-    authenticationMiddleware, authDeleteFavoriteMiddleware,
+    authenticate, deleteFavorite,
     favoritesController.deleteFavorite
   );
 

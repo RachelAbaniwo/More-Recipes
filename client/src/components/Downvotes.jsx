@@ -6,9 +6,11 @@ import { toggleVote } from './../store/actions/votes';
 
 /**
  * Downvotes component
- * @param {object} downvotes
+ * @function Downvotes
  *
- * @returns {object} jsx for component
+ * @param {object} props
+ *
+ * @returns {object} jsx for downvotes component in a fragment tag
  */
 export const Downvotes = ({ downvotes, toggleVote: toggleVoteFunc, recipeId }) => ((
   <Fragment>

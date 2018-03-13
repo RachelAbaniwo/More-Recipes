@@ -24,6 +24,7 @@ describe('USER CONTROLLER', () => {
         .post('/api/v1/users/signup')
         .send(signupUser)
         .end((error, response) => {
+          console.log(response);
           expect(response).to.have.status(201);
           expect(response.body).to.have.property('token');
           expect(response.body).to.have.property('user');

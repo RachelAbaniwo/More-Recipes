@@ -11,21 +11,27 @@ const { User } = db;
 const { Recipe } = db;
 /**
  * Controls the user endpoints
+ * @class UserController
  */
 export default class UserController {
   /**
      * adds a new user to database
-     * @param {object} req request object from user
-     * @param {object} res created user
-     * @returns {json} returns created user object
+     * @function userSignUp
+     *
+     * @param {object} request request object from user
+     * @param {object} response created user
+     *
+     * @returns {json} returns created user object and success message or error
      */
-  userSignUp(req, res) {
+  userSignUp(request, response) {
     User.create({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      username: req.body.username,
-      email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, process.env.NODE_ENV === 'test' ? 1 : 10)
+      firstname: request.body.firstname,
+      lastname: request.body.lastname,
+      username: request.body.username,
+      email: request.body.email,
+      password:
+      bcrypt.hashSync(request.body.password, process.env.NODE_ENV ===
+        'test' ? 1 : 10)
     }).then((user) => {
       const createdUser = {
         firstname: user.firstname,
@@ -37,29 +43,32 @@ export default class UserController {
       const token = jwt.sign({ id: user.id }, jwtSecret, {
         expiresIn: 60 * 60 * 24
       });
-      res.status(201).json({
+      response.status(201).json({
         user: createdUser,
         token,
         message: 'Successfully signed up!'
       });
     }).catch((error) => {
-      res.status(400).json({
+      response.status(400).json({
         message: error.message
       });
     });
   }
   /**
    * signs user in
-   * @param {object} req request object from user
-   * @param {object} res message or error
-   * @returns {json} message
+   * @function userSignIn
+   *
+   * @param {object} request request object from user
+   * @param {object} response found user object
+   *
+   * @returns {json} user object and success or error message
    */
-  userSignIn(req, res) {
-    return User.findOne({ where: { email: req.body.email } }).then((user) => {
+  userSignIn(request, response) {
+    return User.findOne({ where: { email: request.body.email } }).then((user) => {
       if (!user) {
-        return res.status(422).json({ message: 'Wrong credentials' });
+        return response.status(422).json({ message: 'Wrong credentials' });
       }
-      if (bcrypt.compareSync(req.body.password, user.password)) {
+      if (bcrypt.compareSync(request.body.password, user.password)) {
         const existingUser = {
           firstname: user.firstname,
           lastname: user.lastname,
@@ -72,26 +81,29 @@ export default class UserController {
         const token = jwt.sign({ id: user.id }, jwtSecret, {
           expiresIn: 60 * 60 * 24
         });
-        return res.status(200).json({ user: existingUser, token, message: 'Successfully signed in.' });
+        return response.status(200).json({ user: existingUser, token, message: 'Successfully signed in.' });
       }
 
-      return res.status(422).json({ message: 'Wrong credentials' });
+      return response.status(422).json({ message: 'Wrong credentials' });
     }).catch((error) => {
-      res.status(500).json({
+      response.status(500).json({
         message: error.message
       });
     });
   }
   /**
    * finds a user
-   * @param {object} req request object from user with user id specified
-   * @param {object} res found user object
-   * @returns {json} returns user object
+   * @function findUser
+   *
+   * @param {object} request request object from user with user id specified
+   * @param {object} response found user object
+   *
+   * @returns {json} returns user object or error message
    */
-  findUser(req, res) {
-    User.findOne({ where: { id: req.params.userId } }).then((user) => {
+  findUser(request, response) {
+    User.findOne({ where: { id: request.params.userId } }).then((user) => {
       if (!user) {
-        return res.status(404).json({
+        return response.status(404).json({
           message: 'User not found'
         });
       }
@@ -103,68 +115,74 @@ export default class UserController {
         id: user.id,
         aboutMe: user.aboutMe
       };
-      res.status(200).json({
+      response.status(200).json({
         user: foundUser
       });
     }).catch(() =>
-      res.status(400).json({
+      response.status(400).json({
         message: 'Invalid request'
       }));
   }
   /**
    * gets a user's personal recipes from database
-   * @param {object} req request object from user
-   * @param {object} res array of recipes
-   * @returns {json} returns array of recipes to user
+   * @function getMyRecipes
+   *
+   * @param {object} request request object from user
+   * @param {object} response contains array of recipes
+   *
+   * @returns {json} returns array of recipes or error message to user
    */
-  getMyRecipes(req, res) {
+  getMyRecipes(request, response) {
     Recipe.findAll({
-      where: { userId: req.AuthUser.id },
+      where: { userId: request.AuthUser.id },
       include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
     }).then((recipes) => {
       if (recipes.length < 1) {
-        return res.status(404).json({
+        return response.status(404).json({
           message: 'You have no recipes'
         });
-      } res.status(200).json({
+      } response.status(200).json({
         myRecipes: recipes
       });
     }).catch(error =>
-      res.status(500).json({
+      response.status(500).json({
         message: error.message
       }));
   }
   /**
    * gets any user's personal recipes by the user's id
-   * @param {object} req request object from user
-   * @param {object} res array of recipes
-   * @returns {json} returns array of recipes to user
+   * @function getUserRecipes
+   *
+   * @param {object} request request object from user
+   * @param {object} response contains array of recipes
+   *
+   * @returns {json} returns array of recipes or error message to user
    */
-  getUserRecipes(req, res) {
-    User.findOne({ where: { id: req.params.userId } }).then((user) => {
+  getUserRecipes(request, response) {
+    User.findOne({ where: { id: request.params.userId } }).then((user) => {
       if (!user) {
-        return res.status(404).json({
+        return response.status(404).json({
           message: 'User not found'
         });
       }
       Recipe.findAll({
-        where: { userId: req.params.userId },
+        where: { userId: request.params.userId },
         include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
       }).then((recipes) => {
         if (recipes.length < 1) {
-          return res.status(404).json({
+          return response.status(404).json({
             message: 'User has no recipes'
           });
         }
-        res.status(200).json({
+        response.status(200).json({
           recipes
         });
       }).catch(() =>
-        res.status(400).json({
+        response.status(400).json({
           message: 'Invalid request'
         }));
     }).catch(() =>
-      res.status(400).json({
+      response.status(400).json({
         message: 'Invalid request'
       }));
   }

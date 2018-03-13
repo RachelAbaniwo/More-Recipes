@@ -5,90 +5,100 @@ const { Recipe, Review, User } = db;
 
 /**
  * Controls the reviews endpoints
+ * @class ReviewsController
  */
 export default class ReviewsController {
 /**
    * adds reviews to recipes
-   * @param {object} req review object to be added to the recipe
-   * @param {object} res added review object
+   * @function addReviews
+   *
+   * @param {object} request review object to be added to the recipe
+   * @param {object} response added review object
+   *
    * @returns {json} returns recipe and review object
    */
-  addReviews(req, res) {
-    if ((!req.body.review) || (checkField(req.body.review))) {
-      return res.status(400).json({
+  addReviews(request, response) {
+    if ((!request.body.review) || (checkField(request.body.review))) {
+      return response.status(400).json({
         message: 'Review field empty'
       });
     }
-    Recipe.findById(req.params.recipeId).then((recipe) => {
+    Recipe.findById(request.params.recipeId).then((recipe) => {
       if (recipe) {
         Review.create({
-          review: req.body.review,
+          review: request.body.review,
           recipeId: recipe.id,
-          userId: req.AuthUser.id
+          userId: request.AuthUser.id
         }).then(review => Review.findById(review.id, {
           include: [{ model: User, exclude: 'password' }]
-        }).then(reviewWithUser => res.status(201).json({
+        }).then(reviewWithUser => response.status(201).json({
           recipe,
           review: reviewWithUser,
           message: 'Review successfully added!'
         })));
       } else {
-        return res.status(404).json({
+        return response.status(404).json({
           message: 'Recipe to be reviewed not found'
         });
       }
-    }).catch(() => res.status(400).json({
+    }).catch(() => response.status(400).json({
       message: 'Invalid request'
     }));
   }
   /**
    * gets recipe reviews
-   * @param {object} req recipe id request
-   * @param {object} res array of recipe reviews
-   * @returns {json} returns recipe and array of reviews
+   * @function getRecipeReviews
+   *
+   * @param {object} request contains recipe id
+   * @param {object} response array of recipe reviews
+   *
+   * @returns {json} returns recipe and array of reviews or error message
    */
-  getRecipeReviews(req, res) {
-    Recipe.findOne({ where: { id: req.params.recipeId }, }).then((recipe) => {
+  getRecipeReviews(request, response) {
+    Recipe.findOne({ where: { id: request.params.recipeId }, }).then((recipe) => {
       if (!recipe) {
-        return res.status(404).json({
+        return response.status(404).json({
           message: 'Recipe not found'
         });
       }
       Review.findAll({
-        where: { recipeId: req.params.recipeId },
+        where: { recipeId: request.params.recipeId },
         include: [{ all: true, attributes: { exclude: ['password'] }, nested: true }]
       }).then((reviews) => {
         if (reviews.length < 1) {
-          return res.status(404).json({
+          return response.status(404).json({
             message: 'Recipe has no reviews'
           });
         }
-        res.status(200).json({
+        response.status(200).json({
           recipe,
           reviews
         });
       }).catch(() =>
-        res.status(400).json({
+        response.status(400).json({
           message: 'Invalid request'
         }));
     }).catch(() =>
-      res.status(400).json({
+      response.status(400).json({
         message: 'Invalid request'
       }));
   }
   /**
    * edits reviews
-   * @param {object} req - review object to be updated
-   * @param {object} res - updated review object
-   * @returns {json} - returns updated review
+   * @function updateReview
+   *
+   * @param {object} request - review object to be updated
+   * @param {object} response - updated review object
+   *
+   * @returns {json} - returns updated review and success or error message
    */
-  updateReview(req, res) {
-    Review.findById(req.params.reviewId).then((review) => {
+  updateReview(request, response) {
+    Review.findById(request.params.reviewId).then((review) => {
       Review.update({
-        review: returnParameter(req.body.review) || review.review,
+        review: returnParameter(request.body.review) || review.review,
         id: review.id
       }, {
-        where: { id: req.params.reviewId },
+        where: { id: request.params.reviewId },
         returning: true,
         plain: true
       })
@@ -98,27 +108,30 @@ export default class ReviewsController {
             id: newReview[1].id,
             userId: newReview[1].userId
           };
-          res.status(201).json({
+          response.status(201).json({
             review: updatedReview, message: 'Successfully updated your review'
           });
-        }).catch(error => res.status(500).json({
+        }).catch(error => response.status(500).json({
           message: error.message
         }));
-    }).catch(() => res.status(400).json({ message: 'Invalid request' }));
+    }).catch(() => response.status(400).json({ message: 'Invalid request' }));
   }
 
   /**
    * deletes reviews
-   * @param {object} req review object to be deleted
-   * @param {object} res message
-   * @returns {json} returns message
+   * @function deleteReview
+   *
+   * @param {object} request review object to be deleted
+   * @param {object} response message
+   *
+   * @returns {json} returns success or error message
    */
-  deleteReview(req, res) {
-    Review.findById(req.params.reviewId).then((review) => {
-      review.destroy().then(() => res.status(200).json({
+  deleteReview(request, response) {
+    Review.findById(request.params.reviewId).then((review) => {
+      review.destroy().then(() => response.status(200).json({
         message: 'Successfully deleted your review'
       }))
-        .catch(error => res.status(500).json({
+        .catch(error => response.status(500).json({
           message: error.message
         }));
     });

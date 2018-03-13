@@ -15,7 +15,7 @@ export class ImageFile extends React.Component {
    *
    * @param {object} props
    *
-   * @returns {object} jsx
+   * @returns {void} void
    */
   constructor(props) {
     super(props);
@@ -30,7 +30,7 @@ export class ImageFile extends React.Component {
    *
    * @param {object} files
    *
-   * @returns {function} file[0] as parameter
+   * @returns {void}
   */
   handleDrop(files) {
     this.props.setImageUrl(files[0]);
@@ -38,7 +38,7 @@ export class ImageFile extends React.Component {
 
   /**
    * Displays appropriate message alongside image
-   * @function
+   * @function buildImageMessage
    *
    * @param {null} null
    *
@@ -80,6 +80,7 @@ export class ImageFile extends React.Component {
 
   /**
    * Displays preview of recipe image
+   * @function render
    *
    * @returns {jsx} jsx with dropzone mounting preview of image
    */

@@ -1,29 +1,29 @@
 import express from 'express';
 
-import DownvotesController from '../controllers/downvotes';
-import UpvotesController from '../controllers/upvotes';
-import authenticationMiddleware from '../middleware/authenticate';
-import canDownvoteMiddleware from '../middleware/canDownvote';
-import canUpvoteMiddleware from '../middleware/canUpvote';
+import Downvotes from '../controllers/downvotes';
+import Upvotes from '../controllers/upvotes';
+import authenticate from '../middleware/authenticate';
+import canDownvote from '../middleware/canDownvote';
+import canUpvote from '../middleware/canUpvote';
 
 const router = express.Router();
 
-const downvotesController = new DownvotesController();
-const upvotesController = new UpvotesController();
+const downvotesController = new Downvotes();
+const upvotesController = new Upvotes();
 
 
 // POST api/v1/recipes/:recipeId/upvote - add an upvote to a recipe
 
 router.route('/:recipeId/upvote')
 
-  .post(authenticationMiddleware, canUpvoteMiddleware, upvotesController.addUpvote);
+  .post(authenticate, canUpvote, upvotesController.addUpvote);
 
 
 // POST api/v1/recipes/:recipeId/downvote - add a downvote to a recipe
 
 router.route('/:recipeId/downvote')
 
-  .post(authenticationMiddleware, canDownvoteMiddleware, downvotesController.addDownvote);
+  .post(authenticate, canDownvote, downvotesController.addDownvote);
 
 
 export default router;

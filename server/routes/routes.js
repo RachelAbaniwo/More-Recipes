@@ -1,20 +1,20 @@
 import express from 'express';
-import recipeRoutes from './recipes';
-import userRoutes from './users';
-import reviewRoutes from './reviews';
-import voteRoutes from './votes';
-import favoriteRoutes from './favorites';
-import modifyUserRoutes from './modifyUser';
+import recipes from './recipes';
+import users from './users';
+import reviews from './reviews';
+import votes from './votes';
+import favorites from './favorites';
+import modifyUser from './modifyUser';
 
 const router = express.Router();
 
 
-router.use('/recipes', recipeRoutes);
-router.use('/users', userRoutes);
-router.use('/reviews', reviewRoutes);
-router.use('/recipes/', voteRoutes);
-router.use('/favorites', favoriteRoutes);
-router.use('/users', modifyUserRoutes);
+router.use('/recipes', recipes);
+router.use('/users', users);
+router.use('/reviews', reviews);
+router.use('/recipes/', votes);
+router.use('/favorites', favorites);
+router.use('/users', modifyUser);
 
 
 export default router;

@@ -1,13 +1,13 @@
 import express from 'express';
-import UserController from '../controllers/users';
-import authenticationMiddleware from '../middleware/authenticate';
+import Users from '../controllers/users';
+import authenticate from '../middleware/authenticate';
 import userSignupValidator from '../middleware/userSignupValidator';
 import userSigninValidator from '../middleware/userSigninValidator';
 
 
 const router = express.Router();
 
-const userController = new UserController();
+const userController = new Users();
 
 
 // POST /api/v1/users/signup - Registers a new User
@@ -27,14 +27,14 @@ router.route('/signin')
 
 router.route('/myrecipes')
 
-  .get(authenticationMiddleware, userController.getMyRecipes);
+  .get(authenticate, userController.getMyRecipes);
 
 
 // GET /api/v1/users/:userId/recipes - Gets another user's recipes with user specified by Id
 
 router.route('/:userId/recipes')
 
-  .get(authenticationMiddleware, userController.getUserRecipes);
+  .get(authenticate, userController.getUserRecipes);
 
 // GET /api/v1/users/:userId - Gets one User
 

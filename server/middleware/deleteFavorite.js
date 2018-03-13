@@ -2,16 +2,16 @@ import db from '../models/index';
 
 const { Favorite } = db;
 
-export default (req, res, next) => {
-  Favorite.findById(req.params.favoriteId).then((favorite) => {
+export default (request, response, next) => {
+  Favorite.findById(request.params.favoriteId).then((favorite) => {
     if (!favorite) {
-      return res.status(404).json({ message: 'Recipe not found' });
+      return response.status(404).json({ message: 'Recipe not found' });
     }
 
-    if (favorite.userId !== req.AuthUser.id) {
-      return res.status(401).json({ message: 'Unauthorized' });
+    if (favorite.userId !== request.AuthUser.id) {
+      return response.status(401).json({ message: 'Unauthorized' });
     }
 
     next();
-  }).catch(() => res.status(400).json({ message: 'Invalid request' }));
+  }).catch(() => response.status(400).json({ message: 'Invalid request' }));
 };

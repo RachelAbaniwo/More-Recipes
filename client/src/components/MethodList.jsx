@@ -3,11 +3,11 @@ import React from 'react';
 
 /**
  * Display method component
- * @function
+ * @function MethodList
  *
- * @param {string} method
+ * @param {object} props
  *
- * @returns {object} jsx for component
+ * @returns {jsx} method list jsx
  */
 export const MethodList = ({ method }) => {
   method = method.trim();

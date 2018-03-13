@@ -5,18 +5,18 @@ dotenv.config();
 const jwtSecret = process.env.JWT_SECRET;
 
 
-export default (req, res, next) => {
-  const { token } = req.headers;
+export default (request, response, next) => {
+  const { token } = request.headers;
   return jwt.verify(token, jwtSecret, (error, user) => {
     if (error) {
       if (error.name === 'TokenExpiredError') {
-        return res.status(401).json({ message: 'Token Expired.' });
+        return response.status(401).json({ message: 'Token Expired.' });
       }
 
-      return res.status(401).json({ message: 'Unauthenticated' });
+      return response.status(401).json({ message: 'Unauthenticated' });
     }
 
-    req.AuthUser = user;
+    request.AuthUser = user;
     next();
   });
 };

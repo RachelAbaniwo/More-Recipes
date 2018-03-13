@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 /**
  * Display footer component
- * @param {null} null
+ * @function Footer
+ *
+ * @param {object} props
  *
  * @returns {object} jsx for footer
  *

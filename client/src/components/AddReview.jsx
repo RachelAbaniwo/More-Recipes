@@ -6,10 +6,11 @@ import { createReview } from '../store/actions/recipes';
 
 
 /**
- * Add a review component
- * @class
+ * @class AddReview
+ * @extends {React.Component}
+ * @description renders the add-review component
  *
- * @returns {object} jsx object
+ * @returns {textarea} review textarea field and button
  */
 export class AddReview extends React.Component {
   /**
@@ -18,7 +19,7 @@ export class AddReview extends React.Component {
    *
    * @param {object} props
    *
-   * @returns {object} jsx
+   * @returns {void} void
    */
   constructor(props) {
     super(props);
@@ -30,13 +31,12 @@ export class AddReview extends React.Component {
     this.createReview = this.createReview.bind(this);
   }
   /**
-   * Creates review
-   * @function
+   * Creates review and sets state with empty review textarea field
+   * @method createReview
    *
    * @param {null} null
    *
-   * @returns {function} with review and recipe Id as parameters
-   * @returns {object} sets state with empty review field
+   * @returns {void} void
    */
   createReview() {
     this.props.createReview(this.state.review, this.props.recipeId);
@@ -45,12 +45,13 @@ export class AddReview extends React.Component {
     });
   }
   /**
-   * Handles change in review field
-   * @function
+   * Handles change in review field, listens for change event in the review
+   * textarea
+   * @method handleChange
    *
    * @param {object} event
    *
-   * @returns {object} state with review being the review after field change
+   * @returns {void} void
    */
   handleChange(event) {
     this.setState({
@@ -58,9 +59,10 @@ export class AddReview extends React.Component {
     });
   }
   /**
-   * Adds a review
+   * Renders add review jsx
+   * @memberof AddReview
    *
-   * @returns {jsx} jsx which adds a new review
+   * @returns {jsx} jsx
    */
   render() {
     return (
@@ -88,6 +90,7 @@ AddReview.propTypes = {
 };
 /**
  * Map dispatch to props
+ * @function  mapDispatchToProps
  * @param {object} dispatch
  *
  * @returns {object} object to be passed as props to component

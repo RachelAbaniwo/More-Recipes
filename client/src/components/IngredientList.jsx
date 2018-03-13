@@ -3,11 +3,11 @@ import React from 'react';
 
 /**
  * Display list of ingredients component
- * @function
+ * @function IngredientList
  *
- * @param {string} ingredients
+ * @param {object} props
  *
- * @returns {object} jsx for component
+ * @returns {jsx} list of ingredients
  */
 const IngredientList = ({ ingredients }) => {
   ingredients = ingredients.trim();
