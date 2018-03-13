@@ -71,16 +71,24 @@ export class AllRecipeScreen extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+    this.props.getAllRecipes({
+      ...this.state,
+      page: 0,
+      [event.target.name]: event.target.value,
+      loading: true
+    }).then(() => {
+      this.setState({ loading: false });
+    });
   }
 
   /**
-   *Handle input change
+   *Handle submit
    * @param {object} event
    * @returns {null} null
    */
   handleSubmit(event) {
     event.preventDefault();
-    this.props.getAllRecipes(this.state);
+    this.props.getAllRecipes({ ...this.state, page: 0 });
   }
 
   /**
