@@ -15,22 +15,18 @@ export const LandingTopButtons = ({ authUser, signOutUser }) => {
     return (
       <div className="col-md-12 hover-slide float-right">
         <div
-          style={{ paddingBottom: 20 }}
+          id="landing-div"
         >
           <button
             onClick={signOutUser}
+            id="logout-button"
             className="button btn btn-default link-button ml-2 float-right title home-sign-out"
-            style={{
-              width: 150, marginTop: 10, fontFamily: 'Advent Pro'
-            }}
           >LOG OUT
           </button>
           <Link
             to="/dashboard"
+            id="logout-button"
             className="button btn btn-default link-button ml-2 float-right title home-profile"
-            style={{
-              width: 150, marginTop: 10, fontFamily: 'Advent Pro'
-            }}
           >MY PROFILE
           </Link>
         </div>
@@ -40,22 +36,18 @@ export const LandingTopButtons = ({ authUser, signOutUser }) => {
   return (
     <div className="col-md-12 hover-slide float-right">
       <div
-        style={{ paddingBottom: 20 }}
+        id="landing-div"
       >
         <Link
           to="/signup"
+          id="logout-button"
           className="button btn btn-default link-button ml-2 float-right home-sign-up title"
-          style={{
-            width: 150, marginTop: 10, fontFamily: 'Advent Pro'
-          }}
         >REGISTER
         </Link>
         <Link
           to="/signin"
+          id="logout-button"
           className="button btn btn-default link-button home-sign-in mr-2 float-right title"
-          style={{
-            width: 150, marginTop: 10, fontFamily: 'Advent Pro'
-          }}
         >LOGIN
         </Link>
       </div>
@@ -77,25 +69,21 @@ export const CreateRecipeButton = ({ authUser }) => {
       <div className="justify-content-center">
         <Link
           to="/recipes/create"
+          id="create-recipe-button"
           className="button btn btn-default home-create-recipe link-button justify-content-center title mr-2"
-          style={{
-        width: 180, fontFamily: 'Advent Pro', fontSize: '20px', marginTop: 10
-      }}
         >CREATE A RECIPE
         </Link>
 
         <Link
           to="/dashboard"
           className="button btn btn-default home-manage-recipes link-button justify-content-center title mr-2"
-          style={{
-        width: 180, fontFamily: 'Advent Pro', fontSize: '20px', marginTop: 10
-      }}
+          id="create-recipe-button"
         >MANAGE RECIPES
         </Link>
       </div>
     );
   }
-  return (<div style={{ marginTop: 50 }} />);
+  return (<div id="return" />);
 };
 
 LandingTopButtons.propTypes = {

@@ -253,16 +253,11 @@ export class CreateRecipeScreen extends React.Component {
       <div>
         <section
           className="container text-center mx auto create-recipe-container"
-          style={{
-            border: '1px solid lightgrey',
-            padding: 30,
-            marginTop: 90,
-            marginBottom: 50
-          }}
+          id="create-recipe-container"
         >
           <section className="row justify-content-center py-5">
             <section className="col-md-8">
-              <div className="card" style={{ backgroundColor: 'rgba(233, 231, 231, 0.863)' }}>
+              <div className="card create-card">
                 <h4 className="card-header text-center title">{this.state.editing ? 'UPDATE' : 'CREATE'} RECIPE</h4><br />
                 {errorHolder}
                 <div className="card-body">

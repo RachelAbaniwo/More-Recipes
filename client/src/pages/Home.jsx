@@ -122,7 +122,7 @@ export class Home extends React.Component {
             </div>
             <div className="justify-content-center">
               <div
-                className="container justify-content-center text-center"
+                className="container justify-content-center text-center home-box"
                 style={{
                   backgroundColor: 'rgba(73, 67, 67, 0.679)',
                   position: 'absolute',

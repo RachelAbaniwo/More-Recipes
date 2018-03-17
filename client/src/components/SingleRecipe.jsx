@@ -20,11 +20,10 @@ const SingleRecipe = ({ recipe }) => ((
       <figcaption className="figure-caption">
         <Link
           className="single-recipe"
-          style={{ textDecoration: 'none', fontSize: '18px' }}
           to={`view-recipe/${recipe.id}`}
         >{recipe.name}
         </Link>
-        <p style={{ fontSize: '18px' }}>
+        <p id="recipe-info">
           <i
             className="fa fa-thumbs-up text-info"
             aria-hidden="true"

@@ -40,9 +40,9 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.(s*)css$/,
         loader: ExtractTextPlugin.extract({
-          use: 'css-loader',
+          use: ['css-loader', 'sass-loader'],
         }),
       },
       {

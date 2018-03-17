@@ -16,10 +16,6 @@ const MyProfile = ({ authUser }) => ((
       authUser &&
       <figure
         className="figure profile-card"
-        style={{
-          border: '1px solid lightgrey',
-          padding: 10
-        }}
       >
         <img
           max-width="600px"
@@ -27,7 +23,7 @@ const MyProfile = ({ authUser }) => ((
           src={authUser.user.profilePicture ?
             authUser.user.profilePicture : image0}
           alt=""
-          className="figure-img img-thumbnail mx-auto"
+          className="figure-img img-thumbnail mx-auto profile-image"
         />
         <figcaption className="figure-caption" style={{ textAlign: 'left' }}>
           <p

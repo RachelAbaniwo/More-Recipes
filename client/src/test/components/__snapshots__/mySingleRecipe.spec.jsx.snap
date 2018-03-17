@@ -45,26 +45,16 @@ ShallowWrapper {
             alt="Search Result"
             className="figure-img img-thumbnail mx-auto single-recipe"
             src="http://test.recipe_image"
-            style={Object {}}
           />
         </Link>
         <figcaption
           className="figure-caption"
-          style={
-            Object {
-              "marginTop": "10px",
-            }
-          }
+          id="my-single"
         >
           <Link
             className="single-recipe-name"
             onlyActiveOnIndex={false}
-            style={
-              Object {
-                "fontSize": "18px",
-                "textDecoration": "none",
-              }
-            }
+            style={Object {}}
             to="view-recipe/1"
           >
             Chicken
@@ -93,10 +83,7 @@ ShallowWrapper {
           </p>
         </figcaption>
       </figure>,
-      "className": "col-sm-3 card-1",
-      "style": Object {
-        "paddingTop": 10,
-      },
+      "className": "col-sm-3 card-1 my-single",
     },
     "ref": null,
     "rendered": Object {
@@ -114,26 +101,16 @@ ShallowWrapper {
               alt="Search Result"
               className="figure-img img-thumbnail mx-auto single-recipe"
               src="http://test.recipe_image"
-              style={Object {}}
             />
           </Link>,
           <figcaption
             className="figure-caption"
-            style={
-              Object {
-                "marginTop": "10px",
-              }
-            }
+            id="my-single"
           >
             <Link
               className="single-recipe-name"
               onlyActiveOnIndex={false}
-              style={
-                Object {
-                  "fontSize": "18px",
-                  "textDecoration": "none",
-                }
-              }
+              style={Object {}}
               to="view-recipe/1"
             >
               Chicken
@@ -175,7 +152,6 @@ ShallowWrapper {
               alt="Search Result"
               className="figure-img img-thumbnail mx-auto single-recipe"
               src="http://test.recipe_image"
-              style={Object {}}
             />,
             "onlyActiveOnIndex": false,
             "style": Object {},
@@ -190,7 +166,6 @@ ShallowWrapper {
               "alt": "Search Result",
               "className": "figure-img img-thumbnail mx-auto single-recipe",
               "src": "http://test.recipe_image",
-              "style": Object {},
             },
             "ref": null,
             "rendered": null,
@@ -207,12 +182,7 @@ ShallowWrapper {
               <Link
                 className="single-recipe-name"
                 onlyActiveOnIndex={false}
-                style={
-                  Object {
-                    "fontSize": "18px",
-                    "textDecoration": "none",
-                  }
-                }
+                style={Object {}}
                 to="view-recipe/1"
               >
                 Chicken
@@ -241,9 +211,7 @@ ShallowWrapper {
               </p>,
             ],
             "className": "figure-caption",
-            "style": Object {
-              "marginTop": "10px",
-            },
+            "id": "my-single",
           },
           "ref": null,
           "rendered": Array [
@@ -255,10 +223,7 @@ ShallowWrapper {
                 "children": "Chicken",
                 "className": "single-recipe-name",
                 "onlyActiveOnIndex": false,
-                "style": Object {
-                  "fontSize": "18px",
-                  "textDecoration": "none",
-                },
+                "style": Object {},
                 "to": "view-recipe/1",
               },
               "ref": null,
@@ -370,26 +335,16 @@ ShallowWrapper {
               alt="Search Result"
               className="figure-img img-thumbnail mx-auto single-recipe"
               src="http://test.recipe_image"
-              style={Object {}}
             />
           </Link>
           <figcaption
             className="figure-caption"
-            style={
-              Object {
-                "marginTop": "10px",
-              }
-            }
+            id="my-single"
           >
             <Link
               className="single-recipe-name"
               onlyActiveOnIndex={false}
-              style={
-                Object {
-                  "fontSize": "18px",
-                  "textDecoration": "none",
-                }
-              }
+              style={Object {}}
               to="view-recipe/1"
             >
               Chicken
@@ -418,10 +373,7 @@ ShallowWrapper {
             </p>
           </figcaption>
         </figure>,
-        "className": "col-sm-3 card-1",
-        "style": Object {
-          "paddingTop": 10,
-        },
+        "className": "col-sm-3 card-1 my-single",
       },
       "ref": null,
       "rendered": Object {
@@ -439,26 +391,16 @@ ShallowWrapper {
                 alt="Search Result"
                 className="figure-img img-thumbnail mx-auto single-recipe"
                 src="http://test.recipe_image"
-                style={Object {}}
               />
             </Link>,
             <figcaption
               className="figure-caption"
-              style={
-                Object {
-                  "marginTop": "10px",
-                }
-              }
+              id="my-single"
             >
               <Link
                 className="single-recipe-name"
                 onlyActiveOnIndex={false}
-                style={
-                  Object {
-                    "fontSize": "18px",
-                    "textDecoration": "none",
-                  }
-                }
+                style={Object {}}
                 to="view-recipe/1"
               >
                 Chicken
@@ -500,7 +442,6 @@ ShallowWrapper {
                 alt="Search Result"
                 className="figure-img img-thumbnail mx-auto single-recipe"
                 src="http://test.recipe_image"
-                style={Object {}}
               />,
               "onlyActiveOnIndex": false,
               "style": Object {},
@@ -515,7 +456,6 @@ ShallowWrapper {
                 "alt": "Search Result",
                 "className": "figure-img img-thumbnail mx-auto single-recipe",
                 "src": "http://test.recipe_image",
-                "style": Object {},
               },
               "ref": null,
               "rendered": null,
@@ -532,12 +472,7 @@ ShallowWrapper {
                 <Link
                   className="single-recipe-name"
                   onlyActiveOnIndex={false}
-                  style={
-                    Object {
-                      "fontSize": "18px",
-                      "textDecoration": "none",
-                    }
-                  }
+                  style={Object {}}
                   to="view-recipe/1"
                 >
                   Chicken
@@ -566,9 +501,7 @@ ShallowWrapper {
                 </p>,
               ],
               "className": "figure-caption",
-              "style": Object {
-                "marginTop": "10px",
-              },
+              "id": "my-single",
             },
             "ref": null,
             "rendered": Array [
@@ -580,10 +513,7 @@ ShallowWrapper {
                   "children": "Chicken",
                   "className": "single-recipe-name",
                   "onlyActiveOnIndex": false,
-                  "style": Object {
-                    "fontSize": "18px",
-                    "textDecoration": "none",
-                  },
+                  "style": Object {},
                   "to": "view-recipe/1",
                 },
                 "ref": null,

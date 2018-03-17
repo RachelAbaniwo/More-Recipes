@@ -3,7 +3,7 @@
 module.exports = {
   up: queryInterface =>
     queryInterface.bulkInsert('Recipes', [{
-      recipeImage: '',
+      recipeImage: 'http://res.cloudinary.com/rachelabaniwo/image/upload/v1519665978/yam-pottage-2_ztf2iw.jpg',
       name: 'Fried Noodles',
       category: 'Pasta',
       ingredients: 'Noodles, Pepper, Olive Oil, Onions',
@@ -17,7 +17,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
-      recipeImage: '',
+      recipeImage: 'http://res.cloudinary.com/rachelabaniwo/image/upload/v1519655114/nkwobi_hln1lp.jpg',
       name: 'Coconut Rice',
       category: 'Rice',
       ingredients: 'Rice, Coconut Milk, Pepper, Olive Oil, Onions',
@@ -31,7 +31,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
-      recipeImage: '',
+      recipeImage: 'http://res.cloudinary.com/rachelabaniwo/image/upload/v1519646848/palm-oil-stew-12_rxqzfh.jpg',
       name: 'Chilli Fries',
       category: 'Fries',
       ingredients: 'Irish Potatoes',
@@ -45,7 +45,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
-      recipeImage: '',
+      recipeImage: 'http://res.cloudinary.com/rachelabaniwo/image/upload/v1517978394/chicken-yassa_efsgc3.jpg',
       name: 'Chicken Sauce',
       category: 'Sauces',
       ingredients: 'Chicken',
@@ -59,7 +59,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
-      recipeImage: '',
+      recipeImage: 'http://res.cloudinary.com/rachelabaniwo/image/upload/v1518081680/Fried_fish_roll_snack_ssnjog.jpg',
       name: 'Nigerian Doughnut',
       category: 'Pastries',
       ingredients: 'Flour, Sugar',
@@ -73,7 +73,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
-      recipeImage: '',
+      recipeImage: 'http://res.cloudinary.com/rachelabaniwo/image/upload/v1517976677/cheese-burgers_xrcbln.jpg',
       name: 'Jamaican Sauce',
       category: 'Sauces',
       ingredients: 'Chicken, Veggies',

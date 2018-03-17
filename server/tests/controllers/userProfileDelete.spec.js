@@ -7,30 +7,26 @@ import db from '../../models';
 
 const { User } = db;
 const expect = chai.expect;
-let user1Token, user5Token, user1, user5;
+let rachelToken, nnenaToken;
 
-const { signinUser1, signinUser5 } = mockData;
+const { rachel, nnena } = mockData;
 
 chai.use(chaiHttp);
 
 describe('DELETE USER CONTROLLER', () => {
-
   describe('Delete User', () => {
-
     before((done) => {
       chai.request(app)
       .post('/api/v1/users/signin')
-      .send(signinUser1)
+      .send(rachel)
       .end((error, response) => {
-        user1Token = response.body.token;
-        user1 = response.body.existingUser;
+        rachelToken = response.body.token;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
-      .send(signinUser5)
+      .send(nnena)
       .end((error, response) => {
-        user5Token = response.body.token;
-        user5 = response.body.existingUser;
+        nnenaToken = response.body.token;
         done();
       });
     });
@@ -47,7 +43,7 @@ describe('DELETE USER CONTROLLER', () => {
     it('should return an error if user profile is to be deleted by another user', (done) => {
       chai.request(app)
       .delete('/api/v1/users/5')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body.message).to.equal('Unauthorized');
@@ -57,7 +53,7 @@ describe('DELETE USER CONTROLLER', () => {
     it('should return an error if user to be deleted is not found', (done) => {
       chai.request(app)
       .delete('/api/v1/users/10')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body.message).to.equal('User not found');
@@ -67,7 +63,7 @@ describe('DELETE USER CONTROLLER', () => {
     it('should return an error if the user ID of user to be deleted specified is not an integer', (done) => {
       chai.request(app)
       .delete('/api/v1/users/Rachel')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .end((error, response) => {
         expect(response).to.have.status(400);
         expect(response.body.message).to.equal('Invalid request');
@@ -77,7 +73,7 @@ describe('DELETE USER CONTROLLER', () => {
     it('should delete the profile of a signed in user', (done) => {
       chai.request(app)
       .delete('/api/v1/users/5')
-      .set('token', user5Token)
+      .set('token', nnenaToken)
       .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body.message).to.equal('Successfully deleted user');

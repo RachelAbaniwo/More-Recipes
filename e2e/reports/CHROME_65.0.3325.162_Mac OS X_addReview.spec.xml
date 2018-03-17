@@ -5,9 +5,9 @@
 
   <testsuite name="addReview.spec"
     errors="0" failures="0" hostname="" id="" package="addReview.spec" skipped="0"
-    tests="2" time="41.01" timestamp="Sat, 17 Mar 2018 12:19:41 GMT">
+    tests="2" time="44.76" timestamp="Sat, 17 Mar 2018 21:11:42 GMT">
   
-    <testcase name="Review recipe: unauthenticated users should not be able to review a recipe" classname="addReview.spec" time="17.71" assertions="4">
+    <testcase name="Review recipe: unauthenticated users should not be able to review a recipe" classname="addReview.spec" time="19.29" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Review recipe: authenticated users should be able to review a recipe" classname="addReview.spec" time="23.30" assertions="4">
+    <testcase name="Review recipe: authenticated users should be able to review a recipe" classname="addReview.spec" time="25.47" assertions="4">
 
     
 

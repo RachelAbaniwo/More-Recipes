@@ -17,7 +17,7 @@ export const MethodList = ({ method }) => {
   const methodArray = method.split('.');
   const methodList = methodArray.map((eachMethod, index) => (
     <li
-      style={{ fontSize: '18px' }}
+      id="ingredient-style"
       //   eslint-disable-next-line
       key={index}
     >

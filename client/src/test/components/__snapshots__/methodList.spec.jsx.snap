@@ -28,19 +28,19 @@ ReactWrapper {
         style="padding-bottom: 50px;"
       >
         <li
-          style="font-size: 18px;"
+          id="ingredient-style"
         >
           Peel yam
           .
         </li>
         <li
-          style="font-size: 18px;"
+          id="ingredient-style"
         >
            Wash the peeled yam
           .
         </li>
         <li
-          style="font-size: 18px;"
+          id="ingredient-style"
         >
            Fry it
           .
@@ -51,31 +51,19 @@ ReactWrapper {
       "props": Object {
         "children": Array [
           <li
-            style={
-              Object {
-                "fontSize": "18px",
-              }
-            }
+            id="ingredient-style"
           >
             Peel yam
             .
           </li>,
           <li
-            style={
-              Object {
-                "fontSize": "18px",
-              }
-            }
+            id="ingredient-style"
           >
              Wash the peeled yam
             .
           </li>,
           <li
-            style={
-              Object {
-                "fontSize": "18px",
-              }
-            }
+            id="ingredient-style"
           >
              Fry it
             .
@@ -90,7 +78,7 @@ ReactWrapper {
       "rendered": Array [
         Object {
           "instance": <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
             Peel yam
             .
@@ -102,9 +90,7 @@ ReactWrapper {
               "Peel yam",
               ".",
             ],
-            "style": Object {
-              "fontSize": "18px",
-            },
+            "id": "ingredient-style",
           },
           "ref": null,
           "rendered": Array [
@@ -115,7 +101,7 @@ ReactWrapper {
         },
         Object {
           "instance": <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
              Wash the peeled yam
             .
@@ -127,9 +113,7 @@ ReactWrapper {
               " Wash the peeled yam",
               ".",
             ],
-            "style": Object {
-              "fontSize": "18px",
-            },
+            "id": "ingredient-style",
           },
           "ref": null,
           "rendered": Array [
@@ -140,7 +124,7 @@ ReactWrapper {
         },
         Object {
           "instance": <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
              Fry it
             .
@@ -152,9 +136,7 @@ ReactWrapper {
               " Fry it",
               ".",
             ],
-            "style": Object {
-              "fontSize": "18px",
-            },
+            "id": "ingredient-style",
           },
           "ref": null,
           "rendered": Array [
@@ -183,19 +165,19 @@ ReactWrapper {
           style="padding-bottom: 50px;"
         >
           <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
             Peel yam
             .
           </li>
           <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
              Wash the peeled yam
             .
           </li>
           <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
              Fry it
             .
@@ -206,31 +188,19 @@ ReactWrapper {
         "props": Object {
           "children": Array [
             <li
-              style={
-                Object {
-                  "fontSize": "18px",
-                }
-              }
+              id="ingredient-style"
             >
               Peel yam
               .
             </li>,
             <li
-              style={
-                Object {
-                  "fontSize": "18px",
-                }
-              }
+              id="ingredient-style"
             >
                Wash the peeled yam
               .
             </li>,
             <li
-              style={
-                Object {
-                  "fontSize": "18px",
-                }
-              }
+              id="ingredient-style"
             >
                Fry it
               .
@@ -245,7 +215,7 @@ ReactWrapper {
         "rendered": Array [
           Object {
             "instance": <li
-              style="font-size: 18px;"
+              id="ingredient-style"
             >
               Peel yam
               .
@@ -257,9 +227,7 @@ ReactWrapper {
                 "Peel yam",
                 ".",
               ],
-              "style": Object {
-                "fontSize": "18px",
-              },
+              "id": "ingredient-style",
             },
             "ref": null,
             "rendered": Array [
@@ -270,7 +238,7 @@ ReactWrapper {
           },
           Object {
             "instance": <li
-              style="font-size: 18px;"
+              id="ingredient-style"
             >
                Wash the peeled yam
               .
@@ -282,9 +250,7 @@ ReactWrapper {
                 " Wash the peeled yam",
                 ".",
               ],
-              "style": Object {
-                "fontSize": "18px",
-              },
+              "id": "ingredient-style",
             },
             "ref": null,
             "rendered": Array [
@@ -295,7 +261,7 @@ ReactWrapper {
           },
           Object {
             "instance": <li
-              style="font-size: 18px;"
+              id="ingredient-style"
             >
                Fry it
               .
@@ -307,9 +273,7 @@ ReactWrapper {
                 " Fry it",
                 ".",
               ],
-              "style": Object {
-                "fontSize": "18px",
-              },
+              "id": "ingredient-style",
             },
             "ref": null,
             "rendered": Array [
@@ -362,19 +326,19 @@ ReactWrapper {
         style="padding-bottom: 50px;"
       >
         <li
-          style="font-size: 18px;"
+          id="ingredient-style"
         >
           Peel yam
           .
         </li>
         <li
-          style="font-size: 18px;"
+          id="ingredient-style"
         >
            Wash the peeled yam
           .
         </li>
         <li
-          style="font-size: 18px;"
+          id="ingredient-style"
         >
            Fry it
           .
@@ -385,31 +349,19 @@ ReactWrapper {
       "props": Object {
         "children": Array [
           <li
-            style={
-              Object {
-                "fontSize": "18px",
-              }
-            }
+            id="ingredient-style"
           >
             Peel yam
             .
           </li>,
           <li
-            style={
-              Object {
-                "fontSize": "18px",
-              }
-            }
+            id="ingredient-style"
           >
              Wash the peeled yam
             .
           </li>,
           <li
-            style={
-              Object {
-                "fontSize": "18px",
-              }
-            }
+            id="ingredient-style"
           >
              Fry it
             .
@@ -424,7 +376,7 @@ ReactWrapper {
       "rendered": Array [
         Object {
           "instance": <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
             Peel yam
             .
@@ -436,9 +388,7 @@ ReactWrapper {
               "Peel yam",
               ".",
             ],
-            "style": Object {
-              "fontSize": "18px",
-            },
+            "id": "ingredient-style",
           },
           "ref": null,
           "rendered": Array [
@@ -449,7 +399,7 @@ ReactWrapper {
         },
         Object {
           "instance": <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
              Wash the peeled yam
             .
@@ -461,9 +411,7 @@ ReactWrapper {
               " Wash the peeled yam",
               ".",
             ],
-            "style": Object {
-              "fontSize": "18px",
-            },
+            "id": "ingredient-style",
           },
           "ref": null,
           "rendered": Array [
@@ -474,7 +422,7 @@ ReactWrapper {
         },
         Object {
           "instance": <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
              Fry it
             .
@@ -486,9 +434,7 @@ ReactWrapper {
               " Fry it",
               ".",
             ],
-            "style": Object {
-              "fontSize": "18px",
-            },
+            "id": "ingredient-style",
           },
           "ref": null,
           "rendered": Array [
@@ -517,19 +463,19 @@ ReactWrapper {
           style="padding-bottom: 50px;"
         >
           <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
             Peel yam
             .
           </li>
           <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
              Wash the peeled yam
             .
           </li>
           <li
-            style="font-size: 18px;"
+            id="ingredient-style"
           >
              Fry it
             .
@@ -540,31 +486,19 @@ ReactWrapper {
         "props": Object {
           "children": Array [
             <li
-              style={
-                Object {
-                  "fontSize": "18px",
-                }
-              }
+              id="ingredient-style"
             >
               Peel yam
               .
             </li>,
             <li
-              style={
-                Object {
-                  "fontSize": "18px",
-                }
-              }
+              id="ingredient-style"
             >
                Wash the peeled yam
               .
             </li>,
             <li
-              style={
-                Object {
-                  "fontSize": "18px",
-                }
-              }
+              id="ingredient-style"
             >
                Fry it
               .
@@ -579,7 +513,7 @@ ReactWrapper {
         "rendered": Array [
           Object {
             "instance": <li
-              style="font-size: 18px;"
+              id="ingredient-style"
             >
               Peel yam
               .
@@ -591,9 +525,7 @@ ReactWrapper {
                 "Peel yam",
                 ".",
               ],
-              "style": Object {
-                "fontSize": "18px",
-              },
+              "id": "ingredient-style",
             },
             "ref": null,
             "rendered": Array [
@@ -604,7 +536,7 @@ ReactWrapper {
           },
           Object {
             "instance": <li
-              style="font-size: 18px;"
+              id="ingredient-style"
             >
                Wash the peeled yam
               .
@@ -616,9 +548,7 @@ ReactWrapper {
                 " Wash the peeled yam",
                 ".",
               ],
-              "style": Object {
-                "fontSize": "18px",
-              },
+              "id": "ingredient-style",
             },
             "ref": null,
             "rendered": Array [
@@ -629,7 +559,7 @@ ReactWrapper {
           },
           Object {
             "instance": <li
-              style="font-size: 18px;"
+              id="ingredient-style"
             >
                Fry it
               .
@@ -641,9 +571,7 @@ ReactWrapper {
                 " Fry it",
                 ".",
               ],
-              "style": Object {
-                "fontSize": "18px",
-              },
+              "id": "ingredient-style",
             },
             "ref": null,
             "rendered": Array [

@@ -5,16 +5,16 @@
 
   <testsuite name="createRecipe.spec"
     errors="0" failures="0" hostname="" id="" package="createRecipe.spec" skipped="0"
-    tests="2" time="41.19" timestamp="Sat, 17 Mar 2018 12:23:42 GMT">
+    tests="2" time="62.74" timestamp="Sat, 17 Mar 2018 21:16:14 GMT">
   
-    <testcase name="Create recipe: authenticated user can create recipe" classname="createRecipe.spec" time="24.55" assertions="2">
+    <testcase name="Create recipe: authenticated user can create recipe" classname="createRecipe.spec" time="28.13" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="Create recipe displays validation errors if data is invalid" classname="createRecipe.spec" time="16.65" assertions="2">
+    <testcase name="Create recipe displays validation errors if data is invalid" classname="createRecipe.spec" time="34.61" assertions="2">
 
     
 

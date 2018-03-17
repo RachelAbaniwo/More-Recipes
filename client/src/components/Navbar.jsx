@@ -55,14 +55,14 @@ export const Navbar = ({
               >
                 <Link
                   to="/recipes/create"
+                  id="dropdown"
                   className="dropdown-item"
-                  style={{ fontSize: 15 }}
                 >CREATE RECIPE
                 </Link>
                 <Link
                   to="/dashboard"
+                  id="dropdown"
                   className="dropdown-item"
-                  style={{ fontSize: 15 }}
                 >PROFILE
                 </Link>
                 <button
@@ -71,7 +71,7 @@ export const Navbar = ({
                     router.push('/');
                   }}
                   className="dropdown-item"
-                  style={{ fontSize: 15 }}
+                  id="dropdown"
                 >LOG OUT
                 </button>
               </div>
@@ -82,8 +82,8 @@ export const Navbar = ({
             <li className="nav-item">
               <Link
                 to="/signin"
+                id="sign-in"
                 className="navbar-register"
-                style={{ marginRight: 20 }}
               >SIGN IN
               </Link>
             </li>
@@ -93,8 +93,8 @@ export const Navbar = ({
             <li className="nav-item">
               <Link
                 to="/signup"
+                id="sign-in"
                 className="navbar-register"
-                style={{ marginRight: 20 }}
               >REGISTER
               </Link>
             </li>

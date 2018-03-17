@@ -5,9 +5,9 @@
 
   <testsuite name="dashboard.spec"
     errors="0" failures="0" hostname="" id="" package="dashboard.spec" skipped="0"
-    tests="1" time="40.71" timestamp="Sat, 17 Mar 2018 12:24:23 GMT">
+    tests="1" time="43.27" timestamp="Sat, 17 Mar 2018 21:17:16 GMT">
   
-    <testcase name="View dashboard: authenticated users should be able to view their dashboard" classname="dashboard.spec" time="40.71" assertions="9">
+    <testcase name="View dashboard: authenticated users should be able to view their dashboard" classname="dashboard.spec" time="43.27" assertions="9">
 
     
 

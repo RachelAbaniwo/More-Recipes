@@ -58,7 +58,7 @@ describe('The CreateRecipeButton component', () => {
     () => {
       const wrapper = mount(<CreateRecipeButton {...unAuthProps} />);
 
-      expect(wrapper.contains(<div style={{ marginTop: 50 }} />)).toBe(true);
+      expect(wrapper.contains(<div id="return" />)).toBe(true);
       expect(wrapper.find({ to: '/signin' }).length).toBe(0);
       expect(wrapper.find({ to: '/signup' }).length).toBe(0);
       expect(wrapper.find({ to: '/dashboard' }).length).toBe(0);

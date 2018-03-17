@@ -5,8 +5,8 @@ import app from '../../app';
 import mockData from '../mockData'
 
 const expect = chai.expect;
-let user1Token, user2Token, user3Token, user1, user2, user3;
-const { signinUser1, signinUser2, signinUser3, recipe1, updateRecipe } = mockData;
+let rachelToken, ineneToken, nelsonToken;
+const { rachel, inene, nelson, ofada, chickenChilli } = mockData;
 
 chai.use(chaiHttp);
 
@@ -23,11 +23,43 @@ describe('UNKNOWN ROUTES', () => {
 });
 
 describe('RECIPE CONTROLLER', () => {
-
-    
   describe('Retrieve Recipes', () => {
-      
-    it('should return a list of all recipes when user requests for all recipes ', (done) => {
+    before((done) => {
+      chai.request(app)
+      .post('/api/v1/users/signin')
+      .send(rachel)
+      .end((error, response) => {
+        rachelToken = response.body.token;
+      });
+      chai.request(app)
+      .post('/api/v1/users/signin')
+      .send(inene)
+      .end((error, response) => {
+        ineneToken = response.body.token;
+      });
+      chai.request(app)
+      .post('/api/v1/users/signin')
+      .send(nelson)
+      .end((error, response) => {
+        nelsonToken = response.body.token;
+        done();
+      });
+    });
+    it('should fetch all recipes when an authenticated user requests for all recipes ', (done) => {
+      chai.request(app)
+      .get('/api/v1/recipes')
+      .set('token', rachelToken)
+      .end((error, response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.be.an('object');
+          expect(response.body.recipes[0].name).to.equal('Fried Noodles');
+          expect(response.body.recipes[0].id).to.equal(1);
+          expect(response.body.recipes[0].userId).to.equal(1);
+          expect(response.body.recipes.length).to.equal(6)
+          done();
+      });
+    });
+    it('should fetch all recipes when an unauthenticated user requests for all recipes ', (done) => {
       chai.request(app)
       .get('/api/v1/recipes')
       .end((error, response) => {
@@ -36,24 +68,45 @@ describe('RECIPE CONTROLLER', () => {
           expect(response.body.recipes[0].name).to.equal('Fried Noodles');
           expect(response.body.recipes[0].id).to.equal(1);
           expect(response.body.recipes[0].userId).to.equal(1);
+          expect(response.body.recipes.length).to.equal(6)
           done();
       });
     });
-    it('should return all recipes sorted according to the property indicated by the user', (done) => {
+    it('should retrieve sorted recipes according to the property indicated by an authenticated user', (done) => {
       chai.request(app)
       .get('/api/v1/recipes?sort=favorites')
+      .set('token', rachelToken)
       .end((error, response) => {
+        const { recipes } = response.body;
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
-        expect(response.body.recipes[0].name).to.equal('Nigerian Doughnut');
-        expect(response.body.recipes[0].id).to.equal(5);
-        expect(response.body.recipes[0].userId).to.equal(2);
+        expect(recipes[0].name).to.equal('Nigerian Doughnut');
+        expect(recipes[0].id).to.equal(5);
+        expect(recipes[0].userId).to.equal(2);
+        expect(recipes[0].favorites >= recipes[1].favorites);
+        expect(recipes[1].favorites >= recipes[2].favorites);        
         done();
       });
     });
-    it('should search for the recipes using the keywords inputed by the user', (done) => {
+    it('should retrieve sorted recipes according to the property indicated by an unauthenticated user', (done) => {
+      chai.request(app)
+      .get('/api/v1/recipes?sort=favorites')
+      .end((error, response) => {
+        const { recipes } = response.body;
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an('object');
+        expect(recipes[0].name).to.equal('Nigerian Doughnut');
+        expect(recipes[0].id).to.equal(5);
+        expect(recipes[0].userId).to.equal(2);
+        expect(recipes[0].favorites >= recipes[1].favorites);
+        expect(recipes[1].favorites >= recipes[2].favorites);        
+        done();
+      });
+    });
+    it('should retrieve recipes that match the keywords searched by an authenticated user', (done) => {
       chai.request(app)
       .get('/api/v1/recipes?search=Chicken Sauce')
+      .set('token', rachelToken)
       .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
@@ -62,8 +115,32 @@ describe('RECIPE CONTROLLER', () => {
         expect(response.body.recipes[0].userId).to.equal(1);
         done();
       });
+      it('should retrieve recipes that match the keywords searched by an unauthenticated user', (done) => {
+        chai.request(app)
+        .get('/api/v1/recipes?search=Chicken Sauce')
+        .end((error, response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.be.an('object');
+          expect(response.body.recipes[0].name).to.equal('Chicken Sauce');
+          expect(response.body.recipes[0].id).to.equal(4);
+          expect(response.body.recipes[0].userId).to.equal(1);
+          done();
+        });
     });
-    it('should return the recipe with recipe ID requested by the user', (done) => {
+    it('should return the recipe with recipe ID requested an authenticated user', (done) => {
+      chai.request(app)
+      .get('/api/v1/recipes/1')
+      .set('token', rachelToken)
+      .end((error, response) => {
+        const recipe = response.body.recipe;
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an('object');
+        expect(recipe.name).to.equal('Fried Noodles');
+        expect(recipe.id).to.equal(1);
+        done();
+      });
+    });
+    it('should return the recipe with recipe ID requested an unauthenticated user', (done) => {
       chai.request(app)
       .get('/api/v1/recipes/1')
       .end((error, response) => {
@@ -97,30 +174,27 @@ describe('RECIPE CONTROLLER', () => {
       });
     });
   });
+});
 
   describe('Create Recipe', () => {
-
     before((done) => {
       chai.request(app)
       .post('/api/v1/users/signin')
-      .send(signinUser1)
+      .send(rachel)
       .end((error, response) => {
-        user1Token = response.body.token;
-        user1 = response.body.user;
+        rachelToken = response.body.token;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
-      .send(signinUser2)
+      .send(inene)
       .end((error, response) => {
-        user2Token = response.body.token;
-        user2 = response.body.user;
+        ineneToken = response.body.token;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
-      .send(signinUser3)
+      .send(nelson)
       .end((error, response) => {
-        user3Token = response.body.token;
-        user3 = response.body.user;
+        nelsonToken = response.body.token;
         done();
       });
     });
@@ -128,8 +202,8 @@ describe('RECIPE CONTROLLER', () => {
     it('should add a new recipe when called by signed in user', (done) => {
       chai.request(app)
       .post('/api/v1/recipes')
-      .set('token', user1Token)
-      .send(recipe1)
+      .set('token', rachelToken)
+      .send(ofada)
       .end((error, response) => {
         expect(response).to.have.status(201);
         const recipe = response.body.recipe;
@@ -145,7 +219,7 @@ describe('RECIPE CONTROLLER', () => {
     it('it should return an error if user creating recipe is not signed in', (done) => {
       chai.request(app)
       .post('/api/v1/recipes')
-      .send(recipe1)
+      .send(ofada)
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body).to.be.an('object');
@@ -156,7 +230,7 @@ describe('RECIPE CONTROLLER', () => {
     it('it should return correct validation errors if wrong data is provided', (done) => {
       chai.request(app)
       .post('/api/v1/recipes')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .send({})
       .end((error, response) => {
         expect(response).to.have.status(400);
@@ -172,3 +246,4 @@ describe('RECIPE CONTROLLER', () => {
     });
   });
 });
+

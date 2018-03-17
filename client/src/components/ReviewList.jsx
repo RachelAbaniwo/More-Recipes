@@ -14,11 +14,7 @@ const ReviewList = (props) => {
   const ReviewsList = ReviewsArray.map(review => (
     <div
       key={review.id}
-      style={{
-        fontSize: '18px',
-        borderBottom: '1px solid lightgrey',
-        marginBottom: 20
-      }}
+      id="review-list"
     >
       <p className="review">{review.review}</p>
       <p>

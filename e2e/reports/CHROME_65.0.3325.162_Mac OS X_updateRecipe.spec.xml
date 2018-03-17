@@ -5,9 +5,9 @@
 
   <testsuite name="updateRecipe.spec"
     errors="0" failures="0" hostname="" id="" package="updateRecipe.spec" skipped="0"
-    tests="1" time="24.09" timestamp="Sat, 17 Mar 2018 12:26:22 GMT">
+    tests="1" time="32.70" timestamp="Sat, 17 Mar 2018 21:19:31 GMT">
   
-    <testcase name="Update recipe: author can update a recipe when authenticated" classname="updateRecipe.spec" time="24.09" assertions="4">
+    <testcase name="Update recipe: author can update a recipe when authenticated" classname="updateRecipe.spec" time="32.70" assertions="4">
 
     
 

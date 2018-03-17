@@ -64,7 +64,7 @@ export class ImageFile extends React.Component {
           <div className="hovereffect">
             <img
               className="img-responsive col-sm-12 justify-content-center figure-img img-thumbnail image-fluid mx-auto"
-              style={{ maxWidth: 700, maxHeight: 500 }}
+              id="image-message"
               src={this.props.imageFile ? this.props.imageFile.preview : this.props.imageUrl}
               alt=""
             />

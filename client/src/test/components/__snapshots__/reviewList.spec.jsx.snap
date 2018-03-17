@@ -68,7 +68,7 @@ ReactWrapper {
         style="padding-bottom: 30px;"
       >
         <div
-          style="font-size: 18px; margin-bottom: 20px;"
+          id="review-list"
         >
           <p
             class="review"
@@ -94,7 +94,7 @@ ReactWrapper {
           </p>
         </div>
         <div
-          style="font-size: 18px; margin-bottom: 20px;"
+          id="review-list"
         >
           <p
             class="review"
@@ -123,13 +123,7 @@ ReactWrapper {
       "props": Object {
         "children": Array [
           <div
-            style={
-              Object {
-                "borderBottom": "1px solid lightgrey",
-                "fontSize": "18px",
-                "marginBottom": 20,
-              }
-            }
+            id="review-list"
           >
             <p
               className="review"
@@ -155,13 +149,7 @@ ReactWrapper {
             </p>
           </div>,
           <div
-            style={
-              Object {
-                "borderBottom": "1px solid lightgrey",
-                "fontSize": "18px",
-                "marginBottom": 20,
-              }
-            }
+            id="review-list"
           >
             <p
               className="review"
@@ -196,7 +184,7 @@ ReactWrapper {
       "rendered": Array [
         Object {
           "instance": <div
-            style="font-size: 18px; margin-bottom: 20px;"
+            id="review-list"
           >
             <p
               class="review"
@@ -248,11 +236,7 @@ ReactWrapper {
                 </small>
               </p>,
             ],
-            "style": Object {
-              "borderBottom": "1px solid lightgrey",
-              "fontSize": "18px",
-              "marginBottom": 20,
-            },
+            "id": "review-list",
           },
           "ref": null,
           "rendered": Array [
@@ -377,7 +361,7 @@ ReactWrapper {
         },
         Object {
           "instance": <div
-            style="font-size: 18px; margin-bottom: 20px;"
+            id="review-list"
           >
             <p
               class="review"
@@ -427,11 +411,7 @@ ReactWrapper {
                 </small>
               </p>,
             ],
-            "style": Object {
-              "borderBottom": "1px solid lightgrey",
-              "fontSize": "18px",
-              "marginBottom": 20,
-            },
+            "id": "review-list",
           },
           "ref": null,
           "rendered": Array [
@@ -591,7 +571,7 @@ ReactWrapper {
           style="padding-bottom: 30px;"
         >
           <div
-            style="font-size: 18px; margin-bottom: 20px;"
+            id="review-list"
           >
             <p
               class="review"
@@ -617,7 +597,7 @@ ReactWrapper {
             </p>
           </div>
           <div
-            style="font-size: 18px; margin-bottom: 20px;"
+            id="review-list"
           >
             <p
               class="review"
@@ -646,13 +626,7 @@ ReactWrapper {
         "props": Object {
           "children": Array [
             <div
-              style={
-                Object {
-                  "borderBottom": "1px solid lightgrey",
-                  "fontSize": "18px",
-                  "marginBottom": 20,
-                }
-              }
+              id="review-list"
             >
               <p
                 className="review"
@@ -678,13 +652,7 @@ ReactWrapper {
               </p>
             </div>,
             <div
-              style={
-                Object {
-                  "borderBottom": "1px solid lightgrey",
-                  "fontSize": "18px",
-                  "marginBottom": 20,
-                }
-              }
+              id="review-list"
             >
               <p
                 className="review"
@@ -719,7 +687,7 @@ ReactWrapper {
         "rendered": Array [
           Object {
             "instance": <div
-              style="font-size: 18px; margin-bottom: 20px;"
+              id="review-list"
             >
               <p
                 class="review"
@@ -771,11 +739,7 @@ ReactWrapper {
                   </small>
                 </p>,
               ],
-              "style": Object {
-                "borderBottom": "1px solid lightgrey",
-                "fontSize": "18px",
-                "marginBottom": 20,
-              },
+              "id": "review-list",
             },
             "ref": null,
             "rendered": Array [
@@ -900,7 +864,7 @@ ReactWrapper {
           },
           Object {
             "instance": <div
-              style="font-size: 18px; margin-bottom: 20px;"
+              id="review-list"
             >
               <p
                 class="review"
@@ -950,11 +914,7 @@ ReactWrapper {
                   </small>
                 </p>,
               ],
-              "style": Object {
-                "borderBottom": "1px solid lightgrey",
-                "fontSize": "18px",
-                "marginBottom": 20,
-              },
+              "id": "review-list",
             },
             "ref": null,
             "rendered": Array [

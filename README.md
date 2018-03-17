@@ -56,6 +56,7 @@ $ npm install
 * Create a database and run: `npm run migration`
 * Start the server, `npm run start:dev`
 * Server should run on port `4044`
+* The preferred application hostname can be specified in the `client/src/config` file
 * To view app navigate to `http://localhost:8080`
 ### TESTING
 * Create a test database.

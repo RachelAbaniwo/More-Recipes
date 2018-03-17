@@ -17,7 +17,7 @@ const IngredientList = ({ ingredients }) => {
   const ingredientsArray = ingredients.split(',');
   const ingredientsList = ingredientsArray.map(ingredient => (
     <li
-      style={{ fontSize: '18px' }}
+      id="ingredient-style"
       key={ingredient}
     >
       {ingredient}

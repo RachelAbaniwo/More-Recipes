@@ -21,7 +21,7 @@
     "test": "npm run test:server && npm run jest",
     "jest": "./node_modules/.bin/jest",
     "test-watch": "nodemon --exec \"npm test\"",
-    "coveralls": "nyc npm test:server && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc npm run test:server && nyc report --reporter=text-lcov | coveralls",
     "heroku-postbuild": "npm run build:client && npm run build"
   },
   "repository": {
@@ -119,7 +119,9 @@
   "devDependencies": {
     "enzyme-adapter-react-16": "^1.1.1",
     "moxios": "^0.4.0",
-    "redux-mock-store": "^1.5.1"
+    "node-sass": "^4.7.2",
+    "redux-mock-store": "^1.5.1",
+    "sass-loader": "^6.0.7"
   },
   "engines": {
     "node": "8.9.1"

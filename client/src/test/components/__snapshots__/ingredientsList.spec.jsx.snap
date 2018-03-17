@@ -5,29 +5,17 @@ exports[`The ingredients list component should render without crashing 1`] = `
   className="list-unstyled"
 >
   <li
-    style={
-      Object {
-        "fontSize": "18px",
-      }
-    }
+    id="ingredient-style"
   >
     eggs
   </li>
   <li
-    style={
-      Object {
-        "fontSize": "18px",
-      }
-    }
+    id="ingredient-style"
   >
     tomatoes
   </li>
   <li
-    style={
-      Object {
-        "fontSize": "18px",
-      }
-    }
+    id="ingredient-style"
   >
     pepper
   </li>

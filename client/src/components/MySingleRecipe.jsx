@@ -11,19 +11,17 @@ import PropTypes from 'prop-types';
  * @returns {jsx} jsx for single recipe
  */
 const MySingleRecipe = ({ recipe }) => ((
-  <section className="col-sm-3 card-1" style={{ paddingTop: 10 }}>
+  <section className="col-sm-3 card-1 my-single" >
     <figure className="figure">
       <Link to={`view-recipe/${recipe.id}`}>
         <img
-          style={{}}
           src={recipe.recipeImage}
           alt="Search Result"
           className="figure-img img-thumbnail mx-auto single-recipe"
         />
       </Link>
-      <figcaption className="figure-caption" style={{ marginTop: '10px' }}>
+      <figcaption className="figure-caption" id="my-single" >
         <Link
-          style={{ textDecoration: 'none', fontSize: '18px' }}
           to={`view-recipe/${recipe.id}`}
           className="single-recipe-name"
         >{recipe.name}

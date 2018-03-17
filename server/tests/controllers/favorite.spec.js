@@ -5,44 +5,39 @@ import app from '../../app';
 import mockData from '../mockData'
 
 const expect = chai.expect;
-let user1Token, user2Token, user3Token, user1, user2, user3;
-const { signinUser1, signinUser2, signinUser3 } = mockData;
+let rachelToken, ineneToken, nelsonToken;
+const { rachel, inene, nelson } = mockData;
 
 chai.use(chaiHttp);
 
 describe('FAVORITES CONTROLLER', () => {
-
   before((done) => {
     chai.request(app)
     .post('/api/v1/users/signin')
-    .send(signinUser1)
+    .send(rachel)
     .end((error, response) => {
-      user1Token = response.body.token;
-      user1 = response.body.user;
+      rachelToken = response.body.token;
     });
     chai.request(app)
     .post('/api/v1/users/signin')
-    .send(signinUser2)
+    .send(inene)
     .end((error, response) => {
-      user2Token = response.body.token;
-      user2 = response.body.user;
+      ineneToken = response.body.token;
     });
     chai.request(app)
     .post('/api/v1/users/signin')
-    .send(signinUser3)
+    .send(nelson)
     .end((error, response) => {
-      user3Token = response.body.token;
-      user3 = response.body.user;
+      nelsonToken = response.body.token;
       done();
     });
   });
 
   describe('Add to favorite list of recipes', () => {
-    
     it('should add a recipe of a signed in user\'s choice to that user\'s list of favorite recipes', (done) => {
       chai.request(app)
       .post('/api/v1/favorites/2')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .end((error, response) => {
         expect(response).to.have.status(201);
         expect(response.body.recipe.id).to.equal(2);
@@ -54,11 +49,11 @@ describe('FAVORITES CONTROLLER', () => {
     it('should remove a recipe from a signed in user\'s list of favorite recipes when called twice for the same recipe', (done) => {
       chai.request(app)
       .post('/api/v1/favorites/3')
-      .set('token', user2Token)
+      .set('token', ineneToken)
       .end((error, response) => {
         chai.request(app)
         .post('/api/v1/favorites/3')
-        .set('token', user2Token)
+        .set('token', ineneToken)
         .end((error, response) => {
           expect(response).to.have.status(200);
           expect(response.body.recipe.id).to.equal(3);
@@ -80,7 +75,7 @@ describe('FAVORITES CONTROLLER', () => {
     it('should return an error if a user is trying to add a recipe that doesn\'t exist to list of favorites', (done) =>{
       chai.request(app)
       .post('/api/v1/favorites/10')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body.message).to.equal('Recipe not found.')
@@ -90,7 +85,7 @@ describe('FAVORITES CONTROLLER', () => {
     it('should return an error if user is trying to add a recipe with an ID that isn\'t an integer to list of favorites', (done) =>{
       chai.request(app)
       .post('/api/v1/favorites/Rachel')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .end((error, response) => {
         expect(response).to.have.status(400);
         expect(response.body.message).to.equal('Invalid request.')
@@ -100,7 +95,7 @@ describe('FAVORITES CONTROLLER', () => {
     it('should return an error if user is trying to add a personal recipe to list of favorites', (done) =>{
       chai.request(app)
       .post('/api/v1/favorites/1')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body.message).to.equal('Unauthorized')
@@ -110,11 +105,10 @@ describe('FAVORITES CONTROLLER', () => {
   });
 
   describe('Retrieve user\'s list of favorites', () => {
-    
     it('should return a user\'s list of favorites', (done) =>{
       chai.request(app)
       .get('/api/v1/favorites')
-      .set('token', user2Token)
+      .set('token', ineneToken)
       .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
@@ -125,7 +119,7 @@ describe('FAVORITES CONTROLLER', () => {
     it('should return an error if user has no recipe in list of favorites', (done) =>{
       chai.request(app)
       .get('/api/v1/favorites')
-      .set('token', user3Token)
+      .set('token', nelsonToken)
       .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
