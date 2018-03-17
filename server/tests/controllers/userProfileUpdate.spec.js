@@ -5,37 +5,32 @@ import app from '../../app';
 import mockData from '../mockData'
 
 const expect = chai.expect;
-let user1Token, user4Token, user5Token, user1, user4, user5;
+let rachelToken, neneToken, nnenaToken;
 
-const { signinUser1, signinUser4, signinUser5, updateUser1, wrongUpdateUser} = mockData;
+const { rachel, nene, nnena, rach, wrongUpdateUser} = mockData;
 
 chai.use(chaiHttp);
 
 describe('MODIFY USER CONTROLLER', () => {
-
   describe('Update User', () => {
-
     before((done) => {
       chai.request(app)
       .post('/api/v1/users/signin')
-      .send(signinUser1)
+      .send(rachel)
       .end((error, response) => {
-        user1Token = response.body.token;
-        user1 = response.body.user;
+        rachelToken = response.body.token;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
-      .send(signinUser4)
+      .send(nene)
       .end((error, response) => {
-        user4Token = response.body.token;
-        user4 = response.body.user;
+        neneToken = response.body.token;
       });
       chai.request(app)
       .post('/api/v1/users/signin')
-      .send(signinUser5)
+      .send(nnena)
       .end((error, response) => {
-        user5Token = response.body.token;
-        user5 = response.body.user;
+        nnenaToken = response.body.token;
         done();
       });
     });
@@ -52,8 +47,8 @@ describe('MODIFY USER CONTROLLER', () => {
     it('should return an error if user profile is updated by another user', (done) => {
       chai.request(app)
       .put('/api/v1/users/4')
-      .set('token', user1Token)
-      .send(updateUser1)
+      .set('token', rachelToken)
+      .send(rach)
       .end((error, response) => {
         expect(response).to.have.status(401);
         expect(response.body.message).to.equal('Unauthorized');
@@ -63,8 +58,8 @@ describe('MODIFY USER CONTROLLER', () => {
     it('should return an error if user to be updated is not found', (done) => {
       chai.request(app)
       .put('/api/v1/users/10')
-      .set('token', user1Token)
-      .send(updateUser1)
+      .set('token', rachelToken)
+      .send(rach)
       .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body.message).to.equal('User not found');
@@ -74,8 +69,8 @@ describe('MODIFY USER CONTROLLER', () => {
     it('should return an error if the user ID of user to be updated specified is not an integer', (done) => {
       chai.request(app)
       .put('/api/v1/users/Rachel')
-      .set('token', user1Token)
-      .send(updateUser1)
+      .set('token', rachelToken)
+      .send(rach)
       .end((error, response) => {
         expect(response).to.have.status(400);
         expect(response.body.message).to.equal('Invalid request');
@@ -85,8 +80,8 @@ describe('MODIFY USER CONTROLLER', () => {
     it('should update the profile of a signed in user', (done) => {
       chai.request(app)
       .put('/api/v1/users/4')
-      .set('token', user4Token)
-      .send(updateUser1)
+      .set('token', neneToken)
+      .send(rach)
       .end((error, response) => {
         expect(response).to.have.status(201);
         const user = response.body.user;
@@ -99,7 +94,7 @@ describe('MODIFY USER CONTROLLER', () => {
     it('should retain previous details of the user if fields are empty or if invalid characters are filled into update fields', (done) => {
       chai.request(app)
       .put('/api/v1/users/1')
-      .set('token', user1Token)
+      .set('token', rachelToken)
       .send(wrongUpdateUser)
       .end((error, response) => {
         expect(response).to.have.status(201);

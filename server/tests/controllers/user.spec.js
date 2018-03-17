@@ -5,26 +5,22 @@ import app from '../../app';
 import mockData from '../mockData'
 
 const expect = chai.expect;
-let user1Token, user2Token, user3Token, user1, user2, user3;
+let rachelToken, ineneToken, nelsonToken;
 
-const { signinUser1, signinUser2, signinUser3, wrongCharacterSignUp, 
-  wrongEmailSignIn, wrongPasswordSignIn, signupUser, emailInUseSignUp,
+const { rachel, inene, nelson, nneka, wrongCharacterSignUp, 
+  wrongEmailSignIn, wrongPasswordSignIn, henry, emailInUseSignUp,
        usernameInUseSignUp, wrongEmailFormat, wrongEmailFormatSignIn } = mockData;
 
 chai.use(chaiHttp);
 
 describe('USER CONTROLLER', () => {
-  
-  describe('User Sign up', () => {
-
+  describe('User sign up', () => {
     describe('Check for Validation', () => {
-    
       it('should Register a new user if all fields are filled appropriately with unique details', (done) => {
         chai.request(app)
         .post('/api/v1/users/signup')
-        .send(signupUser)
+        .send(henry)
         .end((error, response) => {
-          console.log(response);
           expect(response).to.have.status(201);
           expect(response.body).to.have.property('token');
           expect(response.body).to.have.property('user');
@@ -102,14 +98,12 @@ describe('USER CONTROLLER', () => {
     });
   });
     
-  describe('User Sign In', () => {
-
+  describe('User sign in', () => {
     describe('Check for Authentication', () => {
-      
       it('Should sign in a user if correct log in credentials are filled', (done) => {
         chai.request(app)
         .post('/api/v1/users/signin')
-        .send(signinUser1)
+        .send(rachel)
         .end((error,response) => {
           expect(response).to.have.status(200);
           expect(response.body).to.have.property('token');
@@ -162,6 +156,46 @@ describe('USER CONTROLLER', () => {
           expect(response.body.message).to.equal('Please fix the validation errors');
           done();
         });
+      });
+    });
+  });
+
+  describe('User sign out', () => {
+    it('should sign out a signed in user and make the user\'s token invalid', (done) => {
+      chai.request(app)
+      .post('/api/v1/users/signin')
+      .send(nneka)
+      .end((error,response) => {
+        const token = response.body.token
+        expect(response).to.have.status(200);
+        expect(response.body).to.have.property('token');
+        expect(response.body.user.email).to.equal('nneka.remi@test.com');
+        expect(response.body.message).to.equal('Successfully signed in.');
+        chai.request(app)
+        .post('/api/v1/users/signout')
+        .set('token', token )
+        .end((error, response) => {
+          expect(response).to.have.status(200);
+          expect(response.body.message).to.equal('Successfully signed out.');
+          chai.request(app)
+          .post('/api/v1/users/signout')
+          .set('token', token )
+          .send(rachel)
+          .end((error,response) => {
+            expect(response).to.have.status(401);
+            expect(response.body.message).to.equal('Unauthenticated');
+            done();
+          });
+        });
+      });
+    });
+    it('should return an error if an unauthenticated user tries to sign out', (done) => {
+      chai.request(app)
+      .post('/api/v1/users/signout')
+      .end((error,response) => {
+        expect(response).to.have.status(401);
+        expect(response.body.message).to.equal('Unauthenticated');
+        done();
       });
     });
   });

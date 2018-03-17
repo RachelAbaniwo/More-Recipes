@@ -3,27 +3,31 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
-  signinUser1: {
+  rachel: {
     email: 'rachel.abaniwo@test.com',
     password: process.env.PASSWORD
   },
-  signinUser2: {
+  inene: {
     email: 'inene.abaniwo@test.com',
     password: process.env.PASSWORD
   },
-  signinUser3: {
+  nelson: {
     email: 'nelson.abang@test.com',
     password: process.env.PASSWORD
   },
-  signinUser4: {
+  nene: {
     email: 'nene.rae@test.com',
     password: process.env.PASSWORD
   },
-  signinUser5: {
+  nnena: {
     email: 'nnenna.remi@test.com',
     password: process.env.PASSWORD
   },
-  review1: {
+  nneka: {
+    email: 'nneka.remi@test.com',
+    password: process.env.PASSWORD
+  },
+  review: {
     review: 'Awesome Stuff'
   },
   review2: {
@@ -41,7 +45,7 @@ export default {
     email: 'inene.abaniwo@test.com',
     password: 'rach'
   },
-  updateUser1: {
+  rach: {
     firstname: 'Rach',
     lastname: 'Dyna',
     username: 'RachDyna',
@@ -53,7 +57,7 @@ export default {
     lastname: ' * ',
     username: ''
   },
-  signupUser: {
+  henry: {
     firstname: 'Henry',
     lastname: 'Nek',
     username: 'HenryNek',
@@ -88,7 +92,7 @@ export default {
     email: '  *\' ',
     password: 'a'
   },
-  recipe1: {
+  ofada: {
     name: 'Ofada Rice',
     category: 'Rice',
     ingredients: 'Ofada Rice, Pepper, Olive Oil, Onions',
@@ -100,7 +104,7 @@ export default {
     views: 0,
     favorites: 0
   },
-  updateRecipe: {
+  chickenChilli: {
     name: 'Chicken Chilli Sauce',
     category: 'Stews and Sauce',
     ingredients: 'Chicken, Chilli Pepper, Veggies',
