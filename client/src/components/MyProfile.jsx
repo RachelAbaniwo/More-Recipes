@@ -31,16 +31,16 @@ const MyProfile = ({ authUser }) => ((
         />
         <figcaption className="figure-caption" style={{ textAlign: 'left' }}>
           <p
-            className="text-center"
+            className="text-center display-name"
           >
-            <strong>
+            <strong >
               DISPLAY NAME
             </strong>
             <br />
             {authUser.user.username}
           </p>
           <p
-            className="text-center"
+            className="text-center email"
           >
             <strong>
               EMAIL
@@ -50,7 +50,7 @@ const MyProfile = ({ authUser }) => ((
           </p>
           {authUser.user.aboutMe ?
             (
-              <p className="text-center"><strong>ABOUT ME</strong><br />
+              <p className="text-center about-me"><strong>ABOUT ME</strong><br />
                 {authUser.user.aboutMe}
               </p>) : (<div />)}
           <Link

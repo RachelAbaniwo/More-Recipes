@@ -19,7 +19,7 @@ export const LandingTopButtons = ({ authUser, signOutUser }) => {
         >
           <button
             onClick={signOutUser}
-            className="button btn btn-default link-button ml-2 float-right title"
+            className="button btn btn-default link-button ml-2 float-right title home-sign-out"
             style={{
               width: 150, marginTop: 10, fontFamily: 'Advent Pro'
             }}
@@ -27,7 +27,7 @@ export const LandingTopButtons = ({ authUser, signOutUser }) => {
           </button>
           <Link
             to="/dashboard"
-            className="button btn btn-default link-button ml-2 float-right title"
+            className="button btn btn-default link-button ml-2 float-right title home-profile"
             style={{
               width: 150, marginTop: 10, fontFamily: 'Advent Pro'
             }}
@@ -44,7 +44,7 @@ export const LandingTopButtons = ({ authUser, signOutUser }) => {
       >
         <Link
           to="/signup"
-          className="button btn btn-default link-button ml-2 float-right title"
+          className="button btn btn-default link-button ml-2 float-right home-sign-up title"
           style={{
             width: 150, marginTop: 10, fontFamily: 'Advent Pro'
           }}
@@ -52,7 +52,7 @@ export const LandingTopButtons = ({ authUser, signOutUser }) => {
         </Link>
         <Link
           to="/signin"
-          className="button btn btn-default link-button mr-2 float-right title"
+          className="button btn btn-default link-button home-sign-in mr-2 float-right title"
           style={{
             width: 150, marginTop: 10, fontFamily: 'Advent Pro'
           }}
@@ -77,7 +77,7 @@ export const CreateRecipeButton = ({ authUser }) => {
       <div className="justify-content-center">
         <Link
           to="/recipes/create"
-          className="button btn btn-default link-button justify-content-center title mr-2"
+          className="button btn btn-default home-create-recipe link-button justify-content-center title mr-2"
           style={{
         width: 180, fontFamily: 'Advent Pro', fontSize: '20px', marginTop: 10
       }}
@@ -86,7 +86,7 @@ export const CreateRecipeButton = ({ authUser }) => {
 
         <Link
           to="/dashboard"
-          className="button btn btn-default link-button justify-content-center title mr-2"
+          className="button btn btn-default home-manage-recipes link-button justify-content-center title mr-2"
           style={{
         width: 180, fontFamily: 'Advent Pro', fontSize: '20px', marginTop: 10
       }}

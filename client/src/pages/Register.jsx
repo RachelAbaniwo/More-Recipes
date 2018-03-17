@@ -12,7 +12,7 @@ import { checkEmail, checkField, checkPassword, slugify } from '../helpers';
  *
  * @returns {object} jsx object
  */
-class RegisterScreen extends React.Component {
+export class RegisterScreen extends React.Component {
   /**
    * Adds new recipe
    * @constructor
@@ -124,6 +124,7 @@ class RegisterScreen extends React.Component {
         });
       } else {
         this.setState({
+          errors: ['Something went wrong. Please try again later.']
         });
       }
     }
@@ -239,7 +240,7 @@ RegisterScreen.propTypes = {
  *
  * @returns {object} empty object
  */
-const mapStateToProps = state =>
+export const mapStateToProps = state =>
   ({ authUser: state.authUser });
 
 /**
@@ -248,7 +249,7 @@ const mapStateToProps = state =>
  *
  * @returns {object} object to be passed as props to component
 */
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators({
     signOutUser,
     signUpUser

@@ -90,7 +90,7 @@ ReactWrapper {
                       placeholder="Add review ..."
                     />
                     <button
-                      class="btn btn-default title"
+                      class="review btn btn-default title"
                       disabled=""
                     >
                       ADD REVIEW
@@ -195,7 +195,7 @@ ReactWrapper {
                     placeholder="Add review ..."
                   />
                   <button
-                    class="btn btn-default title"
+                    class="review btn btn-default title"
                     disabled=""
                   >
                     ADD REVIEW
@@ -299,7 +299,7 @@ ReactWrapper {
               "lastEffect": null,
               "memoizedProps": Object {
                 "children": "ADD REVIEW",
-                "className": "btn btn-default title",
+                "className": "review btn btn-default title",
                 "disabled": true,
                 "onClick": [Function],
               },
@@ -310,7 +310,7 @@ ReactWrapper {
               "return": [Circular],
               "sibling": null,
               "stateNode": <button
-                class="btn btn-default title"
+                class="review btn btn-default title"
                 disabled=""
               >
                 ADD REVIEW
@@ -345,7 +345,7 @@ ReactWrapper {
                 value=""
               />,
               <button
-                className="btn btn-default title"
+                className="review btn btn-default title"
                 disabled={true}
                 onClick={[Function]}
               >
@@ -369,7 +369,7 @@ ReactWrapper {
               placeholder="Add review ..."
             />
             <button
-              class="btn btn-default title"
+              class="review btn btn-default title"
               disabled=""
             >
               ADD REVIEW
@@ -466,7 +466,7 @@ ReactWrapper {
                       placeholder="Add review ..."
                     />
                     <button
-                      class="btn btn-default title"
+                      class="review btn btn-default title"
                       disabled=""
                     >
                       ADD REVIEW
@@ -571,7 +571,7 @@ ReactWrapper {
                     placeholder="Add review ..."
                   />
                   <button
-                    class="btn btn-default title"
+                    class="review btn btn-default title"
                     disabled=""
                   >
                     ADD REVIEW
@@ -667,7 +667,7 @@ ReactWrapper {
           placeholder="Add review ..."
         />
         <button
-          class="btn btn-default title"
+          class="review btn btn-default title"
           disabled=""
         >
           ADD REVIEW
@@ -685,7 +685,7 @@ ReactWrapper {
             value=""
           />,
           <button
-            className="btn btn-default title"
+            className="review btn btn-default title"
             disabled={true}
             onClick={[Function]}
           >
@@ -719,7 +719,7 @@ ReactWrapper {
         },
         Object {
           "instance": <button
-            class="btn btn-default title"
+            class="review btn btn-default title"
             disabled=""
           >
             ADD REVIEW
@@ -728,7 +728,7 @@ ReactWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "ADD REVIEW",
-            "className": "btn btn-default title",
+            "className": "review btn btn-default title",
             "disabled": true,
             "onClick": [Function],
           },
@@ -819,7 +819,7 @@ ReactWrapper {
                         placeholder="Add review ..."
                       />
                       <button
-                        class="btn btn-default title"
+                        class="review btn btn-default title"
                         disabled=""
                       >
                         ADD REVIEW
@@ -924,7 +924,7 @@ ReactWrapper {
                       placeholder="Add review ..."
                     />
                     <button
-                      class="btn btn-default title"
+                      class="review btn btn-default title"
                       disabled=""
                     >
                       ADD REVIEW
@@ -1028,7 +1028,7 @@ ReactWrapper {
                 "lastEffect": null,
                 "memoizedProps": Object {
                   "children": "ADD REVIEW",
-                  "className": "btn btn-default title",
+                  "className": "review btn btn-default title",
                   "disabled": true,
                   "onClick": [Function],
                 },
@@ -1039,7 +1039,7 @@ ReactWrapper {
                 "return": [Circular],
                 "sibling": null,
                 "stateNode": <button
-                  class="btn btn-default title"
+                  class="review btn btn-default title"
                   disabled=""
                 >
                   ADD REVIEW
@@ -1074,7 +1074,7 @@ ReactWrapper {
                   value=""
                 />,
                 <button
-                  className="btn btn-default title"
+                  className="review btn btn-default title"
                   disabled={true}
                   onClick={[Function]}
                 >
@@ -1098,7 +1098,7 @@ ReactWrapper {
                 placeholder="Add review ..."
               />
               <button
-                class="btn btn-default title"
+                class="review btn btn-default title"
                 disabled=""
               >
                 ADD REVIEW
@@ -1195,7 +1195,7 @@ ReactWrapper {
                         placeholder="Add review ..."
                       />
                       <button
-                        class="btn btn-default title"
+                        class="review btn btn-default title"
                         disabled=""
                       >
                         ADD REVIEW
@@ -1300,7 +1300,7 @@ ReactWrapper {
                       placeholder="Add review ..."
                     />
                     <button
-                      class="btn btn-default title"
+                      class="review btn btn-default title"
                       disabled=""
                     >
                       ADD REVIEW
@@ -1396,7 +1396,7 @@ ReactWrapper {
             placeholder="Add review ..."
           />
           <button
-            class="btn btn-default title"
+            class="review btn btn-default title"
             disabled=""
           >
             ADD REVIEW
@@ -1414,7 +1414,7 @@ ReactWrapper {
               value=""
             />,
             <button
-              className="btn btn-default title"
+              className="review btn btn-default title"
               disabled={true}
               onClick={[Function]}
             >
@@ -1448,7 +1448,7 @@ ReactWrapper {
           },
           Object {
             "instance": <button
-              class="btn btn-default title"
+              class="review btn btn-default title"
               disabled=""
             >
               ADD REVIEW
@@ -1457,7 +1457,7 @@ ReactWrapper {
             "nodeType": "host",
             "props": Object {
               "children": "ADD REVIEW",
-              "className": "btn btn-default title",
+              "className": "review btn btn-default title",
               "disabled": true,
               "onClick": [Function],
             },

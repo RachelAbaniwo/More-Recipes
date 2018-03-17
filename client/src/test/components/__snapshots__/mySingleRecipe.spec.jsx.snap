@@ -43,7 +43,7 @@ ShallowWrapper {
         >
           <img
             alt="Search Result"
-            className="figure-img img-thumbnail mx-auto"
+            className="figure-img img-thumbnail mx-auto single-recipe"
             src="http://test.recipe_image"
             style={Object {}}
           />
@@ -57,6 +57,7 @@ ShallowWrapper {
           }
         >
           <Link
+            className="single-recipe-name"
             onlyActiveOnIndex={false}
             style={
               Object {
@@ -111,7 +112,7 @@ ShallowWrapper {
           >
             <img
               alt="Search Result"
-              className="figure-img img-thumbnail mx-auto"
+              className="figure-img img-thumbnail mx-auto single-recipe"
               src="http://test.recipe_image"
               style={Object {}}
             />
@@ -125,6 +126,7 @@ ShallowWrapper {
             }
           >
             <Link
+              className="single-recipe-name"
               onlyActiveOnIndex={false}
               style={
                 Object {
@@ -171,7 +173,7 @@ ShallowWrapper {
           "props": Object {
             "children": <img
               alt="Search Result"
-              className="figure-img img-thumbnail mx-auto"
+              className="figure-img img-thumbnail mx-auto single-recipe"
               src="http://test.recipe_image"
               style={Object {}}
             />,
@@ -186,7 +188,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "alt": "Search Result",
-              "className": "figure-img img-thumbnail mx-auto",
+              "className": "figure-img img-thumbnail mx-auto single-recipe",
               "src": "http://test.recipe_image",
               "style": Object {},
             },
@@ -203,6 +205,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Link
+                className="single-recipe-name"
                 onlyActiveOnIndex={false}
                 style={
                   Object {
@@ -250,6 +253,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": "Chicken",
+                "className": "single-recipe-name",
                 "onlyActiveOnIndex": false,
                 "style": Object {
                   "fontSize": "18px",
@@ -364,7 +368,7 @@ ShallowWrapper {
           >
             <img
               alt="Search Result"
-              className="figure-img img-thumbnail mx-auto"
+              className="figure-img img-thumbnail mx-auto single-recipe"
               src="http://test.recipe_image"
               style={Object {}}
             />
@@ -378,6 +382,7 @@ ShallowWrapper {
             }
           >
             <Link
+              className="single-recipe-name"
               onlyActiveOnIndex={false}
               style={
                 Object {
@@ -432,7 +437,7 @@ ShallowWrapper {
             >
               <img
                 alt="Search Result"
-                className="figure-img img-thumbnail mx-auto"
+                className="figure-img img-thumbnail mx-auto single-recipe"
                 src="http://test.recipe_image"
                 style={Object {}}
               />
@@ -446,6 +451,7 @@ ShallowWrapper {
               }
             >
               <Link
+                className="single-recipe-name"
                 onlyActiveOnIndex={false}
                 style={
                   Object {
@@ -492,7 +498,7 @@ ShallowWrapper {
             "props": Object {
               "children": <img
                 alt="Search Result"
-                className="figure-img img-thumbnail mx-auto"
+                className="figure-img img-thumbnail mx-auto single-recipe"
                 src="http://test.recipe_image"
                 style={Object {}}
               />,
@@ -507,7 +513,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "alt": "Search Result",
-                "className": "figure-img img-thumbnail mx-auto",
+                "className": "figure-img img-thumbnail mx-auto single-recipe",
                 "src": "http://test.recipe_image",
                 "style": Object {},
               },
@@ -524,6 +530,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <Link
+                  className="single-recipe-name"
                   onlyActiveOnIndex={false}
                   style={
                     Object {
@@ -571,6 +578,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": "Chicken",
+                  "className": "single-recipe-name",
                   "onlyActiveOnIndex": false,
                   "style": Object {
                     "fontSize": "18px",

@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Modal, ModalBody } from 'reactstrap';
-import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import IngredientList from '../components/IngredientList';
@@ -13,6 +11,7 @@ import AddReview from './../components/AddReview';
 import Upvotes from '../components/Upvotes';
 import Downvotes from '../components/Downvotes';
 import Favorites from '../components/Favorites';
+import ViewRecipesButtons from '../components/ViewRecipesButtons';
 
 /**
  * Displays recipes component
@@ -45,9 +44,11 @@ export class ViewRecipeScreen extends React.Component {
    * @return {object} object
    */
   componentWillMount() {
-    if (!this.props.recipe) {
-      this.props.getRecipe(this.props.params.recipeId);
-    }
+    // if (!this.props.recipe) {
+    //   this.props.getRecipe(this.props.params.recipeId);
+    // }
+
+    this.props.getRecipe(this.props.params.recipeId);
   }
 
   /**
@@ -119,40 +120,13 @@ export class ViewRecipeScreen extends React.Component {
         this.props.authUser.user.id ===
         this.props.recipe.User.id) {
         updateRecipeButton =
-          (
-            <span>
-              <Link
-                className="button btn btn-default update-button"
-                to={`/update-recipe/${recipe.id}`}
-              > UPDATE
-              </Link>
-              &nbsp;&nbsp;
-              <Button
-                className="button btn btn-default toggle-modal update-button"
-                onClick={this.toggle}
-              >DELETE
-              </Button>
-              <Modal
-                isOpen={this.state.modal}
-                toggle={this.toggle}
-              >
-                <ModalBody>
-                  <h4>CONFIRM</h4>
-                  <h5>Are you sure you want to delete this recipe?</h5>
-                  <Button
-                    className="button btn btn-default delete-recipe update-button pull-right"
-                    onClick={this.deleteRecipe}
-                  >DELETE
-                  </Button>
-                  <Button
-                    className="button btn btn-default close-modal update-button pull-right mr-2"
-                    onClick={this.toggle}
-                  >CANCEL
-                  </Button>
-                </ModalBody>
-              </Modal>
-            </span>
-          );
+          (<ViewRecipesButtons
+            recipeId={this.props.recipe.id}
+            toggle={this.toggle}
+            deleteRecipe={this.deleteRecipe}
+            modal={this.state.modal}
+
+          />);
       }
       recipeCard = (
         <div>

@@ -3,10 +3,12 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { signOutUser } from '../store/actions/user';
-import ImageFile from '../components/ImageFile';
-import { createRecipe, setImageUrl, updateRecipe } from '../store/actions/recipes';
+
+import config from '../config';
 import { checkField } from '../helpers';
+import ImageFile from '../components/ImageFile';
+import { signOutUser } from '../store/actions/user';
+import { createRecipe, setImageUrl, updateRecipe } from '../store/actions/recipes';
 
 /**
  * Create recipe component
@@ -111,11 +113,11 @@ export class CreateRecipeScreen extends React.Component {
       errors.push('Preparation method is required');
     }
 
-    if (!this.props.imageFile) {
-      if (!this.state.imageUrl) {
-        errors.push('Recipe image is required');
-      }
-    }
+    // if (!this.props.imageFile) {
+    //   if (!this.state.imageUrl) {
+    //     errors.push('Recipe image is required');
+    //   }
+    // }
     this.setState({ errors }, () => Promise.resolve());
   }
 
@@ -160,7 +162,12 @@ export class CreateRecipeScreen extends React.Component {
       this.setState({
         isLoading: true
       });
-      const imageUrl = await this.uploadToCloudinary();
+      let imageUrl;
+      if (this.props.imageFile) {
+        imageUrl = await this.uploadToCloudinary();
+      } else {
+        imageUrl = config.defaultRecipeImage;
+      }
 
       const recipeData = this.state;
       recipeData.imageUrl = imageUrl;
@@ -321,6 +328,7 @@ export class CreateRecipeScreen extends React.Component {
                       type="button"
                       onClick={this.state.editing ? this.updateRecipe : this.handleSubmit}
                       className="btn btn-default"
+                      id="create-recipe-button"
                       disabled={this.state.isLoading}
                       style={{
                         marginLeft: 10, marginTop: 20, marginBottom: 20, fontWeight: 900

@@ -35,7 +35,7 @@ describe('the RecipesReducer', () => {
 
     const newState = {
       pageData: { pageCount: 2, page: 1 },
-      rows: [{ id: 1, title: 'Chicken soup' }, { id: 2, title: 'Fried rice' }, { id: 3, title: 'FRIED BEANS' }]
+      rows: [{ id: 3, title: 'FRIED BEANS' }]
     };
 
     const action = {

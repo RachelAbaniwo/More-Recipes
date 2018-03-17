@@ -98,32 +98,7 @@ describe('The ViewRecipe Page', () => {
   });
   it('should display update and delete recipe buttons when recipe is viewed by owner', () => {
     const wrapper = shallow(<ViewRecipeScreen {...propsRecipeByUser} />);
-    expect(wrapper.find('Link').length).toBe(1);
-    expect(wrapper.find('Modal').length).toBe(1);
-    expect(wrapper.find('ModalBody').length).toBe(1);
-    expect(wrapper.find('Button').length).toBe(3);
-  });
-  it('should toggle modal when delete button is clicked by owner of recipe', () => {
-    const wrapper = shallow(<ViewRecipeScreen {...propsRecipeByUser} />);
-
-    wrapper.find('Button.toggle-modal').simulate('click');
-    expect(wrapper.state().modal).toBe(true);
-    wrapper.find('Button.close-modal').simulate('click');
-    expect(wrapper.state().modal).toBe(false);
-  });
-  it('should toggle modal when delete button is clicked by owner of recipe', () => {
-    const wrapper = shallow(<ViewRecipeScreen {...propsRecipeByUser} />);
-
-    wrapper.find('Button.toggle-modal').simulate('click');
-    expect(wrapper.state().modal).toBe(true);
-    wrapper.find('Button.close-modal').simulate('click');
-    expect(wrapper.state().modal).toBe(false);
-  });
-  it('should call delete recipe function when delete button is clicked', () => {
-    const wrapper = shallow(<ViewRecipeScreen {...propsRecipeByUser} />);
-
-    wrapper.find('Button.delete-recipe').simulate('click');
-    expect(propsRecipeByUser.deleteRecipe).toHaveBeenCalled();
+    expect(wrapper.find('ViewRecipesButtons').length).toBe(1);
   });
   describe('The hasFavorited function', () => {
     it('should return false if user has not favorited this recipe', () => {

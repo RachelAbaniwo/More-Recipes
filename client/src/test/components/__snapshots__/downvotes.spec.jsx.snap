@@ -31,12 +31,14 @@ ReactWrapper {
         "instance": <i
           aria-hidden="true"
           class="fa fa-thumbs-down text-danger click-add"
+          id="downvote-button"
         />,
         "key": undefined,
         "nodeType": "host",
         "props": Object {
           "aria-hidden": "true",
           "className": "fa fa-thumbs-down text-danger click-add",
+          "id": "downvote-button",
           "onClick": [Function],
         },
         "ref": null,
@@ -45,7 +47,24 @@ ReactWrapper {
         ],
         "type": "i",
       },
-      "1",
+      Object {
+        "instance": <span
+          class="downvote"
+        >
+          1
+        </span>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": 1,
+          "className": "downvote",
+        },
+        "ref": null,
+        "rendered": Array [
+          1,
+        ],
+        "type": "span",
+      },
       " ",
     ],
     "type": [Function],
@@ -66,12 +85,14 @@ ReactWrapper {
           "instance": <i
             aria-hidden="true"
             class="fa fa-thumbs-down text-danger click-add"
+            id="downvote-button"
           />,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
             "aria-hidden": "true",
             "className": "fa fa-thumbs-down text-danger click-add",
+            "id": "downvote-button",
             "onClick": [Function],
           },
           "ref": null,
@@ -80,7 +101,24 @@ ReactWrapper {
           ],
           "type": "i",
         },
-        "1",
+        Object {
+          "instance": <span
+            class="downvote"
+          >
+            1
+          </span>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": 1,
+            "className": "downvote",
+          },
+          "ref": null,
+          "rendered": Array [
+            1,
+          ],
+          "type": "span",
+        },
         " ",
       ],
       "type": [Function],

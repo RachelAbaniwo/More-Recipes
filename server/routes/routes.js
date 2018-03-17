@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.use('/recipes', recipes);
 router.use('/users', users);
-router.use('/reviews', reviews);
+router.use('/recipes/', reviews);
 router.use('/recipes/', votes);
 router.use('/favorites', favorites);
 router.use('/users', modifyUser);

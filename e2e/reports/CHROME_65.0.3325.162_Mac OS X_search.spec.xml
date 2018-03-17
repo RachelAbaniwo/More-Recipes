@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="search.spec"
+    errors="0" failures="0" hostname="" id="" package="search.spec" skipped="0"
+    tests="2" time="22.23" timestamp="Sat, 17 Mar 2018 12:25:59 GMT">
+  
+    <testcase name="Search for a recipe: authenticated users can successfully search for a recipe" classname="search.spec" time="6.355" assertions="9">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Search for a recipe: unauthenticated users can successfully search for a recipe" classname="search.spec" time="15.87" assertions="9">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

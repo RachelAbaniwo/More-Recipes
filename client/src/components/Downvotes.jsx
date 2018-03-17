@@ -16,9 +16,10 @@ export const Downvotes = ({ downvotes, toggleVote: toggleVoteFunc, recipeId }) =
   <Fragment>
     <i
       className="fa fa-thumbs-down text-danger click-add"
+      id="downvote-button"
       onClick={() => { toggleVoteFunc(recipeId, 'downvote'); }}
       aria-hidden="true"
-    />{downvotes}&nbsp;
+    /><span className="downvote">{downvotes}</span>&nbsp;
   </Fragment>
 ));
 Downvotes.propTypes = {

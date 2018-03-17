@@ -73,7 +73,7 @@ export class ViewDashboard extends React.Component {
                         className="nav-link active"
                         data-toggle="tab"
                       >
-                        <h4 className="title" style={{ textAlign: 'right' }}>
+                        <h4 className="title my-recipes" style={{ textAlign: 'right' }}>
                     My Recipes
                         </h4>
                       </a>
@@ -86,7 +86,7 @@ export class ViewDashboard extends React.Component {
                         className="nav-link"
                         data-toggle="tab"
                       >
-                        <h4 className="title" style={{ textAlign: 'right' }}>
+                        <h4 className="title my-favorites" style={{ textAlign: 'right' }}>
                         My Favorites
                         </h4>
                       </a>

@@ -39,7 +39,7 @@ describe('The MyProfile component', () => {
     const wrapper = mount(<MyProfile authUser={{ user: userWithAboutMe }} />);
     // eslint-disable-next-line
     const aboutMe =
-      (<p className="text-center"><strong>ABOUT ME</strong><br />{userWithAboutMe.aboutMe}</p>);
+      (<p className="text-center about-me"><strong>ABOUT ME</strong><br />{userWithAboutMe.aboutMe}</p>);
     expect(wrapper
       .contains(aboutMe)).toBe(true);
     expect(wrapper).toMatchSnapshot();

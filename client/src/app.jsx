@@ -10,6 +10,7 @@ import ViewRecipe from './pages/ViewRecipe';
 import AllRecipesScreen from './pages/AllRecipes';
 import ViewDashboard from './pages/ViewDashboard';
 import UpdateUserProfile from './pages/UpdateUserProfile';
+import { PageNotFound } from './pages/NotFound';
 import { setAxios, ifAuthenticated, ifNotAuthenticated } from './helpers/app';
 import './../assets/css/style.css';
 import './../assets/css/hover.css';
@@ -49,7 +50,12 @@ ReactDom.render(
           component={UpdateUserProfile}
           onEnter={ifNotAuthenticated}
         />
+        <Route
+          path="*"
+          component={PageNotFound}
+        />
       </Route>
+
     </Router>
   </Provider>
   , document.getElementById('root')

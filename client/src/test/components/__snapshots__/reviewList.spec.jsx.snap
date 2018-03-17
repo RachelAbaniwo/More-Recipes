@@ -64,12 +64,15 @@ ReactWrapper {
     "ref": null,
     "rendered": Object {
       "instance": <article
+        class="review"
         style="padding-bottom: 30px;"
       >
         <div
           style="font-size: 18px; margin-bottom: 20px;"
         >
-          <p>
+          <p
+            class="review"
+          >
             some review
           </p>
           <p>
@@ -83,12 +86,19 @@ ReactWrapper {
             >
               test_user
             </span>
+            <small
+              class="text-sm d-block"
+            >
+              Invalid Date
+            </small>
           </p>
         </div>
         <div
           style="font-size: 18px; margin-bottom: 20px;"
         >
-          <p />
+          <p
+            class="review"
+          />
           <p>
             <i
               aria-hidden="true"
@@ -100,6 +110,11 @@ ReactWrapper {
             >
               test_user
             </span>
+            <small
+              class="text-sm d-block"
+            >
+              Invalid Date
+            </small>
           </p>
         </div>
       </article>,
@@ -116,7 +131,9 @@ ReactWrapper {
               }
             }
           >
-            <p>
+            <p
+              className="review"
+            >
               some review
             </p>
             <p>
@@ -130,6 +147,11 @@ ReactWrapper {
               >
                 test_user
               </span>
+              <small
+                className="text-sm d-block"
+              >
+                Invalid Date
+              </small>
             </p>
           </div>,
           <div
@@ -141,7 +163,9 @@ ReactWrapper {
               }
             }
           >
-            <p>
+            <p
+              className="review"
+            >
               
             </p>
             <p>
@@ -155,9 +179,15 @@ ReactWrapper {
               >
                 test_user
               </span>
+              <small
+                className="text-sm d-block"
+              >
+                Invalid Date
+              </small>
             </p>
           </div>,
         ],
+        "className": "review",
         "style": Object {
           "paddingBottom": 30,
         },
@@ -168,7 +198,9 @@ ReactWrapper {
           "instance": <div
             style="font-size: 18px; margin-bottom: 20px;"
           >
-            <p>
+            <p
+              class="review"
+            >
               some review
             </p>
             <p>
@@ -182,13 +214,20 @@ ReactWrapper {
               >
                 test_user
               </span>
+              <small
+                class="text-sm d-block"
+              >
+                Invalid Date
+              </small>
             </p>
           </div>,
           "key": "1",
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <p>
+              <p
+                className="review"
+              >
                 some review
               </p>,
               <p>
@@ -202,6 +241,11 @@ ReactWrapper {
                 >
                   test_user
                 </span>
+                <small
+                  className="text-sm d-block"
+                >
+                  Invalid Date
+                </small>
               </p>,
             ],
             "style": Object {
@@ -213,13 +257,16 @@ ReactWrapper {
           "ref": null,
           "rendered": Array [
             Object {
-              "instance": <p>
+              "instance": <p
+                class="review"
+              >
                 some review
               </p>,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
                 "children": "some review",
+                "className": "review",
               },
               "ref": null,
               "rendered": Array [
@@ -239,6 +286,11 @@ ReactWrapper {
                 >
                   test_user
                 </span>
+                <small
+                  class="text-sm d-block"
+                >
+                  Invalid Date
+                </small>
               </p>,
               "key": undefined,
               "nodeType": "host",
@@ -254,6 +306,11 @@ ReactWrapper {
                   >
                     test_user
                   </span>,
+                  <small
+                    className="text-sm d-block"
+                  >
+                    Invalid Date
+                  </small>,
                 ],
               },
               "ref": null,
@@ -294,6 +351,24 @@ ReactWrapper {
                   ],
                   "type": "span",
                 },
+                Object {
+                  "instance": <small
+                    class="text-sm d-block"
+                  >
+                    Invalid Date
+                  </small>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Invalid Date",
+                    "className": "text-sm d-block",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "Invalid Date",
+                  ],
+                  "type": "small",
+                },
               ],
               "type": "p",
             },
@@ -304,7 +379,9 @@ ReactWrapper {
           "instance": <div
             style="font-size: 18px; margin-bottom: 20px;"
           >
-            <p />
+            <p
+              class="review"
+            />
             <p>
               <i
                 aria-hidden="true"
@@ -316,13 +393,20 @@ ReactWrapper {
               >
                 test_user
               </span>
+              <small
+                class="text-sm d-block"
+              >
+                Invalid Date
+              </small>
             </p>
           </div>,
           "key": "2",
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <p>
+              <p
+                className="review"
+              >
                 
               </p>,
               <p>
@@ -336,6 +420,11 @@ ReactWrapper {
                 >
                   test_user
                 </span>
+                <small
+                  className="text-sm d-block"
+                >
+                  Invalid Date
+                </small>
               </p>,
             ],
             "style": Object {
@@ -347,11 +436,14 @@ ReactWrapper {
           "ref": null,
           "rendered": Array [
             Object {
-              "instance": <p />,
+              "instance": <p
+                class="review"
+              />,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
                 "children": "",
+                "className": "review",
               },
               "ref": null,
               "rendered": Array [
@@ -371,6 +463,11 @@ ReactWrapper {
                 >
                   test_user
                 </span>
+                <small
+                  class="text-sm d-block"
+                >
+                  Invalid Date
+                </small>
               </p>,
               "key": undefined,
               "nodeType": "host",
@@ -386,6 +483,11 @@ ReactWrapper {
                   >
                     test_user
                   </span>,
+                  <small
+                    className="text-sm d-block"
+                  >
+                    Invalid Date
+                  </small>,
                 ],
               },
               "ref": null,
@@ -425,6 +527,24 @@ ReactWrapper {
                     "test_user",
                   ],
                   "type": "span",
+                },
+                Object {
+                  "instance": <small
+                    class="text-sm d-block"
+                  >
+                    Invalid Date
+                  </small>,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Invalid Date",
+                    "className": "text-sm d-block",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "Invalid Date",
+                  ],
+                  "type": "small",
                 },
               ],
               "type": "p",
@@ -467,12 +587,15 @@ ReactWrapper {
       "ref": null,
       "rendered": Object {
         "instance": <article
+          class="review"
           style="padding-bottom: 30px;"
         >
           <div
             style="font-size: 18px; margin-bottom: 20px;"
           >
-            <p>
+            <p
+              class="review"
+            >
               some review
             </p>
             <p>
@@ -486,12 +609,19 @@ ReactWrapper {
               >
                 test_user
               </span>
+              <small
+                class="text-sm d-block"
+              >
+                Invalid Date
+              </small>
             </p>
           </div>
           <div
             style="font-size: 18px; margin-bottom: 20px;"
           >
-            <p />
+            <p
+              class="review"
+            />
             <p>
               <i
                 aria-hidden="true"
@@ -503,6 +633,11 @@ ReactWrapper {
               >
                 test_user
               </span>
+              <small
+                class="text-sm d-block"
+              >
+                Invalid Date
+              </small>
             </p>
           </div>
         </article>,
@@ -519,7 +654,9 @@ ReactWrapper {
                 }
               }
             >
-              <p>
+              <p
+                className="review"
+              >
                 some review
               </p>
               <p>
@@ -533,6 +670,11 @@ ReactWrapper {
                 >
                   test_user
                 </span>
+                <small
+                  className="text-sm d-block"
+                >
+                  Invalid Date
+                </small>
               </p>
             </div>,
             <div
@@ -544,7 +686,9 @@ ReactWrapper {
                 }
               }
             >
-              <p>
+              <p
+                className="review"
+              >
                 
               </p>
               <p>
@@ -558,9 +702,15 @@ ReactWrapper {
                 >
                   test_user
                 </span>
+                <small
+                  className="text-sm d-block"
+                >
+                  Invalid Date
+                </small>
               </p>
             </div>,
           ],
+          "className": "review",
           "style": Object {
             "paddingBottom": 30,
           },
@@ -571,7 +721,9 @@ ReactWrapper {
             "instance": <div
               style="font-size: 18px; margin-bottom: 20px;"
             >
-              <p>
+              <p
+                class="review"
+              >
                 some review
               </p>
               <p>
@@ -585,13 +737,20 @@ ReactWrapper {
                 >
                   test_user
                 </span>
+                <small
+                  class="text-sm d-block"
+                >
+                  Invalid Date
+                </small>
               </p>
             </div>,
             "key": "1",
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <p>
+                <p
+                  className="review"
+                >
                   some review
                 </p>,
                 <p>
@@ -605,6 +764,11 @@ ReactWrapper {
                   >
                     test_user
                   </span>
+                  <small
+                    className="text-sm d-block"
+                  >
+                    Invalid Date
+                  </small>
                 </p>,
               ],
               "style": Object {
@@ -616,13 +780,16 @@ ReactWrapper {
             "ref": null,
             "rendered": Array [
               Object {
-                "instance": <p>
+                "instance": <p
+                  class="review"
+                >
                   some review
                 </p>,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
                   "children": "some review",
+                  "className": "review",
                 },
                 "ref": null,
                 "rendered": Array [
@@ -642,6 +809,11 @@ ReactWrapper {
                   >
                     test_user
                   </span>
+                  <small
+                    class="text-sm d-block"
+                  >
+                    Invalid Date
+                  </small>
                 </p>,
                 "key": undefined,
                 "nodeType": "host",
@@ -657,6 +829,11 @@ ReactWrapper {
                     >
                       test_user
                     </span>,
+                    <small
+                      className="text-sm d-block"
+                    >
+                      Invalid Date
+                    </small>,
                   ],
                 },
                 "ref": null,
@@ -697,6 +874,24 @@ ReactWrapper {
                     ],
                     "type": "span",
                   },
+                  Object {
+                    "instance": <small
+                      class="text-sm d-block"
+                    >
+                      Invalid Date
+                    </small>,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Invalid Date",
+                      "className": "text-sm d-block",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "Invalid Date",
+                    ],
+                    "type": "small",
+                  },
                 ],
                 "type": "p",
               },
@@ -707,7 +902,9 @@ ReactWrapper {
             "instance": <div
               style="font-size: 18px; margin-bottom: 20px;"
             >
-              <p />
+              <p
+                class="review"
+              />
               <p>
                 <i
                   aria-hidden="true"
@@ -719,13 +916,20 @@ ReactWrapper {
                 >
                   test_user
                 </span>
+                <small
+                  class="text-sm d-block"
+                >
+                  Invalid Date
+                </small>
               </p>
             </div>,
             "key": "2",
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <p>
+                <p
+                  className="review"
+                >
                   
                 </p>,
                 <p>
@@ -739,6 +943,11 @@ ReactWrapper {
                   >
                     test_user
                   </span>
+                  <small
+                    className="text-sm d-block"
+                  >
+                    Invalid Date
+                  </small>
                 </p>,
               ],
               "style": Object {
@@ -750,11 +959,14 @@ ReactWrapper {
             "ref": null,
             "rendered": Array [
               Object {
-                "instance": <p />,
+                "instance": <p
+                  class="review"
+                />,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
                   "children": "",
+                  "className": "review",
                 },
                 "ref": null,
                 "rendered": Array [
@@ -774,6 +986,11 @@ ReactWrapper {
                   >
                     test_user
                   </span>
+                  <small
+                    class="text-sm d-block"
+                  >
+                    Invalid Date
+                  </small>
                 </p>,
                 "key": undefined,
                 "nodeType": "host",
@@ -789,6 +1006,11 @@ ReactWrapper {
                     >
                       test_user
                     </span>,
+                    <small
+                      className="text-sm d-block"
+                    >
+                      Invalid Date
+                    </small>,
                   ],
                 },
                 "ref": null,
@@ -828,6 +1050,24 @@ ReactWrapper {
                       "test_user",
                     ],
                     "type": "span",
+                  },
+                  Object {
+                    "instance": <small
+                      class="text-sm d-block"
+                    >
+                      Invalid Date
+                    </small>,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Invalid Date",
+                      "className": "text-sm d-block",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      "Invalid Date",
+                    ],
+                    "type": "small",
                   },
                 ],
                 "type": "p",

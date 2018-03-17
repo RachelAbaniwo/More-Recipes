@@ -19,6 +19,7 @@ const SingleRecipe = ({ recipe }) => ((
       </Link>
       <figcaption className="figure-caption">
         <Link
+          className="single-recipe"
           style={{ textDecoration: 'none', fontSize: '18px' }}
           to={`view-recipe/${recipe.id}`}
         >{recipe.name}

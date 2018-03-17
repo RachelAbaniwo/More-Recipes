@@ -15,7 +15,7 @@ import { checkField, checkEmail, checkUsername } from '../helpers';
  *
  * @returns {object} jsx object
  */
-class UpdateUserScreen extends React.Component {
+export class UpdateUserScreen extends React.Component {
   /**
    * Updates an existing user's profile
    * @constructor
@@ -289,7 +289,7 @@ UpdateUserScreen.defaultProps = {
  *
  * @returns {object} object of recipes passed as props
  */
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   imageFile: state.imageUpload.imageFile,
   authUser: state.authUser
 });
@@ -300,7 +300,7 @@ const mapStateToProps = state => ({
  *
  * @returns {object} object to be passed as props to component
 */
-const mapDispatchToProps = dispatch => bindActionCreators({
+export const mapDispatchToProps = dispatch => bindActionCreators({
   signOutUser,
   setImageUrl,
   updateUserProfile

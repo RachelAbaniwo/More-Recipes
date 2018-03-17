@@ -10,7 +10,7 @@ const { Recipe, Downvote } = db;
 export default class DownvotesController {
 /**
  *
- * Adds a Downvote to a recipe or Removes the vote if recipe is already Upvoted or Downvoted
+ * Adds a downvote to a recipe or removes the vote if recipe is already upvoted or downvoted
  * @function addDownvote
  *
  * @param {object} request - Recipe to be voted

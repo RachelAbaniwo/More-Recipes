@@ -33,12 +33,14 @@ ReactWrapper {
         "instance": <i
           aria-hidden="true"
           class="fa fa-heart click-add grey"
+          id="favorite-button"
         />,
         "key": undefined,
         "nodeType": "host",
         "props": Object {
           "aria-hidden": "true",
           "className": "fa fa-heart click-add grey",
+          "id": "favorite-button",
           "onClick": [Function],
         },
         "ref": null,
@@ -68,12 +70,14 @@ ReactWrapper {
           "instance": <i
             aria-hidden="true"
             class="fa fa-heart click-add grey"
+            id="favorite-button"
           />,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
             "aria-hidden": "true",
             "className": "fa fa-heart click-add grey",
+            "id": "favorite-button",
             "onClick": [Function],
           },
           "ref": null,
@@ -150,12 +154,14 @@ ReactWrapper {
         "instance": <i
           aria-hidden="true"
           class="fa fa-heart click-add orange"
+          id="favorite-button"
         />,
         "key": undefined,
         "nodeType": "host",
         "props": Object {
           "aria-hidden": "true",
           "className": "fa fa-heart click-add orange",
+          "id": "favorite-button",
           "onClick": [Function],
         },
         "ref": null,
@@ -194,12 +200,14 @@ ReactWrapper {
           "instance": <i
             aria-hidden="true"
             class="fa fa-heart click-add orange"
+            id="favorite-button"
           />,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
             "aria-hidden": "true",
             "className": "fa fa-heart click-add orange",
+            "id": "favorite-button",
             "onClick": [Function],
           },
           "ref": null,

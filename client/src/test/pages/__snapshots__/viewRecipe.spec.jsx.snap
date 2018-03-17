@@ -17,7 +17,15 @@ ShallowWrapper {
       }
     }
     deleteRecipe={[MockFunction]}
-    getRecipe={[MockFunction]}
+    getRecipe={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "1",
+          ],
+        ],
+      }
+    }
     params={
       Object {
         "recipeId": "1",

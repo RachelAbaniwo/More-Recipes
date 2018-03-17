@@ -147,6 +147,13 @@ describe('User actions', () => {
   });
   describe('The signOutUser action creator', () => {
     it('should dispatch SIGN_OUT_USER and setNotification when dispatched', (done) => {
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request.respondWith({
+          status: 200,
+          response: 'Successfully logged out.'
+        });
+      });
       const store = mockStore(defaultState);
 
       const expectedActions = [
@@ -161,7 +168,6 @@ describe('User actions', () => {
           }
         }
       ];
-
       store.dispatch(signOutUser({})).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
         done();

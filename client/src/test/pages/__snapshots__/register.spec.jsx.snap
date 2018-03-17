@@ -1,0 +1,1391 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Register component  should mount without crashing 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RegisterScreen
+    router={
+      Object {
+        "location": Object {
+          "pathname": "/signup",
+        },
+        "push": [Function],
+      }
+    }
+    signUpUser={[Function]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <div
+        className="container"
+        style={
+          Object {
+            "left": 0,
+            "margin": "0 auto",
+            "position": "absolute",
+            "right": 0,
+            "top": 50,
+          }
+        }
+      >
+        <div
+          className="row justify-content-center py-5"
+        >
+          <div
+            className="col-sm-12 col-md-8"
+          >
+            <div
+              className="card card-container "
+              id="register-card"
+            >
+              <h1
+                className="card-header text-center title"
+                style={
+                  Object {
+                    "fontFamily": "Advent Pro",
+                  }
+                }
+              >
+                CREATE NEW ACCOUNT
+              </h1>
+              <br />
+              <div
+                className="card-body"
+              >
+                <input
+                  name="name"
+                  onChange={[Function]}
+                  placeholder="Name"
+                  type="text"
+                  value=""
+                />
+                <input
+                  name="email"
+                  onChange={[Function]}
+                  placeholder="Email"
+                  type="text"
+                  value=""
+                />
+                <input
+                  name="password"
+                  onChange={[Function]}
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+                <div
+                  className="row justify-content-center"
+                >
+                  <input
+                    className="register-card-submit title"
+                    defaultValue="SIGN UP"
+                    name="register"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                    type="submit"
+                  />
+                </div>
+                <div
+                  className="register-help"
+                >
+                  <Link
+                    className="register-link"
+                    onlyActiveOnIndex={false}
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                    to="/signin"
+                  >
+                    ALREADY REGISTERED?  SIGN IN
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div
+          className="row justify-content-center py-5"
+        >
+          <div
+            className="col-sm-12 col-md-8"
+          >
+            <div
+              className="card card-container "
+              id="register-card"
+            >
+              <h1
+                className="card-header text-center title"
+                style={
+                  Object {
+                    "fontFamily": "Advent Pro",
+                  }
+                }
+              >
+                CREATE NEW ACCOUNT
+              </h1>
+              <br />
+              <div
+                className="card-body"
+              >
+                <input
+                  name="name"
+                  onChange={[Function]}
+                  placeholder="Name"
+                  type="text"
+                  value=""
+                />
+                <input
+                  name="email"
+                  onChange={[Function]}
+                  placeholder="Email"
+                  type="text"
+                  value=""
+                />
+                <input
+                  name="password"
+                  onChange={[Function]}
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+                <div
+                  className="row justify-content-center"
+                >
+                  <input
+                    className="register-card-submit title"
+                    defaultValue="SIGN UP"
+                    name="register"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                    type="submit"
+                  />
+                </div>
+                <div
+                  className="register-help"
+                >
+                  <Link
+                    className="register-link"
+                    onlyActiveOnIndex={false}
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                    to="/signin"
+                  >
+                    ALREADY REGISTERED?  SIGN IN
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+        "className": "container",
+        "style": Object {
+          "left": 0,
+          "margin": "0 auto",
+          "position": "absolute",
+          "right": 0,
+          "top": 50,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="col-sm-12 col-md-8"
+          >
+            <div
+              className="card card-container "
+              id="register-card"
+            >
+              <h1
+                className="card-header text-center title"
+                style={
+                  Object {
+                    "fontFamily": "Advent Pro",
+                  }
+                }
+              >
+                CREATE NEW ACCOUNT
+              </h1>
+              <br />
+              <div
+                className="card-body"
+              >
+                <input
+                  name="name"
+                  onChange={[Function]}
+                  placeholder="Name"
+                  type="text"
+                  value=""
+                />
+                <input
+                  name="email"
+                  onChange={[Function]}
+                  placeholder="Email"
+                  type="text"
+                  value=""
+                />
+                <input
+                  name="password"
+                  onChange={[Function]}
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+                <div
+                  className="row justify-content-center"
+                >
+                  <input
+                    className="register-card-submit title"
+                    defaultValue="SIGN UP"
+                    name="register"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                    type="submit"
+                  />
+                </div>
+                <div
+                  className="register-help"
+                >
+                  <Link
+                    className="register-link"
+                    onlyActiveOnIndex={false}
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                    to="/signin"
+                  >
+                    ALREADY REGISTERED?  SIGN IN
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>,
+          "className": "row justify-content-center py-5",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="card card-container "
+              id="register-card"
+            >
+              <h1
+                className="card-header text-center title"
+                style={
+                  Object {
+                    "fontFamily": "Advent Pro",
+                  }
+                }
+              >
+                CREATE NEW ACCOUNT
+              </h1>
+              <br />
+              <div
+                className="card-body"
+              >
+                <input
+                  name="name"
+                  onChange={[Function]}
+                  placeholder="Name"
+                  type="text"
+                  value=""
+                />
+                <input
+                  name="email"
+                  onChange={[Function]}
+                  placeholder="Email"
+                  type="text"
+                  value=""
+                />
+                <input
+                  name="password"
+                  onChange={[Function]}
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+                <div
+                  className="row justify-content-center"
+                >
+                  <input
+                    className="register-card-submit title"
+                    defaultValue="SIGN UP"
+                    name="register"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                    type="submit"
+                  />
+                </div>
+                <div
+                  className="register-help"
+                >
+                  <Link
+                    className="register-link"
+                    onlyActiveOnIndex={false}
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                    to="/signin"
+                  >
+                    ALREADY REGISTERED?  SIGN IN
+                  </Link>
+                </div>
+              </div>
+            </div>,
+            "className": "col-sm-12 col-md-8",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <h1
+                  className="card-header text-center title"
+                  style={
+                    Object {
+                      "fontFamily": "Advent Pro",
+                    }
+                  }
+                >
+                  CREATE NEW ACCOUNT
+                </h1>,
+                <br />,
+                Array [],
+                <div
+                  className="card-body"
+                >
+                  <input
+                    name="name"
+                    onChange={[Function]}
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                    value=""
+                  />
+                  <div
+                    className="row justify-content-center"
+                  >
+                    <input
+                      className="register-card-submit title"
+                      defaultValue="SIGN UP"
+                      name="register"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      type="submit"
+                    />
+                  </div>
+                  <div
+                    className="register-help"
+                  >
+                    <Link
+                      className="register-link"
+                      onlyActiveOnIndex={false}
+                      style={
+                        Object {
+                          "color": "white",
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      to="/signin"
+                    >
+                      ALREADY REGISTERED?  SIGN IN
+                    </Link>
+                  </div>
+                </div>,
+              ],
+              "className": "card card-container ",
+              "id": "register-card",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "CREATE NEW ACCOUNT",
+                  "className": "card-header text-center title",
+                  "style": Object {
+                    "fontFamily": "Advent Pro",
+                  },
+                },
+                "ref": null,
+                "rendered": "CREATE NEW ACCOUNT",
+                "type": "h1",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": "br",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <input
+                      name="name"
+                      onChange={[Function]}
+                      placeholder="Name"
+                      type="text"
+                      value=""
+                    />,
+                    <input
+                      name="email"
+                      onChange={[Function]}
+                      placeholder="Email"
+                      type="text"
+                      value=""
+                    />,
+                    <input
+                      name="password"
+                      onChange={[Function]}
+                      placeholder="Password"
+                      type="password"
+                      value=""
+                    />,
+                    <div
+                      className="row justify-content-center"
+                    >
+                      <input
+                        className="register-card-submit title"
+                        defaultValue="SIGN UP"
+                        name="register"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "fontFamily": "Advent Pro",
+                          }
+                        }
+                        type="submit"
+                      />
+                    </div>,
+                    <div
+                      className="register-help"
+                    >
+                      <Link
+                        className="register-link"
+                        onlyActiveOnIndex={false}
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontFamily": "Advent Pro",
+                          }
+                        }
+                        to="/signin"
+                      >
+                        ALREADY REGISTERED?  SIGN IN
+                      </Link>
+                    </div>,
+                  ],
+                  "className": "card-body",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "name": "name",
+                      "onChange": [Function],
+                      "placeholder": "Name",
+                      "type": "text",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "name": "email",
+                      "onChange": [Function],
+                      "placeholder": "Email",
+                      "type": "text",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "name": "password",
+                      "onChange": [Function],
+                      "placeholder": "Password",
+                      "type": "password",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <input
+                        className="register-card-submit title"
+                        defaultValue="SIGN UP"
+                        name="register"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "fontFamily": "Advent Pro",
+                          }
+                        }
+                        type="submit"
+                      />,
+                      "className": "row justify-content-center",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "register-card-submit title",
+                        "defaultValue": "SIGN UP",
+                        "name": "register",
+                        "onClick": [Function],
+                        "style": Object {
+                          "fontFamily": "Advent Pro",
+                        },
+                        "type": "submit",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "input",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <Link
+                        className="register-link"
+                        onlyActiveOnIndex={false}
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontFamily": "Advent Pro",
+                          }
+                        }
+                        to="/signin"
+                      >
+                        ALREADY REGISTERED?  SIGN IN
+                      </Link>,
+                      "className": "register-help",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "ALREADY REGISTERED?  SIGN IN",
+                        "className": "register-link",
+                        "onlyActiveOnIndex": false,
+                        "style": Object {
+                          "color": "white",
+                          "fontFamily": "Advent Pro",
+                        },
+                        "to": "/signin",
+                      },
+                      "ref": null,
+                      "rendered": "ALREADY REGISTERED?  SIGN IN",
+                      "type": [Function],
+                    },
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        "type": "div",
+      },
+      "type": "div",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div
+          className="container"
+          style={
+            Object {
+              "left": 0,
+              "margin": "0 auto",
+              "position": "absolute",
+              "right": 0,
+              "top": 50,
+            }
+          }
+        >
+          <div
+            className="row justify-content-center py-5"
+          >
+            <div
+              className="col-sm-12 col-md-8"
+            >
+              <div
+                className="card card-container "
+                id="register-card"
+              >
+                <h1
+                  className="card-header text-center title"
+                  style={
+                    Object {
+                      "fontFamily": "Advent Pro",
+                    }
+                  }
+                >
+                  CREATE NEW ACCOUNT
+                </h1>
+                <br />
+                <div
+                  className="card-body"
+                >
+                  <input
+                    name="name"
+                    onChange={[Function]}
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                    value=""
+                  />
+                  <div
+                    className="row justify-content-center"
+                  >
+                    <input
+                      className="register-card-submit title"
+                      defaultValue="SIGN UP"
+                      name="register"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      type="submit"
+                    />
+                  </div>
+                  <div
+                    className="register-help"
+                  >
+                    <Link
+                      className="register-link"
+                      onlyActiveOnIndex={false}
+                      style={
+                        Object {
+                          "color": "white",
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      to="/signin"
+                    >
+                      ALREADY REGISTERED?  SIGN IN
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="row justify-content-center py-5"
+          >
+            <div
+              className="col-sm-12 col-md-8"
+            >
+              <div
+                className="card card-container "
+                id="register-card"
+              >
+                <h1
+                  className="card-header text-center title"
+                  style={
+                    Object {
+                      "fontFamily": "Advent Pro",
+                    }
+                  }
+                >
+                  CREATE NEW ACCOUNT
+                </h1>
+                <br />
+                <div
+                  className="card-body"
+                >
+                  <input
+                    name="name"
+                    onChange={[Function]}
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                    value=""
+                  />
+                  <div
+                    className="row justify-content-center"
+                  >
+                    <input
+                      className="register-card-submit title"
+                      defaultValue="SIGN UP"
+                      name="register"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      type="submit"
+                    />
+                  </div>
+                  <div
+                    className="register-help"
+                  >
+                    <Link
+                      className="register-link"
+                      onlyActiveOnIndex={false}
+                      style={
+                        Object {
+                          "color": "white",
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      to="/signin"
+                    >
+                      ALREADY REGISTERED?  SIGN IN
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>,
+          "className": "container",
+          "style": Object {
+            "left": 0,
+            "margin": "0 auto",
+            "position": "absolute",
+            "right": 0,
+            "top": 50,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="col-sm-12 col-md-8"
+            >
+              <div
+                className="card card-container "
+                id="register-card"
+              >
+                <h1
+                  className="card-header text-center title"
+                  style={
+                    Object {
+                      "fontFamily": "Advent Pro",
+                    }
+                  }
+                >
+                  CREATE NEW ACCOUNT
+                </h1>
+                <br />
+                <div
+                  className="card-body"
+                >
+                  <input
+                    name="name"
+                    onChange={[Function]}
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                    value=""
+                  />
+                  <div
+                    className="row justify-content-center"
+                  >
+                    <input
+                      className="register-card-submit title"
+                      defaultValue="SIGN UP"
+                      name="register"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      type="submit"
+                    />
+                  </div>
+                  <div
+                    className="register-help"
+                  >
+                    <Link
+                      className="register-link"
+                      onlyActiveOnIndex={false}
+                      style={
+                        Object {
+                          "color": "white",
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      to="/signin"
+                    >
+                      ALREADY REGISTERED?  SIGN IN
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>,
+            "className": "row justify-content-center py-5",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="card card-container "
+                id="register-card"
+              >
+                <h1
+                  className="card-header text-center title"
+                  style={
+                    Object {
+                      "fontFamily": "Advent Pro",
+                    }
+                  }
+                >
+                  CREATE NEW ACCOUNT
+                </h1>
+                <br />
+                <div
+                  className="card-body"
+                >
+                  <input
+                    name="name"
+                    onChange={[Function]}
+                    placeholder="Name"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Email"
+                    type="text"
+                    value=""
+                  />
+                  <input
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    type="password"
+                    value=""
+                  />
+                  <div
+                    className="row justify-content-center"
+                  >
+                    <input
+                      className="register-card-submit title"
+                      defaultValue="SIGN UP"
+                      name="register"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      type="submit"
+                    />
+                  </div>
+                  <div
+                    className="register-help"
+                  >
+                    <Link
+                      className="register-link"
+                      onlyActiveOnIndex={false}
+                      style={
+                        Object {
+                          "color": "white",
+                          "fontFamily": "Advent Pro",
+                        }
+                      }
+                      to="/signin"
+                    >
+                      ALREADY REGISTERED?  SIGN IN
+                    </Link>
+                  </div>
+                </div>
+              </div>,
+              "className": "col-sm-12 col-md-8",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h1
+                    className="card-header text-center title"
+                    style={
+                      Object {
+                        "fontFamily": "Advent Pro",
+                      }
+                    }
+                  >
+                    CREATE NEW ACCOUNT
+                  </h1>,
+                  <br />,
+                  Array [],
+                  <div
+                    className="card-body"
+                  >
+                    <input
+                      name="name"
+                      onChange={[Function]}
+                      placeholder="Name"
+                      type="text"
+                      value=""
+                    />
+                    <input
+                      name="email"
+                      onChange={[Function]}
+                      placeholder="Email"
+                      type="text"
+                      value=""
+                    />
+                    <input
+                      name="password"
+                      onChange={[Function]}
+                      placeholder="Password"
+                      type="password"
+                      value=""
+                    />
+                    <div
+                      className="row justify-content-center"
+                    >
+                      <input
+                        className="register-card-submit title"
+                        defaultValue="SIGN UP"
+                        name="register"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "fontFamily": "Advent Pro",
+                          }
+                        }
+                        type="submit"
+                      />
+                    </div>
+                    <div
+                      className="register-help"
+                    >
+                      <Link
+                        className="register-link"
+                        onlyActiveOnIndex={false}
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontFamily": "Advent Pro",
+                          }
+                        }
+                        to="/signin"
+                      >
+                        ALREADY REGISTERED?  SIGN IN
+                      </Link>
+                    </div>
+                  </div>,
+                ],
+                "className": "card card-container ",
+                "id": "register-card",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "CREATE NEW ACCOUNT",
+                    "className": "card-header text-center title",
+                    "style": Object {
+                      "fontFamily": "Advent Pro",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "CREATE NEW ACCOUNT",
+                  "type": "h1",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": "br",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <input
+                        name="name"
+                        onChange={[Function]}
+                        placeholder="Name"
+                        type="text"
+                        value=""
+                      />,
+                      <input
+                        name="email"
+                        onChange={[Function]}
+                        placeholder="Email"
+                        type="text"
+                        value=""
+                      />,
+                      <input
+                        name="password"
+                        onChange={[Function]}
+                        placeholder="Password"
+                        type="password"
+                        value=""
+                      />,
+                      <div
+                        className="row justify-content-center"
+                      >
+                        <input
+                          className="register-card-submit title"
+                          defaultValue="SIGN UP"
+                          name="register"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "fontFamily": "Advent Pro",
+                            }
+                          }
+                          type="submit"
+                        />
+                      </div>,
+                      <div
+                        className="register-help"
+                      >
+                        <Link
+                          className="register-link"
+                          onlyActiveOnIndex={false}
+                          style={
+                            Object {
+                              "color": "white",
+                              "fontFamily": "Advent Pro",
+                            }
+                          }
+                          to="/signin"
+                        >
+                          ALREADY REGISTERED?  SIGN IN
+                        </Link>
+                      </div>,
+                    ],
+                    "className": "card-body",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "name": "name",
+                        "onChange": [Function],
+                        "placeholder": "Name",
+                        "type": "text",
+                        "value": "",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "input",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "name": "email",
+                        "onChange": [Function],
+                        "placeholder": "Email",
+                        "type": "text",
+                        "value": "",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "input",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "name": "password",
+                        "onChange": [Function],
+                        "placeholder": "Password",
+                        "type": "password",
+                        "value": "",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "input",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <input
+                          className="register-card-submit title"
+                          defaultValue="SIGN UP"
+                          name="register"
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "fontFamily": "Advent Pro",
+                            }
+                          }
+                          type="submit"
+                        />,
+                        "className": "row justify-content-center",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "register-card-submit title",
+                          "defaultValue": "SIGN UP",
+                          "name": "register",
+                          "onClick": [Function],
+                          "style": Object {
+                            "fontFamily": "Advent Pro",
+                          },
+                          "type": "submit",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "input",
+                      },
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <Link
+                          className="register-link"
+                          onlyActiveOnIndex={false}
+                          style={
+                            Object {
+                              "color": "white",
+                              "fontFamily": "Advent Pro",
+                            }
+                          }
+                          to="/signin"
+                        >
+                          ALREADY REGISTERED?  SIGN IN
+                        </Link>,
+                        "className": "register-help",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": "ALREADY REGISTERED?  SIGN IN",
+                          "className": "register-link",
+                          "onlyActiveOnIndex": false,
+                          "style": Object {
+                            "color": "white",
+                            "fontFamily": "Advent Pro",
+                          },
+                          "to": "/signin",
+                        },
+                        "ref": null,
+                        "rendered": "ALREADY REGISTERED?  SIGN IN",
+                        "type": [Function],
+                      },
+                      "type": "div",
+                    },
+                  ],
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+        "type": "div",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

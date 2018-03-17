@@ -169,7 +169,7 @@ ShallowWrapper {
                       href="#my-recipes"
                     >
                       <h4
-                        className="title"
+                        className="title my-recipes"
                         style={
                           Object {
                             "textAlign": "right",
@@ -189,7 +189,7 @@ ShallowWrapper {
                       href="#my-favorites"
                     >
                       <h4
-                        className="title"
+                        className="title my-favorites"
                         style={
                           Object {
                             "textAlign": "right",
@@ -361,7 +361,7 @@ ShallowWrapper {
                         href="#my-recipes"
                       >
                         <h4
-                          className="title"
+                          className="title my-recipes"
                           style={
                             Object {
                               "textAlign": "right",
@@ -381,7 +381,7 @@ ShallowWrapper {
                         href="#my-favorites"
                       >
                         <h4
-                          className="title"
+                          className="title my-favorites"
                           style={
                             Object {
                               "textAlign": "right",
@@ -600,7 +600,7 @@ ShallowWrapper {
                           href="#my-recipes"
                         >
                           <h4
-                            className="title"
+                            className="title my-recipes"
                             style={
                               Object {
                                 "textAlign": "right",
@@ -620,7 +620,7 @@ ShallowWrapper {
                           href="#my-favorites"
                         >
                           <h4
-                            className="title"
+                            className="title my-favorites"
                             style={
                               Object {
                                 "textAlign": "right",
@@ -863,7 +863,7 @@ ShallowWrapper {
                             href="#my-recipes"
                           >
                             <h4
-                              className="title"
+                              className="title my-recipes"
                               style={
                                 Object {
                                   "textAlign": "right",
@@ -883,7 +883,7 @@ ShallowWrapper {
                             href="#my-favorites"
                           >
                             <h4
-                              className="title"
+                              className="title my-favorites"
                               style={
                                 Object {
                                   "textAlign": "right",
@@ -988,7 +988,7 @@ ShallowWrapper {
                             href="#my-recipes"
                           >
                             <h4
-                              className="title"
+                              className="title my-recipes"
                               style={
                                 Object {
                                   "textAlign": "right",
@@ -1008,7 +1008,7 @@ ShallowWrapper {
                             href="#my-favorites"
                           >
                             <h4
-                              className="title"
+                              className="title my-favorites"
                               style={
                                 Object {
                                   "textAlign": "right",
@@ -1041,7 +1041,7 @@ ShallowWrapper {
                             href="#my-recipes"
                           >
                             <h4
-                              className="title"
+                              className="title my-recipes"
                               style={
                                 Object {
                                   "textAlign": "right",
@@ -1061,7 +1061,7 @@ ShallowWrapper {
                             href="#my-favorites"
                           >
                             <h4
-                              className="title"
+                              className="title my-favorites"
                               style={
                                 Object {
                                   "textAlign": "right",
@@ -1091,7 +1091,7 @@ ShallowWrapper {
                               href="#my-recipes"
                             >
                               <h4
-                                className="title"
+                                className="title my-recipes"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -1111,7 +1111,7 @@ ShallowWrapper {
                               href="#my-favorites"
                             >
                               <h4
-                                className="title"
+                                className="title my-favorites"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -1138,7 +1138,7 @@ ShallowWrapper {
                               href="#my-recipes"
                             >
                               <h4
-                                className="title"
+                                className="title my-recipes"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -1157,7 +1157,7 @@ ShallowWrapper {
                             "nodeType": "host",
                             "props": Object {
                               "children": <h4
-                                className="title"
+                                className="title my-recipes"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -1177,7 +1177,7 @@ ShallowWrapper {
                               "nodeType": "host",
                               "props": Object {
                                 "children": "My Recipes",
-                                "className": "title",
+                                "className": "title my-recipes",
                                 "style": Object {
                                   "textAlign": "right",
                                 },
@@ -1201,7 +1201,7 @@ ShallowWrapper {
                               href="#my-favorites"
                             >
                               <h4
-                                className="title"
+                                className="title my-favorites"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -1220,7 +1220,7 @@ ShallowWrapper {
                             "nodeType": "host",
                             "props": Object {
                               "children": <h4
-                                className="title"
+                                className="title my-favorites"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -1240,7 +1240,7 @@ ShallowWrapper {
                               "nodeType": "host",
                               "props": Object {
                                 "children": "My Favorites",
-                                "className": "title",
+                                "className": "title my-favorites",
                                 "style": Object {
                                   "textAlign": "right",
                                 },
@@ -1632,7 +1632,7 @@ ShallowWrapper {
                         href="#my-recipes"
                       >
                         <h4
-                          className="title"
+                          className="title my-recipes"
                           style={
                             Object {
                               "textAlign": "right",
@@ -1652,7 +1652,7 @@ ShallowWrapper {
                         href="#my-favorites"
                       >
                         <h4
-                          className="title"
+                          className="title my-favorites"
                           style={
                             Object {
                               "textAlign": "right",
@@ -1824,7 +1824,7 @@ ShallowWrapper {
                           href="#my-recipes"
                         >
                           <h4
-                            className="title"
+                            className="title my-recipes"
                             style={
                               Object {
                                 "textAlign": "right",
@@ -1844,7 +1844,7 @@ ShallowWrapper {
                           href="#my-favorites"
                         >
                           <h4
-                            className="title"
+                            className="title my-favorites"
                             style={
                               Object {
                                 "textAlign": "right",
@@ -2063,7 +2063,7 @@ ShallowWrapper {
                             href="#my-recipes"
                           >
                             <h4
-                              className="title"
+                              className="title my-recipes"
                               style={
                                 Object {
                                   "textAlign": "right",
@@ -2083,7 +2083,7 @@ ShallowWrapper {
                             href="#my-favorites"
                           >
                             <h4
-                              className="title"
+                              className="title my-favorites"
                               style={
                                 Object {
                                   "textAlign": "right",
@@ -2326,7 +2326,7 @@ ShallowWrapper {
                               href="#my-recipes"
                             >
                               <h4
-                                className="title"
+                                className="title my-recipes"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -2346,7 +2346,7 @@ ShallowWrapper {
                               href="#my-favorites"
                             >
                               <h4
-                                className="title"
+                                className="title my-favorites"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -2451,7 +2451,7 @@ ShallowWrapper {
                               href="#my-recipes"
                             >
                               <h4
-                                className="title"
+                                className="title my-recipes"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -2471,7 +2471,7 @@ ShallowWrapper {
                               href="#my-favorites"
                             >
                               <h4
-                                className="title"
+                                className="title my-favorites"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -2504,7 +2504,7 @@ ShallowWrapper {
                               href="#my-recipes"
                             >
                               <h4
-                                className="title"
+                                className="title my-recipes"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -2524,7 +2524,7 @@ ShallowWrapper {
                               href="#my-favorites"
                             >
                               <h4
-                                className="title"
+                                className="title my-favorites"
                                 style={
                                   Object {
                                     "textAlign": "right",
@@ -2554,7 +2554,7 @@ ShallowWrapper {
                                 href="#my-recipes"
                               >
                                 <h4
-                                  className="title"
+                                  className="title my-recipes"
                                   style={
                                     Object {
                                       "textAlign": "right",
@@ -2574,7 +2574,7 @@ ShallowWrapper {
                                 href="#my-favorites"
                               >
                                 <h4
-                                  className="title"
+                                  className="title my-favorites"
                                   style={
                                     Object {
                                       "textAlign": "right",
@@ -2601,7 +2601,7 @@ ShallowWrapper {
                                 href="#my-recipes"
                               >
                                 <h4
-                                  className="title"
+                                  className="title my-recipes"
                                   style={
                                     Object {
                                       "textAlign": "right",
@@ -2620,7 +2620,7 @@ ShallowWrapper {
                               "nodeType": "host",
                               "props": Object {
                                 "children": <h4
-                                  className="title"
+                                  className="title my-recipes"
                                   style={
                                     Object {
                                       "textAlign": "right",
@@ -2640,7 +2640,7 @@ ShallowWrapper {
                                 "nodeType": "host",
                                 "props": Object {
                                   "children": "My Recipes",
-                                  "className": "title",
+                                  "className": "title my-recipes",
                                   "style": Object {
                                     "textAlign": "right",
                                   },
@@ -2664,7 +2664,7 @@ ShallowWrapper {
                                 href="#my-favorites"
                               >
                                 <h4
-                                  className="title"
+                                  className="title my-favorites"
                                   style={
                                     Object {
                                       "textAlign": "right",
@@ -2683,7 +2683,7 @@ ShallowWrapper {
                               "nodeType": "host",
                               "props": Object {
                                 "children": <h4
-                                  className="title"
+                                  className="title my-favorites"
                                   style={
                                     Object {
                                       "textAlign": "right",
@@ -2703,7 +2703,7 @@ ShallowWrapper {
                                 "nodeType": "host",
                                 "props": Object {
                                   "children": "My Favorites",
-                                  "className": "title",
+                                  "className": "title my-favorites",
                                   "style": Object {
                                     "textAlign": "right",
                                   },

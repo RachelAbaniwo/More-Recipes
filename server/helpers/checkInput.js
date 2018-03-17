@@ -13,7 +13,7 @@ export const checkEmail = (email) => {
 
 /**
    * Checks input and returns false if non alphanumeric characters are inputed
-   * Number of Characters must be from 3 To 5
+   * Number of Characters must be from 3 To 15
    * @function checkname
    *
    * @param {string} name
@@ -28,7 +28,7 @@ export const checkname = (name) => {
 /**
    * Checks input and returns false if characters beside
    * alphanumeric characters, _ and - are inputed
-   * Number of Characters must be from 3 To 5
+   * Number of Characters must be from 3 To 15
    * @function checkUsername
    *
    * @param {string} name
@@ -56,7 +56,7 @@ export const checkPassword = (text) => {
 };
 
 /**
-   * Checks input and returns false if characters
+   * Checks input and returns true if characters
    * include blank spaces
    * @function checkField
    *

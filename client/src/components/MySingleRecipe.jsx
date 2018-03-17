@@ -18,13 +18,14 @@ const MySingleRecipe = ({ recipe }) => ((
           style={{}}
           src={recipe.recipeImage}
           alt="Search Result"
-          className="figure-img img-thumbnail mx-auto"
+          className="figure-img img-thumbnail mx-auto single-recipe"
         />
       </Link>
       <figcaption className="figure-caption" style={{ marginTop: '10px' }}>
         <Link
           style={{ textDecoration: 'none', fontSize: '18px' }}
           to={`view-recipe/${recipe.id}`}
+          className="single-recipe-name"
         >{recipe.name}
         </Link>
         <p>

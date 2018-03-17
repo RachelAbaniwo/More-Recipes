@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="addReview.spec"
+    errors="0" failures="0" hostname="" id="" package="addReview.spec" skipped="0"
+    tests="2" time="45.23" timestamp="Thu, 15 Mar 2018 18:57:04 GMT">
+  
+    <testcase name="Review recipe: unauthenticated users should not be able to review a recipe" classname="addReview.spec" time="21.00" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Review recipe: authenticated users should be able to review a recipe" classname="addReview.spec" time="24.22" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

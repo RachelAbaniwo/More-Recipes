@@ -18,6 +18,7 @@ export const Favorites = ({
   <Fragment>
     <i
       className={`fa fa-heart click-add ${authUser && hasFavorited ? 'orange' : 'grey'}`}
+      id="favorite-button"
       onClick={() => { toggleFavoritesFunc(recipeId); }}
       aria-hidden="true"
     />&nbsp;

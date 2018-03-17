@@ -123,7 +123,6 @@ describe('The login component ', () => {
     });
 
     wrapper.find('input[type="submit"]').simulate('click');
-    // TODO: FIND OUT WHY TIMEOUT HAS TO BE USED, AND IF YES, WHY IMPORTED.
     setTimeout(() => {
       expect(wrapper.state().errors).toEqual(['Wrong email format']);
     }, 50);

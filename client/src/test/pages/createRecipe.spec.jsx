@@ -67,6 +67,12 @@ describe('The CreateRecipeScreen page', () => {
     recipe: null,
     routeParams: { recipeId: null }
   };
+  const creatingPropsWithoutImage = {
+    ...props,
+    recipe: null,
+    routeParams: { recipeId: null },
+    imageFile: null
+  };
 
   const updatingProps = {
     ...props,
@@ -91,6 +97,7 @@ describe('The CreateRecipeScreen page', () => {
     expect(wrapper
       .contains(<button
         className="btn btn-default"
+        id="create-recipe-button"
         type="button"
         style={{
           marginLeft: 10, marginTop: 20, marginBottom: 20, fontWeight: 900
@@ -119,6 +126,7 @@ describe('The CreateRecipeScreen page', () => {
     expect(wrapper
       .contains(<button
         className="btn btn-default"
+        id="create-recipe-button"
         type="button"
         style={{
           marginLeft: 10, marginTop: 20, marginBottom: 20, fontWeight: 900
@@ -130,7 +138,7 @@ describe('The CreateRecipeScreen page', () => {
   });
   describe('The handleValidation function ', () => {
     it(
-      'should set validation errors on state is wrong input is passed when creating a recipe',
+      'should set validation errors on state if wrong input is passed when creating a recipe',
       () => {
         const creatingPropsWithNoUploadedImage = {
           ...creatingProps,
@@ -145,8 +153,7 @@ describe('The CreateRecipeScreen page', () => {
           'Recipe category is required',
           'Recipe description is required',
           'Recipe ingredients are required',
-          'Preparation method is required',
-          'Recipe image is required'
+          'Preparation method is required'
         ]);
       }
     );
@@ -229,6 +236,35 @@ describe('The CreateRecipeScreen page', () => {
           method: recipeMock.method,
           ingredients: 'beans',
           imageUrl: 'https://cloudinary.com/recipe_image.jpg',
+          isLoading: true,
+          errors: [],
+          editing: false
+        });
+        done();
+      });
+    });
+    it('should use default image and create the recipe if user doesn\'t upload an image', (done) => {
+      const spy = jest.spyOn(creatingPropsWithoutImage, 'createRecipe');
+      localStorage
+        .setItem('authUser', JSON.stringify({ user: {}, token: 'SOME TOKEN' }));
+
+      const wrapper = mount(<CreateRecipeScreen {...creatingPropsWithoutImage} />);
+
+      wrapper.setState({
+        name: recipeMock.name,
+        description: recipeMock.description,
+        category: recipeMock.category,
+        method: recipeMock.method,
+        ingredients: 'beans'
+      });
+      wrapper.instance().handleSubmit().then(() => {
+        expect(spy).toHaveBeenCalledWith({
+          name: recipeMock.name,
+          description: recipeMock.description,
+          category: recipeMock.category,
+          method: recipeMock.method,
+          ingredients: 'beans',
+          imageUrl: 'http://res.cloudinary.com/rachelabaniwo/image/upload/v1520967994/recipe-placeholder_tqgdh1.jpg',
           isLoading: true,
           errors: [],
           editing: false

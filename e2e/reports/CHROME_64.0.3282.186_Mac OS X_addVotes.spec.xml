@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="4">
+
+  <testsuite name="addVotes.spec"
+    errors="0" failures="0" hostname="" id="" package="addVotes.spec" skipped="0"
+    tests="4" time="94.50" timestamp="Thu, 15 Mar 2018 18:57:49 GMT">
+  
+    <testcase name="Review recipe: unauthenticated users should not be able to upvote recipe" classname="addVotes.spec" time="15.82" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Review recipe: authenticated users should be able to upvote a recipe" classname="addVotes.spec" time="31.07" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Review recipe: unauthenticated users should not be able to downvote recipe" classname="addVotes.spec" time="16.41" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Review recipe: authenticated users should be able to downvote a recipe" classname="addVotes.spec" time="31.20" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

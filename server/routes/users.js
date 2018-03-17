@@ -23,6 +23,13 @@ router.route('/signin')
 
   .post(userSigninValidator, userController.userSignIn);
 
+// POST /api/v1/users/signout - Signs out a user
+
+router.route('/signout')
+
+  .post(authenticate, userController.userSignOut);
+
+
 // GET /api/v1/users/myrecipes - Gets a Registered User's recipes
 
 router.route('/myrecipes')

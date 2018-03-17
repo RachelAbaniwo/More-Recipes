@@ -7,8 +7,7 @@ import db from '../models';
 dotenv.config();
 const jwtSecret = process.env.JWT_SECRET;
 
-const { User } = db;
-const { Recipe } = db;
+const { User, Recipe, Token } = db;
 /**
  * Controls the user endpoints
  * @class UserController
@@ -185,5 +184,20 @@ export default class UserController {
       response.status(400).json({
         message: 'Invalid request'
       }));
+  }
+
+  /**
+   * signs out user
+   * @function userSignOut
+   *
+   * @param {object} request express request object
+   * @param {object} response express response object
+   *
+   * @returns {string} confirmation of user signout
+   */
+  userSignOut(request, response) {
+    return Token.create({
+      token: request.authUserToken
+    }).then(() => response.json({ message: 'Successfully signed out.' }));
   }
 }

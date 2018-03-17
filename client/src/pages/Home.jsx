@@ -10,7 +10,6 @@ import food20 from '../../assets/image/food-20.jpg';
 import food23 from '../../assets/image/food-23.jpg';
 import image10 from '../../assets/image/image10.jpeg';
 import image5 from '../../assets/image/image5.jpeg';
-import '../../assets/css/style.css';
 
 /**
  * Displays home page component
@@ -18,7 +17,7 @@ import '../../assets/css/style.css';
  *
  * @returns {object} jsx object
  */
-class Home extends React.Component {
+export class Home extends React.Component {
   /**
    *
    * @constructor
@@ -57,7 +56,8 @@ class Home extends React.Component {
    *
    * @returns {object} sets state of sort to upvotes and  redirects page
    */
-  async handleSortUpvotesClick() {
+  async handleSortUpvotesClick(event) {
+    event.preventDefault();
     await this.props.updateSortQuery('upvotes');
     this.props.router.push('/recipes');
   }
@@ -69,7 +69,8 @@ class Home extends React.Component {
    *
    * @returns {object} sets state of sort to upvotes and  redirects page
    */
-  async handleSortFavoritesClick() {
+  async handleSortFavoritesClick(event) {
+    event.preventDefault();
     await this.props.updateSortQuery('favorites');
     this.props.router.push('/recipes');
   }
@@ -137,6 +138,7 @@ class Home extends React.Component {
               >
                 <h1
                   className="text-center"
+                  id="home-page-title"
                   style={{
                     fontFamily: 'Berkshire Swash',
                     color: 'lightGrey',
@@ -164,8 +166,8 @@ class Home extends React.Component {
                 >
                   <input
                     style={{ width: 400 }}
-                    className="form-control mr-sm-2"
-                    type="search"
+                    className="form-control mr-sm-2 search"
+                    type="text"
                     onChange={this.handleChange}
                     placeholder="Search Recipes"
                     value={this.props.searchQuery}
@@ -192,7 +194,8 @@ class Home extends React.Component {
             data-aos="zoom-in-down"
           >
             <a
-              href="#recipes"
+              href="/"
+              id="top-favorites-link"
               onClick={this.handleSortFavoritesClick}
             >
               <div className="card-body">
@@ -216,7 +219,8 @@ class Home extends React.Component {
             data-aos="zoom-in-down"
           >
             <a
-              href="#recipes"
+              href="/"
+              id="top-voted-link"
               onClick={this.handleSortUpvotesClick}
             >
               <div className="card-body">
@@ -266,7 +270,7 @@ Home.defaultProps = {
  *
  * @returns {object} object of recipes passed as props
  */
-const mapStateToProps = state =>
+export const mapStateToProps = state =>
   ({ authUser: state.authUser, searchQuery: state.search.query });
 
 /**
@@ -275,7 +279,7 @@ const mapStateToProps = state =>
  *
  * @returns {object} object to be passed as props to component
 */
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     { signOutUser, updateSearchQuery, updateSortQuery },
     dispatch
