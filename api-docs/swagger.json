@@ -181,7 +181,7 @@
         }
       }
     },
-    "/recipes/1": {
+    "/recipes/{recipeId}": {
       "get": {
         "tags": [
           "Misc"
@@ -280,7 +280,7 @@
         }
       }
     },
-    "/recipes/18": {
+    "/recipes/{recipeId}": {
       "put": {
         "tags": [
           "Misc"
@@ -391,7 +391,7 @@
         }
       }
     },
-    "/recipes/19": {
+    "/recipes/{recipeId}": {
       "delete": {
         "tags": [
           "Misc"
@@ -705,7 +705,7 @@
         }
       }
     },
-    "/favorites/20": {
+    "/favorites/{recipeId}": {
       "post": {
         "tags": [
           "Misc"
@@ -802,7 +802,7 @@
         }
       }
     },
-    "/reviews/20": {
+    "/recipes/{recipeId}/reviews": {
       "get": {
         "tags": [
           "Misc"
@@ -1816,6 +1816,53 @@
         }
       }
     },
+    "/users/signout": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "SIGN OUT USER",
+        "description": "Signs out an authenticated user",
+        "operationId": "SignOutUser",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "{{nene_token}}"
+            },
+            "example": "{{nene_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "Successfully signed out"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
     "/users/myrecipes": {
       "get": {
         "tags": [
@@ -1949,7 +1996,7 @@
         }
       }
     },
-    "/recipes/20/upvote": {
+    "/recipes/{recipeId}/upvote": {
       "post": {
         "tags": [
           "Misc"
@@ -2032,7 +2079,7 @@
         }
       }
     },
-    "/recipes/20/downvote": {
+    "/recipes/{recipeId}/downvote": {
       "post": {
         "tags": [
           "Misc"
@@ -2115,7 +2162,7 @@
         }
       }
     },
-    "/users/1": {
+    "/users/{userId}": {
       "put": {
         "tags": [
           "Misc"

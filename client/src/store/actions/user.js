@@ -48,6 +48,7 @@ export function signInUser({ email, password }) {
  */
 export function signOutUser() {
   return async (dispatch) => {
+    await axios.post(`${config.apiUrl}/users/signout`);
     localStorage.removeItem('authUser');
     unsetAxios();
     dispatch({

@@ -197,7 +197,7 @@ export function getRecipe(recipeId) {
 export function createReview(review, recipeId) {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${config.apiUrl}/reviews/${recipeId}`, { review });
+      const response = await axios.post(`${config.apiUrl}/recipes/${recipeId}/reviews`, { review });
       dispatch({
         type: ADD_RECIPE_REVIEW,
         payload: response.data.review
