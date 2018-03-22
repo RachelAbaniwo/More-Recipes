@@ -1,0 +1,5565 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page should mount without crashing when user is authenticated 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Home
+    authUser={
+      Object {
+        "user": Object {
+          "aboutMe": "about me",
+          "email": "user@signedin.com",
+          "id": 3,
+          "profilePicture": "profile.jpg",
+          "username": "signed in user",
+        },
+      }
+    }
+    router={
+      Object {
+        "push": [MockFunction] {
+          "calls": Array [
+            Array [
+              "/recipes",
+            ],
+          ],
+        },
+      }
+    }
+    searchQuery="search-string"
+    signOutUser={[MockFunction]}
+    updateSearchQuery={[MockFunction]}
+    updateSortQuery={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <LandingTopButtons
+          authUser={
+            Object {
+              "user": Object {
+                "aboutMe": "about me",
+                "email": "user@signedin.com",
+                "id": 3,
+                "profilePicture": "profile.jpg",
+                "username": "signed in user",
+              },
+            }
+          }
+          router={
+            Object {
+              "push": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "/recipes",
+                  ],
+                ],
+              },
+            }
+          }
+          signOutUser={[MockFunction]}
+        />,
+        <section
+          id="slider"
+        >
+          <div
+            className="carousel slide"
+            data-interval={2000}
+            data-ride="carousel"
+            id="carouselExampleIndicators"
+          >
+            <div
+              className="carousel-inner fullHeight"
+            >
+              <div
+                className="carousel-item active"
+              >
+                <img
+                  alt="First slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+              <div
+                className="carousel-item"
+              >
+                <img
+                  alt="Third slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+              <div
+                className="carousel-item"
+              >
+                <img
+                  alt="Third slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+            </div>
+            <div
+              className="justify-content-center"
+            >
+              <div
+                className="container justify-content-center text-center home-box"
+                style={
+                  Object {
+                    "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                    "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                    "left": 0,
+                    "margin": "0 auto",
+                    "minWidth": "auto",
+                    "paddingBottom": 50,
+                    "paddingTop": 50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 80,
+                  }
+                }
+              >
+                <h1
+                  className="text-center"
+                  id="home-page-title"
+                  style={
+                    Object {
+                      "color": "lightGrey",
+                      "fontFamily": "Berkshire Swash",
+                      "fontSize": 90,
+                    }
+                  }
+                >
+                  More Recipes
+                </h1>
+                <h3
+                  className="text-center"
+                  style={
+                    Object {
+                      "color": "rgba(241, 235, 178, 0.8)",
+                      "fontFamily": "kaushan script",
+                      "paddingTop": 20,
+                    }
+                  }
+                >
+                  Enjoy the very best culinary experiences from around the world and share yours too!!!
+                </h3>
+                <CreateRecipeButton
+                  authUser={
+                    Object {
+                      "user": Object {
+                        "aboutMe": "about me",
+                        "email": "user@signedin.com",
+                        "id": 3,
+                        "profilePicture": "profile.jpg",
+                        "username": "signed in user",
+                      },
+                    }
+                  }
+                />
+                <form
+                  className="form-inline justify-content-center"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "paddingTop": 30,
+                    }
+                  }
+                >
+                  <input
+                    aria-label="Search"
+                    className="form-control mr-sm-2 search"
+                    onChange={[Function]}
+                    placeholder="Search Recipes"
+                    style={
+                      Object {
+                        "width": 400,
+                      }
+                    }
+                    type="text"
+                    value="search-string"
+                  />
+                </form>
+              </div>
+              <a
+                href="#popular"
+              >
+                <div>
+                  <div
+                    className="arrow bounce"
+                  />
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>,
+        <section
+          className="container-fluid row no-gutters justify-content-between text-center"
+          id="popular"
+          style={
+            Object {
+              "backgroundColor": "#eee",
+              "marginBottom": 50,
+              "marginTop": 50,
+            }
+          }
+        >
+          <div
+            className="card card-1 col-sm-12 col-md-5 card my-3 "
+            data-aos="zoom-in-down"
+            style={
+              Object {
+                "margin": "30px",
+              }
+            }
+          >
+            <a
+              href="/"
+              id="top-favorites-link"
+              onClick={[Function]}
+            >
+              <div
+                className="card-body"
+              >
+                <h2
+                  className="card-subtitle text-muted"
+                >
+                  Top Favorites
+                </h2>
+              </div>
+              <img
+                alt="sunset"
+                className="img-fluid mx-auto"
+                src="file-mock"
+              />
+              <p
+                className="card-text text-center"
+                style={
+                  Object {
+                    "color": "rgba(73, 67, 67, 0.9",
+                  }
+                }
+              >
+                Take a survey of our all time favorite recipes.
+              </p>
+            </a>
+          </div>
+          <div
+            className="card card-1 col-sm-12 col-md-5 card my-3"
+            data-aos="zoom-in-down"
+            style={
+              Object {
+                "margin": "30px",
+              }
+            }
+          >
+            <a
+              href="/"
+              id="top-voted-link"
+              onClick={[Function]}
+            >
+              <div
+                className="card-body"
+              >
+                <h2
+                  className="card-subtitle text-muted"
+                >
+                  Top Voted
+                </h2>
+              </div>
+              <img
+                alt="sunset"
+                className="img-fluid mx-auto"
+                src="file-mock"
+              />
+              <p
+                className="card-text text-center"
+                style={
+                  Object {
+                    "color": "rgba(73, 67, 67, 0.9)",
+                  }
+                }
+              >
+                Checkout the recipes with the most upvotes.
+              </p>
+            </a>
+          </div>
+        </section>,
+      ],
+      "style": Object {
+        "backgroundColor": "#eee",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "authUser": Object {
+            "user": Object {
+              "aboutMe": "about me",
+              "email": "user@signedin.com",
+              "id": 3,
+              "profilePicture": "profile.jpg",
+              "username": "signed in user",
+            },
+          },
+          "router": Object {
+            "push": [MockFunction] {
+              "calls": Array [
+                Array [
+                  "/recipes",
+                ],
+              ],
+            },
+          },
+          "signOutUser": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="carousel slide"
+            data-interval={2000}
+            data-ride="carousel"
+            id="carouselExampleIndicators"
+          >
+            <div
+              className="carousel-inner fullHeight"
+            >
+              <div
+                className="carousel-item active"
+              >
+                <img
+                  alt="First slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+              <div
+                className="carousel-item"
+              >
+                <img
+                  alt="Third slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+              <div
+                className="carousel-item"
+              >
+                <img
+                  alt="Third slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+            </div>
+            <div
+              className="justify-content-center"
+            >
+              <div
+                className="container justify-content-center text-center home-box"
+                style={
+                  Object {
+                    "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                    "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                    "left": 0,
+                    "margin": "0 auto",
+                    "minWidth": "auto",
+                    "paddingBottom": 50,
+                    "paddingTop": 50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 80,
+                  }
+                }
+              >
+                <h1
+                  className="text-center"
+                  id="home-page-title"
+                  style={
+                    Object {
+                      "color": "lightGrey",
+                      "fontFamily": "Berkshire Swash",
+                      "fontSize": 90,
+                    }
+                  }
+                >
+                  More Recipes
+                </h1>
+                <h3
+                  className="text-center"
+                  style={
+                    Object {
+                      "color": "rgba(241, 235, 178, 0.8)",
+                      "fontFamily": "kaushan script",
+                      "paddingTop": 20,
+                    }
+                  }
+                >
+                  Enjoy the very best culinary experiences from around the world and share yours too!!!
+                </h3>
+                <CreateRecipeButton
+                  authUser={
+                    Object {
+                      "user": Object {
+                        "aboutMe": "about me",
+                        "email": "user@signedin.com",
+                        "id": 3,
+                        "profilePicture": "profile.jpg",
+                        "username": "signed in user",
+                      },
+                    }
+                  }
+                />
+                <form
+                  className="form-inline justify-content-center"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "paddingTop": 30,
+                    }
+                  }
+                >
+                  <input
+                    aria-label="Search"
+                    className="form-control mr-sm-2 search"
+                    onChange={[Function]}
+                    placeholder="Search Recipes"
+                    style={
+                      Object {
+                        "width": 400,
+                      }
+                    }
+                    type="text"
+                    value="search-string"
+                  />
+                </form>
+              </div>
+              <a
+                href="#popular"
+              >
+                <div>
+                  <div
+                    className="arrow bounce"
+                  />
+                </div>
+              </a>
+            </div>
+          </div>,
+          "id": "slider",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="carousel-inner fullHeight"
+              >
+                <div
+                  className="carousel-item active"
+                >
+                  <img
+                    alt="First slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+              </div>,
+              <div
+                className="justify-content-center"
+              >
+                <div
+                  className="container justify-content-center text-center home-box"
+                  style={
+                    Object {
+                      "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                      "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                      "left": 0,
+                      "margin": "0 auto",
+                      "minWidth": "auto",
+                      "paddingBottom": 50,
+                      "paddingTop": 50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 80,
+                    }
+                  }
+                >
+                  <h1
+                    className="text-center"
+                    id="home-page-title"
+                    style={
+                      Object {
+                        "color": "lightGrey",
+                        "fontFamily": "Berkshire Swash",
+                        "fontSize": 90,
+                      }
+                    }
+                  >
+                    More Recipes
+                  </h1>
+                  <h3
+                    className="text-center"
+                    style={
+                      Object {
+                        "color": "rgba(241, 235, 178, 0.8)",
+                        "fontFamily": "kaushan script",
+                        "paddingTop": 20,
+                      }
+                    }
+                  >
+                    Enjoy the very best culinary experiences from around the world and share yours too!!!
+                  </h3>
+                  <CreateRecipeButton
+                    authUser={
+                      Object {
+                        "user": Object {
+                          "aboutMe": "about me",
+                          "email": "user@signedin.com",
+                          "id": 3,
+                          "profilePicture": "profile.jpg",
+                          "username": "signed in user",
+                        },
+                      }
+                    }
+                  />
+                  <form
+                    className="form-inline justify-content-center"
+                    onSubmit={[Function]}
+                    style={
+                      Object {
+                        "paddingTop": 30,
+                      }
+                    }
+                  >
+                    <input
+                      aria-label="Search"
+                      className="form-control mr-sm-2 search"
+                      onChange={[Function]}
+                      placeholder="Search Recipes"
+                      style={
+                        Object {
+                          "width": 400,
+                        }
+                      }
+                      type="text"
+                      value="search-string"
+                    />
+                  </form>
+                </div>
+                <a
+                  href="#popular"
+                >
+                  <div>
+                    <div
+                      className="arrow bounce"
+                    />
+                  </div>
+                </a>
+              </div>,
+            ],
+            "className": "carousel slide",
+            "data-interval": 2000,
+            "data-ride": "carousel",
+            "id": "carouselExampleIndicators",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="carousel-item active"
+                  >
+                    <img
+                      alt="First slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>,
+                  <div
+                    className="carousel-item"
+                  >
+                    <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>,
+                  <div
+                    className="carousel-item"
+                  >
+                    <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>,
+                ],
+                "className": "carousel-inner fullHeight",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <img
+                      alt="First slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />,
+                    "className": "carousel-item active",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "First slide",
+                      "className": "d-block w-100",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />,
+                    "className": "carousel-item",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "Third slide",
+                      "className": "d-block w-100",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />,
+                    "className": "carousel-item",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "Third slide",
+                      "className": "d-block w-100",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="container justify-content-center text-center home-box"
+                    style={
+                      Object {
+                        "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                        "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                        "left": 0,
+                        "margin": "0 auto",
+                        "minWidth": "auto",
+                        "paddingBottom": 50,
+                        "paddingTop": 50,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 80,
+                      }
+                    }
+                  >
+                    <h1
+                      className="text-center"
+                      id="home-page-title"
+                      style={
+                        Object {
+                          "color": "lightGrey",
+                          "fontFamily": "Berkshire Swash",
+                          "fontSize": 90,
+                        }
+                      }
+                    >
+                      More Recipes
+                    </h1>
+                    <h3
+                      className="text-center"
+                      style={
+                        Object {
+                          "color": "rgba(241, 235, 178, 0.8)",
+                          "fontFamily": "kaushan script",
+                          "paddingTop": 20,
+                        }
+                      }
+                    >
+                      Enjoy the very best culinary experiences from around the world and share yours too!!!
+                    </h3>
+                    <CreateRecipeButton
+                      authUser={
+                        Object {
+                          "user": Object {
+                            "aboutMe": "about me",
+                            "email": "user@signedin.com",
+                            "id": 3,
+                            "profilePicture": "profile.jpg",
+                            "username": "signed in user",
+                          },
+                        }
+                      }
+                    />
+                    <form
+                      className="form-inline justify-content-center"
+                      onSubmit={[Function]}
+                      style={
+                        Object {
+                          "paddingTop": 30,
+                        }
+                      }
+                    >
+                      <input
+                        aria-label="Search"
+                        className="form-control mr-sm-2 search"
+                        onChange={[Function]}
+                        placeholder="Search Recipes"
+                        style={
+                          Object {
+                            "width": 400,
+                          }
+                        }
+                        type="text"
+                        value="search-string"
+                      />
+                    </form>
+                  </div>,
+                  <a
+                    href="#popular"
+                  >
+                    <div>
+                      <div
+                        className="arrow bounce"
+                      />
+                    </div>
+                  </a>,
+                ],
+                "className": "justify-content-center",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <h1
+                        className="text-center"
+                        id="home-page-title"
+                        style={
+                          Object {
+                            "color": "lightGrey",
+                            "fontFamily": "Berkshire Swash",
+                            "fontSize": 90,
+                          }
+                        }
+                      >
+                        More Recipes
+                      </h1>,
+                      <h3
+                        className="text-center"
+                        style={
+                          Object {
+                            "color": "rgba(241, 235, 178, 0.8)",
+                            "fontFamily": "kaushan script",
+                            "paddingTop": 20,
+                          }
+                        }
+                      >
+                        Enjoy the very best culinary experiences from around the world and share yours too!!!
+                      </h3>,
+                      <CreateRecipeButton
+                        authUser={
+                          Object {
+                            "user": Object {
+                              "aboutMe": "about me",
+                              "email": "user@signedin.com",
+                              "id": 3,
+                              "profilePicture": "profile.jpg",
+                              "username": "signed in user",
+                            },
+                          }
+                        }
+                      />,
+                      <form
+                        className="form-inline justify-content-center"
+                        onSubmit={[Function]}
+                        style={
+                          Object {
+                            "paddingTop": 30,
+                          }
+                        }
+                      >
+                        <input
+                          aria-label="Search"
+                          className="form-control mr-sm-2 search"
+                          onChange={[Function]}
+                          placeholder="Search Recipes"
+                          style={
+                            Object {
+                              "width": 400,
+                            }
+                          }
+                          type="text"
+                          value="search-string"
+                        />
+                      </form>,
+                    ],
+                    "className": "container justify-content-center text-center home-box",
+                    "style": Object {
+                      "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                      "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                      "left": 0,
+                      "margin": "0 auto",
+                      "minWidth": "auto",
+                      "paddingBottom": 50,
+                      "paddingTop": 50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 80,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "More Recipes",
+                        "className": "text-center",
+                        "id": "home-page-title",
+                        "style": Object {
+                          "color": "lightGrey",
+                          "fontFamily": "Berkshire Swash",
+                          "fontSize": 90,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "More Recipes",
+                      "type": "h1",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Enjoy the very best culinary experiences from around the world and share yours too!!!",
+                        "className": "text-center",
+                        "style": Object {
+                          "color": "rgba(241, 235, 178, 0.8)",
+                          "fontFamily": "kaushan script",
+                          "paddingTop": 20,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "Enjoy the very best culinary experiences from around the world and share yours too!!!",
+                      "type": "h3",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "authUser": Object {
+                          "user": Object {
+                            "aboutMe": "about me",
+                            "email": "user@signedin.com",
+                            "id": 3,
+                            "profilePicture": "profile.jpg",
+                            "username": "signed in user",
+                          },
+                        },
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <input
+                          aria-label="Search"
+                          className="form-control mr-sm-2 search"
+                          onChange={[Function]}
+                          placeholder="Search Recipes"
+                          style={
+                            Object {
+                              "width": 400,
+                            }
+                          }
+                          type="text"
+                          value="search-string"
+                        />,
+                        "className": "form-inline justify-content-center",
+                        "onSubmit": [Function],
+                        "style": Object {
+                          "paddingTop": 30,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "aria-label": "Search",
+                          "className": "form-control mr-sm-2 search",
+                          "onChange": [Function],
+                          "placeholder": "Search Recipes",
+                          "style": Object {
+                            "width": 400,
+                          },
+                          "type": "text",
+                          "value": "search-string",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "input",
+                      },
+                      "type": "form",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <div>
+                      <div
+                        className="arrow bounce"
+                      />
+                    </div>,
+                    "href": "#popular",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <div
+                        className="arrow bounce"
+                      />,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "arrow bounce",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "div",
+                    },
+                    "type": "div",
+                  },
+                  "type": "a",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        "type": "section",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="card card-1 col-sm-12 col-md-5 card my-3 "
+              data-aos="zoom-in-down"
+              style={
+                Object {
+                  "margin": "30px",
+                }
+              }
+            >
+              <a
+                href="/"
+                id="top-favorites-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Favorites
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9",
+                    }
+                  }
+                >
+                  Take a survey of our all time favorite recipes.
+                </p>
+              </a>
+            </div>,
+            <div
+              className="card card-1 col-sm-12 col-md-5 card my-3"
+              data-aos="zoom-in-down"
+              style={
+                Object {
+                  "margin": "30px",
+                }
+              }
+            >
+              <a
+                href="/"
+                id="top-voted-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Voted
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9)",
+                    }
+                  }
+                >
+                  Checkout the recipes with the most upvotes.
+                </p>
+              </a>
+            </div>,
+          ],
+          "className": "container-fluid row no-gutters justify-content-between text-center",
+          "id": "popular",
+          "style": Object {
+            "backgroundColor": "#eee",
+            "marginBottom": 50,
+            "marginTop": 50,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <a
+                href="/"
+                id="top-favorites-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Favorites
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9",
+                    }
+                  }
+                >
+                  Take a survey of our all time favorite recipes.
+                </p>
+              </a>,
+              "className": "card card-1 col-sm-12 col-md-5 card my-3 ",
+              "data-aos": "zoom-in-down",
+              "style": Object {
+                "margin": "30px",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Favorites
+                    </h2>
+                  </div>,
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />,
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9",
+                      }
+                    }
+                  >
+                    Take a survey of our all time favorite recipes.
+                  </p>,
+                ],
+                "href": "/",
+                "id": "top-favorites-link",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Favorites
+                    </h2>,
+                    "className": "card-body",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Top Favorites",
+                      "className": "card-subtitle text-muted",
+                    },
+                    "ref": null,
+                    "rendered": "Top Favorites",
+                    "type": "h2",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "alt": "sunset",
+                    "className": "img-fluid mx-auto",
+                    "src": "file-mock",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Take a survey of our all time favorite recipes.",
+                    "className": "card-text text-center",
+                    "style": Object {
+                      "color": "rgba(73, 67, 67, 0.9",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Take a survey of our all time favorite recipes.",
+                  "type": "p",
+                },
+              ],
+              "type": "a",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <a
+                href="/"
+                id="top-voted-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Voted
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9)",
+                    }
+                  }
+                >
+                  Checkout the recipes with the most upvotes.
+                </p>
+              </a>,
+              "className": "card card-1 col-sm-12 col-md-5 card my-3",
+              "data-aos": "zoom-in-down",
+              "style": Object {
+                "margin": "30px",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Voted
+                    </h2>
+                  </div>,
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />,
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9)",
+                      }
+                    }
+                  >
+                    Checkout the recipes with the most upvotes.
+                  </p>,
+                ],
+                "href": "/",
+                "id": "top-voted-link",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Voted
+                    </h2>,
+                    "className": "card-body",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Top Voted",
+                      "className": "card-subtitle text-muted",
+                    },
+                    "ref": null,
+                    "rendered": "Top Voted",
+                    "type": "h2",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "alt": "sunset",
+                    "className": "img-fluid mx-auto",
+                    "src": "file-mock",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Checkout the recipes with the most upvotes.",
+                    "className": "card-text text-center",
+                    "style": Object {
+                      "color": "rgba(73, 67, 67, 0.9)",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Checkout the recipes with the most upvotes.",
+                  "type": "p",
+                },
+              ],
+              "type": "a",
+            },
+            "type": "div",
+          },
+        ],
+        "type": "section",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <LandingTopButtons
+            authUser={
+              Object {
+                "user": Object {
+                  "aboutMe": "about me",
+                  "email": "user@signedin.com",
+                  "id": 3,
+                  "profilePicture": "profile.jpg",
+                  "username": "signed in user",
+                },
+              }
+            }
+            router={
+              Object {
+                "push": [MockFunction] {
+                  "calls": Array [
+                    Array [
+                      "/recipes",
+                    ],
+                  ],
+                },
+              }
+            }
+            signOutUser={[MockFunction]}
+          />,
+          <section
+            id="slider"
+          >
+            <div
+              className="carousel slide"
+              data-interval={2000}
+              data-ride="carousel"
+              id="carouselExampleIndicators"
+            >
+              <div
+                className="carousel-inner fullHeight"
+              >
+                <div
+                  className="carousel-item active"
+                >
+                  <img
+                    alt="First slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+              </div>
+              <div
+                className="justify-content-center"
+              >
+                <div
+                  className="container justify-content-center text-center home-box"
+                  style={
+                    Object {
+                      "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                      "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                      "left": 0,
+                      "margin": "0 auto",
+                      "minWidth": "auto",
+                      "paddingBottom": 50,
+                      "paddingTop": 50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 80,
+                    }
+                  }
+                >
+                  <h1
+                    className="text-center"
+                    id="home-page-title"
+                    style={
+                      Object {
+                        "color": "lightGrey",
+                        "fontFamily": "Berkshire Swash",
+                        "fontSize": 90,
+                      }
+                    }
+                  >
+                    More Recipes
+                  </h1>
+                  <h3
+                    className="text-center"
+                    style={
+                      Object {
+                        "color": "rgba(241, 235, 178, 0.8)",
+                        "fontFamily": "kaushan script",
+                        "paddingTop": 20,
+                      }
+                    }
+                  >
+                    Enjoy the very best culinary experiences from around the world and share yours too!!!
+                  </h3>
+                  <CreateRecipeButton
+                    authUser={
+                      Object {
+                        "user": Object {
+                          "aboutMe": "about me",
+                          "email": "user@signedin.com",
+                          "id": 3,
+                          "profilePicture": "profile.jpg",
+                          "username": "signed in user",
+                        },
+                      }
+                    }
+                  />
+                  <form
+                    className="form-inline justify-content-center"
+                    onSubmit={[Function]}
+                    style={
+                      Object {
+                        "paddingTop": 30,
+                      }
+                    }
+                  >
+                    <input
+                      aria-label="Search"
+                      className="form-control mr-sm-2 search"
+                      onChange={[Function]}
+                      placeholder="Search Recipes"
+                      style={
+                        Object {
+                          "width": 400,
+                        }
+                      }
+                      type="text"
+                      value="search-string"
+                    />
+                  </form>
+                </div>
+                <a
+                  href="#popular"
+                >
+                  <div>
+                    <div
+                      className="arrow bounce"
+                    />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </section>,
+          <section
+            className="container-fluid row no-gutters justify-content-between text-center"
+            id="popular"
+            style={
+              Object {
+                "backgroundColor": "#eee",
+                "marginBottom": 50,
+                "marginTop": 50,
+              }
+            }
+          >
+            <div
+              className="card card-1 col-sm-12 col-md-5 card my-3 "
+              data-aos="zoom-in-down"
+              style={
+                Object {
+                  "margin": "30px",
+                }
+              }
+            >
+              <a
+                href="/"
+                id="top-favorites-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Favorites
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9",
+                    }
+                  }
+                >
+                  Take a survey of our all time favorite recipes.
+                </p>
+              </a>
+            </div>
+            <div
+              className="card card-1 col-sm-12 col-md-5 card my-3"
+              data-aos="zoom-in-down"
+              style={
+                Object {
+                  "margin": "30px",
+                }
+              }
+            >
+              <a
+                href="/"
+                id="top-voted-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Voted
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9)",
+                    }
+                  }
+                >
+                  Checkout the recipes with the most upvotes.
+                </p>
+              </a>
+            </div>
+          </section>,
+        ],
+        "style": Object {
+          "backgroundColor": "#eee",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "authUser": Object {
+              "user": Object {
+                "aboutMe": "about me",
+                "email": "user@signedin.com",
+                "id": 3,
+                "profilePicture": "profile.jpg",
+                "username": "signed in user",
+              },
+            },
+            "router": Object {
+              "push": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "/recipes",
+                  ],
+                ],
+              },
+            },
+            "signOutUser": [MockFunction],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="carousel slide"
+              data-interval={2000}
+              data-ride="carousel"
+              id="carouselExampleIndicators"
+            >
+              <div
+                className="carousel-inner fullHeight"
+              >
+                <div
+                  className="carousel-item active"
+                >
+                  <img
+                    alt="First slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+              </div>
+              <div
+                className="justify-content-center"
+              >
+                <div
+                  className="container justify-content-center text-center home-box"
+                  style={
+                    Object {
+                      "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                      "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                      "left": 0,
+                      "margin": "0 auto",
+                      "minWidth": "auto",
+                      "paddingBottom": 50,
+                      "paddingTop": 50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 80,
+                    }
+                  }
+                >
+                  <h1
+                    className="text-center"
+                    id="home-page-title"
+                    style={
+                      Object {
+                        "color": "lightGrey",
+                        "fontFamily": "Berkshire Swash",
+                        "fontSize": 90,
+                      }
+                    }
+                  >
+                    More Recipes
+                  </h1>
+                  <h3
+                    className="text-center"
+                    style={
+                      Object {
+                        "color": "rgba(241, 235, 178, 0.8)",
+                        "fontFamily": "kaushan script",
+                        "paddingTop": 20,
+                      }
+                    }
+                  >
+                    Enjoy the very best culinary experiences from around the world and share yours too!!!
+                  </h3>
+                  <CreateRecipeButton
+                    authUser={
+                      Object {
+                        "user": Object {
+                          "aboutMe": "about me",
+                          "email": "user@signedin.com",
+                          "id": 3,
+                          "profilePicture": "profile.jpg",
+                          "username": "signed in user",
+                        },
+                      }
+                    }
+                  />
+                  <form
+                    className="form-inline justify-content-center"
+                    onSubmit={[Function]}
+                    style={
+                      Object {
+                        "paddingTop": 30,
+                      }
+                    }
+                  >
+                    <input
+                      aria-label="Search"
+                      className="form-control mr-sm-2 search"
+                      onChange={[Function]}
+                      placeholder="Search Recipes"
+                      style={
+                        Object {
+                          "width": 400,
+                        }
+                      }
+                      type="text"
+                      value="search-string"
+                    />
+                  </form>
+                </div>
+                <a
+                  href="#popular"
+                >
+                  <div>
+                    <div
+                      className="arrow bounce"
+                    />
+                  </div>
+                </a>
+              </div>
+            </div>,
+            "id": "slider",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="carousel-inner fullHeight"
+                >
+                  <div
+                    className="carousel-item active"
+                  >
+                    <img
+                      alt="First slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>
+                </div>,
+                <div
+                  className="justify-content-center"
+                >
+                  <div
+                    className="container justify-content-center text-center home-box"
+                    style={
+                      Object {
+                        "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                        "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                        "left": 0,
+                        "margin": "0 auto",
+                        "minWidth": "auto",
+                        "paddingBottom": 50,
+                        "paddingTop": 50,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 80,
+                      }
+                    }
+                  >
+                    <h1
+                      className="text-center"
+                      id="home-page-title"
+                      style={
+                        Object {
+                          "color": "lightGrey",
+                          "fontFamily": "Berkshire Swash",
+                          "fontSize": 90,
+                        }
+                      }
+                    >
+                      More Recipes
+                    </h1>
+                    <h3
+                      className="text-center"
+                      style={
+                        Object {
+                          "color": "rgba(241, 235, 178, 0.8)",
+                          "fontFamily": "kaushan script",
+                          "paddingTop": 20,
+                        }
+                      }
+                    >
+                      Enjoy the very best culinary experiences from around the world and share yours too!!!
+                    </h3>
+                    <CreateRecipeButton
+                      authUser={
+                        Object {
+                          "user": Object {
+                            "aboutMe": "about me",
+                            "email": "user@signedin.com",
+                            "id": 3,
+                            "profilePicture": "profile.jpg",
+                            "username": "signed in user",
+                          },
+                        }
+                      }
+                    />
+                    <form
+                      className="form-inline justify-content-center"
+                      onSubmit={[Function]}
+                      style={
+                        Object {
+                          "paddingTop": 30,
+                        }
+                      }
+                    >
+                      <input
+                        aria-label="Search"
+                        className="form-control mr-sm-2 search"
+                        onChange={[Function]}
+                        placeholder="Search Recipes"
+                        style={
+                          Object {
+                            "width": 400,
+                          }
+                        }
+                        type="text"
+                        value="search-string"
+                      />
+                    </form>
+                  </div>
+                  <a
+                    href="#popular"
+                  >
+                    <div>
+                      <div
+                        className="arrow bounce"
+                      />
+                    </div>
+                  </a>
+                </div>,
+              ],
+              "className": "carousel slide",
+              "data-interval": 2000,
+              "data-ride": "carousel",
+              "id": "carouselExampleIndicators",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="carousel-item active"
+                    >
+                      <img
+                        alt="First slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />
+                    </div>,
+                    <div
+                      className="carousel-item"
+                    >
+                      <img
+                        alt="Third slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />
+                    </div>,
+                    <div
+                      className="carousel-item"
+                    >
+                      <img
+                        alt="Third slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />
+                    </div>,
+                  ],
+                  "className": "carousel-inner fullHeight",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <img
+                        alt="First slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />,
+                      "className": "carousel-item active",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "First slide",
+                        "className": "d-block w-100",
+                        "src": "file-mock",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <img
+                        alt="Third slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />,
+                      "className": "carousel-item",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "Third slide",
+                        "className": "d-block w-100",
+                        "src": "file-mock",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <img
+                        alt="Third slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />,
+                      "className": "carousel-item",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "Third slide",
+                        "className": "d-block w-100",
+                        "src": "file-mock",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="container justify-content-center text-center home-box"
+                      style={
+                        Object {
+                          "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                          "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                          "left": 0,
+                          "margin": "0 auto",
+                          "minWidth": "auto",
+                          "paddingBottom": 50,
+                          "paddingTop": 50,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 80,
+                        }
+                      }
+                    >
+                      <h1
+                        className="text-center"
+                        id="home-page-title"
+                        style={
+                          Object {
+                            "color": "lightGrey",
+                            "fontFamily": "Berkshire Swash",
+                            "fontSize": 90,
+                          }
+                        }
+                      >
+                        More Recipes
+                      </h1>
+                      <h3
+                        className="text-center"
+                        style={
+                          Object {
+                            "color": "rgba(241, 235, 178, 0.8)",
+                            "fontFamily": "kaushan script",
+                            "paddingTop": 20,
+                          }
+                        }
+                      >
+                        Enjoy the very best culinary experiences from around the world and share yours too!!!
+                      </h3>
+                      <CreateRecipeButton
+                        authUser={
+                          Object {
+                            "user": Object {
+                              "aboutMe": "about me",
+                              "email": "user@signedin.com",
+                              "id": 3,
+                              "profilePicture": "profile.jpg",
+                              "username": "signed in user",
+                            },
+                          }
+                        }
+                      />
+                      <form
+                        className="form-inline justify-content-center"
+                        onSubmit={[Function]}
+                        style={
+                          Object {
+                            "paddingTop": 30,
+                          }
+                        }
+                      >
+                        <input
+                          aria-label="Search"
+                          className="form-control mr-sm-2 search"
+                          onChange={[Function]}
+                          placeholder="Search Recipes"
+                          style={
+                            Object {
+                              "width": 400,
+                            }
+                          }
+                          type="text"
+                          value="search-string"
+                        />
+                      </form>
+                    </div>,
+                    <a
+                      href="#popular"
+                    >
+                      <div>
+                        <div
+                          className="arrow bounce"
+                        />
+                      </div>
+                    </a>,
+                  ],
+                  "className": "justify-content-center",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <h1
+                          className="text-center"
+                          id="home-page-title"
+                          style={
+                            Object {
+                              "color": "lightGrey",
+                              "fontFamily": "Berkshire Swash",
+                              "fontSize": 90,
+                            }
+                          }
+                        >
+                          More Recipes
+                        </h1>,
+                        <h3
+                          className="text-center"
+                          style={
+                            Object {
+                              "color": "rgba(241, 235, 178, 0.8)",
+                              "fontFamily": "kaushan script",
+                              "paddingTop": 20,
+                            }
+                          }
+                        >
+                          Enjoy the very best culinary experiences from around the world and share yours too!!!
+                        </h3>,
+                        <CreateRecipeButton
+                          authUser={
+                            Object {
+                              "user": Object {
+                                "aboutMe": "about me",
+                                "email": "user@signedin.com",
+                                "id": 3,
+                                "profilePicture": "profile.jpg",
+                                "username": "signed in user",
+                              },
+                            }
+                          }
+                        />,
+                        <form
+                          className="form-inline justify-content-center"
+                          onSubmit={[Function]}
+                          style={
+                            Object {
+                              "paddingTop": 30,
+                            }
+                          }
+                        >
+                          <input
+                            aria-label="Search"
+                            className="form-control mr-sm-2 search"
+                            onChange={[Function]}
+                            placeholder="Search Recipes"
+                            style={
+                              Object {
+                                "width": 400,
+                              }
+                            }
+                            type="text"
+                            value="search-string"
+                          />
+                        </form>,
+                      ],
+                      "className": "container justify-content-center text-center home-box",
+                      "style": Object {
+                        "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                        "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                        "left": 0,
+                        "margin": "0 auto",
+                        "minWidth": "auto",
+                        "paddingBottom": 50,
+                        "paddingTop": 50,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 80,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "More Recipes",
+                          "className": "text-center",
+                          "id": "home-page-title",
+                          "style": Object {
+                            "color": "lightGrey",
+                            "fontFamily": "Berkshire Swash",
+                            "fontSize": 90,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": "More Recipes",
+                        "type": "h1",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Enjoy the very best culinary experiences from around the world and share yours too!!!",
+                          "className": "text-center",
+                          "style": Object {
+                            "color": "rgba(241, 235, 178, 0.8)",
+                            "fontFamily": "kaushan script",
+                            "paddingTop": 20,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": "Enjoy the very best culinary experiences from around the world and share yours too!!!",
+                        "type": "h3",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "authUser": Object {
+                            "user": Object {
+                              "aboutMe": "about me",
+                              "email": "user@signedin.com",
+                              "id": 3,
+                              "profilePicture": "profile.jpg",
+                              "username": "signed in user",
+                            },
+                          },
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <input
+                            aria-label="Search"
+                            className="form-control mr-sm-2 search"
+                            onChange={[Function]}
+                            placeholder="Search Recipes"
+                            style={
+                              Object {
+                                "width": 400,
+                              }
+                            }
+                            type="text"
+                            value="search-string"
+                          />,
+                          "className": "form-inline justify-content-center",
+                          "onSubmit": [Function],
+                          "style": Object {
+                            "paddingTop": 30,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "aria-label": "Search",
+                            "className": "form-control mr-sm-2 search",
+                            "onChange": [Function],
+                            "placeholder": "Search Recipes",
+                            "style": Object {
+                              "width": 400,
+                            },
+                            "type": "text",
+                            "value": "search-string",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "input",
+                        },
+                        "type": "form",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <div>
+                        <div
+                          className="arrow bounce"
+                        />
+                      </div>,
+                      "href": "#popular",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <div
+                          className="arrow bounce"
+                        />,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "arrow bounce",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "div",
+                      },
+                      "type": "div",
+                    },
+                    "type": "a",
+                  },
+                ],
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "section",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="card card-1 col-sm-12 col-md-5 card my-3 "
+                data-aos="zoom-in-down"
+                style={
+                  Object {
+                    "margin": "30px",
+                  }
+                }
+              >
+                <a
+                  href="/"
+                  id="top-favorites-link"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Favorites
+                    </h2>
+                  </div>
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9",
+                      }
+                    }
+                  >
+                    Take a survey of our all time favorite recipes.
+                  </p>
+                </a>
+              </div>,
+              <div
+                className="card card-1 col-sm-12 col-md-5 card my-3"
+                data-aos="zoom-in-down"
+                style={
+                  Object {
+                    "margin": "30px",
+                  }
+                }
+              >
+                <a
+                  href="/"
+                  id="top-voted-link"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Voted
+                    </h2>
+                  </div>
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9)",
+                      }
+                    }
+                  >
+                    Checkout the recipes with the most upvotes.
+                  </p>
+                </a>
+              </div>,
+            ],
+            "className": "container-fluid row no-gutters justify-content-between text-center",
+            "id": "popular",
+            "style": Object {
+              "backgroundColor": "#eee",
+              "marginBottom": 50,
+              "marginTop": 50,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  href="/"
+                  id="top-favorites-link"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Favorites
+                    </h2>
+                  </div>
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9",
+                      }
+                    }
+                  >
+                    Take a survey of our all time favorite recipes.
+                  </p>
+                </a>,
+                "className": "card card-1 col-sm-12 col-md-5 card my-3 ",
+                "data-aos": "zoom-in-down",
+                "style": Object {
+                  "margin": "30px",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="card-body"
+                    >
+                      <h2
+                        className="card-subtitle text-muted"
+                      >
+                        Top Favorites
+                      </h2>
+                    </div>,
+                    <img
+                      alt="sunset"
+                      className="img-fluid mx-auto"
+                      src="file-mock"
+                    />,
+                    <p
+                      className="card-text text-center"
+                      style={
+                        Object {
+                          "color": "rgba(73, 67, 67, 0.9",
+                        }
+                      }
+                    >
+                      Take a survey of our all time favorite recipes.
+                    </p>,
+                  ],
+                  "href": "/",
+                  "id": "top-favorites-link",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <h2
+                        className="card-subtitle text-muted"
+                      >
+                        Top Favorites
+                      </h2>,
+                      "className": "card-body",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Top Favorites",
+                        "className": "card-subtitle text-muted",
+                      },
+                      "ref": null,
+                      "rendered": "Top Favorites",
+                      "type": "h2",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "sunset",
+                      "className": "img-fluid mx-auto",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Take a survey of our all time favorite recipes.",
+                      "className": "card-text text-center",
+                      "style": Object {
+                        "color": "rgba(73, 67, 67, 0.9",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Take a survey of our all time favorite recipes.",
+                    "type": "p",
+                  },
+                ],
+                "type": "a",
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  href="/"
+                  id="top-voted-link"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Voted
+                    </h2>
+                  </div>
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9)",
+                      }
+                    }
+                  >
+                    Checkout the recipes with the most upvotes.
+                  </p>
+                </a>,
+                "className": "card card-1 col-sm-12 col-md-5 card my-3",
+                "data-aos": "zoom-in-down",
+                "style": Object {
+                  "margin": "30px",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="card-body"
+                    >
+                      <h2
+                        className="card-subtitle text-muted"
+                      >
+                        Top Voted
+                      </h2>
+                    </div>,
+                    <img
+                      alt="sunset"
+                      className="img-fluid mx-auto"
+                      src="file-mock"
+                    />,
+                    <p
+                      className="card-text text-center"
+                      style={
+                        Object {
+                          "color": "rgba(73, 67, 67, 0.9)",
+                        }
+                      }
+                    >
+                      Checkout the recipes with the most upvotes.
+                    </p>,
+                  ],
+                  "href": "/",
+                  "id": "top-voted-link",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <h2
+                        className="card-subtitle text-muted"
+                      >
+                        Top Voted
+                      </h2>,
+                      "className": "card-body",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Top Voted",
+                        "className": "card-subtitle text-muted",
+                      },
+                      "ref": null,
+                      "rendered": "Top Voted",
+                      "type": "h2",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "sunset",
+                      "className": "img-fluid mx-auto",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Checkout the recipes with the most upvotes.",
+                      "className": "card-text text-center",
+                      "style": Object {
+                        "color": "rgba(73, 67, 67, 0.9)",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Checkout the recipes with the most upvotes.",
+                    "type": "p",
+                  },
+                ],
+                "type": "a",
+              },
+              "type": "div",
+            },
+          ],
+          "type": "section",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`Home page should mount without crashing when user is not authenticated 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Home
+    authUser={null}
+    router={
+      Object {
+        "push": [MockFunction] {
+          "calls": Array [
+            Array [
+              "/recipes",
+            ],
+          ],
+        },
+      }
+    }
+    searchQuery="search-string"
+    signOutUser={[MockFunction]}
+    updateSearchQuery={[MockFunction]}
+    updateSortQuery={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <LandingTopButtons
+          authUser={null}
+          router={
+            Object {
+              "push": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "/recipes",
+                  ],
+                ],
+              },
+            }
+          }
+          signOutUser={[MockFunction]}
+        />,
+        <section
+          id="slider"
+        >
+          <div
+            className="carousel slide"
+            data-interval={2000}
+            data-ride="carousel"
+            id="carouselExampleIndicators"
+          >
+            <div
+              className="carousel-inner fullHeight"
+            >
+              <div
+                className="carousel-item active"
+              >
+                <img
+                  alt="First slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+              <div
+                className="carousel-item"
+              >
+                <img
+                  alt="Third slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+              <div
+                className="carousel-item"
+              >
+                <img
+                  alt="Third slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+            </div>
+            <div
+              className="justify-content-center"
+            >
+              <div
+                className="container justify-content-center text-center home-box"
+                style={
+                  Object {
+                    "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                    "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                    "left": 0,
+                    "margin": "0 auto",
+                    "minWidth": "auto",
+                    "paddingBottom": 50,
+                    "paddingTop": 50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 80,
+                  }
+                }
+              >
+                <h1
+                  className="text-center"
+                  id="home-page-title"
+                  style={
+                    Object {
+                      "color": "lightGrey",
+                      "fontFamily": "Berkshire Swash",
+                      "fontSize": 90,
+                    }
+                  }
+                >
+                  More Recipes
+                </h1>
+                <h3
+                  className="text-center"
+                  style={
+                    Object {
+                      "color": "rgba(241, 235, 178, 0.8)",
+                      "fontFamily": "kaushan script",
+                      "paddingTop": 20,
+                    }
+                  }
+                >
+                  Enjoy the very best culinary experiences from around the world and share yours too!!!
+                </h3>
+                <CreateRecipeButton
+                  authUser={null}
+                />
+                <form
+                  className="form-inline justify-content-center"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "paddingTop": 30,
+                    }
+                  }
+                >
+                  <input
+                    aria-label="Search"
+                    className="form-control mr-sm-2 search"
+                    onChange={[Function]}
+                    placeholder="Search Recipes"
+                    style={
+                      Object {
+                        "width": 400,
+                      }
+                    }
+                    type="text"
+                    value="search-string"
+                  />
+                </form>
+              </div>
+              <a
+                href="#popular"
+              >
+                <div>
+                  <div
+                    className="arrow bounce"
+                  />
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>,
+        <section
+          className="container-fluid row no-gutters justify-content-between text-center"
+          id="popular"
+          style={
+            Object {
+              "backgroundColor": "#eee",
+              "marginBottom": 50,
+              "marginTop": 50,
+            }
+          }
+        >
+          <div
+            className="card card-1 col-sm-12 col-md-5 card my-3 "
+            data-aos="zoom-in-down"
+            style={
+              Object {
+                "margin": "30px",
+              }
+            }
+          >
+            <a
+              href="/"
+              id="top-favorites-link"
+              onClick={[Function]}
+            >
+              <div
+                className="card-body"
+              >
+                <h2
+                  className="card-subtitle text-muted"
+                >
+                  Top Favorites
+                </h2>
+              </div>
+              <img
+                alt="sunset"
+                className="img-fluid mx-auto"
+                src="file-mock"
+              />
+              <p
+                className="card-text text-center"
+                style={
+                  Object {
+                    "color": "rgba(73, 67, 67, 0.9",
+                  }
+                }
+              >
+                Take a survey of our all time favorite recipes.
+              </p>
+            </a>
+          </div>
+          <div
+            className="card card-1 col-sm-12 col-md-5 card my-3"
+            data-aos="zoom-in-down"
+            style={
+              Object {
+                "margin": "30px",
+              }
+            }
+          >
+            <a
+              href="/"
+              id="top-voted-link"
+              onClick={[Function]}
+            >
+              <div
+                className="card-body"
+              >
+                <h2
+                  className="card-subtitle text-muted"
+                >
+                  Top Voted
+                </h2>
+              </div>
+              <img
+                alt="sunset"
+                className="img-fluid mx-auto"
+                src="file-mock"
+              />
+              <p
+                className="card-text text-center"
+                style={
+                  Object {
+                    "color": "rgba(73, 67, 67, 0.9)",
+                  }
+                }
+              >
+                Checkout the recipes with the most upvotes.
+              </p>
+            </a>
+          </div>
+        </section>,
+      ],
+      "style": Object {
+        "backgroundColor": "#eee",
+      },
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "authUser": null,
+          "router": Object {
+            "push": [MockFunction] {
+              "calls": Array [
+                Array [
+                  "/recipes",
+                ],
+              ],
+            },
+          },
+          "signOutUser": [MockFunction],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="carousel slide"
+            data-interval={2000}
+            data-ride="carousel"
+            id="carouselExampleIndicators"
+          >
+            <div
+              className="carousel-inner fullHeight"
+            >
+              <div
+                className="carousel-item active"
+              >
+                <img
+                  alt="First slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+              <div
+                className="carousel-item"
+              >
+                <img
+                  alt="Third slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+              <div
+                className="carousel-item"
+              >
+                <img
+                  alt="Third slide"
+                  className="d-block w-100"
+                  src="file-mock"
+                />
+              </div>
+            </div>
+            <div
+              className="justify-content-center"
+            >
+              <div
+                className="container justify-content-center text-center home-box"
+                style={
+                  Object {
+                    "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                    "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                    "left": 0,
+                    "margin": "0 auto",
+                    "minWidth": "auto",
+                    "paddingBottom": 50,
+                    "paddingTop": 50,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 80,
+                  }
+                }
+              >
+                <h1
+                  className="text-center"
+                  id="home-page-title"
+                  style={
+                    Object {
+                      "color": "lightGrey",
+                      "fontFamily": "Berkshire Swash",
+                      "fontSize": 90,
+                    }
+                  }
+                >
+                  More Recipes
+                </h1>
+                <h3
+                  className="text-center"
+                  style={
+                    Object {
+                      "color": "rgba(241, 235, 178, 0.8)",
+                      "fontFamily": "kaushan script",
+                      "paddingTop": 20,
+                    }
+                  }
+                >
+                  Enjoy the very best culinary experiences from around the world and share yours too!!!
+                </h3>
+                <CreateRecipeButton
+                  authUser={null}
+                />
+                <form
+                  className="form-inline justify-content-center"
+                  onSubmit={[Function]}
+                  style={
+                    Object {
+                      "paddingTop": 30,
+                    }
+                  }
+                >
+                  <input
+                    aria-label="Search"
+                    className="form-control mr-sm-2 search"
+                    onChange={[Function]}
+                    placeholder="Search Recipes"
+                    style={
+                      Object {
+                        "width": 400,
+                      }
+                    }
+                    type="text"
+                    value="search-string"
+                  />
+                </form>
+              </div>
+              <a
+                href="#popular"
+              >
+                <div>
+                  <div
+                    className="arrow bounce"
+                  />
+                </div>
+              </a>
+            </div>
+          </div>,
+          "id": "slider",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="carousel-inner fullHeight"
+              >
+                <div
+                  className="carousel-item active"
+                >
+                  <img
+                    alt="First slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+              </div>,
+              <div
+                className="justify-content-center"
+              >
+                <div
+                  className="container justify-content-center text-center home-box"
+                  style={
+                    Object {
+                      "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                      "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                      "left": 0,
+                      "margin": "0 auto",
+                      "minWidth": "auto",
+                      "paddingBottom": 50,
+                      "paddingTop": 50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 80,
+                    }
+                  }
+                >
+                  <h1
+                    className="text-center"
+                    id="home-page-title"
+                    style={
+                      Object {
+                        "color": "lightGrey",
+                        "fontFamily": "Berkshire Swash",
+                        "fontSize": 90,
+                      }
+                    }
+                  >
+                    More Recipes
+                  </h1>
+                  <h3
+                    className="text-center"
+                    style={
+                      Object {
+                        "color": "rgba(241, 235, 178, 0.8)",
+                        "fontFamily": "kaushan script",
+                        "paddingTop": 20,
+                      }
+                    }
+                  >
+                    Enjoy the very best culinary experiences from around the world and share yours too!!!
+                  </h3>
+                  <CreateRecipeButton
+                    authUser={null}
+                  />
+                  <form
+                    className="form-inline justify-content-center"
+                    onSubmit={[Function]}
+                    style={
+                      Object {
+                        "paddingTop": 30,
+                      }
+                    }
+                  >
+                    <input
+                      aria-label="Search"
+                      className="form-control mr-sm-2 search"
+                      onChange={[Function]}
+                      placeholder="Search Recipes"
+                      style={
+                        Object {
+                          "width": 400,
+                        }
+                      }
+                      type="text"
+                      value="search-string"
+                    />
+                  </form>
+                </div>
+                <a
+                  href="#popular"
+                >
+                  <div>
+                    <div
+                      className="arrow bounce"
+                    />
+                  </div>
+                </a>
+              </div>,
+            ],
+            "className": "carousel slide",
+            "data-interval": 2000,
+            "data-ride": "carousel",
+            "id": "carouselExampleIndicators",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="carousel-item active"
+                  >
+                    <img
+                      alt="First slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>,
+                  <div
+                    className="carousel-item"
+                  >
+                    <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>,
+                  <div
+                    className="carousel-item"
+                  >
+                    <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>,
+                ],
+                "className": "carousel-inner fullHeight",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <img
+                      alt="First slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />,
+                    "className": "carousel-item active",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "First slide",
+                      "className": "d-block w-100",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />,
+                    "className": "carousel-item",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "Third slide",
+                      "className": "d-block w-100",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />,
+                    "className": "carousel-item",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "Third slide",
+                      "className": "d-block w-100",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="container justify-content-center text-center home-box"
+                    style={
+                      Object {
+                        "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                        "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                        "left": 0,
+                        "margin": "0 auto",
+                        "minWidth": "auto",
+                        "paddingBottom": 50,
+                        "paddingTop": 50,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 80,
+                      }
+                    }
+                  >
+                    <h1
+                      className="text-center"
+                      id="home-page-title"
+                      style={
+                        Object {
+                          "color": "lightGrey",
+                          "fontFamily": "Berkshire Swash",
+                          "fontSize": 90,
+                        }
+                      }
+                    >
+                      More Recipes
+                    </h1>
+                    <h3
+                      className="text-center"
+                      style={
+                        Object {
+                          "color": "rgba(241, 235, 178, 0.8)",
+                          "fontFamily": "kaushan script",
+                          "paddingTop": 20,
+                        }
+                      }
+                    >
+                      Enjoy the very best culinary experiences from around the world and share yours too!!!
+                    </h3>
+                    <CreateRecipeButton
+                      authUser={null}
+                    />
+                    <form
+                      className="form-inline justify-content-center"
+                      onSubmit={[Function]}
+                      style={
+                        Object {
+                          "paddingTop": 30,
+                        }
+                      }
+                    >
+                      <input
+                        aria-label="Search"
+                        className="form-control mr-sm-2 search"
+                        onChange={[Function]}
+                        placeholder="Search Recipes"
+                        style={
+                          Object {
+                            "width": 400,
+                          }
+                        }
+                        type="text"
+                        value="search-string"
+                      />
+                    </form>
+                  </div>,
+                  <a
+                    href="#popular"
+                  >
+                    <div>
+                      <div
+                        className="arrow bounce"
+                      />
+                    </div>
+                  </a>,
+                ],
+                "className": "justify-content-center",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <h1
+                        className="text-center"
+                        id="home-page-title"
+                        style={
+                          Object {
+                            "color": "lightGrey",
+                            "fontFamily": "Berkshire Swash",
+                            "fontSize": 90,
+                          }
+                        }
+                      >
+                        More Recipes
+                      </h1>,
+                      <h3
+                        className="text-center"
+                        style={
+                          Object {
+                            "color": "rgba(241, 235, 178, 0.8)",
+                            "fontFamily": "kaushan script",
+                            "paddingTop": 20,
+                          }
+                        }
+                      >
+                        Enjoy the very best culinary experiences from around the world and share yours too!!!
+                      </h3>,
+                      <CreateRecipeButton
+                        authUser={null}
+                      />,
+                      <form
+                        className="form-inline justify-content-center"
+                        onSubmit={[Function]}
+                        style={
+                          Object {
+                            "paddingTop": 30,
+                          }
+                        }
+                      >
+                        <input
+                          aria-label="Search"
+                          className="form-control mr-sm-2 search"
+                          onChange={[Function]}
+                          placeholder="Search Recipes"
+                          style={
+                            Object {
+                              "width": 400,
+                            }
+                          }
+                          type="text"
+                          value="search-string"
+                        />
+                      </form>,
+                    ],
+                    "className": "container justify-content-center text-center home-box",
+                    "style": Object {
+                      "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                      "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                      "left": 0,
+                      "margin": "0 auto",
+                      "minWidth": "auto",
+                      "paddingBottom": 50,
+                      "paddingTop": 50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 80,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "More Recipes",
+                        "className": "text-center",
+                        "id": "home-page-title",
+                        "style": Object {
+                          "color": "lightGrey",
+                          "fontFamily": "Berkshire Swash",
+                          "fontSize": 90,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "More Recipes",
+                      "type": "h1",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Enjoy the very best culinary experiences from around the world and share yours too!!!",
+                        "className": "text-center",
+                        "style": Object {
+                          "color": "rgba(241, 235, 178, 0.8)",
+                          "fontFamily": "kaushan script",
+                          "paddingTop": 20,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": "Enjoy the very best culinary experiences from around the world and share yours too!!!",
+                      "type": "h3",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {
+                        "authUser": null,
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <input
+                          aria-label="Search"
+                          className="form-control mr-sm-2 search"
+                          onChange={[Function]}
+                          placeholder="Search Recipes"
+                          style={
+                            Object {
+                              "width": 400,
+                            }
+                          }
+                          type="text"
+                          value="search-string"
+                        />,
+                        "className": "form-inline justify-content-center",
+                        "onSubmit": [Function],
+                        "style": Object {
+                          "paddingTop": 30,
+                        },
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "aria-label": "Search",
+                          "className": "form-control mr-sm-2 search",
+                          "onChange": [Function],
+                          "placeholder": "Search Recipes",
+                          "style": Object {
+                            "width": 400,
+                          },
+                          "type": "text",
+                          "value": "search-string",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "input",
+                      },
+                      "type": "form",
+                    },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <div>
+                      <div
+                        className="arrow bounce"
+                      />
+                    </div>,
+                    "href": "#popular",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <div
+                        className="arrow bounce"
+                      />,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "arrow bounce",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "div",
+                    },
+                    "type": "div",
+                  },
+                  "type": "a",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        "type": "section",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="card card-1 col-sm-12 col-md-5 card my-3 "
+              data-aos="zoom-in-down"
+              style={
+                Object {
+                  "margin": "30px",
+                }
+              }
+            >
+              <a
+                href="/"
+                id="top-favorites-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Favorites
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9",
+                    }
+                  }
+                >
+                  Take a survey of our all time favorite recipes.
+                </p>
+              </a>
+            </div>,
+            <div
+              className="card card-1 col-sm-12 col-md-5 card my-3"
+              data-aos="zoom-in-down"
+              style={
+                Object {
+                  "margin": "30px",
+                }
+              }
+            >
+              <a
+                href="/"
+                id="top-voted-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Voted
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9)",
+                    }
+                  }
+                >
+                  Checkout the recipes with the most upvotes.
+                </p>
+              </a>
+            </div>,
+          ],
+          "className": "container-fluid row no-gutters justify-content-between text-center",
+          "id": "popular",
+          "style": Object {
+            "backgroundColor": "#eee",
+            "marginBottom": 50,
+            "marginTop": 50,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <a
+                href="/"
+                id="top-favorites-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Favorites
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9",
+                    }
+                  }
+                >
+                  Take a survey of our all time favorite recipes.
+                </p>
+              </a>,
+              "className": "card card-1 col-sm-12 col-md-5 card my-3 ",
+              "data-aos": "zoom-in-down",
+              "style": Object {
+                "margin": "30px",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Favorites
+                    </h2>
+                  </div>,
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />,
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9",
+                      }
+                    }
+                  >
+                    Take a survey of our all time favorite recipes.
+                  </p>,
+                ],
+                "href": "/",
+                "id": "top-favorites-link",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Favorites
+                    </h2>,
+                    "className": "card-body",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Top Favorites",
+                      "className": "card-subtitle text-muted",
+                    },
+                    "ref": null,
+                    "rendered": "Top Favorites",
+                    "type": "h2",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "alt": "sunset",
+                    "className": "img-fluid mx-auto",
+                    "src": "file-mock",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Take a survey of our all time favorite recipes.",
+                    "className": "card-text text-center",
+                    "style": Object {
+                      "color": "rgba(73, 67, 67, 0.9",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Take a survey of our all time favorite recipes.",
+                  "type": "p",
+                },
+              ],
+              "type": "a",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <a
+                href="/"
+                id="top-voted-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Voted
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9)",
+                    }
+                  }
+                >
+                  Checkout the recipes with the most upvotes.
+                </p>
+              </a>,
+              "className": "card card-1 col-sm-12 col-md-5 card my-3",
+              "data-aos": "zoom-in-down",
+              "style": Object {
+                "margin": "30px",
+              },
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Voted
+                    </h2>
+                  </div>,
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />,
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9)",
+                      }
+                    }
+                  >
+                    Checkout the recipes with the most upvotes.
+                  </p>,
+                ],
+                "href": "/",
+                "id": "top-voted-link",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Voted
+                    </h2>,
+                    "className": "card-body",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Top Voted",
+                      "className": "card-subtitle text-muted",
+                    },
+                    "ref": null,
+                    "rendered": "Top Voted",
+                    "type": "h2",
+                  },
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "alt": "sunset",
+                    "className": "img-fluid mx-auto",
+                    "src": "file-mock",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Checkout the recipes with the most upvotes.",
+                    "className": "card-text text-center",
+                    "style": Object {
+                      "color": "rgba(73, 67, 67, 0.9)",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Checkout the recipes with the most upvotes.",
+                  "type": "p",
+                },
+              ],
+              "type": "a",
+            },
+            "type": "div",
+          },
+        ],
+        "type": "section",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <LandingTopButtons
+            authUser={null}
+            router={
+              Object {
+                "push": [MockFunction] {
+                  "calls": Array [
+                    Array [
+                      "/recipes",
+                    ],
+                  ],
+                },
+              }
+            }
+            signOutUser={[MockFunction]}
+          />,
+          <section
+            id="slider"
+          >
+            <div
+              className="carousel slide"
+              data-interval={2000}
+              data-ride="carousel"
+              id="carouselExampleIndicators"
+            >
+              <div
+                className="carousel-inner fullHeight"
+              >
+                <div
+                  className="carousel-item active"
+                >
+                  <img
+                    alt="First slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+              </div>
+              <div
+                className="justify-content-center"
+              >
+                <div
+                  className="container justify-content-center text-center home-box"
+                  style={
+                    Object {
+                      "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                      "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                      "left": 0,
+                      "margin": "0 auto",
+                      "minWidth": "auto",
+                      "paddingBottom": 50,
+                      "paddingTop": 50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 80,
+                    }
+                  }
+                >
+                  <h1
+                    className="text-center"
+                    id="home-page-title"
+                    style={
+                      Object {
+                        "color": "lightGrey",
+                        "fontFamily": "Berkshire Swash",
+                        "fontSize": 90,
+                      }
+                    }
+                  >
+                    More Recipes
+                  </h1>
+                  <h3
+                    className="text-center"
+                    style={
+                      Object {
+                        "color": "rgba(241, 235, 178, 0.8)",
+                        "fontFamily": "kaushan script",
+                        "paddingTop": 20,
+                      }
+                    }
+                  >
+                    Enjoy the very best culinary experiences from around the world and share yours too!!!
+                  </h3>
+                  <CreateRecipeButton
+                    authUser={null}
+                  />
+                  <form
+                    className="form-inline justify-content-center"
+                    onSubmit={[Function]}
+                    style={
+                      Object {
+                        "paddingTop": 30,
+                      }
+                    }
+                  >
+                    <input
+                      aria-label="Search"
+                      className="form-control mr-sm-2 search"
+                      onChange={[Function]}
+                      placeholder="Search Recipes"
+                      style={
+                        Object {
+                          "width": 400,
+                        }
+                      }
+                      type="text"
+                      value="search-string"
+                    />
+                  </form>
+                </div>
+                <a
+                  href="#popular"
+                >
+                  <div>
+                    <div
+                      className="arrow bounce"
+                    />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </section>,
+          <section
+            className="container-fluid row no-gutters justify-content-between text-center"
+            id="popular"
+            style={
+              Object {
+                "backgroundColor": "#eee",
+                "marginBottom": 50,
+                "marginTop": 50,
+              }
+            }
+          >
+            <div
+              className="card card-1 col-sm-12 col-md-5 card my-3 "
+              data-aos="zoom-in-down"
+              style={
+                Object {
+                  "margin": "30px",
+                }
+              }
+            >
+              <a
+                href="/"
+                id="top-favorites-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Favorites
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9",
+                    }
+                  }
+                >
+                  Take a survey of our all time favorite recipes.
+                </p>
+              </a>
+            </div>
+            <div
+              className="card card-1 col-sm-12 col-md-5 card my-3"
+              data-aos="zoom-in-down"
+              style={
+                Object {
+                  "margin": "30px",
+                }
+              }
+            >
+              <a
+                href="/"
+                id="top-voted-link"
+                onClick={[Function]}
+              >
+                <div
+                  className="card-body"
+                >
+                  <h2
+                    className="card-subtitle text-muted"
+                  >
+                    Top Voted
+                  </h2>
+                </div>
+                <img
+                  alt="sunset"
+                  className="img-fluid mx-auto"
+                  src="file-mock"
+                />
+                <p
+                  className="card-text text-center"
+                  style={
+                    Object {
+                      "color": "rgba(73, 67, 67, 0.9)",
+                    }
+                  }
+                >
+                  Checkout the recipes with the most upvotes.
+                </p>
+              </a>
+            </div>
+          </section>,
+        ],
+        "style": Object {
+          "backgroundColor": "#eee",
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "authUser": null,
+            "router": Object {
+              "push": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "/recipes",
+                  ],
+                ],
+              },
+            },
+            "signOutUser": [MockFunction],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="carousel slide"
+              data-interval={2000}
+              data-ride="carousel"
+              id="carouselExampleIndicators"
+            >
+              <div
+                className="carousel-inner fullHeight"
+              >
+                <div
+                  className="carousel-item active"
+                >
+                  <img
+                    alt="First slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+                <div
+                  className="carousel-item"
+                >
+                  <img
+                    alt="Third slide"
+                    className="d-block w-100"
+                    src="file-mock"
+                  />
+                </div>
+              </div>
+              <div
+                className="justify-content-center"
+              >
+                <div
+                  className="container justify-content-center text-center home-box"
+                  style={
+                    Object {
+                      "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                      "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                      "left": 0,
+                      "margin": "0 auto",
+                      "minWidth": "auto",
+                      "paddingBottom": 50,
+                      "paddingTop": 50,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 80,
+                    }
+                  }
+                >
+                  <h1
+                    className="text-center"
+                    id="home-page-title"
+                    style={
+                      Object {
+                        "color": "lightGrey",
+                        "fontFamily": "Berkshire Swash",
+                        "fontSize": 90,
+                      }
+                    }
+                  >
+                    More Recipes
+                  </h1>
+                  <h3
+                    className="text-center"
+                    style={
+                      Object {
+                        "color": "rgba(241, 235, 178, 0.8)",
+                        "fontFamily": "kaushan script",
+                        "paddingTop": 20,
+                      }
+                    }
+                  >
+                    Enjoy the very best culinary experiences from around the world and share yours too!!!
+                  </h3>
+                  <CreateRecipeButton
+                    authUser={null}
+                  />
+                  <form
+                    className="form-inline justify-content-center"
+                    onSubmit={[Function]}
+                    style={
+                      Object {
+                        "paddingTop": 30,
+                      }
+                    }
+                  >
+                    <input
+                      aria-label="Search"
+                      className="form-control mr-sm-2 search"
+                      onChange={[Function]}
+                      placeholder="Search Recipes"
+                      style={
+                        Object {
+                          "width": 400,
+                        }
+                      }
+                      type="text"
+                      value="search-string"
+                    />
+                  </form>
+                </div>
+                <a
+                  href="#popular"
+                >
+                  <div>
+                    <div
+                      className="arrow bounce"
+                    />
+                  </div>
+                </a>
+              </div>
+            </div>,
+            "id": "slider",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="carousel-inner fullHeight"
+                >
+                  <div
+                    className="carousel-item active"
+                  >
+                    <img
+                      alt="First slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>
+                  <div
+                    className="carousel-item"
+                  >
+                    <img
+                      alt="Third slide"
+                      className="d-block w-100"
+                      src="file-mock"
+                    />
+                  </div>
+                </div>,
+                <div
+                  className="justify-content-center"
+                >
+                  <div
+                    className="container justify-content-center text-center home-box"
+                    style={
+                      Object {
+                        "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                        "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                        "left": 0,
+                        "margin": "0 auto",
+                        "minWidth": "auto",
+                        "paddingBottom": 50,
+                        "paddingTop": 50,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 80,
+                      }
+                    }
+                  >
+                    <h1
+                      className="text-center"
+                      id="home-page-title"
+                      style={
+                        Object {
+                          "color": "lightGrey",
+                          "fontFamily": "Berkshire Swash",
+                          "fontSize": 90,
+                        }
+                      }
+                    >
+                      More Recipes
+                    </h1>
+                    <h3
+                      className="text-center"
+                      style={
+                        Object {
+                          "color": "rgba(241, 235, 178, 0.8)",
+                          "fontFamily": "kaushan script",
+                          "paddingTop": 20,
+                        }
+                      }
+                    >
+                      Enjoy the very best culinary experiences from around the world and share yours too!!!
+                    </h3>
+                    <CreateRecipeButton
+                      authUser={null}
+                    />
+                    <form
+                      className="form-inline justify-content-center"
+                      onSubmit={[Function]}
+                      style={
+                        Object {
+                          "paddingTop": 30,
+                        }
+                      }
+                    >
+                      <input
+                        aria-label="Search"
+                        className="form-control mr-sm-2 search"
+                        onChange={[Function]}
+                        placeholder="Search Recipes"
+                        style={
+                          Object {
+                            "width": 400,
+                          }
+                        }
+                        type="text"
+                        value="search-string"
+                      />
+                    </form>
+                  </div>
+                  <a
+                    href="#popular"
+                  >
+                    <div>
+                      <div
+                        className="arrow bounce"
+                      />
+                    </div>
+                  </a>
+                </div>,
+              ],
+              "className": "carousel slide",
+              "data-interval": 2000,
+              "data-ride": "carousel",
+              "id": "carouselExampleIndicators",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="carousel-item active"
+                    >
+                      <img
+                        alt="First slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />
+                    </div>,
+                    <div
+                      className="carousel-item"
+                    >
+                      <img
+                        alt="Third slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />
+                    </div>,
+                    <div
+                      className="carousel-item"
+                    >
+                      <img
+                        alt="Third slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />
+                    </div>,
+                  ],
+                  "className": "carousel-inner fullHeight",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <img
+                        alt="First slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />,
+                      "className": "carousel-item active",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "First slide",
+                        "className": "d-block w-100",
+                        "src": "file-mock",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <img
+                        alt="Third slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />,
+                      "className": "carousel-item",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "Third slide",
+                        "className": "d-block w-100",
+                        "src": "file-mock",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <img
+                        alt="Third slide"
+                        className="d-block w-100"
+                        src="file-mock"
+                      />,
+                      "className": "carousel-item",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "alt": "Third slide",
+                        "className": "d-block w-100",
+                        "src": "file-mock",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="container justify-content-center text-center home-box"
+                      style={
+                        Object {
+                          "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                          "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                          "left": 0,
+                          "margin": "0 auto",
+                          "minWidth": "auto",
+                          "paddingBottom": 50,
+                          "paddingTop": 50,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 80,
+                        }
+                      }
+                    >
+                      <h1
+                        className="text-center"
+                        id="home-page-title"
+                        style={
+                          Object {
+                            "color": "lightGrey",
+                            "fontFamily": "Berkshire Swash",
+                            "fontSize": 90,
+                          }
+                        }
+                      >
+                        More Recipes
+                      </h1>
+                      <h3
+                        className="text-center"
+                        style={
+                          Object {
+                            "color": "rgba(241, 235, 178, 0.8)",
+                            "fontFamily": "kaushan script",
+                            "paddingTop": 20,
+                          }
+                        }
+                      >
+                        Enjoy the very best culinary experiences from around the world and share yours too!!!
+                      </h3>
+                      <CreateRecipeButton
+                        authUser={null}
+                      />
+                      <form
+                        className="form-inline justify-content-center"
+                        onSubmit={[Function]}
+                        style={
+                          Object {
+                            "paddingTop": 30,
+                          }
+                        }
+                      >
+                        <input
+                          aria-label="Search"
+                          className="form-control mr-sm-2 search"
+                          onChange={[Function]}
+                          placeholder="Search Recipes"
+                          style={
+                            Object {
+                              "width": 400,
+                            }
+                          }
+                          type="text"
+                          value="search-string"
+                        />
+                      </form>
+                    </div>,
+                    <a
+                      href="#popular"
+                    >
+                      <div>
+                        <div
+                          className="arrow bounce"
+                        />
+                      </div>
+                    </a>,
+                  ],
+                  "className": "justify-content-center",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <h1
+                          className="text-center"
+                          id="home-page-title"
+                          style={
+                            Object {
+                              "color": "lightGrey",
+                              "fontFamily": "Berkshire Swash",
+                              "fontSize": 90,
+                            }
+                          }
+                        >
+                          More Recipes
+                        </h1>,
+                        <h3
+                          className="text-center"
+                          style={
+                            Object {
+                              "color": "rgba(241, 235, 178, 0.8)",
+                              "fontFamily": "kaushan script",
+                              "paddingTop": 20,
+                            }
+                          }
+                        >
+                          Enjoy the very best culinary experiences from around the world and share yours too!!!
+                        </h3>,
+                        <CreateRecipeButton
+                          authUser={null}
+                        />,
+                        <form
+                          className="form-inline justify-content-center"
+                          onSubmit={[Function]}
+                          style={
+                            Object {
+                              "paddingTop": 30,
+                            }
+                          }
+                        >
+                          <input
+                            aria-label="Search"
+                            className="form-control mr-sm-2 search"
+                            onChange={[Function]}
+                            placeholder="Search Recipes"
+                            style={
+                              Object {
+                                "width": 400,
+                              }
+                            }
+                            type="text"
+                            value="search-string"
+                          />
+                        </form>,
+                      ],
+                      "className": "container justify-content-center text-center home-box",
+                      "style": Object {
+                        "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                        "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                        "left": 0,
+                        "margin": "0 auto",
+                        "minWidth": "auto",
+                        "paddingBottom": 50,
+                        "paddingTop": 50,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 80,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "More Recipes",
+                          "className": "text-center",
+                          "id": "home-page-title",
+                          "style": Object {
+                            "color": "lightGrey",
+                            "fontFamily": "Berkshire Swash",
+                            "fontSize": 90,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": "More Recipes",
+                        "type": "h1",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Enjoy the very best culinary experiences from around the world and share yours too!!!",
+                          "className": "text-center",
+                          "style": Object {
+                            "color": "rgba(241, 235, 178, 0.8)",
+                            "fontFamily": "kaushan script",
+                            "paddingTop": 20,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": "Enjoy the very best culinary experiences from around the world and share yours too!!!",
+                        "type": "h3",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "function",
+                        "props": Object {
+                          "authUser": null,
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <input
+                            aria-label="Search"
+                            className="form-control mr-sm-2 search"
+                            onChange={[Function]}
+                            placeholder="Search Recipes"
+                            style={
+                              Object {
+                                "width": 400,
+                              }
+                            }
+                            type="text"
+                            value="search-string"
+                          />,
+                          "className": "form-inline justify-content-center",
+                          "onSubmit": [Function],
+                          "style": Object {
+                            "paddingTop": 30,
+                          },
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "aria-label": "Search",
+                            "className": "form-control mr-sm-2 search",
+                            "onChange": [Function],
+                            "placeholder": "Search Recipes",
+                            "style": Object {
+                              "width": 400,
+                            },
+                            "type": "text",
+                            "value": "search-string",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": "input",
+                        },
+                        "type": "form",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <div>
+                        <div
+                          className="arrow bounce"
+                        />
+                      </div>,
+                      "href": "#popular",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <div
+                          className="arrow bounce"
+                        />,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "arrow bounce",
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "div",
+                      },
+                      "type": "div",
+                    },
+                    "type": "a",
+                  },
+                ],
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "section",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="card card-1 col-sm-12 col-md-5 card my-3 "
+                data-aos="zoom-in-down"
+                style={
+                  Object {
+                    "margin": "30px",
+                  }
+                }
+              >
+                <a
+                  href="/"
+                  id="top-favorites-link"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Favorites
+                    </h2>
+                  </div>
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9",
+                      }
+                    }
+                  >
+                    Take a survey of our all time favorite recipes.
+                  </p>
+                </a>
+              </div>,
+              <div
+                className="card card-1 col-sm-12 col-md-5 card my-3"
+                data-aos="zoom-in-down"
+                style={
+                  Object {
+                    "margin": "30px",
+                  }
+                }
+              >
+                <a
+                  href="/"
+                  id="top-voted-link"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Voted
+                    </h2>
+                  </div>
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9)",
+                      }
+                    }
+                  >
+                    Checkout the recipes with the most upvotes.
+                  </p>
+                </a>
+              </div>,
+            ],
+            "className": "container-fluid row no-gutters justify-content-between text-center",
+            "id": "popular",
+            "style": Object {
+              "backgroundColor": "#eee",
+              "marginBottom": 50,
+              "marginTop": 50,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  href="/"
+                  id="top-favorites-link"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Favorites
+                    </h2>
+                  </div>
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9",
+                      }
+                    }
+                  >
+                    Take a survey of our all time favorite recipes.
+                  </p>
+                </a>,
+                "className": "card card-1 col-sm-12 col-md-5 card my-3 ",
+                "data-aos": "zoom-in-down",
+                "style": Object {
+                  "margin": "30px",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="card-body"
+                    >
+                      <h2
+                        className="card-subtitle text-muted"
+                      >
+                        Top Favorites
+                      </h2>
+                    </div>,
+                    <img
+                      alt="sunset"
+                      className="img-fluid mx-auto"
+                      src="file-mock"
+                    />,
+                    <p
+                      className="card-text text-center"
+                      style={
+                        Object {
+                          "color": "rgba(73, 67, 67, 0.9",
+                        }
+                      }
+                    >
+                      Take a survey of our all time favorite recipes.
+                    </p>,
+                  ],
+                  "href": "/",
+                  "id": "top-favorites-link",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <h2
+                        className="card-subtitle text-muted"
+                      >
+                        Top Favorites
+                      </h2>,
+                      "className": "card-body",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Top Favorites",
+                        "className": "card-subtitle text-muted",
+                      },
+                      "ref": null,
+                      "rendered": "Top Favorites",
+                      "type": "h2",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "sunset",
+                      "className": "img-fluid mx-auto",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Take a survey of our all time favorite recipes.",
+                      "className": "card-text text-center",
+                      "style": Object {
+                        "color": "rgba(73, 67, 67, 0.9",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Take a survey of our all time favorite recipes.",
+                    "type": "p",
+                  },
+                ],
+                "type": "a",
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <a
+                  href="/"
+                  id="top-voted-link"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="card-body"
+                  >
+                    <h2
+                      className="card-subtitle text-muted"
+                    >
+                      Top Voted
+                    </h2>
+                  </div>
+                  <img
+                    alt="sunset"
+                    className="img-fluid mx-auto"
+                    src="file-mock"
+                  />
+                  <p
+                    className="card-text text-center"
+                    style={
+                      Object {
+                        "color": "rgba(73, 67, 67, 0.9)",
+                      }
+                    }
+                  >
+                    Checkout the recipes with the most upvotes.
+                  </p>
+                </a>,
+                "className": "card card-1 col-sm-12 col-md-5 card my-3",
+                "data-aos": "zoom-in-down",
+                "style": Object {
+                  "margin": "30px",
+                },
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="card-body"
+                    >
+                      <h2
+                        className="card-subtitle text-muted"
+                      >
+                        Top Voted
+                      </h2>
+                    </div>,
+                    <img
+                      alt="sunset"
+                      className="img-fluid mx-auto"
+                      src="file-mock"
+                    />,
+                    <p
+                      className="card-text text-center"
+                      style={
+                        Object {
+                          "color": "rgba(73, 67, 67, 0.9)",
+                        }
+                      }
+                    >
+                      Checkout the recipes with the most upvotes.
+                    </p>,
+                  ],
+                  "href": "/",
+                  "id": "top-voted-link",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <h2
+                        className="card-subtitle text-muted"
+                      >
+                        Top Voted
+                      </h2>,
+                      "className": "card-body",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Top Voted",
+                        "className": "card-subtitle text-muted",
+                      },
+                      "ref": null,
+                      "rendered": "Top Voted",
+                      "type": "h2",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "alt": "sunset",
+                      "className": "img-fluid mx-auto",
+                      "src": "file-mock",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "img",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Checkout the recipes with the most upvotes.",
+                      "className": "card-text text-center",
+                      "style": Object {
+                        "color": "rgba(73, 67, 67, 0.9)",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Checkout the recipes with the most upvotes.",
+                    "type": "p",
+                  },
+                ],
+                "type": "a",
+              },
+              "type": "div",
+            },
+          ],
+          "type": "section",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

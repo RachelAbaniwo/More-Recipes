@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ingredients list component should render without crashing 1`] = `
+<ul
+  className="list-unstyled"
+>
+  <li
+    id="ingredient-style"
+  >
+    eggs
+  </li>
+  <li
+    id="ingredient-style"
+  >
+    tomatoes
+  </li>
+  <li
+    id="ingredient-style"
+  >
+    pepper
+  </li>
+</ul>
+`;

@@ -1,1 +1,9 @@
-node_modules
+node_modules/
+coverage
+.nyc_output/
+.DS_Store
+.env
+.coverdata/
+.coverrun
+npm-debug.log
+dist/

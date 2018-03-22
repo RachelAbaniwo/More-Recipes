@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="6">
+
+  <testsuite name="authentication.spec"
+    errors="0" failures="0" hostname="" id="" package="authentication.spec" skipped="0"
+    tests="6" time="78.66" timestamp="Sat, 17 Mar 2018 21:14:55 GMT">
+  
+    <testcase name="Register: a new user should successfully register if all fields are filled appropriately" classname="authentication.spec" time="13.33" assertions="12">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Register: a new user should see validation errors if they fill the fields with invalid characters" classname="authentication.spec" time="12.54" assertions="9">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Register: a new user should see validation errors if they do not fill the empty fields" classname="authentication.spec" time="11.17" assertions="9">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Sign in: a user should successfully sign in if all fields are filled with valid details" classname="authentication.spec" time="13.96" assertions="11">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Sign in: user should see validation errors if they fill in wrong credentials" classname="authentication.spec" time="14.49" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Sign in: user should see validation errors if they leave the fields empty" classname="authentication.spec" time="13.17" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

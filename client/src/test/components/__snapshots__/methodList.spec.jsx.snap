@@ -1,0 +1,597 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The MethodList component should display method list if method prop is passed with a full stop at the end 1`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <MethodList
+    method="Peel yam. Wash the peeled yam. Fry it."
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "method": "Peel yam. Wash the peeled yam. Fry it.",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": <ul
+        class="text-justify"
+        style="padding-bottom: 50px;"
+      >
+        <li
+          id="ingredient-style"
+        >
+          Peel yam
+          .
+        </li>
+        <li
+          id="ingredient-style"
+        >
+           Wash the peeled yam
+          .
+        </li>
+        <li
+          id="ingredient-style"
+        >
+           Fry it
+          .
+        </li>
+      </ul>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <li
+            id="ingredient-style"
+          >
+            Peel yam
+            .
+          </li>,
+          <li
+            id="ingredient-style"
+          >
+             Wash the peeled yam
+            .
+          </li>,
+          <li
+            id="ingredient-style"
+          >
+             Fry it
+            .
+          </li>,
+        ],
+        "className": "text-justify",
+        "style": Object {
+          "paddingBottom": 50,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": <li
+            id="ingredient-style"
+          >
+            Peel yam
+            .
+          </li>,
+          "key": "0",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Peel yam",
+              ".",
+            ],
+            "id": "ingredient-style",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Peel yam",
+            ".",
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": <li
+            id="ingredient-style"
+          >
+             Wash the peeled yam
+            .
+          </li>,
+          "key": "1",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " Wash the peeled yam",
+              ".",
+            ],
+            "id": "ingredient-style",
+          },
+          "ref": null,
+          "rendered": Array [
+            " Wash the peeled yam",
+            ".",
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": <li
+            id="ingredient-style"
+          >
+             Fry it
+            .
+          </li>,
+          "key": "2",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " Fry it",
+              ".",
+            ],
+            "id": "ingredient-style",
+          },
+          "ref": null,
+          "rendered": Array [
+            " Fry it",
+            ".",
+          ],
+          "type": "li",
+        },
+      ],
+      "type": "ul",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "method": "Peel yam. Wash the peeled yam. Fry it.",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": <ul
+          class="text-justify"
+          style="padding-bottom: 50px;"
+        >
+          <li
+            id="ingredient-style"
+          >
+            Peel yam
+            .
+          </li>
+          <li
+            id="ingredient-style"
+          >
+             Wash the peeled yam
+            .
+          </li>
+          <li
+            id="ingredient-style"
+          >
+             Fry it
+            .
+          </li>
+        </ul>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <li
+              id="ingredient-style"
+            >
+              Peel yam
+              .
+            </li>,
+            <li
+              id="ingredient-style"
+            >
+               Wash the peeled yam
+              .
+            </li>,
+            <li
+              id="ingredient-style"
+            >
+               Fry it
+              .
+            </li>,
+          ],
+          "className": "text-justify",
+          "style": Object {
+            "paddingBottom": 50,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": <li
+              id="ingredient-style"
+            >
+              Peel yam
+              .
+            </li>,
+            "key": "0",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                "Peel yam",
+                ".",
+              ],
+              "id": "ingredient-style",
+            },
+            "ref": null,
+            "rendered": Array [
+              "Peel yam",
+              ".",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": <li
+              id="ingredient-style"
+            >
+               Wash the peeled yam
+              .
+            </li>,
+            "key": "1",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                " Wash the peeled yam",
+                ".",
+              ],
+              "id": "ingredient-style",
+            },
+            "ref": null,
+            "rendered": Array [
+              " Wash the peeled yam",
+              ".",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": <li
+              id="ingredient-style"
+            >
+               Fry it
+              .
+            </li>,
+            "key": "2",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                " Fry it",
+                ".",
+              ],
+              "id": "ingredient-style",
+            },
+            "ref": null,
+            "rendered": Array [
+              " Fry it",
+              ".",
+            ],
+            "type": "li",
+          },
+        ],
+        "type": "ul",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`The MethodList component should display method list if method prop is passed with a full stop at the end 2`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <MethodList
+    method="Peel yam. Wash the peeled yam. Fry it"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "method": "Peel yam. Wash the peeled yam. Fry it",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": <ul
+        class="text-justify"
+        style="padding-bottom: 50px;"
+      >
+        <li
+          id="ingredient-style"
+        >
+          Peel yam
+          .
+        </li>
+        <li
+          id="ingredient-style"
+        >
+           Wash the peeled yam
+          .
+        </li>
+        <li
+          id="ingredient-style"
+        >
+           Fry it
+          .
+        </li>
+      </ul>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <li
+            id="ingredient-style"
+          >
+            Peel yam
+            .
+          </li>,
+          <li
+            id="ingredient-style"
+          >
+             Wash the peeled yam
+            .
+          </li>,
+          <li
+            id="ingredient-style"
+          >
+             Fry it
+            .
+          </li>,
+        ],
+        "className": "text-justify",
+        "style": Object {
+          "paddingBottom": 50,
+        },
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": <li
+            id="ingredient-style"
+          >
+            Peel yam
+            .
+          </li>,
+          "key": "0",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Peel yam",
+              ".",
+            ],
+            "id": "ingredient-style",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Peel yam",
+            ".",
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": <li
+            id="ingredient-style"
+          >
+             Wash the peeled yam
+            .
+          </li>,
+          "key": "1",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " Wash the peeled yam",
+              ".",
+            ],
+            "id": "ingredient-style",
+          },
+          "ref": null,
+          "rendered": Array [
+            " Wash the peeled yam",
+            ".",
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": <li
+            id="ingredient-style"
+          >
+             Fry it
+            .
+          </li>,
+          "key": "2",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " Fry it",
+              ".",
+            ],
+            "id": "ingredient-style",
+          },
+          "ref": null,
+          "rendered": Array [
+            " Fry it",
+            ".",
+          ],
+          "type": "li",
+        },
+      ],
+      "type": "ul",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "method": "Peel yam. Wash the peeled yam. Fry it",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": <ul
+          class="text-justify"
+          style="padding-bottom: 50px;"
+        >
+          <li
+            id="ingredient-style"
+          >
+            Peel yam
+            .
+          </li>
+          <li
+            id="ingredient-style"
+          >
+             Wash the peeled yam
+            .
+          </li>
+          <li
+            id="ingredient-style"
+          >
+             Fry it
+            .
+          </li>
+        </ul>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <li
+              id="ingredient-style"
+            >
+              Peel yam
+              .
+            </li>,
+            <li
+              id="ingredient-style"
+            >
+               Wash the peeled yam
+              .
+            </li>,
+            <li
+              id="ingredient-style"
+            >
+               Fry it
+              .
+            </li>,
+          ],
+          "className": "text-justify",
+          "style": Object {
+            "paddingBottom": 50,
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": <li
+              id="ingredient-style"
+            >
+              Peel yam
+              .
+            </li>,
+            "key": "0",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                "Peel yam",
+                ".",
+              ],
+              "id": "ingredient-style",
+            },
+            "ref": null,
+            "rendered": Array [
+              "Peel yam",
+              ".",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": <li
+              id="ingredient-style"
+            >
+               Wash the peeled yam
+              .
+            </li>,
+            "key": "1",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                " Wash the peeled yam",
+                ".",
+              ],
+              "id": "ingredient-style",
+            },
+            "ref": null,
+            "rendered": Array [
+              " Wash the peeled yam",
+              ".",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": <li
+              id="ingredient-style"
+            >
+               Fry it
+              .
+            </li>,
+            "key": "2",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                " Fry it",
+                ".",
+              ],
+              "id": "ingredient-style",
+            },
+            "ref": null,
+            "rendered": Array [
+              " Fry it",
+              ".",
+            ],
+            "type": "li",
+          },
+        ],
+        "type": "ul",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

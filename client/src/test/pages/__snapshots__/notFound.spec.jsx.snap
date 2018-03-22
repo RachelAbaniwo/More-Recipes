@@ -1,0 +1,489 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The 404 Page should mount without crashing when user is authenticated 1`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <PageNotFound />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {},
+    "ref": null,
+    "rendered": Object {
+      "instance": <div>
+        <div
+          class="container justify-content-center text-center"
+          style="background-color: rgba(73, 67, 67, 0.679); position: absolute; padding-top: 50px; padding-bottom: 80px; top: 80px; left: 0px; right: 0px; margin: 80px auto; min-width: auto; box-shadow: 0px 2px 2px rgba(27, 255, 164, 0.967);"
+        >
+          <h1
+            class="text-center"
+            id="page-not-found-title"
+            style="font-family: Berkshire Swash; font-size: 150px;"
+          >
+            404
+          </h1>
+          <h3
+            id="lost-your-way"
+          >
+            Hey! it seems you lost your way
+          </h3>
+          <h3>
+            Page not found
+          </h3>
+        </div>
+      </div>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div
+          className="container justify-content-center text-center"
+          style={
+            Object {
+              "backgroundColor": "rgba(73, 67, 67, 0.679)",
+              "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+              "left": 0,
+              "margin": "80px auto",
+              "minWidth": "auto",
+              "paddingBottom": 80,
+              "paddingTop": 50,
+              "position": "absolute",
+              "right": 0,
+              "top": 80,
+            }
+          }
+        >
+          <h1
+            className="text-center"
+            id="page-not-found-title"
+            style={
+              Object {
+                "color": "lightGrey",
+                "fontFamily": "Berkshire Swash",
+                "fontSize": 150,
+              }
+            }
+          >
+            404
+          </h1>
+          <h3
+            id="lost-your-way"
+            style={
+              Object {
+                "color": "lightGrey",
+              }
+            }
+          >
+            Hey! it seems you lost your way
+          </h3>
+          <h3
+            style={
+              Object {
+                "color": "lightGrey",
+              }
+            }
+          >
+            Page not found
+          </h3>
+        </div>,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": <div
+            class="container justify-content-center text-center"
+            style="background-color: rgba(73, 67, 67, 0.679); position: absolute; padding-top: 50px; padding-bottom: 80px; top: 80px; left: 0px; right: 0px; margin: 80px auto; min-width: auto; box-shadow: 0px 2px 2px rgba(27, 255, 164, 0.967);"
+          >
+            <h1
+              class="text-center"
+              id="page-not-found-title"
+              style="font-family: Berkshire Swash; font-size: 150px;"
+            >
+              404
+            </h1>
+            <h3
+              id="lost-your-way"
+            >
+              Hey! it seems you lost your way
+            </h3>
+            <h3>
+              Page not found
+            </h3>
+          </div>,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <h1
+                className="text-center"
+                id="page-not-found-title"
+                style={
+                  Object {
+                    "color": "lightGrey",
+                    "fontFamily": "Berkshire Swash",
+                    "fontSize": 150,
+                  }
+                }
+              >
+                404
+              </h1>,
+              <h3
+                id="lost-your-way"
+                style={
+                  Object {
+                    "color": "lightGrey",
+                  }
+                }
+              >
+                Hey! it seems you lost your way
+              </h3>,
+              <h3
+                style={
+                  Object {
+                    "color": "lightGrey",
+                  }
+                }
+              >
+                Page not found
+              </h3>,
+            ],
+            "className": "container justify-content-center text-center",
+            "style": Object {
+              "backgroundColor": "rgba(73, 67, 67, 0.679)",
+              "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+              "left": 0,
+              "margin": "80px auto",
+              "minWidth": "auto",
+              "paddingBottom": 80,
+              "paddingTop": 50,
+              "position": "absolute",
+              "right": 0,
+              "top": 80,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": <h1
+                class="text-center"
+                id="page-not-found-title"
+                style="font-family: Berkshire Swash; font-size: 150px;"
+              >
+                404
+              </h1>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "404",
+                "className": "text-center",
+                "id": "page-not-found-title",
+                "style": Object {
+                  "color": "lightGrey",
+                  "fontFamily": "Berkshire Swash",
+                  "fontSize": 150,
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "404",
+              ],
+              "type": "h1",
+            },
+            Object {
+              "instance": <h3
+                id="lost-your-way"
+              >
+                Hey! it seems you lost your way
+              </h3>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Hey! it seems you lost your way",
+                "id": "lost-your-way",
+                "style": Object {
+                  "color": "lightGrey",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "Hey! it seems you lost your way",
+              ],
+              "type": "h3",
+            },
+            Object {
+              "instance": <h3>
+                Page not found
+              </h3>,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Page not found",
+                "style": Object {
+                  "color": "lightGrey",
+                },
+              },
+              "ref": null,
+              "rendered": Array [
+                "Page not found",
+              ],
+              "type": "h3",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {},
+      "ref": null,
+      "rendered": Object {
+        "instance": <div>
+          <div
+            class="container justify-content-center text-center"
+            style="background-color: rgba(73, 67, 67, 0.679); position: absolute; padding-top: 50px; padding-bottom: 80px; top: 80px; left: 0px; right: 0px; margin: 80px auto; min-width: auto; box-shadow: 0px 2px 2px rgba(27, 255, 164, 0.967);"
+          >
+            <h1
+              class="text-center"
+              id="page-not-found-title"
+              style="font-family: Berkshire Swash; font-size: 150px;"
+            >
+              404
+            </h1>
+            <h3
+              id="lost-your-way"
+            >
+              Hey! it seems you lost your way
+            </h3>
+            <h3>
+              Page not found
+            </h3>
+          </div>
+        </div>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="container justify-content-center text-center"
+            style={
+              Object {
+                "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                "left": 0,
+                "margin": "80px auto",
+                "minWidth": "auto",
+                "paddingBottom": 80,
+                "paddingTop": 50,
+                "position": "absolute",
+                "right": 0,
+                "top": 80,
+              }
+            }
+          >
+            <h1
+              className="text-center"
+              id="page-not-found-title"
+              style={
+                Object {
+                  "color": "lightGrey",
+                  "fontFamily": "Berkshire Swash",
+                  "fontSize": 150,
+                }
+              }
+            >
+              404
+            </h1>
+            <h3
+              id="lost-your-way"
+              style={
+                Object {
+                  "color": "lightGrey",
+                }
+              }
+            >
+              Hey! it seems you lost your way
+            </h3>
+            <h3
+              style={
+                Object {
+                  "color": "lightGrey",
+                }
+              }
+            >
+              Page not found
+            </h3>
+          </div>,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": <div
+              class="container justify-content-center text-center"
+              style="background-color: rgba(73, 67, 67, 0.679); position: absolute; padding-top: 50px; padding-bottom: 80px; top: 80px; left: 0px; right: 0px; margin: 80px auto; min-width: auto; box-shadow: 0px 2px 2px rgba(27, 255, 164, 0.967);"
+            >
+              <h1
+                class="text-center"
+                id="page-not-found-title"
+                style="font-family: Berkshire Swash; font-size: 150px;"
+              >
+                404
+              </h1>
+              <h3
+                id="lost-your-way"
+              >
+                Hey! it seems you lost your way
+              </h3>
+              <h3>
+                Page not found
+              </h3>
+            </div>,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <h1
+                  className="text-center"
+                  id="page-not-found-title"
+                  style={
+                    Object {
+                      "color": "lightGrey",
+                      "fontFamily": "Berkshire Swash",
+                      "fontSize": 150,
+                    }
+                  }
+                >
+                  404
+                </h1>,
+                <h3
+                  id="lost-your-way"
+                  style={
+                    Object {
+                      "color": "lightGrey",
+                    }
+                  }
+                >
+                  Hey! it seems you lost your way
+                </h3>,
+                <h3
+                  style={
+                    Object {
+                      "color": "lightGrey",
+                    }
+                  }
+                >
+                  Page not found
+                </h3>,
+              ],
+              "className": "container justify-content-center text-center",
+              "style": Object {
+                "backgroundColor": "rgba(73, 67, 67, 0.679)",
+                "boxShadow": "0px 2px 2px rgba(27, 255, 164, 0.967)",
+                "left": 0,
+                "margin": "80px auto",
+                "minWidth": "auto",
+                "paddingBottom": 80,
+                "paddingTop": 50,
+                "position": "absolute",
+                "right": 0,
+                "top": 80,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": <h1
+                  class="text-center"
+                  id="page-not-found-title"
+                  style="font-family: Berkshire Swash; font-size: 150px;"
+                >
+                  404
+                </h1>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "404",
+                  "className": "text-center",
+                  "id": "page-not-found-title",
+                  "style": Object {
+                    "color": "lightGrey",
+                    "fontFamily": "Berkshire Swash",
+                    "fontSize": 150,
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  "404",
+                ],
+                "type": "h1",
+              },
+              Object {
+                "instance": <h3
+                  id="lost-your-way"
+                >
+                  Hey! it seems you lost your way
+                </h3>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Hey! it seems you lost your way",
+                  "id": "lost-your-way",
+                  "style": Object {
+                    "color": "lightGrey",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  "Hey! it seems you lost your way",
+                ],
+                "type": "h3",
+              },
+              Object {
+                "instance": <h3>
+                  Page not found
+                </h3>,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Page not found",
+                  "style": Object {
+                    "color": "lightGrey",
+                  },
+                },
+                "ref": null,
+                "rendered": Array [
+                  "Page not found",
+                ],
+                "type": "h3",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

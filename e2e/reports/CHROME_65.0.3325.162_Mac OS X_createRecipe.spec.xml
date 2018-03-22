@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="createRecipe.spec"
+    errors="0" failures="0" hostname="" id="" package="createRecipe.spec" skipped="0"
+    tests="2" time="62.74" timestamp="Sat, 17 Mar 2018 21:16:14 GMT">
+  
+    <testcase name="Create recipe: authenticated user can create recipe" classname="createRecipe.spec" time="28.13" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Create recipe displays validation errors if data is invalid" classname="createRecipe.spec" time="34.61" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

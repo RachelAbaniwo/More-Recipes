@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Notification component Should mount without crashing 1`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <Notification
+    notification={
+      Object {
+        "level": "success",
+        "message": "user registered.",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "notification": Object {
+        "level": "success",
+        "message": "user registered.",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": <div />,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {},
+      "ref": null,
+      "rendered": Array [
+        undefined,
+      ],
+      "type": "div",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "notification": Object {
+          "level": "success",
+          "message": "user registered.",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": <div />,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": Array [
+          undefined,
+        ],
+        "type": "div",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`The Notification component Should mount without crashing 2`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <Notification
+    notification={null}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "notification": null,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": <div />,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {},
+      "ref": null,
+      "rendered": Array [
+        undefined,
+      ],
+      "type": "div",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "notification": null,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": <div />,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": Array [
+          undefined,
+        ],
+        "type": "div",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
