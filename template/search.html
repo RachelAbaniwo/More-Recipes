@@ -1,97 +1,80 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>More-Recipes&nbsp|&nbspSearch Results</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>More-Recipes&nbsp|&nbspSearch Results</title>
+		
+		<link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open
+		+Sans|Kaushan+Script">
   </head>
 
-  <body>
+  <body class="view-recipe-bg">
 
-    <section class="home-header">
-      <div class="container-fluid">
-  	    <div class="row">
-  	      <div class="col-lg-12">
-            <a class="btn btn-outline-light float-right" href="signin.html" role="button">Sign In</a>
-            <a class="btn btn-outline-light float-right" style="margin-right:10px" href="signup.html" role="button">Sign Up</a>
-  		    </div>
-  		    <div class="col-lg-12">
-  		      <h1 class="text-light text-center display-3">MORE RECIPES</h1>
-  		    </div>
-  	    </div>
-  	  </div>
+    <section id="nav">
+      <nav class="navbar navbar-expand-sm navbar-dark fixed-top navbar-custom">
+				<a class="navbar-brand" href="#">MORE RECIPES</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="navbar-register"style = "margin-right: 20px" href="#">REGISTER</a>
+            </li>
+            <li class="nav-item">
+							<a class="navbar-register"style = "margin-right: 20px" href="#">SIGN IN</a>
+						</li>
+					</ul>
+					<form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="search" placeholder="Find a Recipe" aria-label="Search">
+					</form>
+				</div>
+			</nav>
     </section>
 
-    <section>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="height: 50px; font-size:15px; border-bottom: 1px solid lightgrey; margin-bottom: 30px">
-  	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-  	      <span class="navbar-toggler-icon"></span>
-  	    </button>
-  	    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-  	      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-  		      <li class="nav-item active">
-  		        <a class="nav-link" href="index.html">HOME <span class="sr-only">(current)</span></a>
-  		      </li>
-  		      <li class="nav-item dropdown">
-  		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  		          RECIPES
-  		        </a>
-  		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-  		          <a class="dropdown-item" href="top-favorites.html" style="font-size: 15px">Top Favourites</a>
-  		          <a class="dropdown-item" href="top-voted.html" style="font-size: 15px">Top Voted</a>
-  		        </div>
-  		      </li>
-  		    </ul>
-  		    <form class="form-inline my-2 my-lg-0">
-  		      <input class="form-control mr-sm-2 " style="font-size: 15px" type="search" placeholder="Find a Recipe" aria-label="Search">
-  		      <a class="btn btn-outline-success my-2 my-sm-0"style="font-size: 15px" type="submit" href="search.html" role="button">Search</a>
-  		    </form>
-  	    </div>
-  	  </nav>
-    </section>
-
-    <section class="container">
+    <section class="container text-center mx auto view-recipe-container" style="border: 1px solid lightgrey; padding: 30px;margin-top: 70px; margin-bottom: 50px;" >
       <div class="row">
         <section class="col-sm-12">
-        	<h3 class="display-4" style="border-bottom: 1px solid lightgrey">Results</h3>
+        	<h1 style="border-bottom: 1px solid lightgrey">Results</h1>
         </section>
         <div class="row">
-          <section class="col-sm-4">
+          <section class="col-sm-12 col-md-6">
         	  <figure class="figure">
   	  	      <img src="assets/image/image7.jpeg" alt="Search Result" class="figure-img img-thumbnail mx-auto">
   	  	      <figcaption class="figure-caption">Commodo Ligula<p><i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
   	  	    </figure>
           </section>
-          <section class="col-sm-4">
+          <section class="col-sm-12 col-md-6">
         	  <figure class="figure">
   	  	      <img src="assets/image/image10.jpeg" alt="Search Result" class="figure-img img-thumbnail mx-auto">
   	  	      <figcaption class="figure-caption">Commodo Ligula<p><i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
   	  	    </figure>
           </section>
-          <section class="col-sm-4">
+          <section class="col-sm-12 col-md-6">
         	  <figure class="figure">
   	  	      <img src="assets/image/image8.jpg" alt="Search Result" class="figure-img img-thumbnail mx-auto">
   	  	      <figcaption class="figure-caption">Commodo Ligula<p><i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
   	  	    </figure>
           </section>
-        </div>
-        <div class="row">
-          <section class="col-sm-4">
+        <section class="col-sm-12 col-md-6">
         	<figure class="figure">
   	  	  <img src="assets/image/image4.jpg" alt="Search Result" class="figure-img img-thumbnail mx-auto">
   	  	  <figcaption class="figure-caption">Commodo Ligula<p><i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
   	  	</figure>
         </section>
-        <section class="col-sm-4">
+        <section class="col-sm-12 col-md-6">
         	<figure class="figure">
   	  	    <img src="assets/image/image5.jpeg" alt="Search Result" class="figure-img img-thumbnail mx-auto">
   	  	    <figcaption class="figure-caption">Commodo Ligula<p><i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
   	  	  </figure>
         </section>
-        <section class="col-sm-4">
+        <section class="col-sm-12 col-md-6">
         	<figure class="figure">
   	  	    <img src="assets/image/image6.jpeg" alt="Search Result" class="figure-img img-thumbnail mx-auto">
   	  	    <figcaption class="figure-caption">Commodo Ligula<p><i class="fa fa-thumbs-up text-info" aria-hidden="true"></i>200 &nbsp; <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>122 &nbsp; <i class="fa fa-heart" aria-hidden="true" style="color:yellow"></i>350<p></figcaption>
@@ -100,25 +83,10 @@
       </div>
     </section>
 
-    <section class="home-footer">
-      <div class="container-fluid">
-  		  <div class="row">
-  		    <section class="col-sm-12">
-  			    <nav>
-  			      <a href="about-us-contact.html" style="color: #fff; text-decoration: none">
-  				      <ul style="list-style-type: none; padding-left: 0em">
-  					      <li><strong><small>ABOUT US</small></strong></li>
-  					      <li><strong><small>CONTACT US</small></strong></li>
-  				      </ul>
-  			      </a>
-  			    </nav>
-  			  </section>
-  		  </div>
-  	    <section class="col-sm-12 text-center" style="margin-bottom: 10px; color: #fff; font-size:12px">
-  		    <p>&copy 2017 More-Recipes</p>
-  		  </section>
-  	  </div>
-    </section>
+    <footer class="fixed-bottom"style="background-color: rgba(73, 67, 67, 0.9); max-width: 100%; height: 30px">
+			<p class="text-center" style="margin-bottom: 5px; padding-top:5px; color: #fff; font-size:12px">&copy 2017 More-Recipes</p>
+	
+		</footer>
 
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>

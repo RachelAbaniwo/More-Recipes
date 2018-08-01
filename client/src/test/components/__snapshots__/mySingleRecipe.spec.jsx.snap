@@ -1,0 +1,689 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The MySingleRecipe component should mount without crashing 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MySingleRecipe
+    recipe={
+      Object {
+        "User": Object {
+          "id": 1,
+          "username": "test_user",
+        },
+        "category": "breakfast",
+        "description": "Fried ofada rice",
+        "id": 1,
+        "method": "fry",
+        "name": "Chicken",
+        "recipeImage": "http://test.recipe_image",
+        "upvotes": 1,
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <figure
+        className="figure"
+      >
+        <Link
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="view-recipe/1"
+        >
+          <img
+            alt="Search Result"
+            className="figure-img img-thumbnail mx-auto single-recipe"
+            src="http://test.recipe_image"
+            style={Object {}}
+          />
+        </Link>
+        <figcaption
+          className="figure-caption"
+          style={
+            Object {
+              "marginTop": "10px",
+            }
+          }
+        >
+          <Link
+            className="single-recipe-name"
+            onlyActiveOnIndex={false}
+            style={
+              Object {
+                "fontSize": "18px",
+                "textDecoration": "none",
+              }
+            }
+            to="view-recipe/1"
+          >
+            Chicken
+          </Link>
+          <p>
+            <i
+              aria-hidden="true"
+              className="fa fa-thumbs-up text-info"
+            />
+            1
+              
+            <i
+              aria-hidden="true"
+              className="fa fa-thumbs-down text-danger"
+            />
+              
+            <i
+              aria-hidden="true"
+              className="fa fa-heart"
+              style={
+                Object {
+                  "color": "orange",
+                }
+              }
+            />
+          </p>
+        </figcaption>
+      </figure>,
+      "className": "col-sm-3 card-1",
+      "style": Object {
+        "paddingTop": 10,
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Link
+            onlyActiveOnIndex={false}
+            style={Object {}}
+            to="view-recipe/1"
+          >
+            <img
+              alt="Search Result"
+              className="figure-img img-thumbnail mx-auto single-recipe"
+              src="http://test.recipe_image"
+              style={Object {}}
+            />
+          </Link>,
+          <figcaption
+            className="figure-caption"
+            style={
+              Object {
+                "marginTop": "10px",
+              }
+            }
+          >
+            <Link
+              className="single-recipe-name"
+              onlyActiveOnIndex={false}
+              style={
+                Object {
+                  "fontSize": "18px",
+                  "textDecoration": "none",
+                }
+              }
+              to="view-recipe/1"
+            >
+              Chicken
+            </Link>
+            <p>
+              <i
+                aria-hidden="true"
+                className="fa fa-thumbs-up text-info"
+              />
+              1
+                
+              <i
+                aria-hidden="true"
+                className="fa fa-thumbs-down text-danger"
+              />
+                
+              <i
+                aria-hidden="true"
+                className="fa fa-heart"
+                style={
+                  Object {
+                    "color": "orange",
+                  }
+                }
+              />
+            </p>
+          </figcaption>,
+        ],
+        "className": "figure",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <img
+              alt="Search Result"
+              className="figure-img img-thumbnail mx-auto single-recipe"
+              src="http://test.recipe_image"
+              style={Object {}}
+            />,
+            "onlyActiveOnIndex": false,
+            "style": Object {},
+            "to": "view-recipe/1",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "alt": "Search Result",
+              "className": "figure-img img-thumbnail mx-auto single-recipe",
+              "src": "http://test.recipe_image",
+              "style": Object {},
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "img",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Link
+                className="single-recipe-name"
+                onlyActiveOnIndex={false}
+                style={
+                  Object {
+                    "fontSize": "18px",
+                    "textDecoration": "none",
+                  }
+                }
+                to="view-recipe/1"
+              >
+                Chicken
+              </Link>,
+              <p>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-thumbs-up text-info"
+                />
+                1
+                  
+                <i
+                  aria-hidden="true"
+                  className="fa fa-thumbs-down text-danger"
+                />
+                  
+                <i
+                  aria-hidden="true"
+                  className="fa fa-heart"
+                  style={
+                    Object {
+                      "color": "orange",
+                    }
+                  }
+                />
+              </p>,
+            ],
+            "className": "figure-caption",
+            "style": Object {
+              "marginTop": "10px",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Chicken",
+                "className": "single-recipe-name",
+                "onlyActiveOnIndex": false,
+                "style": Object {
+                  "fontSize": "18px",
+                  "textDecoration": "none",
+                },
+                "to": "view-recipe/1",
+              },
+              "ref": null,
+              "rendered": "Chicken",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-thumbs-up text-info"
+                  />,
+                  1,
+                  "  ",
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-thumbs-down text-danger"
+                  />,
+                  undefined,
+                  "  ",
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-heart"
+                    style={
+                      Object {
+                        "color": "orange",
+                      }
+                    }
+                  />,
+                  undefined,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "aria-hidden": "true",
+                    "className": "fa fa-thumbs-up text-info",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "i",
+                },
+                1,
+                "  ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "aria-hidden": "true",
+                    "className": "fa fa-thumbs-down text-danger",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "i",
+                },
+                undefined,
+                "  ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "aria-hidden": "true",
+                    "className": "fa fa-heart",
+                    "style": Object {
+                      "color": "orange",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "i",
+                },
+                undefined,
+              ],
+              "type": "p",
+            },
+          ],
+          "type": "figcaption",
+        },
+      ],
+      "type": "figure",
+    },
+    "type": "section",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <figure
+          className="figure"
+        >
+          <Link
+            onlyActiveOnIndex={false}
+            style={Object {}}
+            to="view-recipe/1"
+          >
+            <img
+              alt="Search Result"
+              className="figure-img img-thumbnail mx-auto single-recipe"
+              src="http://test.recipe_image"
+              style={Object {}}
+            />
+          </Link>
+          <figcaption
+            className="figure-caption"
+            style={
+              Object {
+                "marginTop": "10px",
+              }
+            }
+          >
+            <Link
+              className="single-recipe-name"
+              onlyActiveOnIndex={false}
+              style={
+                Object {
+                  "fontSize": "18px",
+                  "textDecoration": "none",
+                }
+              }
+              to="view-recipe/1"
+            >
+              Chicken
+            </Link>
+            <p>
+              <i
+                aria-hidden="true"
+                className="fa fa-thumbs-up text-info"
+              />
+              1
+                
+              <i
+                aria-hidden="true"
+                className="fa fa-thumbs-down text-danger"
+              />
+                
+              <i
+                aria-hidden="true"
+                className="fa fa-heart"
+                style={
+                  Object {
+                    "color": "orange",
+                  }
+                }
+              />
+            </p>
+          </figcaption>
+        </figure>,
+        "className": "col-sm-3 card-1",
+        "style": Object {
+          "paddingTop": 10,
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <Link
+              onlyActiveOnIndex={false}
+              style={Object {}}
+              to="view-recipe/1"
+            >
+              <img
+                alt="Search Result"
+                className="figure-img img-thumbnail mx-auto single-recipe"
+                src="http://test.recipe_image"
+                style={Object {}}
+              />
+            </Link>,
+            <figcaption
+              className="figure-caption"
+              style={
+                Object {
+                  "marginTop": "10px",
+                }
+              }
+            >
+              <Link
+                className="single-recipe-name"
+                onlyActiveOnIndex={false}
+                style={
+                  Object {
+                    "fontSize": "18px",
+                    "textDecoration": "none",
+                  }
+                }
+                to="view-recipe/1"
+              >
+                Chicken
+              </Link>
+              <p>
+                <i
+                  aria-hidden="true"
+                  className="fa fa-thumbs-up text-info"
+                />
+                1
+                  
+                <i
+                  aria-hidden="true"
+                  className="fa fa-thumbs-down text-danger"
+                />
+                  
+                <i
+                  aria-hidden="true"
+                  className="fa fa-heart"
+                  style={
+                    Object {
+                      "color": "orange",
+                    }
+                  }
+                />
+              </p>
+            </figcaption>,
+          ],
+          "className": "figure",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <img
+                alt="Search Result"
+                className="figure-img img-thumbnail mx-auto single-recipe"
+                src="http://test.recipe_image"
+                style={Object {}}
+              />,
+              "onlyActiveOnIndex": false,
+              "style": Object {},
+              "to": "view-recipe/1",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "alt": "Search Result",
+                "className": "figure-img img-thumbnail mx-auto single-recipe",
+                "src": "http://test.recipe_image",
+                "style": Object {},
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "img",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Link
+                  className="single-recipe-name"
+                  onlyActiveOnIndex={false}
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                      "textDecoration": "none",
+                    }
+                  }
+                  to="view-recipe/1"
+                >
+                  Chicken
+                </Link>,
+                <p>
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-thumbs-up text-info"
+                  />
+                  1
+                    
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-thumbs-down text-danger"
+                  />
+                    
+                  <i
+                    aria-hidden="true"
+                    className="fa fa-heart"
+                    style={
+                      Object {
+                        "color": "orange",
+                      }
+                    }
+                  />
+                </p>,
+              ],
+              "className": "figure-caption",
+              "style": Object {
+                "marginTop": "10px",
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Chicken",
+                  "className": "single-recipe-name",
+                  "onlyActiveOnIndex": false,
+                  "style": Object {
+                    "fontSize": "18px",
+                    "textDecoration": "none",
+                  },
+                  "to": "view-recipe/1",
+                },
+                "ref": null,
+                "rendered": "Chicken",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-thumbs-up text-info"
+                    />,
+                    1,
+                    "  ",
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-thumbs-down text-danger"
+                    />,
+                    undefined,
+                    "  ",
+                    <i
+                      aria-hidden="true"
+                      className="fa fa-heart"
+                      style={
+                        Object {
+                          "color": "orange",
+                        }
+                      }
+                    />,
+                    undefined,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "aria-hidden": "true",
+                      "className": "fa fa-thumbs-up text-info",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "i",
+                  },
+                  1,
+                  "  ",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "aria-hidden": "true",
+                      "className": "fa fa-thumbs-down text-danger",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "i",
+                  },
+                  undefined,
+                  "  ",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "aria-hidden": "true",
+                      "className": "fa fa-heart",
+                      "style": Object {
+                        "color": "orange",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "i",
+                  },
+                  undefined,
+                ],
+                "type": "p",
+              },
+            ],
+            "type": "figcaption",
+          },
+        ],
+        "type": "figure",
+      },
+      "type": "section",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

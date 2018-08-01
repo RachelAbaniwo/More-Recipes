@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Search component should mount without crashing 1`] = `
+ReactWrapper {
+  "length": 1,
+  Symbol(enzyme.__unrendered__): <Search
+    router={
+      Object {
+        "location": Object {
+          "pathname": "/",
+        },
+        "push": [MockFunction],
+      }
+    }
+    searchQuery=""
+    updateSearchQuery={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "router": Object {
+        "location": Object {
+          "pathname": "/",
+        },
+        "push": [MockFunction],
+      },
+      "searchQuery": "",
+      "updateSearchQuery": [MockFunction],
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": <form
+        class="form-inline my-2 my-lg-0"
+      >
+        <input
+          aria-label="Search"
+          class="form-control mr-sm-2"
+          placeholder="Find a Recipe"
+          type="search"
+          value=""
+        />
+      </form>,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <input
+          aria-label="Search"
+          className="form-control mr-sm-2"
+          onChange={[Function]}
+          placeholder="Find a Recipe"
+          type="search"
+          value=""
+        />,
+        "className": "form-inline my-2 my-lg-0",
+        "onSubmit": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": <input
+            aria-label="Search"
+            class="form-control mr-sm-2"
+            placeholder="Find a Recipe"
+            type="search"
+            value=""
+          />,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "aria-label": "Search",
+            "className": "form-control mr-sm-2",
+            "onChange": [Function],
+            "placeholder": "Find a Recipe",
+            "type": "search",
+            "value": "",
+          },
+          "ref": null,
+          "rendered": Array [
+            undefined,
+          ],
+          "type": "input",
+        },
+      ],
+      "type": "form",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "router": Object {
+          "location": Object {
+            "pathname": "/",
+          },
+          "push": [MockFunction],
+        },
+        "searchQuery": "",
+        "updateSearchQuery": [MockFunction],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": <form
+          class="form-inline my-2 my-lg-0"
+        >
+          <input
+            aria-label="Search"
+            class="form-control mr-sm-2"
+            placeholder="Find a Recipe"
+            type="search"
+            value=""
+          />
+        </form>,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <input
+            aria-label="Search"
+            className="form-control mr-sm-2"
+            onChange={[Function]}
+            placeholder="Find a Recipe"
+            type="search"
+            value=""
+          />,
+          "className": "form-inline my-2 my-lg-0",
+          "onSubmit": [Function],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": <input
+              aria-label="Search"
+              class="form-control mr-sm-2"
+              placeholder="Find a Recipe"
+              type="search"
+              value=""
+            />,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "aria-label": "Search",
+              "className": "form-control mr-sm-2",
+              "onChange": [Function],
+              "placeholder": "Find a Recipe",
+              "type": "search",
+              "value": "",
+            },
+            "ref": null,
+            "rendered": Array [
+              undefined,
+            ],
+            "type": "input",
+          },
+        ],
+        "type": "form",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
